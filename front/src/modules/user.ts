@@ -1,5 +1,3 @@
-import { Roles } from '../enums/roles';
-
 import { Action } from '../types/action';
 import { User } from '../types/user';
 
