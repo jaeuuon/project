@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import reducer from './modules';
+import { configureStore } from '@reduxjs/toolkit';
+import rootReducer from './modules';
 
 import App from './App';
 
