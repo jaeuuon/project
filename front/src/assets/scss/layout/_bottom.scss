@@ -1,0 +1,6 @@
+@use '../variables' as var;
+@use './mixin' as mixin;
+
+#div-layout-bottom {
+    @include mixin.div-layout(var.$paddingHalf var.$padding var.$padding var.$padding);
+}

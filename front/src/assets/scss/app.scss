@@ -1,0 +1,16 @@
+@use './variables' as var;
+
+@use './layout/top';
+@use './layout/center';
+@use './layout/bottom';
+
+.div-layout-box {
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.23);
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.6);
+    background: rgba(var.$boxBackgroundColorR, var.$boxBackgroundColorG, var.$boxBackgroundColorB, 0.85);
+    overflow: auto;
+}

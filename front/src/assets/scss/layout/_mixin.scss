@@ -1,0 +1,6 @@
+@mixin div-layout($padding) {
+    margin: 0 auto;
+    padding: $padding;
+
+    @content;
+}

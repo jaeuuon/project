@@ -1,6 +1,8 @@
 const Center = () => {
     return (
-        <div>Center.tsx</div>
+        <div id="div-layout-center">
+            <div>Center.tsx</div>
+        </div>
     );
 };
 

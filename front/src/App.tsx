@@ -1,17 +1,18 @@
+import Container from '@mui/material/Container';
+
 import Top from './layout/top';
-import Left from './layout/left';
 import Center from './layout/center';
 import Bottom from './layout/bottom';
 
+import './assets/scss/app.scss';
+
 const App = () => {
     return (
-        <div>
-            <p>App.tsx</p>
-            <Top></Top>
-            <Left></Left>
-            <Center></Center>
-            <Bottom></Bottom>
-        </div>
+        <Container maxWidth="xl">
+            <Top />
+            <Center />
+            <Bottom />
+        </Container>
     );
 };
 

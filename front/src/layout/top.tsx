@@ -1,6 +1,8 @@
 const Top = () => {
     return (
-        <div>Top.tsx</div>
+        <div id="div-layout-top">
+            <div className="div-layout-box">Top.tsx</div>
+        </div>
     );
 };
 
