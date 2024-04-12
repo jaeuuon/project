@@ -6,7 +6,7 @@ import { set } from './modules/user';
 
 import { UserRole } from './enums/role';
 
-import './App.css';
+import './assets/css/App.css';
 
 import logo from './logo.svg';
 

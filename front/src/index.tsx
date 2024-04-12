@@ -7,7 +7,8 @@ import rootReducer from './modules';
 
 import App from './App';
 
-import './index.css';
+import '@fontsource/roboto/400.css';
+import './assets/css/index.css';
 
 import reportWebVitals from './reportWebVitals';
 
