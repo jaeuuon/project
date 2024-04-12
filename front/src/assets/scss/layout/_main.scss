@@ -3,4 +3,9 @@
 
 #div-layout-center {
     @include mixin.div-layout(var.$paddingHalf var.$padding);
+
+    .div-layout-center-sidebar {
+        width: var.$widthForSidebar;
+        padding: 0 var.$padding 0 0;
+    }
 }

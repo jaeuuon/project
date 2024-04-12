@@ -1,18 +1,16 @@
-import Container from '@mui/material/Container';
-
-import Top from './layout/top';
-import Center from './layout/center';
-import Bottom from './layout/bottom';
+import Header from './layout/header';
+import Main from './layout/main';
+import Footer from './layout/footer';
 
 import './assets/scss/app.scss';
 
 const App = () => {
     return (
-        <Container maxWidth="xl">
-            <Top />
-            <Center />
-            <Bottom />
-        </Container>
+        <div id="div-layout">
+            <Header />
+            <Main />
+            <Footer />
+        </div>
     );
 };
 
