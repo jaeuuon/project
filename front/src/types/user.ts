@@ -1,7 +1,11 @@
-import { Roles } from '../enums/roles';
+import { UserRole } from '../enums/role';
+
+type Id = string | null;
+type Name = string | null;
+type Role = UserRole.ADMIN | UserRole.USER | null;
 
 export interface User {
-    id: string | null;
-    name: string | null;
-    role: Roles.ADMIN | Roles.USER | null;
+    id: Id;
+    name: Name;
+    role: Role;
 }
