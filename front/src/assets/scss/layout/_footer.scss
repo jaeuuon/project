@@ -1,6 +1,13 @@
-@use '../variables' as var;
+@use './variables' as var;
 @use './mixin' as mixin;
 
-#div-layout-bottom {
-    @include mixin.div-layout(var.$paddingHalf var.$padding var.$padding var.$padding);
+#div-layout-footer {
+    @include mixin.div-layout-default(var.$paddingHalf var.$padding var.$padding var.$padding) {
+        border-top: var.$border;
+    }
+
+    #div-layout-footer-content {
+        max-width: var.$widthXl;
+        margin: auto;
+    }
 }

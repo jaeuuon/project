@@ -1,21 +1,3 @@
-@use './variables' as var;
-
 @use './layout/header';
 @use './layout/main';
 @use './layout/footer';
-
-#div-layout {
-    max-width: var.$widthXl;
-    margin: auto;
-}
-
-.div-layout-box {
-    width: 100%;
-    height: 100%;
-    padding: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.23);
-    border-radius: 5px;
-    color: rgba(0, 0, 0, 0.6);
-    background: rgba(var.$backgroundColorRedForLayoutBox, var.$backgroundColorGreenForLayoutBox, var.$backgroundColorBlueForLayoutBox, 0.85);
-    overflow: auto;
-}

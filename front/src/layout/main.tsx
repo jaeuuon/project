@@ -2,14 +2,12 @@ import Grid from '@mui/material/Grid';
 
 const Main = () => {
     return (
-        <Grid id="div-layout-center" container>
-            <Grid className="div-layout-center-sidebar" item xs="auto">
-                <div className="div-layout-box">Sidebar</div>
+        <div id="div-layout-main">
+            <Grid id="div-layout-main-content" container>
+                <Grid id="div-layout-main-content-sidebar" item xs="auto">Sidebar</Grid>
+                <Grid item xs>Main</Grid>
             </Grid>
-            <Grid item xs>
-                <div className="div-layout-box">Main</div>
-            </Grid>
-        </Grid>
+        </div>
     );
 };
 

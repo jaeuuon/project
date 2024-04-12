@@ -1,5 +1,4 @@
-@mixin div-layout($padding) {
-    margin: 0 auto;
+@mixin div-layout-default($padding) {
     padding: $padding;
 
     @content;

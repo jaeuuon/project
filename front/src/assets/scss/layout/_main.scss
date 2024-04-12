@@ -1,11 +1,18 @@
-@use '../variables' as var;
+@use './variables' as var;
 @use './mixin' as mixin;
 
-#div-layout-center {
-    @include mixin.div-layout(var.$paddingHalf var.$padding);
+#div-layout-main {
+    @include mixin.div-layout-default(var.$paddingHalf var.$padding) {
+        margin-top: var.$heightForHeader;
+    }
 
-    .div-layout-center-sidebar {
-        width: var.$widthForSidebar;
-        padding: 0 var.$padding 0 0;
+    #div-layout-main-content {
+        max-width: var.$widthXl;
+        margin: auto;
+
+        #div-layout-main-content-sidebar {
+            width: var.$widthForSidebar;
+            padding: 0 var.$padding 0 0;
+        }
     }
 }

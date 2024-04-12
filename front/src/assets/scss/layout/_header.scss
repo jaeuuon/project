@@ -1,6 +1,19 @@
-@use '../variables' as var;
+@use './variables' as var;
 @use './mixin' as mixin;
 
-#div-layout-top {
-    @include mixin.div-layout(var.$padding var.$padding var.$paddingHalf var.$padding);
+#div-layout-header {
+    @include mixin.div-layout-default(var.$padding var.$padding var.$paddingHalf var.$padding) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var.$heightForHeader;
+        border-bottom: var.$border;
+        background: rgba(255, 255, 255, 0.85);
+    }
+
+    #div-layout-header-content {
+        max-width: var.$widthXl;
+        margin: auto;
+    }
 }

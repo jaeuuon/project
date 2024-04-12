@@ -6,11 +6,11 @@ import './assets/scss/app.scss';
 
 const App = () => {
     return (
-        <div id="div-layout">
+        <>
             <Header />
             <Main />
             <Footer />
-        </div>
+        </>
     );
 };
 
