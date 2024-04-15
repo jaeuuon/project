@@ -9,7 +9,8 @@
         right: 0;
         height: var.$heightForHeader;
         border-bottom: var.$border;
-        background: rgba(255, 255, 255, 0.85);
+        background: var.$background;
+        box-shadow: 0 0 10px 0 var.$borderColor;
     }
 
     #div-layout-header-content {
@@ -17,7 +18,7 @@
         margin: auto;
     }
 
-    &.shadow-bottom {
-        box-shadow: 0 0 10px 0 var.$borderColor;
+    &.box-shadow-none {
+        box-shadow: none;
     }
 }

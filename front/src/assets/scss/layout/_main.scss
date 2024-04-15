@@ -6,13 +6,19 @@
         margin-top: var.$heightForHeader;
     }
 
-    #div-layout-main-content {
+    #grid-layout-main {
         max-width: var.$widthXl;
         margin: auto;
 
-        #div-layout-main-content-sidebar {
+        #grid-layout-main-sidebar {
             width: var.$widthForSidebar;
             padding: 0 var.$padding 0 0;
+        }
+
+        #fab-layout-main-to-top {
+            position: fixed;
+            right: var.$rightToTop;
+            bottom: var.$bottomToTop;
         }
     }
 }

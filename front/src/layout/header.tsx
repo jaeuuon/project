@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
 const Header = () => {
-    const [isVisibleShadow, setVisibleShadow] = useState(false);
+    const [isTop, setTop] = useState(true);
 
-    const handleScrollY = () => setVisibleShadow(window.scrollY > 0 ? true : false);
+    const handleScrollY = () => setTop(window.scrollY == 0 ? true : false);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScrollY);
@@ -12,7 +12,7 @@ const Header = () => {
     }, []);
 
     return (
-        <div id="div-layout-header" className={isVisibleShadow ? 'shadow-bottom' : ''}>
+        <div id="div-layout-header" className={isTop ? 'box-shadow-none' : ''}>
             <div id="div-layout-header-content">Header</div>
         </div>
     );
