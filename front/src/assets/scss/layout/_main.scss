@@ -2,7 +2,7 @@
 @use './mixin' as mixin;
 
 #div-layout-main {
-    @include mixin.div-layout-default(var.$paddingHalf var.$padding) {
+    @include mixin.div-layout-default(var.$padding) {
         margin-top: var.$heightForHeader;
     }
 

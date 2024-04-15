@@ -2,7 +2,7 @@
 @use './mixin' as mixin;
 
 #div-layout-footer {
-    @include mixin.div-layout-default(var.$paddingHalf var.$padding var.$padding var.$padding) {
+    @include mixin.div-layout-default(var.$padding) {
         border-top: var.$border;
     }
 

@@ -2,7 +2,7 @@
 @use './mixin' as mixin;
 
 #div-layout-header {
-    @include mixin.div-layout-default(var.$padding var.$padding var.$paddingHalf var.$padding) {
+    @include mixin.div-layout-default(var.$padding) {
         position: fixed;
         top: 0;
         left: 0;
@@ -15,5 +15,9 @@
     #div-layout-header-content {
         max-width: var.$widthXl;
         margin: auto;
+    }
+
+    &.shadow-bottom {
+        box-shadow: 0 0 10px 0 var.$borderColor;
     }
 }
