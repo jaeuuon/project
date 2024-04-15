@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 const Header = () => {
     const [isTop, setTop] = useState(true);
 
-    const handleScrollY = () => setTop(window.scrollY == 0 ? true : false);
+    const handleScrollY = () => setTop(window.scrollY === 0 ? true : false);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScrollY);
