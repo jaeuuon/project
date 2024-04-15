@@ -38,20 +38,22 @@ const Main = () => {
     }, []);
 
     return (
-        <Grid id="grid-layout-main" container>
-            <Grid id="grid-layout-main-sidebar" className={isSidebarOpen ? 'sidebar-open' : ''} item xs="auto" ref={sidebar}>
-                Sidebar
-                <div id="sidebar-icon" onClick={onClickSidebar}>
-                    {isSidebarOpen ? <KeyboardArrowLeftIcon /> : <KeyboardArrowRightIcon />}
-                </div>
+        <div id="div-main">
+            <Grid id="grid-main" container>
+                <Grid id="grid-main-sidebar" className={isSidebarOpen ? 'sidebar-open' : ''} item xs="auto" ref={sidebar}>
+                    Sidebar
+                    <div id="sidebar-icon" onClick={onClickSidebar}>
+                        {isSidebarOpen ? <KeyboardArrowLeftIcon /> : <KeyboardArrowRightIcon />}
+                    </div>
+                </Grid>
+                <Grid id="grid-main-content" item xs>Main</Grid>
+                {isToTop &&
+                    <div id="div-main-to-top" onClick={() => window.scroll({ top: 0, behavior: 'smooth' })}>
+                        <KeyboardArrowUpIcon />
+                    </div>
+                }
             </Grid>
-            <Grid id="grid-layout-main-content" item xs>Main</Grid>
-            {isToTop &&
-                <div id="div-layout-main-to-top" onClick={() => window.scroll({ top: 0, behavior: 'smooth' })}>
-                    <KeyboardArrowUpIcon />
-                </div>
-            }
-        </Grid>
+        </div>
     );
 };
 

@@ -1,85 +1,89 @@
 @use './variables' as var;
 @use './mixin' as mixin;
 
-#grid-layout-main {
-    @include mixin.div-layout-default(0 var.$padding) {
-        margin-top: var.$heightForHeader !important;
+#div-main {
+    @include mixin.div-default(0 var.$padding) {
+        margin-top: var.$heightForHeader;
     }
 
-    max-width: var.$widthXl;
-    margin: auto;
+    #grid-main {
+        max-width: var.$widthXl;
+        margin: auto;
 
-    #grid-layout-main-sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: var.$widthForSidebar;
-        height: 100%;
-        border-right: var.$border;
-        background-color: #ffffff;
-        padding: var.$padding;
-        transition: transform 0.5s;
-        transform: translateX(- var.$widthForSidebar);
+        #grid-main-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var.$widthForSidebar;
+            height: 100%;
+            border-right: var.$border;
+            background-color: #ffffff;
+            padding: var.$padding;
+            transition: transform 0.5s;
+            transform: translateX(- var.$widthForSidebar);
 
-        &.sidebar-open {
-            transform: translateX(0);
+            &.sidebar-open {
+                transform: translateX(0);
+            }
+
+            #sidebar-icon {
+                display: flex;
+                position: absolute;
+                top: 50%;
+                right: -25px;
+                width: 25px;
+                height: 50px;
+                border: var.$border;
+                border-radius: 0 var.$borderRadius var.$borderRadius 0;
+                background-color: #ffffff;
+                justify-content: center;
+                align-items: center;
+                transform: translateY(-50%);
+                cursor: pointer;
+            }
         }
 
-        #sidebar-icon {
+        #grid-main-content {
+            padding: var.$padding 0;
+        }
+
+        #div-main-to-top {
             display: flex;
-            position: absolute;
-            top: 50%;
-            right: -25px;
-            width: 25px;
+            position: fixed;
+            right: 25px;
+            bottom: 35px;
+            width: 50px;
             height: 50px;
             border: var.$border;
-            border-radius: 0 var.$borderRadius var.$borderRadius 0;
-            background-color: #ffffff;
+            border-radius: var.$borderRadius;
+            background-color: rgba(255, 255, 255, 0.85);
             justify-content: center;
             align-items: center;
-            transform: translateY(-50%);
             cursor: pointer;
         }
-    }
-
-    #grid-layout-main-content {
-        padding: var.$padding 0;
-    }
-
-    #div-layout-main-to-top {
-        display: flex;
-        position: fixed;
-        right: 25px;
-        bottom: 35px;
-        width: 50px;
-        height: 50px;
-        border: var.$border;
-        border-radius: var.$borderRadius;
-        background-color: rgba(255, 255, 255, 0.85);
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
     }
 }
 
 @media (min-width: var.$widthLg) {
-    #grid-layout-main {
-        #grid-layout-main-sidebar {
-            position: initial;
-            top: initial;
-            left: initial;
-            height: initial;
-            padding: var.$padding var.$padding var.$padding 0;
-            transition: initial;
-            transform: initial;
+    #div-main {
+        #grid-main {
+            #grid-main-sidebar {
+                position: initial;
+                top: initial;
+                left: initial;
+                height: initial;
+                padding: var.$padding var.$padding var.$padding 0;
+                transition: initial;
+                transform: initial;
 
-            .sidebar-icon {
-                display: none;
+                #sidebar-icon {
+                    display: none;
+                }
             }
-        }
 
-        #grid-layout-main-content {
-            padding: var.$padding 0 var.$padding var.$padding;
+            #grid-main-content {
+                padding: var.$padding 0 var.$padding var.$padding;
+            }
         }
     }
 }

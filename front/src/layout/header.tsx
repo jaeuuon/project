@@ -12,8 +12,8 @@ const Header = () => {
     }, []);
 
     return (
-        <div id="div-layout-header" className={isTop ? 'box-shadow-none' : ''}>
-            <div id="div-layout-header-content">Header</div>
+        <div id="div-header" className={isTop ? 'box-shadow-none' : ''}>
+            <div id="div-header-content">Header</div>
         </div>
     );
 };
