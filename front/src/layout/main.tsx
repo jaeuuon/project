@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
 
-import Fab from '@mui/material/Fab';
 import Grid from '@mui/material/Grid';
 
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
@@ -42,7 +41,7 @@ const Main = () => {
         <Grid id="grid-layout-main" container>
             <Grid id="grid-layout-main-sidebar" className={isSidebarOpen ? 'sidebar-open' : ''} item xs="auto" ref={sidebar}>
                 Sidebar
-                <div className="sidebar-icon" onClick={onClickSidebar}>
+                <div id="sidebar-icon" onClick={onClickSidebar}>
                     {isSidebarOpen ? <KeyboardArrowLeftIcon /> : <KeyboardArrowRightIcon />}
                 </div>
             </Grid>
