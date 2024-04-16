@@ -3,10 +3,12 @@ const Modal = ({
 }: {
     isOpenSidebar: boolean; handleSidebar: (isOpenSidebar: boolean) => void;
 }) => {
+    const onClick = () => handleSidebar(false);
+
     return (
         <>
             {isOpenSidebar &&
-                <div id="div-modal" onClick={() => handleSidebar(false)} />
+                <div id="div-modal" onClick={onClick} />
             }
         </>
     );
