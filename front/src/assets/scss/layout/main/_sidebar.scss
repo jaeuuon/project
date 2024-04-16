@@ -1,0 +1,52 @@
+@use '../variables' as var;
+
+#grid-main-sidebar {
+    z-index: var.$modalIndex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var.$widthForSidebar;
+    height: 100%;
+    border-right: var.$border;
+    background-color: #ffffff;
+    padding: var.$padding;
+    transition: transform 0.5s;
+    transform: translateX(- var.$widthForSidebar);
+
+    &.sidebar-open {
+        transform: translateX(0);
+    }
+
+    #sidebar-icon {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        right: -25px;
+        width: 25px;
+        height: 50px;
+        border: var.$border;
+        border-radius: 0 var.$borderRadius var.$borderRadius 0;
+        background-color: #ffffff;
+        justify-content: center;
+        align-items: center;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+}
+
+@media (min-width: var.$widthLg) {
+    #grid-main-sidebar {
+        z-index: initial;
+        position: initial;
+        top: initial;
+        left: initial;
+        height: initial;
+        padding: var.$padding var.$padding var.$padding 0;
+        transition: initial;
+        transform: initial;
+
+        #sidebar-icon {
+            display: none;
+        }
+    }
+}
