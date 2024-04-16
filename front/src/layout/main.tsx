@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 
 import Grid from '@mui/material/Grid';
 
@@ -6,28 +6,29 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
-const Main = () => {
+const Main = ({
+    isOpenSidebar, handleSidebar
+}: {
+    isOpenSidebar: boolean; handleSidebar: (isOpenSidebar: boolean) => void;
+}) => {
     const sidebar = useRef<HTMLInputElement>(null);
 
     const [isToTop, setToTop] = useState(false);
-    const [isSidebarOpen, setSidebarOpen] = useState(false);
 
-    const onClickSidebar = () => {
-        setSidebarOpen(!isSidebarOpen);
-    }
-
-    const handleScrollY = () => setToTop(window.scrollY >= 100 ? true : false);
-    const handleResize = () => {
-        if (sidebar?.current) {
-            const styles = window.getComputedStyle(sidebar.current);
-
-            if (styles.position !== 'fixed') {
-                setSidebarOpen(false);
-            }
-        }
-    };
+    const closeSidebar = useCallback(() => { handleSidebar(false); }, [handleSidebar]);
 
     useEffect(() => {
+        const handleScrollY = () => setToTop(window.scrollY >= 100 ? true : false);
+        const handleResize = () => {
+            if (sidebar?.current) {
+                const styles = window.getComputedStyle(sidebar.current);
+
+                if (styles.position !== 'fixed') {
+                    closeSidebar();
+                }
+            }
+        };
+
         window.addEventListener('scroll', handleScrollY);
         window.addEventListener('resize', handleResize);
 
@@ -35,15 +36,15 @@ const Main = () => {
             window.removeEventListener('scroll', handleScrollY);
             window.removeEventListener('resize', handleResize);
         }
-    }, []);
+    }, [closeSidebar]);
 
     return (
         <div id="div-main">
             <Grid id="grid-main" container>
-                <Grid id="grid-main-sidebar" className={isSidebarOpen ? 'sidebar-open' : ''} item xs="auto" ref={sidebar}>
+                <Grid id="grid-main-sidebar" className={isOpenSidebar ? 'sidebar-open' : ''} item xs="auto" ref={sidebar}>
                     Sidebar
-                    <div id="sidebar-icon" onClick={onClickSidebar}>
-                        {isSidebarOpen ? <KeyboardArrowLeftIcon /> : <KeyboardArrowRightIcon />}
+                    <div id="sidebar-icon" onClick={() => handleSidebar(!isOpenSidebar)}>
+                        {isOpenSidebar ? <KeyboardArrowLeftIcon /> : <KeyboardArrowRightIcon />}
                     </div>
                 </Grid>
                 <Grid id="grid-main-content" item xs>Main</Grid>
