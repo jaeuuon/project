@@ -40,8 +40,10 @@ const Sidebar = () => {
                 <Modal setOpenSidebar={setOpenSidebar} />
             }
             <Grid id="grid-main-sidebar" className={isOpenSidebar ? 'sidebar-open' : ''} item xs="auto" ref={sidebar}>
-                Sidebar
-                <div id="sidebar-icon" onClick={onClickIcon}>
+                <div id="div-main-sidebar-content">
+                    Sidebar<br />
+                </div>
+                <div id="div-main-sidebar-icon" onClick={onClickIcon}>
                     {isOpenSidebar ? <KeyboardArrowLeftIcon /> : <KeyboardArrowRightIcon />}
                 </div>
             </Grid>

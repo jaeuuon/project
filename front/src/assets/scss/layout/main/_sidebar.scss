@@ -9,7 +9,6 @@
     height: 100%;
     border-right: var.$border;
     background-color: #ffffff;
-    padding: var.$padding;
     transition: transform 0.5s;
     transform: translateX(- var.$widthForSidebar);
 
@@ -17,7 +16,13 @@
         transform: translateX(0);
     }
 
-    #sidebar-icon {
+    #div-main-sidebar-content {
+        height: 100%;
+        padding: var.$padding;
+        overflow: auto;
+    }
+
+    #div-main-sidebar-icon {
         display: flex;
         position: absolute;
         top: 50%;
@@ -41,11 +46,16 @@
         top: initial;
         left: initial;
         height: initial;
-        padding: var.$padding var.$padding var.$padding 0;
         transition: initial;
         transform: initial;
 
-        #sidebar-icon {
+        #div-main-sidebar-content {
+            height: initial;
+            padding: var.$padding var.$padding var.$padding 0;
+            overflow: initial;
+        }
+
+        #div-main-sidebar-icon {
             display: none;
         }
     }
