@@ -46,12 +46,12 @@
                 border-radius: var.$borderRadius;
                 font-weight: bold;
 
-                span:not(.span-button-text) {
+                span:not(.span-button-label) {
                     margin-left: 0;
                     margin-right: 0;
                 }
 
-                .span-button-text {
+                .span-button-label {
                     display: none;
                 }
             }
@@ -67,12 +67,12 @@
                     width: initial;
                     min-width: 64px;
 
-                    span:not(.span-button-text) {
+                    span:not(.span-button-label) {
                         margin-left: -4px;
                         margin-right: 8px;
                     }
 
-                    .span-button-text {
+                    .span-button-label {
                         display: initial;
                     }
                 }

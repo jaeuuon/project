@@ -26,7 +26,7 @@ const Header = () => {
                 </Grid>
                 <Grid id="grid-header-user" item xs="auto">
                     <Button variant="text" startIcon={<LoginIcon />}>
-                        <span className="span-button-text">로그인</span>
+                        <span className="span-button-label">로그인</span>
                     </Button>
                 </Grid>
             </Grid>
