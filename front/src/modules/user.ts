@@ -13,7 +13,7 @@ export const set = (user: User) => ({ type: SET, payload: user });
 type Action = 
     | ReturnType<typeof set>;
 
-export default (state: User = initState, action: Action) => {
+const user = (state: User = initState, action: Action) => {
     switch (action.type) {
         case SET:
             return {
@@ -24,3 +24,5 @@ export default (state: User = initState, action: Action) => {
             return state;
     }
 };
+
+export default user;
