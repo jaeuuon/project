@@ -5,12 +5,12 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: var.$widthForSidebar;
+    width: var.$sidebarWidth;
     height: 100%;
     border-right: var.$border;
     background-color: #ffffff;
     transition: transform 0.5s;
-    transform: translateX(- var.$widthForSidebar);
+    transform: translateX(- var.$sidebarWidth);
 
     &.sidebar-open {
         transform: translateX(0);

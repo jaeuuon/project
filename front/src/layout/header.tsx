@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 import LoginIcon from '@mui/icons-material/Login';
 
 const Header = () => {
@@ -24,6 +25,9 @@ const Header = () => {
                     Header
                 </Grid>
                 <Grid id="grid-header-user" item xs="auto">
+                    <Button variant="text" startIcon={<LoginIcon />}>
+                        <span className="span-button-text">로그인</span>
+                    </Button>
                 </Grid>
             </Grid>
         </div>
