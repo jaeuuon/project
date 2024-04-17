@@ -10,12 +10,24 @@
         height: var.$heightForHeader;
         border-bottom: var.$border;
         background-color: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(5px);
         box-shadow: 0 0 10px 0 var.$borderColor;
     }
 
-    #div-header-content {
+    #grid-header {
         max-width: var.$widthXl;
         margin: auto;
+
+        #grid-header-icon {
+            img {
+                width: 34px;
+                height: 34px;
+            }
+        }
+
+        #grid-header-content {
+            padding: 0 var.$padding;
+        }
     }
 
     &.box-shadow-none {
