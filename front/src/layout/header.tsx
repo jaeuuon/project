@@ -34,7 +34,7 @@ const Header = () => {
                 </Grid>
                 <Grid id="grid-header-user" item xs="auto">
                     <Button variant="outlined" startIcon={<LoginIcon />}>
-                        <span className="span-button-label">로그인</span>
+                        <span className="span-button-label">Login</span>
                     </Button>
                 </Grid>
             </Grid>

@@ -36,11 +36,21 @@
 
             button {
                 margin-left: var.$margin;
+
+                span:first-child {
+                    margin-left: 0;
+                    margin-right: 0;
+                }
             }
         }
 
         #grid-header-user {
             height: var.$headerInnerHeight;
+
+            button span:first-child {
+                margin-left: 0;
+                margin-right: 0;
+            }
         }
 
         button {
@@ -59,6 +69,16 @@
 @media (min-width: var.$widthSm) {
     #div-header {
         #grid-header {
+            #grid-header-content button span:first-child {
+                margin-left: -4px;
+                margin-right: 8px;
+            }
+
+            #grid-header-user button span:first-child {
+                margin-left: -4px;
+                margin-right: 8px;
+            }
+
             button {
                 width: initial;
                 min-width: 64px;
