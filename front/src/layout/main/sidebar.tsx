@@ -8,8 +8,13 @@ import Modal from '../modal';
 
 import constant from '../../constant';
 
+import { Detail } from '../../types/menu';
+
 const Sidebar = () => {
     const location = useLocation();
+    const menu: Detail = Object.values(constant.MENU).find((detail: Detail) => detail.path === location.pathname);
+    console.log(menu);
+
     const sidebar = useRef<HTMLInputElement>(null);
 
     const [isOpenSidebar, setOpenSidebar] = useState(false);
