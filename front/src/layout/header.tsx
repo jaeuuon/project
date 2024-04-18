@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Grid, Button } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
@@ -26,9 +27,11 @@ const Header = () => {
                 <Grid id="grid-header-content" item xs>
                     {Object.values(constant.MENU).map((detail: Detail, index) => {
                         return (
-                            <Button key={`button-header-menu-${index}`} startIcon={detail.icon}>
-                                <span className="span-button-label">{detail.label}</span>
-                            </Button>
+                            <Link key={`link-header-menu-${index}`} to={detail.path}>
+                                <Button startIcon={detail.icon}>
+                                    <span className="span-button-label">{detail.label}</span>
+                                </Button>
+                            </Link>
                         );
                     })}
                 </Grid>
