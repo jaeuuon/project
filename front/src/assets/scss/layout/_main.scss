@@ -16,6 +16,8 @@
 
     #div-main-to-top {
         display: flex;
+        justify-content: center;
+        align-items: center;
         position: fixed;
         right: 25px;
         bottom: 35px;
@@ -24,8 +26,8 @@
         border: var.$border;
         border-radius: var.$borderRadius;
         background-color: rgba(255, 255, 255, 0.85);
-        justify-content: center;
-        align-items: center;
+        backdrop-filter: var.$backdropFilter;
+        box-shadow: var.$boxShadow;
         cursor: pointer;
     }
 }

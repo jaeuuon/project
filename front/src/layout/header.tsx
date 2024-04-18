@@ -4,6 +4,7 @@ import { Grid, Button } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
 
 import constant from '../constant';
+import { Detail } from '../types/menu';
 
 const Header = () => {
     const [isTop, setTop] = useState(true);
@@ -23,10 +24,16 @@ const Header = () => {
                     <img src="/logo192.png" alt="logo" />
                 </Grid>
                 <Grid id="grid-header-content" item xs>
-                    Header
+                    {Object.values(constant.MENU).map((detail: Detail, index) => {
+                        return (
+                            <Button key={`button-header-menu-${index}`} startIcon={detail.icon}>
+                                <span className="span-button-label">{detail.label}</span>
+                            </Button>
+                        );
+                    })}
                 </Grid>
                 <Grid id="grid-header-user" item xs="auto">
-                    <Button variant="text" startIcon={<LoginIcon />}>
+                    <Button variant="outlined" startIcon={<LoginIcon />}>
                         <span className="span-button-label">로그인</span>
                     </Button>
                 </Grid>
