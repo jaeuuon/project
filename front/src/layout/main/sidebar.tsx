@@ -2,8 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 
 import Grid from '@mui/material/Grid';
 
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
 
 import Modal from '../modal';
 
@@ -44,7 +43,7 @@ const Sidebar = () => {
                     Sidebar<br />
                 </div>
                 <div id="div-main-sidebar-icon" onClick={onClickIcon}>
-                    {isOpenSidebar ? <KeyboardArrowLeftIcon /> : <KeyboardArrowRightIcon />}
+                    {isOpenSidebar ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
                 </div>
             </Grid>
         </>
