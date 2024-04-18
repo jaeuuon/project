@@ -1,12 +1,15 @@
 import { useRef, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom'
 
 import Grid from '@mui/material/Grid';
-
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
 
 import Modal from '../modal';
 
+import constant from '../../constant';
+
 const Sidebar = () => {
+    const location = useLocation();
     const sidebar = useRef<HTMLInputElement>(null);
 
     const [isOpenSidebar, setOpenSidebar] = useState(false);
