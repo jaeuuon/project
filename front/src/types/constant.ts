@@ -1,7 +1,5 @@
 import Menu from './menu';
 
-interface Constant {
+export default interface Constant {
     MENU: Menu;
-}
-
-export default Constant;
+};

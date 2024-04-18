@@ -1,15 +1,13 @@
 import SubMenu from './menu/subMenu';
 
-interface Detail {
+export interface Detail {
     icon: JSX.Element;
     label: string;
     path: string;
     subMenus: SubMenu[];
-}
+};
 
-interface Menu {
+export default interface Menu {
     HOME: Detail;
     INFORMATION: Detail;
-}
-
-export default Menu;
+};
