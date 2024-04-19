@@ -19,8 +19,7 @@ import { Detail } from '../../types/menu';
 
 const Sidebar = () => {
     const location = useLocation();
-    const menu: Detail = Object.values(constant.MENU).find((detail: Detail) => detail.path === location.pathname);
-    // 하위 항목도 찾기 필요.
+    const menu: Detail = Object.values(constant.MENU).find((detail: Detail) => detail.path === location.pathname || detail.subMenus.find((subMenu) => subMenu.path === location.pathname));
 
     const navigate = useNavigate();
 
