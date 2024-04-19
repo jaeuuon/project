@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import {
     Grid,
@@ -22,11 +22,20 @@ const Sidebar = () => {
     const menu: Detail = Object.values(constant.MENU).find((detail: Detail) => detail.path === location.pathname);
     // 하위 항목도 찾기 필요.
 
+    const navigate = useNavigate();
+
     const sidebar = useRef<HTMLInputElement>(null);
 
     const [isOpenSidebar, setOpenSidebar] = useState(false);
 
     const onClickIcon = () => setOpenSidebar(!isOpenSidebar);
+    const onClickListItem = (path: string, isOpen?: boolean) => {
+        if (isOpen) {
+            window.open(path);
+        } else {
+            navigate(path);
+        }
+    };
 
     useEffect(() => {
         document.body.style.overflow = isOpenSidebar ? 'hidden' : 'initial';
@@ -58,20 +67,11 @@ const Sidebar = () => {
                     <List>
                         {menu?.subMenus.map((subMenu, index) => {
                             return (
-                                <ListItem key={`list-item-header-menu-${index}`} disablePadding>
-                                    {subMenu.isOpen ? (
-                                        <ListItemButton onClick={() => window.open(subMenu.path)}>
-                                            <ListItemIcon>{subMenu.icon}</ListItemIcon>
-                                            <ListItemText primary={subMenu.label} />
-                                        </ListItemButton>
-                                    ) : (
-                                        <Link to={subMenu.path}>
-                                            <ListItemButton>
-                                                <ListItemIcon>{subMenu.icon}</ListItemIcon>
-                                                <ListItemText primary={subMenu.label} />
-                                            </ListItemButton>
-                                        </Link>
-                                    )}
+                                <ListItem key={`list-item-header-menu-${index}`} disablePadding onClick={() => onClickListItem(subMenu.path, subMenu.isOpen)}>
+                                    <ListItemButton>
+                                        <ListItemIcon>{subMenu.icon}</ListItemIcon>
+                                        <ListItemText primary={subMenu.label} />
+                                    </ListItemButton>
                                 </ListItem>
                             );
                         })}
