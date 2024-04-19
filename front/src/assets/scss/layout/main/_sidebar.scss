@@ -20,6 +20,16 @@
         height: 100%;
         padding: var.$padding;
         overflow: auto;
+
+        ul {
+            padding-top: 0;
+            padding-bottom: 0;
+
+            li > div {
+                padding: 4px 16px;
+                border-radius: var.$borderRadius;
+            }
+        }
     }
 
     #div-main-sidebar-icon {
