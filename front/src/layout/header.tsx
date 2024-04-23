@@ -47,12 +47,12 @@ const Header = ({
                     })}
                 </Grid>
                 <Grid id="grid-header-user" item xs="auto">
-                    <Button variant="outlined" startIcon={<Login />} style={{ backgroundColor: theme.palette.background.paper }}>
+                    <Button variant="outlined" startIcon={<Login />}>
                         <span className="span-button-label">Login</span>
                     </Button>
                 </Grid>
                 <Grid id="grid-header-mode" item xs="auto">
-                    <Button variant="outlined" style={{ backgroundColor: theme.palette.background.paper }} onClick={() => setMode(!isLight ? 'light' : 'dark')}>
+                    <Button variant="outlined" onClick={() => setMode(!isLight ? 'light' : 'dark')}>
                         {isLight ? <LightModeOutlined /> : <DarkModeOutlined />}
                     </Button>
                 </Grid>
