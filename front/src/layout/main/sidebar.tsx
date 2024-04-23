@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'
 
+import { useTheme } from '@mui/material/styles';
 import {
     Grid,
     List,
@@ -24,6 +25,8 @@ const Sidebar = () => {
     const navigate = useNavigate();
 
     const sidebar = useRef<HTMLInputElement>(null);
+
+    const theme = useTheme();
 
     const [isOpenSidebar, setOpenSidebar] = useState(false);
 
@@ -61,7 +64,7 @@ const Sidebar = () => {
             {isOpenSidebar &&
                 <Modal setOpenSidebar={setOpenSidebar} />
             }
-            <Grid id="grid-main-sidebar" className={isOpenSidebar ? 'sidebar-open' : ''} item xs="auto" ref={sidebar}>
+            <Grid id="grid-main-sidebar" className={isOpenSidebar ? 'sidebar-open' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper }} ref={sidebar}>
                 <div id="div-main-sidebar-content">
                     <List>
                         {menu?.subMenus.map((subMenu, index) => {
@@ -76,7 +79,7 @@ const Sidebar = () => {
                         })}
                     </List>
                 </div>
-                <div id="div-main-sidebar-icon" onClick={onClickIcon}>
+                <div id="div-main-sidebar-icon" style={{ backgroundColor: theme.palette.background.paper }} onClick={onClickIcon}>
                     {isOpenSidebar ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
                 </div>
             </Grid>

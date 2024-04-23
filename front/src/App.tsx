@@ -9,15 +9,15 @@ import Footer from './layout/footer';
 
 import './assets/scss/app.scss';
 
-const theme = createTheme({
-    typography: {
-        button: {
-            textTransform: 'none'
-        }
-    }
-});
-
 const App = () => {
+    const theme = createTheme({
+        typography: {
+            button: {
+                textTransform: 'none'
+            }
+        }
+    });
+
     useEffect(() => { 
         window.onbeforeunload = () => window.scrollTo(0, 0);
     }, []);

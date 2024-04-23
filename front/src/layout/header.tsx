@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import { useTheme } from '@mui/material/styles';
 import { Grid, Button } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
 
@@ -9,6 +10,9 @@ import constant from '../constant';
 import { Detail } from '../types/menu';
 
 const Header = () => {
+    const theme = useTheme();
+    const isLight = theme.palette.mode === 'light';
+
     const [isTop, setTop] = useState(true);
 
     useEffect(() => {
@@ -20,7 +24,7 @@ const Header = () => {
     }, []);
 
     return (
-        <div id="div-header" className={isTop ? 'box-shadow-none' : ''}>
+        <div id="div-header" className={[(isLight ? 'mode-light' : 'mode-dark'), (isTop ? 'box-shadow-none' : '')].join(' ')}>
             <Grid id="grid-header" container>
                 <Grid id="grid-header-icon" item xs="auto">
                     <img src="/logo192.png" alt="logo" />
@@ -37,7 +41,7 @@ const Header = () => {
                     })}
                 </Grid>
                 <Grid id="grid-header-user" item xs="auto">
-                    <Button variant="outlined" startIcon={<LoginIcon />}>
+                    <Button variant="outlined" startIcon={<LoginIcon />} style={{ backgroundColor: theme.palette.background.paper }}>
                         <span className="span-button-label">Login</span>
                     </Button>
                 </Grid>

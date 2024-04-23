@@ -25,9 +25,16 @@
         height: 50px;
         border: var.$border;
         border-radius: var.$borderRadius;
-        background-color: rgba(255, 255, 255, 0.85);
         backdrop-filter: var.$backdropFilter;
         box-shadow: var.$boxShadow;
         cursor: pointer;
+
+        &.mode-light {
+            background-color: var.$backgroundColorLight;
+        }
+
+        &.mode-dark {
+            background-color: var.$backgroundColorDark;
+        }
     }
 }

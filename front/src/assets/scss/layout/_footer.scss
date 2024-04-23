@@ -5,7 +5,14 @@
     @include mixin.div-default(var.$padding) {
         min-height: 70px;
         border-top: var.$border;
+    }
+
+    &.mode-light {
         background-color: #f1f3f5;
+    }
+
+    &.mode-dark {
+        background-color: #343a40;
     }
 
     #grid-footer {

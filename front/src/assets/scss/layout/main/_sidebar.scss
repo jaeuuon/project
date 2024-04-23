@@ -8,7 +8,6 @@
     width: var.$sidebarWidth;
     height: 100%;
     border-right: var.$border;
-    background-color: #ffffff;
     transition: transform 0.5s;
     transform: translateX(- var.$sidebarWidth);
 
@@ -41,7 +40,6 @@
         height: 50px;
         border: var.$border;
         border-radius: 0 var.$borderRadius var.$borderRadius 0;
-        background-color: #ffffff;
         justify-content: center;
         align-items: center;
         transform: translateY(-50%);

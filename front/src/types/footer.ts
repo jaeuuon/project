@@ -7,7 +7,7 @@ interface SkillBadge {
 interface Creator {
     URL: string;
     NAME: string;
-}
+};
 
 export default interface Footer {
     SKILL_BADGES: SkillBadge[]; 

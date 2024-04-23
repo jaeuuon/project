@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+import { useTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
@@ -7,6 +8,9 @@ import Sidebar from './main/sidebar';
 import Content from './main/content';
 
 const Main = () => {
+    const theme = useTheme();
+    const isLight = theme.palette.mode === 'light';
+
     const [isVisibleToTop, setVisibleToTop] = useState(false);
 
     const onClickToTop = () => window.scroll({ top: 0, behavior: 'smooth' });
@@ -26,7 +30,7 @@ const Main = () => {
                 <Content />
             </Grid>
             {isVisibleToTop &&
-                <div id="div-main-to-top" onClick={onClickToTop}>
+                <div id="div-main-to-top" className={isLight ? 'mode-light' : 'mode-dark'} onClick={onClickToTop}>
                     <KeyboardArrowUpIcon />
                 </div>
             }

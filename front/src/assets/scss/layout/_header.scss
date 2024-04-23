@@ -3,15 +3,23 @@
 
 #div-header {
     @include mixin.div-default(var.$padding) {
+        z-index: var.$modalIndex;
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         height: var.$headerHeight;
         border-bottom: var.$border;
-        background-color: rgba(248, 249, 250, 0.85);
         backdrop-filter: var.$backdropFilter;
         box-shadow: var.$boxShadow;
+    }
+
+    &.mode-light {
+        background-color: var.$backgroundColorLight;
+    }
+
+    &.mode-dark {
+        background-color: var.$backgroundColorDark;
     }
 
     &.box-shadow-none {
@@ -47,13 +55,9 @@
         #grid-header-user {
             height: var.$headerInnerHeight;
 
-            button {
-                background-color: #ffffff;
-
-                span:first-child {
-                    margin-left: 0;
-                    margin-right: 0;
-                }
+            button span:first-child {
+                margin-left: 0;
+                margin-right: 0;
             }
         }
 
