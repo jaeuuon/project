@@ -30,7 +30,6 @@ const Sidebar = () => {
 
     const [isOpenSidebar, setOpenSidebar] = useState(false);
 
-    const onClickIcon = () => setOpenSidebar(!isOpenSidebar);
     const onClickListItem = (path: string, isOpen?: boolean) => {
         if (isOpen) {
             window.open(path);
@@ -83,7 +82,7 @@ const Sidebar = () => {
                         })}
                     </List>
                 </div>
-                <div id="div-main-sidebar-icon" style={{ backgroundColor: theme.palette.background.paper }} onClick={onClickIcon}>
+                <div id="div-main-sidebar-icon" style={{ backgroundColor: theme.palette.background.paper }} onClick={() => setOpenSidebar(!isOpenSidebar)}>
                     {isOpenSidebar ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
                 </div>
             </Grid>

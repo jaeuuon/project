@@ -5,10 +5,8 @@ import constant from '../common/constant';
 import { getCssClassByTheme } from '../common/utils';
 
 const Footer = () => {
-    const theme = useTheme();
-
     return (
-        <div id="div-footer" className={getCssClassByTheme(theme)}>
+        <div id="div-footer" className={getCssClassByTheme(useTheme())}>
             <Grid id="grid-footer" container>
                 <Grid id="div-footer-creator" item xs={6}>
                     <p>Created by <span onClick={() => window.open(constant.FOOTER.CREATOR.URL)}>{constant.FOOTER.CREATOR.NAME}</span>.</p>

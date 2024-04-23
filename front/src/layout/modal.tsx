@@ -3,10 +3,8 @@ const Modal = ({
 }: {
     setOpenSidebar: (isOpenSidebar: boolean) => void;
 }) => {
-    const onClick = () => setOpenSidebar(false);
-
     return (
-        <div id="div-modal" onClick={onClick} />
+        <div id="div-modal" onClick={() => setOpenSidebar(false)} />
     );
 };
 

@@ -1,17 +1,23 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import { PaletteMode } from '@mui/material/index';
 import { useTheme } from '@mui/material/styles';
 import { Grid, Button } from '@mui/material';
-import LoginIcon from '@mui/icons-material/Login';
+import { Login, LightModeOutlined, DarkModeOutlined } from '@mui/icons-material';
 
 import { Detail } from '../types/menu';
 
 import constant from '../common/constant';
-import { getCssClassByTheme } from '../common/utils';
+import { isThemeLight, getCssClassByTheme } from '../common/utils';
 
-const Header = () => {
+const Header = ({
+    mode, setMode
+}: {
+    mode: PaletteMode; setMode: (mode: PaletteMode) => void;
+}) => {
     const theme = useTheme();
+    const isLight = isThemeLight(theme);
 
     const [isTop, setTop] = useState(true);
 
@@ -41,8 +47,13 @@ const Header = () => {
                     })}
                 </Grid>
                 <Grid id="grid-header-user" item xs="auto">
-                    <Button variant="outlined" startIcon={<LoginIcon />} style={{ backgroundColor: theme.palette.background.paper }}>
+                    <Button variant="outlined" startIcon={<Login />} style={{ backgroundColor: theme.palette.background.paper }}>
                         <span className="span-button-label">Login</span>
+                    </Button>
+                </Grid>
+                <Grid id="grid-header-mode" item xs="auto">
+                    <Button variant="outlined" style={{ backgroundColor: theme.palette.background.paper }} onClick={() => setMode(!isLight ? 'light' : 'dark')}>
+                        {isLight ? <LightModeOutlined /> : <DarkModeOutlined />}
                     </Button>
                 </Grid>
             </Grid>

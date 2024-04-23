@@ -32,6 +32,7 @@
 
         #grid-header-icon {
             height: var.$headerInnerHeight;
+            padding-right: var.$padding;
 
             img {
                 height: var.$headerInnerHeight;
@@ -40,7 +41,7 @@
 
         #grid-header-content {
             height: var.$headerInnerHeight;
-            padding: 0 var.$padding;
+            padding-right: var.$padding;
 
             button {
                 margin-left: var.$margin;
@@ -54,10 +55,20 @@
 
         #grid-header-user {
             height: var.$headerInnerHeight;
+            padding-right: var.$padding;
 
-            button span:first-child {
-                margin-left: 0;
-                margin-right: 0;
+            button {
+                span:first-child {
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+            }
+        }
+
+        #grid-header-mode {
+            button {
+                width: var.$headerInnerHeight;
+                min-width: var.$headerInnerHeight;
             }
         }
 
@@ -77,14 +88,22 @@
 @media (min-width: var.$widthSm) {
     #div-header {
         #grid-header {
-            #grid-header-content button span:first-child {
-                margin-left: -4px;
-                margin-right: 8px;
+            #grid-header-content {
+                button {
+                    span:first-child {
+                        margin-left: -4px;
+                        margin-right: 8px;
+                    }
+                }
             }
 
-            #grid-header-user button span:first-child {
-                margin-left: -4px;
-                margin-right: 8px;
+            #grid-header-user {
+                button {
+                    span:first-child {
+                        margin-left: -4px;
+                        margin-right: 8px;
+                    }
+                }
             }
 
             button {
