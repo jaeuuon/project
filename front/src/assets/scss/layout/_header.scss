@@ -9,7 +9,7 @@
         right: 0;
         height: var.$headerHeight;
         border-bottom: var.$border;
-        background-color: rgba(255, 255, 255, 0.85);
+        background-color: rgba(248, 249, 250, 0.85);
         backdrop-filter: var.$backdropFilter;
         box-shadow: var.$boxShadow;
     }
@@ -47,9 +47,13 @@
         #grid-header-user {
             height: var.$headerInnerHeight;
 
-            button span:first-child {
-                margin-left: 0;
-                margin-right: 0;
+            button {
+                background-color: #ffffff;
+
+                span:first-child {
+                    margin-left: 0;
+                    margin-right: 0;
+                }
             }
         }
 

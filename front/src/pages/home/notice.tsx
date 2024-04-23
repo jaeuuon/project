@@ -1,8 +1,6 @@
 const Notice = () => {
     return (
-        <>
-            <span>Notice</span>
-        </>
+        <span>Notice</span>
     );
 };
 

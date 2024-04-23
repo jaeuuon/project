@@ -12,10 +12,7 @@ type Action =
 const user = (state: User = initState, action: Action) => {
     switch (action.type) {
         case SET:
-            return {
-                ...state,
-                ...action.payload
-            };
+            return { ...state, ...action.payload };
         default:
             return state;
     }

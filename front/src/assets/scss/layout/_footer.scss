@@ -3,11 +3,52 @@
 
 #div-footer {
     @include mixin.div-default(var.$padding) {
+        min-height: 70px;
         border-top: var.$border;
+        background-color: #f1f3f5;
     }
 
-    #div-footer-content {
+    #grid-footer {
         max-width: var.$widthXl;
         margin: auto;
+
+        #div-footer-creator {
+            color: var.$colorFooter;
+
+            p {
+                margin: 0;
+
+                span {
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        #div-footer-theme-color {
+            color: var.$colorFooter;
+            text-align: right;
+
+            p {
+                margin: 0;
+
+                span {
+                    padding: 2px 5px 1px 5px;
+                    border-radius: var.$borderRadius;
+                    color: #ffffff;
+                }
+            }
+        }
+
+        #div-footer-skill {
+            padding-top: var.$paddingHalf;
+            padding-bottom: 30px;
+            text-align: center;
+
+            img {
+                padding: var.$paddingHalf;
+                cursor: pointer;
+            }
+        }
     }
 }

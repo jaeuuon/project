@@ -1,8 +1,6 @@
 const Information = () => {
     return (
-        <>
-            <span>Information</span>
-        </>
+        <span>Information</span>
     );
 };
 
