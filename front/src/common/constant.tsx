@@ -6,7 +6,7 @@ import {
     CodeOutlined
 } from '@mui/icons-material';
 
-import Constant from './types/constant';
+import Constant from '../types/constant';
 
 const constant: Constant = {
     MENU: {

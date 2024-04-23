@@ -14,9 +14,9 @@ import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
 
 import Modal from '../modal';
 
-import constant from '../../constant';
-
 import { Detail } from '../../types/menu';
+
+import constant from '../../common/constant';
 
 const Sidebar = () => {
     const location = useLocation();
@@ -40,11 +40,15 @@ const Sidebar = () => {
     };
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
+
+    useEffect(() => {
         document.body.style.overflow = isOpenSidebar ? 'hidden' : 'initial';
     }, [isOpenSidebar]);
 
     useEffect(() => {
-        const handleResize = () => {
+        const onResize = () => {
             if (sidebar?.current) {
                 const styles = window.getComputedStyle(sidebar.current);
 
@@ -54,9 +58,9 @@ const Sidebar = () => {
             }
         };
 
-        window.addEventListener('resize', handleResize);
+        window.addEventListener('resize', onResize);
 
-        return () => window.removeEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', onResize);
     }, []);
 
     return (

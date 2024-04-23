@@ -7,20 +7,21 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Sidebar from './main/sidebar';
 import Content from './main/content';
 
+import { getCssClassByTheme } from '../common/utils';
+
 const Main = () => {
     const theme = useTheme();
-    const isLight = theme.palette.mode === 'light';
 
     const [isVisibleToTop, setVisibleToTop] = useState(false);
 
-    const onClickToTop = () => window.scroll({ top: 0, behavior: 'smooth' });
+    const onClick = () => window.scroll({ top: 0, behavior: 'smooth' });
 
     useEffect(() => {
-        const handleScrollY = () => setVisibleToTop(window.scrollY >= 100 ? true : false);
+        const onScroll = () => setVisibleToTop(window.scrollY >= 100 ? true : false);
 
-        window.addEventListener('scroll', handleScrollY);
+        window.addEventListener('scroll', onScroll);
 
-        return () => window.removeEventListener('scroll', handleScrollY);
+        return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
     return (
@@ -30,7 +31,7 @@ const Main = () => {
                 <Content />
             </Grid>
             {isVisibleToTop &&
-                <div id="div-main-to-top" className={isLight ? 'mode-light' : 'mode-dark'} onClick={onClickToTop}>
+                <div id="div-main-to-top" className={getCssClassByTheme(theme)} onClick={onClick}>
                     <KeyboardArrowUpIcon />
                 </div>
             }

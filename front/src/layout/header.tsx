@@ -5,26 +5,26 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Button } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
 
-import constant from '../constant';
-
 import { Detail } from '../types/menu';
+
+import constant from '../common/constant';
+import { getCssClassByTheme } from '../common/utils';
 
 const Header = () => {
     const theme = useTheme();
-    const isLight = theme.palette.mode === 'light';
 
     const [isTop, setTop] = useState(true);
 
     useEffect(() => {
-        const handleScrollY = () => setTop(window.scrollY === 0 ? true : false);
+        const onScroll = () => setTop(window.scrollY === 0 ? true : false);
 
-        window.addEventListener('scroll', handleScrollY);
+        window.addEventListener('scroll', onScroll);
 
-        return () => window.removeEventListener('scroll', handleScrollY);
+        return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
     return (
-        <div id="div-header" className={[(isLight ? 'mode-light' : 'mode-dark'), (isTop ? 'box-shadow-none' : '')].join(' ')}>
+        <div id="div-header" className={[getCssClassByTheme(theme), (isTop ? 'box-shadow-none' : '')].join(' ')}>
             <Grid id="grid-header" container>
                 <Grid id="grid-header-icon" item xs="auto">
                     <img src="/logo192.png" alt="logo" />

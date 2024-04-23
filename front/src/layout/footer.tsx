@@ -1,14 +1,14 @@
 import { useTheme } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 
-import constant from '../constant';
+import constant from '../common/constant';
+import { getCssClassByTheme } from '../common/utils';
 
 const Footer = () => {
     const theme = useTheme();
-    const isLight = theme.palette.mode === 'light';
 
     return (
-        <div id="div-footer" className={isLight ? 'mode-light' : 'mode-dark'}>
+        <div id="div-footer" className={getCssClassByTheme(theme)}>
             <Grid id="grid-footer" container>
                 <Grid id="div-footer-creator" item xs={6}>
                     <p>Created by <span onClick={() => window.open(constant.FOOTER.CREATOR.URL)}>{constant.FOOTER.CREATOR.NAME}</span>.</p>
