@@ -6,8 +6,6 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './modules';
 
-import CssBaseline from '@mui/material/CssBaseline';
-
 import App from './App';
 
 import '@fontsource/roboto/400.css';
@@ -24,7 +22,6 @@ root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Provider store={store}>
-                <CssBaseline />
                 <App />
             </Provider>
         </BrowserRouter>

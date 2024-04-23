@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 import Header from './layout/header';
 import Main from './layout/main';
@@ -23,6 +24,7 @@ const App = () => {
 
     return (
         <ThemeProvider theme={theme}>
+            <CssBaseline />
             <Header />
             <Main />
             <Footer />
