@@ -49,12 +49,12 @@ const constant: Constant = {
                 URL: 'https://www.typescriptlang.org'
             },
             {
-                SRC: 'https://img.shields.io/badge/React-black?logo=React',
+                SRC: 'https://img.shields.io/badge/React-087ea4?logo=React&logoColor=white',
                 ALT: 'React',
                 URL: 'https://react.dev'
             },
             {
-                SRC: 'https://img.shields.io/badge/Material_UI-007FFF?logo=MUI&logoColor=white',
+                SRC: 'https://img.shields.io/badge/Material%20UI-007FFF?logo=MUI&logoColor=white',
                 ALT: 'Material UI',
                 URL: 'https://mui.com'
             }
