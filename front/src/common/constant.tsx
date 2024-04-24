@@ -57,6 +57,11 @@ const constant: Constant = {
                 SRC: 'https://img.shields.io/badge/Material%20UI-007FFF?logo=MUI&logoColor=white',
                 ALT: 'Material UI',
                 URL: 'https://mui.com'
+            },
+            {
+                SRC: 'https://img.shields.io/badge/CSS3-1572B6?logo=CSS3&logoColor=white',
+                ALT: 'CSS3',
+                URL: 'https://www.w3.org/Style/CSS'
             }
         ],
         THEME_COLOR: '#1976d2',
