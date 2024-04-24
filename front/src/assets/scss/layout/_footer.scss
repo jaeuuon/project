@@ -7,14 +7,6 @@
         border-top: var.$border;
     }
 
-    &.mode-light {
-        background-color: #f1f3f5;
-    }
-
-    &.mode-dark {
-        background-color: #343a40;
-    }
-
     #grid-footer {
         max-width: var.$widthXl;
         margin: auto;
