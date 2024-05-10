@@ -20,9 +20,9 @@ public class Address {
     private String postalCode;
 
     @Column(length = 100)
-    private String addr;
+    private String address;
 
     @Column(length = 200)
-    private String addrDetail;
+    private String addressDetail;
 
 }
