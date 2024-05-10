@@ -1,3 +1,4 @@
 rootProject.name = 'project'
 
 include 'common-basic'
+include 'common-jpa'

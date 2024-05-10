@@ -1,0 +1,27 @@
+version = '0.0.1-SNAPSHOT'
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+dependencies {
+    implementation project(':common-basic')
+
+    implementation "com.querydsl:querydsl-jpa:${querydslVersion}:jakarta"
+    annotationProcessor "com.querydsl:querydsl-apt:${querydslVersion}:jakarta"
+    annotationProcessor 'jakarta.annotation:jakarta.annotation-api'
+    annotationProcessor 'jakarta.persistence:jakarta.persistence-api'
+
+    implementation 'jakarta.servlet:jakarta.servlet-api'
+    implementation 'org.springframework.data:spring-data-jpa'
+
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+}
+
+clean {
+    delete file("${querydslSrcDir}")
+}
