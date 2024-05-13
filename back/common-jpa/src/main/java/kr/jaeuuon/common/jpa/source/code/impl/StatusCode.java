@@ -12,10 +12,7 @@ import lombok.Getter;
 public enum StatusCode implements CommonCode {
 
     ACTIVATED("A", "활성화"),
-    ACTIVATED_WAIT("AW", "활성화 대기"),
-
-    DEACTIVATE("D", "비활성화"),
-    DEACTIVATE_WAIT("DW", "비활성화 대기");
+    DEACTIVATE("D", "비활성화");
 
     private final String code;
     private final String value;
