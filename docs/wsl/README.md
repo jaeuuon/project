@@ -1,4 +1,5 @@
 # WSL (Windows Subsystem for Linux)
+
 [WSL 설치 | Microsoft Learn](https://learn.microsoft.com/ko-kr/windows/wsl/install)
 
 ## 1. 설치

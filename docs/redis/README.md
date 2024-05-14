@@ -1,5 +1,10 @@
 # Redis (Install Redis on Windows)
+
 [Install Redis on Windows | Docs](https://redis.io/docs/latest/operate/oss_and_stack/install/install-redis/install-redis-on-windows/)
+
+[Redis security | Docs](https://redis.io/docs/latest/operate/oss_and_stack/management/security/)
+
+[Redis configuration | Docs](https://redis.io/docs/latest/operate/oss_and_stack/management/config/)
 
 ## 1. 설치
 ```
@@ -58,4 +63,16 @@ redis-cli
 127.0.0.1:6379> acl setuser default on >password ~* resetchannels -@all +@connection
 127.0.0.1:6379> auth jaeuuon password
 127.0.0.1:6379> acl save
+```
+
+## 6. maxmemory
+```
+sudo vi /etc/redis/redis.conf
+
+...
+maxmemory 128mb
+maxmemory-policy allkeys-lru
+...
+
+sudo service redis-server restart
 ```
