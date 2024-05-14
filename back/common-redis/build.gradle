@@ -1,0 +1,19 @@
+version = '0.0.1-SNAPSHOT'
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
+
+dependencies {
+    implementation project(':common-basic')
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'jakarta.servlet:jakarta.servlet-api'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework:spring-web'
+}
