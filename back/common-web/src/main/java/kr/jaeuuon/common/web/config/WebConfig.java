@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
  * 프로젝트 설정.
  */
 @Configuration
-@ConfigurationPropertiesScan(basePackages = "it.jaeuuon.common.web")
+@ConfigurationPropertiesScan(basePackages = "kr.jaeuuon.common.web")
 public class WebConfig {
 
 }

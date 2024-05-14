@@ -1,0 +1,17 @@
+version = '0.0.1-SNAPSHOT'
+
+jar {
+    enabled = false
+}
+
+dependencies {
+    implementation project(':common-basic')
+    implementation project(':common-jwt')
+
+    implementation "io.jsonwebtoken:jjwt-api:${jwtVersion}"
+    runtimeOnly "io.jsonwebtoken:jjwt-impl:${jwtVersion}"
+    implementation "io.jsonwebtoken:jjwt-jackson:${jwtVersion}"
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-gateway'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+}

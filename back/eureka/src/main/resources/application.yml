@@ -1,0 +1,50 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eureka
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+logging:
+  level:
+    root: info
+
+  file:
+    name: ${logging.file.path}/${spring.application.name}.log
+
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${logging.file.path}/${spring.application.name}.%d{yyyy-MM-dd}.%i.log
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+logging:
+  file:
+    path: C:/log/${spring.application.name}
+
+  logback:
+    rollingpolicy:
+      max-history: 1
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+logging:
+  file:
+    path: /var/log/${spring.application.name}
+
+  logback:
+    rollingpolicy:
+      max-history: 7

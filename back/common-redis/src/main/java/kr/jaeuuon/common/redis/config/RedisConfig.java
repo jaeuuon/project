@@ -15,7 +15,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * 프로젝트 설정.
  */
 @Configuration
-@ConfigurationPropertiesScan(basePackages = "it.jaeuuon.common.redis")
+@ConfigurationPropertiesScan(basePackages = "kr.jaeuuon.common.redis")
 @RequiredArgsConstructor
 public class RedisConfig {
 

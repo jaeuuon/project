@@ -1,0 +1,71 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /apis
+
+spring:
+  application:
+    name: gateway
+
+  profiles:
+    include:
+      - jwt
+
+  cloud:
+    gateway:
+      routes:
+        - id: security
+          uri: lb://SECURITY
+          predicates:
+            - Path=/apis/security/**
+          filters:
+            - RewritePath=/apis/?(?<segment>.*), /$\{segment}
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+    status-page-url:
+
+  client:
+    disable-delta: true
+    service-url:
+      defaultZone: http://${PROJECT_EUREKA_IP_PORT}/eureka
+
+logging:
+  level:
+    root: info
+
+  file:
+    name: ${logging.file.path}/${spring.application.name}.log
+
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${logging.file.path}/${spring.application.name}.%d{yyyy-MM-dd}.%i.log
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+logging:
+  file:
+    path: C:/log/${spring.application.name}
+
+  logback:
+    rollingpolicy:
+      max-history: 1
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+logging:
+  file:
+    path: /var/log/${spring.application.name}
+
+  logback:
+    rollingpolicy:
+      max-history: 7
