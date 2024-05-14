@@ -18,7 +18,46 @@ sudo service redis-server start
 
 ## 3. 연결
 ```
-redis-cli 
+redis-cli
+
 127.0.0.1:6379> ping
 PONG
 ```
+
+## 4. requirepass
+```
+sudo vi /etc/redis/redis.conf
+
+...
+requirepass foobared
+...
+
+sudo service redis-server restart
+```
+```
+redis-cli
+
+127.0.0.1:6379> auth default foobared
+```
+
+## 5. ACL (Access Control List)
+```
+sudo vi /etc/redis/redis.conf
+
+...
+aclfile /etc/redis/users.acl
+...
+
+sudo service redis-server restart
+```
+```
+redis-cli
+
+127.0.0.1:6379> acl setuser jaeuuon on >password ~* resetchannels +@all
+127.0.0.1:6379> acl setuser default on >password ~* resetchannels -@all +@connection
+127.0.0.1:6379> auth jaeuuon password
+127.0.0.1:6379> acl save
+```
+
+
+
