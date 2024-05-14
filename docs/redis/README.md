@@ -48,6 +48,7 @@ sudo vi /etc/redis/redis.conf
 aclfile /etc/redis/users.acl
 ...
 
+sudo touch /etc/redis/users.acl
 sudo service redis-server restart
 ```
 ```
