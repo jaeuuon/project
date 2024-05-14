@@ -58,6 +58,3 @@ redis-cli
 127.0.0.1:6379> auth jaeuuon password
 127.0.0.1:6379> acl save
 ```
-
-
-
