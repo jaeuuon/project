@@ -22,10 +22,10 @@ spring:
       password: ${PROJECT_REDIS_PASSWORD}
 
   datasource:
-    url: jdbc:mariadb://${PROJECT_MARIADB_IP_PORT}/security
-    driver-class-name: org.mariadb.jdbc.Driver
-    username: ${PROJECT_MARIADB_USERNAME}
-    password: ${PROJECT_MARIADB_PASSWORD}
+    url: jdbc:postgresql://${PROJECT_POSTGRESQL_IP_PORT}/security
+    driver-class-name: org.postgresql.Driver
+    username: ${PROJECT_POSTGRESQL_USERNAME}
+    password: ${PROJECT_POSTGRESQL_PASSWORD}
 
   jpa:
     hibernate:
