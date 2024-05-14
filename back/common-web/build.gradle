@@ -12,6 +12,12 @@ dependencies {
     implementation project(':common-basic')
     implementation project(':common-jpa')
 
-    implementation 'org.springframework.boot:spring-boot-starter-aop'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'jakarta.servlet:jakarta.servlet-api'
+    implementation 'org.aspectj:aspectjweaver'
+    implementation 'org.slf4j:slf4j-api'
+
+    implementation 'org.springframework.boot:spring-boot'
+    implementation 'org.springframework.boot:spring-boot-autoconfigure'
+    implementation 'org.springframework:spring-webmvc'
 }

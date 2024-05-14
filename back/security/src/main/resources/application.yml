@@ -1,0 +1,94 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /security
+
+spring:
+  application:
+    name: security
+
+  profiles:
+    include:
+      - jpa
+      - jwt
+      - redis
+      - web
+
+  cache:
+    redis:
+      host: ${PROJECT_REDIS_IP}
+      port: ${PROJECT_REDIS_PORT}
+      username: ${PROJECT_REDIS_USERNAME}
+      password: ${PROJECT_REDIS_PASSWORD}
+
+  datasource:
+    url: jdbc:mariadb://${PROJECT_MARIADB_IP_PORT}/security
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: ${PROJECT_MARIADB_USERNAME}
+    password: ${PROJECT_MARIADB_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  common:
+    web:
+      log:
+        without-parameters:
+          - method: POST
+            path: /authentication
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+    status-page-url:
+
+  client:
+    disable-delta: true
+    service-url:
+      defaultZone: http://${PROJECT_EUREKA_IP_PORT}/eureka
+
+logging:
+  level:
+    root: info
+
+  file:
+    name: ${logging.file.path}/${spring.application.name}.log
+
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${logging.file.path}/${spring.application.name}.%d{yyyy-MM-dd}.%i.log
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  jpa:
+    properties:
+      hibernate:
+        "[show_sql]": true
+        "[format_sql]": true
+
+logging:
+  file:
+    path: C:/log/${spring.application.name}
+
+  logback:
+    rollingpolicy:
+      max-history: 1
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+logging:
+  file:
+    path: /var/log/${spring.application.name}
+
+  logback:
+    rollingpolicy:
+      max-history: 7
