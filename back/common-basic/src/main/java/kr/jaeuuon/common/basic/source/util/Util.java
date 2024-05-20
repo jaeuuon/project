@@ -11,8 +11,9 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
@@ -22,8 +23,6 @@ import java.util.stream.Collectors;
  * 공통 유틸.
  */
 public class Util {
-
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분 ss.SSS초");
 
     /**
      * HttpServletRequest 리턴.
@@ -104,15 +103,15 @@ public class Util {
     /**
      * 현재 시간을 지정된 포맷으로 변경하여 리턴.
      */
-    public static String getFormattedDateTime() {
-        return LocalDateTime.now().format(DATE_TIME_FORMATTER);
+    public static ZonedDateTime getZonedDateTime() {
+        return null;
     }
 
     /**
-     * LocalDateTime을 지정된 포맷으로 변경하여 리턴.
+     * Timestamp를 지정된 포맷으로 변경하여 리턴.
      */
-    public static String getFormattedDateTime(LocalDateTime localDateTime) {
-        return localDateTime.format(DATE_TIME_FORMATTER);
+    public static ZonedDateTime getZonedDateTime(Timestamp timestamp) {
+        return null;
     }
 
     /**

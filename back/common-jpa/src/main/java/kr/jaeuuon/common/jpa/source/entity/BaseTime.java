@@ -7,7 +7,7 @@ import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 /**
  * 공통 엔티티(생성 시간).
@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public abstract class BaseTime {
 
     @CreatedDate
-    @Column(nullable = false, updatable = false, columnDefinition = "DATETIME(3) DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime createdTime;
+    @Column(nullable = false, updatable = false)
+    private Timestamp createdTime;
 
 }

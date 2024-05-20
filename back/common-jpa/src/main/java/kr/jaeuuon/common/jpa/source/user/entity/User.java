@@ -17,7 +17,7 @@ import java.util.List;
  * 사용자 엔티티.
  */
 @Entity
-@Table(catalog = "user", name = "tb_user", uniqueConstraints = @UniqueConstraint(name = "UNIQUE_EMAIL_FOR_USER", columnNames = "email"))
+@Table(schema = "common", name = "tb_user", uniqueConstraints = @UniqueConstraint(name = "tb_user_ukey_email", columnNames = "email"))
 @DynamicInsert
 @DynamicUpdate
 @Getter
@@ -45,6 +45,10 @@ public class User extends BaseModifiedUserNonCreatedUser implements Persistable<
 
     @Column(length = 20, nullable = false)
     private StatusCode statusCode;
+
+    public User(long id) {
+        this.id = id;
+    }
 
     @Override
     public boolean isNew() {

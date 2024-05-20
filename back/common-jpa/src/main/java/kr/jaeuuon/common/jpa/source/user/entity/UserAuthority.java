@@ -16,7 +16,7 @@ import org.springframework.data.domain.Persistable;
  * 사용자 ↔ 권한 매핑 엔티티.
  */
 @Entity
-@Table(catalog = "user", name = "tb_user_authority")
+@Table(schema = "common", name = "tb_user_authority")
 @DynamicInsert
 @DynamicUpdate
 @Getter
@@ -28,7 +28,7 @@ public class UserAuthority extends BaseModifiedUser implements Persistable<Long>
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "FOREIGN_USER_ID_FOR_USER_AUTHORITY"))
+    @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "tb_user_authority_fkey_user_id"))
     private User user;
 
     @Column(length = 20, nullable = false)

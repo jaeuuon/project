@@ -22,7 +22,7 @@ spring:
       password: ${PROJECT_REDIS_PASSWORD}
 
   datasource:
-    url: jdbc:postgresql://${PROJECT_POSTGRESQL_IP_PORT}/security
+    url: jdbc:postgresql://${PROJECT_POSTGRESQL_IP_PORT}/project
     driver-class-name: org.postgresql.Driver
     username: ${PROJECT_POSTGRESQL_USERNAME}
     password: ${PROJECT_POSTGRESQL_PASSWORD}

@@ -10,7 +10,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
+import java.time.ZonedDateTime;
 
 /**
  * 사용자 인증 기록 조회 시 사용.
@@ -24,27 +25,27 @@ public class HistoryDTO {
     private String requestIp;
     private Long userId;
     private String result;
-    private String createdTime;
+    private ZonedDateTime createdTime;
 
     /**
      * 사용자 인증 기록 조회(본인) 시의 리턴.
      */
     @QueryProjection
-    public HistoryDTO(String requestIp, ResultCode resultCode, LocalDateTime createdTime) {
+    public HistoryDTO(String requestIp, ResultCode resultCode, Timestamp createdTime) {
         this.requestIp = requestIp;
         result = resultCode.getValue();
-        this.createdTime = Util.getFormattedDateTime(createdTime);
+        this.createdTime = Util.getZonedDateTime(createdTime);
     }
 
     /**
      * 사용자 인증 기록 조회(특정 사용자) 시의 리턴.
      */
     @QueryProjection
-    public HistoryDTO(String requestIp, Long userId, ResultCode resultCode, LocalDateTime createdTime) {
+    public HistoryDTO(String requestIp, Long userId, ResultCode resultCode, Timestamp createdTime) {
         this.requestIp = requestIp;
         this.userId = userId;
         result = resultCode.getValue();
-        this.createdTime = Util.getFormattedDateTime(createdTime);
+        this.createdTime = Util.getZonedDateTime(createdTime);
     }
 
 }

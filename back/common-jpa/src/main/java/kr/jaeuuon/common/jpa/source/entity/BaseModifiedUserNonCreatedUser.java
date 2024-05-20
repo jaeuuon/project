@@ -8,7 +8,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 /**
  * 공통 엔티티(생성/수정 시간, 생성/수정자).
@@ -19,8 +19,8 @@ import java.time.LocalDateTime;
 public abstract class BaseModifiedUserNonCreatedUser extends BaseTime {
 
     @LastModifiedDate
-    @Column(insertable = false, columnDefinition = "DATETIME(3) ON UPDATE CURRENT_TIMESTAMP")
-    private LocalDateTime modifiedTime;
+    @Column(insertable = false)
+    private Timestamp modifiedTime;
 
     @LastModifiedBy
     @Column(insertable = false)

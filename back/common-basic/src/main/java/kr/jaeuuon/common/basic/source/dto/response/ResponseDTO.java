@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +23,7 @@ public class ResponseDTO {
     private String status;
     private ResponseDataDTO data;
     private List<ResponseErrorDTO> errors;
-    private String timestamp;
+    private ZonedDateTime timestamp;
 
     /**
      * 성공 응답 시의 리턴.
@@ -58,7 +59,7 @@ public class ResponseDTO {
         this.path = path;
         this.method = method;
         status = message.getStatus().getValue();
-        timestamp = Util.getFormattedDateTime();
+        timestamp = Util.getZonedDateTime();
     }
 
 }

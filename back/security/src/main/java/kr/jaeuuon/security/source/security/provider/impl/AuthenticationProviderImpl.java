@@ -36,15 +36,15 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
         if (userDetailsImpl == null) {
             throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_EMAIL_004);
         } else if (!userDetailsImpl.isEnabled()) {
-            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_001, userDetailsImpl, ResultCode.ERROR_NOT_ACTIVATED);
+            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_001, userDetailsImpl, ResultCode.ERROR_DEACTIVATE);
         } else if (ObjectUtils.isEmpty(userDetailsImpl.getAuthorities())) {
-            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_AUTH_001, userDetailsImpl, ResultCode.ERROR_EMPTY_AUTHORITIES);
+            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_AUTH_001, userDetailsImpl, ResultCode.ERROR_AUTHORITIES);
         }
 
         String credentials = authentication.getCredentials().toString();
 
         if (!bCryptPasswordEncoder.matches(credentials, userDetailsImpl.getPassword())) {
-            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_PASSWORD_003, userDetailsImpl, ResultCode.ERROR_NOT_MATCHES_PASSWORD);
+            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_PASSWORD_003, userDetailsImpl, ResultCode.ERROR_PASSWORD);
         }
 
         return new UsernamePasswordAuthenticationToken(userDetailsImpl, null, userDetailsImpl.getAuthorities());

@@ -7,7 +7,7 @@ import lombok.Getter;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 /**
  * 공통 엔티티(생성/수정 시간).
@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public abstract class BaseModifiedTime extends BaseTime {
 
     @LastModifiedDate
-    @Column(insertable = false, columnDefinition = "DATETIME(3) ON UPDATE CURRENT_TIMESTAMP")
-    private LocalDateTime modifiedTime;
+    @Column(insertable = false)
+    private Timestamp modifiedTime;
 
 }

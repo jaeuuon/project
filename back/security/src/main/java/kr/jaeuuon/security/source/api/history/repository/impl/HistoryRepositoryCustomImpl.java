@@ -31,7 +31,7 @@ public class HistoryRepositoryCustomImpl extends AbstractBaseRepositoryCustomImp
     public Page<HistoryDTO> customFindByUserId(long userId, Pageable pageable, boolean isAdmin) {
         QHistory history = QHistory.history;
 
-        JPQLQuery<HistoryDTO> query = jpaQueryFactory.select(isAdmin ? new QHistoryDTO(history.requestIp, history.userId, history.resultCode, history.createdTime) : new QHistoryDTO(history.requestIp, history.resultCode, history.createdTime)).from(history)
+        JPQLQuery<HistoryDTO> query = jpaQueryFactory.select(isAdmin ? new QHistoryDTO(history.requestIp, history.user.id, history.resultCode, history.createdTime) : new QHistoryDTO(history.requestIp, history.resultCode, history.createdTime)).from(history)
                 .where(equalsUserId(userId))
                 .orderBy(getOrders(pageable.getSort())).offset(pageable.getOffset()).limit(pageable.getPageSize());
 
@@ -42,7 +42,7 @@ public class HistoryRepositoryCustomImpl extends AbstractBaseRepositoryCustomImp
      * 사용자 아이디 조건.
      */
     private BooleanExpression equalsUserId(long userId) {
-        return QHistory.history.userId.eq(userId);
+        return QHistory.history.user.id.eq(userId);
     }
 
     /**

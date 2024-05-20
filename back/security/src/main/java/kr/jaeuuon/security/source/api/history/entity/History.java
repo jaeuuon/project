@@ -2,6 +2,7 @@ package kr.jaeuuon.security.source.api.history.entity;
 
 import jakarta.persistence.*;
 import kr.jaeuuon.common.jpa.source.entity.BaseTime;
+import kr.jaeuuon.common.jpa.source.user.entity.User;
 import kr.jaeuuon.security.source.api.history.code.impl.ResultCode;
 import kr.jaeuuon.security.source.api.history.code.impl.ResultCode.ResultCodeConverter;
 import lombok.AccessLevel;
@@ -15,7 +16,7 @@ import org.springframework.data.domain.Persistable;
  * 사용자 인증 기록 엔티티.
  */
 @Entity
-@Table(catalog = "security", name = "tb_history")
+@Table(schema = "security", name = "tb_history")
 @DynamicInsert
 @DynamicUpdate
 @Getter
@@ -32,8 +33,9 @@ public class History extends BaseTime implements Persistable<Long> {
     @Column(length = 20, nullable = false)
     private String requestId;
 
-    @Column(nullable = false)
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "tb_history_fkey_user_id"))
+    private User user;
 
     @Column(length = 20, nullable = false)
     @Convert(converter = ResultCodeConverter.class)
@@ -42,7 +44,7 @@ public class History extends BaseTime implements Persistable<Long> {
     public History(String requestIp, String requestId, long userId, ResultCode resultCode) {
         this.requestIp = requestIp;
         this.requestId = requestId;
-        this.userId = userId;
+        this.user = new User(userId);
         this.resultCode = resultCode;
     }
 
