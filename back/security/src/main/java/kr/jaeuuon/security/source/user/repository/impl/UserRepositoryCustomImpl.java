@@ -5,7 +5,7 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import kr.jaeuuon.common.jpa.source.user.entity.QUser;
 import kr.jaeuuon.common.jpa.source.user.entity.QUserAuthority;
-import kr.jaeuuon.common.jpa.source.util.QuerydslUtil;
+import kr.jaeuuon.common.jpa.source.util.JpaUtil;
 import kr.jaeuuon.security.source.security.userdetails.impl.QUserDetailsImpl;
 import kr.jaeuuon.security.source.security.userdetails.impl.QUserDetailsImpl_Authority;
 import kr.jaeuuon.security.source.security.userdetails.impl.UserDetailsImpl;
@@ -49,7 +49,7 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom {
         QUserAuthority userAuthority = QUserAuthority.userAuthority;
 
         Map<Long, UserDetailsImpl> result = jpaQueryFactory.from(user)
-                .leftJoin(user.authorities, userAuthority).on(QuerydslUtil.equalsStatusCodeActivated(userAuthority.statusCode))
+                .leftJoin(user.authorities, userAuthority).on(JpaUtil.equalsStatusCodeActivated(userAuthority.statusCode))
                 .where(equalsIdOrEmail(id, email))
                 .transform(GroupBy.groupBy(user.id).as(new QUserDetailsImpl(user.id, user.password, user.name, GroupBy.set(new QUserDetailsImpl_Authority(userAuthority.authorityCode)), user.statusCode)));
 

@@ -7,7 +7,7 @@ import kr.jaeuuon.common.jpa.source.code.impl.StatusCode;
 /**
  * Querydsl 유틸.
  */
-public class QuerydslUtil {
+public class JpaUtil {
 
     /**
      * 데이터 상태 조건.

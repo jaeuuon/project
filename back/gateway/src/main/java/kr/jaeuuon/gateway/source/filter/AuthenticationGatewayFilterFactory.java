@@ -1,7 +1,7 @@
 package kr.jaeuuon.gateway.source.filter;
 
 import kr.jaeuuon.common.basic.source.constant.CommonConstant;
-import kr.jaeuuon.gateway.source.exception.GatewayException;
+import kr.jaeuuon.common.basic.source.exception.CommonException;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.HttpStatus;
@@ -30,9 +30,9 @@ public class AuthenticationGatewayFilterFactory extends AbstractGatewayFilterFac
     /**
      * 헤더가 있는지 체크(User-Id).
      */
-    private void validation(ServerHttpRequest request) throws GatewayException {
+    private void validation(ServerHttpRequest request) throws CommonException {
         if (request.getHeaders().getFirst(CommonConstant.HEADER_USER_ID) == null) {
-            throw new GatewayException(HttpStatus.UNAUTHORIZED);
+            throw new CommonException(HttpStatus.UNAUTHORIZED);
         }
     }
 

@@ -4,8 +4,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import kr.jaeuuon.common.basic.source.exception.CommonException;
 import kr.jaeuuon.common.basic.source.logger.CommonLogger;
 import kr.jaeuuon.common.basic.source.message.enumeration.Message;
+import kr.jaeuuon.common.basic.source.message.enumeration.impl.MessageImpl;
 import kr.jaeuuon.common.basic.source.util.Util;
-import kr.jaeuuon.common.web.source.message.enumeration.impl.WebMessageImpl;
 import kr.jaeuuon.common.web.source.message.service.MessageService;
 import kr.jaeuuon.common.web.source.util.ResponseErrorUtil;
 import lombok.RequiredArgsConstructor;
@@ -67,7 +67,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
      * Valid 어노테이션의 message 값에 해당하는 Message 목록 리턴.
      */
     private List<Message> getMessagesByFieldErrors(List<FieldError> fieldErrors) {
-        return fieldErrors.stream().map(fieldError -> USED_VALIDS.contains(fieldError.getCode()) ? messageService.getByName(fieldError.getDefaultMessage()) : WebMessageImpl.ERROR_WEB_001).collect(Collectors.toList());
+        return fieldErrors.stream().map(fieldError -> USED_VALIDS.contains(fieldError.getCode()) ? messageService.getByName(fieldError.getDefaultMessage()) : MessageImpl.ERROR_BAD_REQUEST).collect(Collectors.toList());
     }
 
     /**
@@ -77,7 +77,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleException(HttpServletRequest request, Exception e) {
         CommonLogger.error(request.getRemoteAddr(), Util.getRequestId(request), Util.getCallerClassAndMethodName(), e.getClass().getSimpleName(), e);
 
-        return ResponseErrorUtil.error(request, HttpStatus.INTERNAL_SERVER_ERROR, WebMessageImpl.ERROR_WEB_999);
+        return ResponseErrorUtil.error(request, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     /**
@@ -87,7 +87,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleNullPointerException(HttpServletRequest request, NullPointerException e) {
         CommonLogger.error(request.getRemoteAddr(), Util.getRequestId(request), Util.getCallerClassAndMethodName(), e.getClass().getSimpleName(), e);
 
-        return ResponseErrorUtil.error(request, HttpStatus.INTERNAL_SERVER_ERROR, WebMessageImpl.ERROR_WEB_998);
+        return ResponseErrorUtil.error(request, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     /**

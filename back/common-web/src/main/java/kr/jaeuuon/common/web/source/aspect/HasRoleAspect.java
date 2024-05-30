@@ -2,9 +2,9 @@ package kr.jaeuuon.common.web.source.aspect;
 
 import jakarta.servlet.http.HttpServletRequest;
 import kr.jaeuuon.common.basic.source.code.impl.AuthorityCode;
+import kr.jaeuuon.common.basic.source.exception.CommonException;
 import kr.jaeuuon.common.basic.source.util.Util;
 import kr.jaeuuon.common.web.source.annotation.HasRole;
-import kr.jaeuuon.common.web.source.exception.HasRoleException;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -36,11 +36,11 @@ public class HasRoleAspect {
      * Before(역할 체크 어노테이션).
      */
     @Before("hasRole(hasRole)")
-    public void beforeHasRole(HasRole hasRole) throws HasRoleException {
+    public void beforeHasRole(HasRole hasRole) throws CommonException {
         HttpServletRequest request = Util.getRequest();
 
         if (request == null) {
-            throw new HasRoleException();
+            throw new CommonException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         Set<AuthorityCode> userRoles = getUserRoles(request);
@@ -49,7 +49,7 @@ public class HasRoleAspect {
         userRoles.retainAll(targetRoles);
 
         if (userRoles.isEmpty()) {
-            throw new HasRoleException(HttpStatus.FORBIDDEN);
+            throw new CommonException(HttpStatus.FORBIDDEN);
         }
     }
 

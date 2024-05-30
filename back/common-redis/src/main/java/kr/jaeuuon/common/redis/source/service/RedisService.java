@@ -3,10 +3,9 @@ package kr.jaeuuon.common.redis.source.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
+import kr.jaeuuon.common.basic.source.exception.CommonException;
 import kr.jaeuuon.common.basic.source.logger.CommonLogger;
 import kr.jaeuuon.common.basic.source.util.Util;
-import kr.jaeuuon.common.redis.source.exception.RedisException;
-import kr.jaeuuon.common.redis.source.message.enumeration.impl.RedisMessageImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpStatus;
@@ -85,27 +84,27 @@ public class RedisService<T> {
     /**
      * 데이터 저장 함수(Object → String).
      */
-    private String objectToString(Object object) throws RedisException {
+    private String objectToString(Object object) throws CommonException {
         try {
             return objectMapper.writeValueAsString(object);
         } catch (JsonProcessingException e) {
             error(Util.getCallerClassAndMethodName(), e);
 
-            throw new RedisException(HttpStatus.INTERNAL_SERVER_ERROR, RedisMessageImpl.ERROR_REDIS_001);
+            throw new CommonException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     /**
      * 데이터 조회 함수(String → Object).
      */
-    private Optional<T> stringToObject(String value, Class<T> type) throws RedisException {
+    private Optional<T> stringToObject(String value, Class<T> type) throws CommonException {
         if (value != null) {
             try {
                 return Optional.ofNullable(objectMapper.readValue(value, type));
             } catch (JsonProcessingException e) {
                 error(Util.getCallerClassAndMethodName(), e);
 
-                throw new RedisException(HttpStatus.INTERNAL_SERVER_ERROR, RedisMessageImpl.ERROR_REDIS_002);
+                throw new CommonException(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } else {
             return Optional.empty();

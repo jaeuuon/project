@@ -1,6 +1,7 @@
 package kr.jaeuuon.common.web.source.message.service.impl;
 
 import kr.jaeuuon.common.basic.source.message.enumeration.Message;
+import kr.jaeuuon.common.basic.source.message.enumeration.impl.MessageImpl;
 import kr.jaeuuon.common.web.source.message.enumeration.impl.WebMessageImpl;
 import kr.jaeuuon.common.web.source.message.service.MessageService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -17,7 +18,9 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Message getByName(String name) {
-        return Stream.of(WebMessageImpl.values()).filter(message -> message.name().equals(name)).findAny().orElse(WebMessageImpl.ERROR_WEB_001);
+        Message message = Stream.of(WebMessageImpl.values()).filter(item -> item.name().equals(name)).findAny().orElse(null);
+
+        return message != null ? message : MessageImpl.ERROR_BAD_REQUEST;
     }
 
 }

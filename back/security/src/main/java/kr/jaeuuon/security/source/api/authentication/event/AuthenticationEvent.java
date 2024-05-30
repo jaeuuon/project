@@ -4,7 +4,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import kr.jaeuuon.common.basic.source.util.Util;
 import kr.jaeuuon.common.web.source.event.CommonEvent;
 import kr.jaeuuon.security.source.api.history.code.impl.ResultCode;
-import kr.jaeuuon.security.source.security.exception.SecurityException;
 import kr.jaeuuon.security.source.security.userdetails.impl.UserDetailsImpl;
 import lombok.AccessLevel;
 import lombok.Getter;

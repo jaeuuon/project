@@ -1,11 +1,13 @@
 package kr.jaeuuon.security.source.api.authentication.service;
 
 import kr.jaeuuon.common.basic.source.code.impl.AuthorityCode;
+import kr.jaeuuon.common.basic.source.exception.CommonException;
+import kr.jaeuuon.common.basic.source.message.enumeration.impl.MessageImpl;
+import kr.jaeuuon.common.jwt.source.message.enumeration.impl.JwtMessageImpl;
 import kr.jaeuuon.common.jwt.source.provider.JwtProvider;
 import kr.jaeuuon.common.web.source.annotation.PublishEvent;
 import kr.jaeuuon.security.source.api.authentication.dto.AuthenticationDTO;
 import kr.jaeuuon.security.source.api.authentication.event.AuthenticationEvent;
-import kr.jaeuuon.security.source.api.authentication.exception.AuthenticationException;
 import kr.jaeuuon.security.source.jwt.dto.JwtDTO;
 import kr.jaeuuon.security.source.jwt.entity.Jwt;
 import kr.jaeuuon.security.source.jwt.service.JwtService;
@@ -63,23 +65,23 @@ public class AuthenticationService {
     /**
      * JWT를 새로 생성 및 리턴.
      */
-    public JwtDTO reissuance(String requestIp, String requestId, long userId, JwtDTO jwtDTO) throws AuthenticationException {
-        jwtProvider.getClaims(requestIp, requestId, jwtDTO.getRefresh(), true);
+    public JwtDTO reissuance(String requestIp, String requestId, long userId, JwtDTO jwtDTO) throws CommonException {
+        jwtProvider.getClaims(requestIp, requestId, jwtDTO.getRefresh());
 
-        Jwt jwt = jwtService.get(userId).orElseThrow(() -> new AuthenticationException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_JWT_002));
+        Jwt jwt = jwtService.get(userId).orElseThrow(() -> new CommonException(HttpStatus.UNAUTHORIZED, JwtMessageImpl.ERROR_JWT_EXPIRED));
 
         if (!jwtDTO.getRefresh().equals(jwt.getRefresh())) {
-            throw new AuthenticationException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_JWT_003);
+            throw new CommonException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_JWT_REFRESH_ALREADY);
         }
 
         UserDetailsImpl userDetailsImpl = userService.getJoinAuthority(userId);
 
         if (userDetailsImpl == null) {
-            throw new AuthenticationException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_002);
+            throw new CommonException(HttpStatus.UNAUTHORIZED, MessageImpl.ERROR_USER_NOT_FOUND);
         } else if (!userDetailsImpl.isEnabled()) {
-            throw new AuthenticationException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_001);
+            throw new CommonException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_NOT_ACTIVATED);
         } else if (ObjectUtils.isEmpty(userDetailsImpl.getAuthorities())) {
-            throw new AuthenticationException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_AUTH_001);
+            throw new CommonException(HttpStatus.UNAUTHORIZED, MessageImpl.ERROR_FORBIDDEN);
         }
 
         return createJwt(userDetailsImpl);
@@ -96,9 +98,9 @@ public class AuthenticationService {
     /**
      * JWT(Refresh) 삭제.
      */
-    public void logout(long userId) throws AuthenticationException {
+    public void logout(long userId) throws CommonException {
         if (!jwtService.remove(userId)) {
-            throw new AuthenticationException(HttpStatus.INTERNAL_SERVER_ERROR, SecurityMessageImpl.ERROR_SECU_003);
+            throw new CommonException(HttpStatus.INTERNAL_SERVER_ERROR, SecurityMessageImpl.ERROR_SECU_LOGOUT);
         }
     }
 

@@ -11,13 +11,7 @@ import lombok.Getter;
 @Getter
 public enum JwtMessageImpl implements Message {
 
-    ERROR_JWT_001(MessageStatusImpl.ERROR, "토큰이 잘못되었습니다."),
-    ERROR_JWT_002(MessageStatusImpl.ERROR, "토큰이 잘못되었습니다."),
-    ERROR_JWT_003(MessageStatusImpl.ERROR, "토큰이 잘못되었습니다."),
-    ERROR_JWT_004(MessageStatusImpl.ERROR, "토큰이 잘못되었습니다."),
-    ERROR_JWT_005(MessageStatusImpl.ERROR, "토큰이 잘못되었습니다."),
-    ERROR_JWT_006(MessageStatusImpl.ERROR, "토큰이 잘못되었습니다."),
-    ERROR_JWT_007(MessageStatusImpl.ERROR, "토큰이 잘못되었습니다.");
+    ERROR_JWT_EXPIRED(MessageStatusImpl.ERROR, "토큰이 만료되었습니다.");
 
     private final MessageStatus status;
     private final String value;

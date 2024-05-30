@@ -2,8 +2,8 @@ package kr.jaeuuon.gateway.source.filter.global.impl;
 
 import io.jsonwebtoken.Claims;
 import kr.jaeuuon.common.basic.source.constant.CommonConstant;
+import kr.jaeuuon.common.basic.source.exception.CommonException;
 import kr.jaeuuon.common.jwt.source.constant.JwtConstant;
-import kr.jaeuuon.common.jwt.source.exception.JwtException;
 import kr.jaeuuon.common.jwt.source.provider.JwtProvider;
 import kr.jaeuuon.gateway.source.logger.GatewayLogger;
 import kr.jaeuuon.gateway.source.util.GatewayUtil;
@@ -69,8 +69,8 @@ public class GlobalFilterImpl implements GlobalFilter, Ordered {
     /**
      * 헤더 추가(Request-Id, User-Id/Authorities).
      */
-    private ServerHttpRequest setUserHeaders(ServerHttpRequest request, String requestIp, String requestId, String jwt) throws JwtException {
-        Claims claims = jwtProvider.getClaims(requestIp, requestId, jwt, false);
+    private ServerHttpRequest setUserHeaders(ServerHttpRequest request, String requestIp, String requestId, String jwt) throws CommonException {
+        Claims claims = jwtProvider.getClaims(requestIp, requestId, jwt);
         String authorities = claims.get(JwtConstant.AUTHORITIES_KEY).toString();
 
         return request.mutate().headers(headers -> {

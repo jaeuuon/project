@@ -34,7 +34,7 @@ public class AuthenticationController {
         JwtDTO jwtDTO = authenticationService.createJwt(userDetailsImpl);
         HttpHeaders httpHeaders = setHttpHeader(jwtDTO.getAccess());
 
-        return ResponseSuccessUtil.ok(request, httpHeaders, SecurityMessageImpl.SUCCESS_SECU_001, jwtDTO);
+        return ResponseSuccessUtil.ok(request, httpHeaders, SecurityMessageImpl.SUCCESS_SECU_LOGIN, jwtDTO);
     }
 
     /**
@@ -45,7 +45,7 @@ public class AuthenticationController {
         jwtDTO = authenticationService.reissuance(request.getRemoteAddr(), requestId, userId, jwtDTO);
         HttpHeaders httpHeaders = setHttpHeader(jwtDTO.getAccess());
 
-        return ResponseSuccessUtil.ok(request, httpHeaders, SecurityMessageImpl.SUCCESS_SECU_002, jwtDTO);
+        return ResponseSuccessUtil.ok(request, httpHeaders, SecurityMessageImpl.SUCCESS_SECU_REISSUANCE, jwtDTO);
     }
 
     /**
@@ -55,7 +55,7 @@ public class AuthenticationController {
     public ResponseEntity<Object> logout(HttpServletRequest request, @RequestHeader(CommonConstant.HEADER_USER_ID) long userId) {
         authenticationService.logout(userId);
 
-        return ResponseSuccessUtil.ok(request, SecurityMessageImpl.SUCCESS_SECU_003);
+        return ResponseSuccessUtil.ok(request, SecurityMessageImpl.SUCCESS_SECU_LOGOUT);
     }
 
     /**

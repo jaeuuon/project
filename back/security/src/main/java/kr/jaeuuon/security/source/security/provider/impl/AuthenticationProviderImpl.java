@@ -2,7 +2,6 @@ package kr.jaeuuon.security.source.security.provider.impl;
 
 import kr.jaeuuon.security.source.api.history.code.impl.ResultCode;
 import kr.jaeuuon.security.source.message.enumeration.impl.SecurityMessageImpl;
-import kr.jaeuuon.security.source.security.exception.SecurityException;
 import kr.jaeuuon.security.source.security.service.impl.UserDetailsServiceImpl;
 import kr.jaeuuon.security.source.security.userdetails.impl.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
@@ -34,17 +33,19 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
         UserDetailsImpl userDetailsImpl = userDetailsServiceImpl.loadUserByUsername(email);
 
         if (userDetailsImpl == null) {
-            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_EMAIL_004);
-        } else if (!userDetailsImpl.isEnabled()) {
-            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_001, userDetailsImpl, ResultCode.ERROR_DEACTIVATE);
-        } else if (ObjectUtils.isEmpty(userDetailsImpl.getAuthorities())) {
-            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_AUTH_001, userDetailsImpl, ResultCode.ERROR_AUTHORITIES);
+            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_EMAIL);
         }
 
         String credentials = authentication.getCredentials().toString();
 
         if (!bCryptPasswordEncoder.matches(credentials, userDetailsImpl.getPassword())) {
-            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_PASSWORD_003, userDetailsImpl, ResultCode.ERROR_PASSWORD);
+            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_PASSWORD, userDetailsImpl, ResultCode.ERROR_PASSWORD);
+        }
+
+        if (!userDetailsImpl.isEnabled()) {
+            throw new SecurityException(HttpStatus.UNAUTHORIZED, userDetailsImpl, ResultCode.ERROR_DEACTIVATE);
+        } else if (ObjectUtils.isEmpty(userDetailsImpl.getAuthorities())) {
+            throw new SecurityException(HttpStatus.FORBIDDEN, userDetailsImpl, ResultCode.ERROR_AUTHORITIES);
         }
 
         return new UsernamePasswordAuthenticationToken(userDetailsImpl, null, userDetailsImpl.getAuthorities());

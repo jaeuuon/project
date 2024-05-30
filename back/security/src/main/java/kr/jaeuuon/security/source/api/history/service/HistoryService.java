@@ -1,11 +1,11 @@
 package kr.jaeuuon.security.source.api.history.service;
 
+import kr.jaeuuon.common.basic.source.exception.CommonException;
+import kr.jaeuuon.common.basic.source.message.enumeration.impl.MessageImpl;
 import kr.jaeuuon.security.source.api.history.code.impl.ResultCode;
 import kr.jaeuuon.security.source.api.history.dto.HistoryDTO;
 import kr.jaeuuon.security.source.api.history.entity.History;
-import kr.jaeuuon.security.source.api.history.exception.HistoryException;
 import kr.jaeuuon.security.source.api.history.repository.HistoryRepository;
-import kr.jaeuuon.security.source.message.enumeration.impl.SecurityMessageImpl;
 import kr.jaeuuon.security.source.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -39,7 +39,7 @@ public class HistoryService {
     @Transactional(readOnly = true)
     public Page<HistoryDTO> getList(long userId, Pageable pageable, boolean isAdmin) {
         if (userService.get(userId) == null) {
-            throw new HistoryException(HttpStatus.BAD_REQUEST, SecurityMessageImpl.ERROR_SECU_002);
+            throw new CommonException(HttpStatus.BAD_REQUEST, MessageImpl.ERROR_USER_NOT_FOUND);
         }
 
         return historyRepository.customFindByUserId(userId, pageable, isAdmin);

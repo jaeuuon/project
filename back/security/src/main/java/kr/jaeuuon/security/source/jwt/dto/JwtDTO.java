@@ -16,7 +16,7 @@ public class JwtDTO {
     @JsonIgnore
     private String access;
 
-    @NotBlank(message = "ERROR_SECU_JWT_001")
+    @NotBlank(message = "ERROR_SECU_JWT_REFRESH_BLANK")
     private String refresh;
 
     public JwtDTO(String access, String refresh) {
