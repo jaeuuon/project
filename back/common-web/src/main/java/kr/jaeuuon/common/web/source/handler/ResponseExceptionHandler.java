@@ -9,7 +9,6 @@ import kr.jaeuuon.common.basic.source.util.Util;
 import kr.jaeuuon.common.web.source.message.service.MessageService;
 import kr.jaeuuon.common.web.source.util.ResponseErrorUtil;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -29,7 +28,6 @@ import java.util.stream.Collectors;
 /**
  * 오류 처리.
  */
-@Slf4j
 @RestControllerAdvice
 @RequiredArgsConstructor
 public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {

@@ -8,7 +8,6 @@ import kr.jaeuuon.common.jwt.source.provider.JwtProvider;
 import kr.jaeuuon.gateway.source.logger.GatewayLogger;
 import kr.jaeuuon.gateway.source.util.GatewayUtil;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -22,7 +21,6 @@ import reactor.core.publisher.Mono;
 /**
  * 글로벌 필터.
  */
-@Slf4j
 @Component
 @RequiredArgsConstructor
 public class GlobalFilterImpl implements GlobalFilter, Ordered {

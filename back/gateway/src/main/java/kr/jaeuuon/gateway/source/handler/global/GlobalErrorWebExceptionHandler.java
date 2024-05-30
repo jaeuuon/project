@@ -8,7 +8,6 @@ import kr.jaeuuon.common.basic.source.message.enumeration.Message;
 import kr.jaeuuon.common.basic.source.util.Util;
 import kr.jaeuuon.gateway.source.logger.GatewayLogger;
 import kr.jaeuuon.gateway.source.util.GatewayUtil;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.web.WebProperties.Resources;
 import org.springframework.boot.autoconfigure.web.reactive.error.AbstractErrorWebExceptionHandler;
 import org.springframework.boot.web.reactive.error.ErrorAttributes;
@@ -28,7 +27,6 @@ import reactor.core.publisher.Mono;
 /**
  * 게이트웨이 오류 처리.
  */
-@Slf4j
 @Order(-2)
 @Component
 public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHandler {
