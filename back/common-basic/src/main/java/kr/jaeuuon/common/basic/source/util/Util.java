@@ -12,8 +12,9 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Set;
@@ -23,6 +24,9 @@ import java.util.stream.Collectors;
  * 공통 유틸.
  */
 public class Util {
+
+    private static final ZoneId ZONE_ID = ZoneId.of("UTC+9");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSZ");
 
     /**
      * HttpServletRequest 리턴.
@@ -103,15 +107,16 @@ public class Util {
     /**
      * 현재 시간을 지정된 포맷으로 변경하여 리턴.
      */
-    public static ZonedDateTime getZonedDateTime() {
-        return null;
+    public static String getFormattedZonedDateTime() {
+        return ZonedDateTime.now(ZONE_ID).format(DATE_TIME_FORMATTER);
     }
 
     /**
      * Timestamp를 지정된 포맷으로 변경하여 리턴.
      */
-    public static ZonedDateTime getZonedDateTime(Timestamp timestamp) {
-        return null;
+
+    public static String getFormattedZonedDateTime(Timestamp timestamp) {
+        return ZonedDateTime.ofInstant(timestamp.toInstant(), ZONE_ID).format(DATE_TIME_FORMATTER);
     }
 
     /**

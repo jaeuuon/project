@@ -11,7 +11,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
-import java.time.ZonedDateTime;
 
 /**
  * 사용자 인증 기록 조회 시 사용.
@@ -25,7 +24,7 @@ public class HistoryDTO {
     private String requestIp;
     private Long userId;
     private String result;
-    private ZonedDateTime createdTime;
+    private String createdTime;
 
     /**
      * 사용자 인증 기록 조회(본인) 시의 리턴.
@@ -34,7 +33,7 @@ public class HistoryDTO {
     public HistoryDTO(String requestIp, ResultCode resultCode, Timestamp createdTime) {
         this.requestIp = requestIp;
         result = resultCode.getValue();
-        this.createdTime = Util.getZonedDateTime(createdTime);
+        this.createdTime = Util.getFormattedZonedDateTime(createdTime);
     }
 
     /**
@@ -45,7 +44,7 @@ public class HistoryDTO {
         this.requestIp = requestIp;
         this.userId = userId;
         result = resultCode.getValue();
-        this.createdTime = Util.getZonedDateTime(createdTime);
+        this.createdTime = Util.getFormattedZonedDateTime(createdTime);
     }
 
 }
