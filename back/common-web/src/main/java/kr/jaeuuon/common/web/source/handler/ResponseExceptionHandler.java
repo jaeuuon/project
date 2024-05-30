@@ -77,7 +77,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleException(HttpServletRequest request, Exception e) {
         CommonLogger.error(request.getRemoteAddr(), Util.getRequestId(request), Util.getCallerClassAndMethodName(), e.getClass().getSimpleName(), e);
 
-        return ResponseErrorUtil.internalServerError(request, WebMessageImpl.ERROR_WEB_999);
+        return ResponseErrorUtil.error(request, HttpStatus.INTERNAL_SERVER_ERROR, WebMessageImpl.ERROR_WEB_999);
     }
 
     /**
@@ -87,7 +87,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleNullPointerException(HttpServletRequest request, NullPointerException e) {
         CommonLogger.error(request.getRemoteAddr(), Util.getRequestId(request), Util.getCallerClassAndMethodName(), e.getClass().getSimpleName(), e);
 
-        return ResponseErrorUtil.internalServerError(request, WebMessageImpl.ERROR_WEB_998);
+        return ResponseErrorUtil.error(request, HttpStatus.INTERNAL_SERVER_ERROR, WebMessageImpl.ERROR_WEB_998);
     }
 
     /**

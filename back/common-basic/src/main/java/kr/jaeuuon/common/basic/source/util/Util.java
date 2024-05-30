@@ -6,7 +6,6 @@ import kr.jaeuuon.common.basic.source.constant.CommonConstant;
 import kr.jaeuuon.common.basic.source.message.enumeration.Message;
 import kr.jaeuuon.common.basic.source.message.enumeration.impl.MessageImpl;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -42,13 +41,6 @@ public class Util {
     }
 
     /**
-     * 요청 경로 리턴.
-     */
-    public static String getPath(HttpServletRequest request) {
-        return request.getContextPath() + request.getServletPath();
-    }
-
-    /**
      * 헤더의 요청 ID 리턴(Request-Id).
      */
     public static String getRequestId(HttpServletRequest request) {
@@ -58,9 +50,7 @@ public class Util {
     /**
      * 헤더의 사용자 아이디 리턴(User-Id).
      */
-    public static Long getUserId() {
-        HttpServletRequest request = getRequest();
-
+    public static Long getUserId(HttpServletRequest request) {
         if (request != null) {
             String userId = request.getHeader(CommonConstant.HEADER_USER_ID);
 
@@ -68,22 +58,6 @@ public class Util {
         } else {
             return null;
         }
-    }
-
-    /**
-     * 헤더의 사용자 아이디 리턴(User-Id).
-     */
-    public static Long getUserId(HttpServletRequest request) {
-        String userId = request.getHeader(CommonConstant.HEADER_USER_ID);
-
-        return userId != null ? Long.parseLong(userId) : null;
-    }
-
-    /**
-     * 헤더의 사용자 아이디 리턴(User-Id).
-     */
-    public static String getUserId(ServerHttpRequest request) {
-        return request.getHeaders().getFirst(CommonConstant.HEADER_USER_ID);
     }
 
     /**
@@ -96,27 +70,15 @@ public class Util {
     }
 
     /**
-     * 헤더의 사용자 권한에서 역할 리턴(User-Authorities).
-     */
-    public static Set<AuthorityCode> getUserRoles(HttpServletRequest request) {
-        Set<AuthorityCode> authorities = getUserAuthorities(request);
-
-        return authorities.stream().filter(authority -> authority.name().startsWith("ROLE_")).collect(Collectors.toSet());
-    }
-
-    /**
-     * 현재 시간을 지정된 포맷으로 변경하여 리턴.
-     */
-    public static String getFormattedZonedDateTime() {
-        return ZonedDateTime.now(ZONE_ID).format(DATE_TIME_FORMATTER);
-    }
-
-    /**
      * Timestamp를 지정된 포맷으로 변경하여 리턴.
      */
 
     public static String getFormattedZonedDateTime(Timestamp timestamp) {
-        return ZonedDateTime.ofInstant(timestamp.toInstant(), ZONE_ID).format(DATE_TIME_FORMATTER);
+        if (timestamp != null) {
+            return ZonedDateTime.ofInstant(timestamp.toInstant(), ZONE_ID).format(DATE_TIME_FORMATTER);
+        } else {
+            return ZonedDateTime.now(ZONE_ID).format(DATE_TIME_FORMATTER);
+        }
     }
 
     /**
@@ -131,6 +93,7 @@ public class Util {
             case METHOD_NOT_ALLOWED -> MessageImpl.ERROR_METHOD_NOT_ALLOWED;
             case NOT_ACCEPTABLE -> MessageImpl.ERROR_NOT_ACCEPTABLE;
             case UNSUPPORTED_MEDIA_TYPE -> MessageImpl.ERROR_UNSUPPORTED_MEDIA_TYPE;
+            case INTERNAL_SERVER_ERROR -> MessageImpl.ERROR_INTERNAL_SERVER_ERROR;
             case SERVICE_UNAVAILABLE -> MessageImpl.ERROR_SERVICE_UNAVAILABLE;
             default -> MessageImpl.ERROR_UNKNOWN;
         };

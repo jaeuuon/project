@@ -9,6 +9,7 @@ import kr.jaeuuon.common.redis.source.exception.RedisException;
 import kr.jaeuuon.common.redis.source.message.enumeration.impl.RedisMessageImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -90,7 +91,7 @@ public class RedisService<T> {
         } catch (JsonProcessingException e) {
             error(Util.getCallerClassAndMethodName(), e);
 
-            throw new RedisException(RedisMessageImpl.ERROR_REDIS_001);
+            throw new RedisException(HttpStatus.INTERNAL_SERVER_ERROR, RedisMessageImpl.ERROR_REDIS_001);
         }
     }
 
@@ -104,7 +105,7 @@ public class RedisService<T> {
             } catch (JsonProcessingException e) {
                 error(Util.getCallerClassAndMethodName(), e);
 
-                throw new RedisException(RedisMessageImpl.ERROR_REDIS_002);
+                throw new RedisException(HttpStatus.INTERNAL_SERVER_ERROR, RedisMessageImpl.ERROR_REDIS_002);
             }
         } else {
             return Optional.empty();

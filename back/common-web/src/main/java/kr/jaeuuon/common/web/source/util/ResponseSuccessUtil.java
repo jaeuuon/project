@@ -3,7 +3,6 @@ package kr.jaeuuon.common.web.source.util;
 import jakarta.servlet.http.HttpServletRequest;
 import kr.jaeuuon.common.basic.source.dto.response.ResponseDTO;
 import kr.jaeuuon.common.basic.source.message.enumeration.Message;
-import kr.jaeuuon.common.basic.source.util.Util;
 import kr.jaeuuon.common.web.source.message.enumeration.impl.WebMessageImpl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -67,7 +66,7 @@ public class ResponseSuccessUtil {
      * 200, 201에 대한 ResponseEntity 리턴.
      */
     private static ResponseEntity<Object> getResponseEntity(HttpServletRequest request, HttpHeaders httpHeaders, HttpStatus httpStatus, Message message, Object content) {
-        ResponseDTO responseDTO = new ResponseDTO(Util.getPath(request), request.getMethod(), message, content);
+        ResponseDTO responseDTO = new ResponseDTO(WebUtil.getPath(request), request.getMethod(), message, content);
 
         return httpHeaders != null ? new ResponseEntity<>(responseDTO, httpHeaders, httpStatus) : new ResponseEntity<>(responseDTO, httpStatus);
     }

@@ -25,18 +25,18 @@ public abstract class AbstractBaseRepositoryCustomImpl implements BaseRepository
      * 공통 정렬 구현.
      */
     @Override
-    public OrderSpecifier<?>[] getOrders(Sort sorts) {
+    public OrderSpecifier<?>[] getOrders(Sort sort) {
         List<OrderSpecifier<?>> orders = new ArrayList<>();
 
-        sorts.stream().forEach(sort -> {
-            Expression<? extends Comparable<?>> expression = getExpression(sort.getProperty());
+        sort.stream().forEach(item -> {
+            Expression<? extends Comparable<?>> expression = getExpression(item.getProperty());
 
             if (expression != null) {
-                orders.add(new OrderSpecifier<>(sort.isAscending() ? Order.ASC : Order.DESC, expression));
+                orders.add(new OrderSpecifier<>(item.isAscending() ? Order.ASC : Order.DESC, expression));
             }
         });
 
-        if (sorts.stream().noneMatch(sort -> CREATED_TIME.equals(sort.getProperty()))) {
+        if (sort.stream().noneMatch(item -> CREATED_TIME.equals(item.getProperty()))) {
             orders.add(new OrderSpecifier<>(Order.DESC, getExpression(CREATED_TIME)));
         }
 

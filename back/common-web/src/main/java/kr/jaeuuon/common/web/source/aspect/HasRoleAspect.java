@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * 역할 체크 AOP.
@@ -42,7 +43,7 @@ public class HasRoleAspect {
             throw new HasRoleException();
         }
 
-        Set<AuthorityCode> userRoles = Util.getUserRoles(request);
+        Set<AuthorityCode> userRoles = getUserRoles(request);
         Set<AuthorityCode> targetRoles = new HashSet<>(Arrays.asList(hasRole.value()));
 
         userRoles.retainAll(targetRoles);
@@ -50,6 +51,15 @@ public class HasRoleAspect {
         if (userRoles.isEmpty()) {
             throw new HasRoleException(HttpStatus.FORBIDDEN);
         }
+    }
+
+    /**
+     * 헤더의 사용자 권한에서 역할 리턴(User-Authorities).
+     */
+    private Set<AuthorityCode> getUserRoles(HttpServletRequest request) {
+        Set<AuthorityCode> authorities = Util.getUserAuthorities(request);
+
+        return authorities.stream().filter(authority -> authority.name().startsWith("ROLE_")).collect(Collectors.toSet());
     }
 
 }

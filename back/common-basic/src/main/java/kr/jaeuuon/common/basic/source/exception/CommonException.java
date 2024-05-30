@@ -21,11 +21,6 @@ public class CommonException extends RuntimeException {
         this.httpStatus = httpStatus;
     }
 
-    public CommonException(Message message) {
-        httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
-        customMessage = message;
-    }
-
     public CommonException(HttpStatus httpStatus, Message message) {
         this.httpStatus = httpStatus;
         customMessage = message;

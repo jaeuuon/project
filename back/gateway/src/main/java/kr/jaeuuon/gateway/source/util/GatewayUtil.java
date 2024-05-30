@@ -1,6 +1,8 @@
 package kr.jaeuuon.gateway.source.util;
 
+import kr.jaeuuon.common.basic.source.constant.CommonConstant;
 import org.springframework.cloud.gateway.support.ipresolver.XForwardedRemoteAddressResolver;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.server.ServerWebExchange;
 
 import java.net.InetSocketAddress;

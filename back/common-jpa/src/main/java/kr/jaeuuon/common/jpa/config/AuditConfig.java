@@ -19,7 +19,7 @@ public class AuditConfig implements AuditorAware<Long> {
     @NonNull
     @Override
     public Optional<Long> getCurrentAuditor() {
-        return Optional.ofNullable(Util.getUserId());
+        return Optional.ofNullable(Util.getUserId(Util.getRequest()));
     }
 
 }

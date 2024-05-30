@@ -58,7 +58,7 @@ public class ResponseDTO {
         this.path = path;
         this.method = method;
         status = message.getStatus().getValue();
-        timestamp = Util.getFormattedZonedDateTime();
+        timestamp = Util.getFormattedZonedDateTime(null);
     }
 
 }

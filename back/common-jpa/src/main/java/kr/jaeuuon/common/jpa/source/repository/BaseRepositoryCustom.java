@@ -11,6 +11,6 @@ public interface BaseRepositoryCustom {
     /**
      * 공통 정렬.
      */
-    OrderSpecifier<?>[] getOrders(Sort sorts);
+    OrderSpecifier<?>[] getOrders(Sort sort);
 
 }

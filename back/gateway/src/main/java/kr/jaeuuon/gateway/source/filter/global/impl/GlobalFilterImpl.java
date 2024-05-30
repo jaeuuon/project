@@ -61,9 +61,9 @@ public class GlobalFilterImpl implements GlobalFilter, Ordered {
      * 헤더의 시작이 Bearer일 경우 토큰 리턴(Authorization).
      */
     private String getJwt(ServerHttpRequest request) {
-        String authorizationHeader = request.getHeaders().getFirst(CommonConstant.HEADER_AUTHORIZATION);
+        String authorizationHeader = request.getHeaders().getFirst(JwtConstant.HEADER_AUTHORIZATION);
 
-        return StringUtils.hasText(authorizationHeader) && authorizationHeader.startsWith(CommonConstant.HEADER_AUTHORIZATION_GRANT_TYPE) ? authorizationHeader.substring(CommonConstant.HEADER_AUTHORIZATION_GRANT_TYPE.length()) : null;
+        return StringUtils.hasText(authorizationHeader) && authorizationHeader.startsWith(JwtConstant.HEADER_AUTHORIZATION_GRANT_TYPE) ? authorizationHeader.substring(JwtConstant.HEADER_AUTHORIZATION_GRANT_TYPE.length()) : null;
     }
 
     /**

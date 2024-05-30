@@ -18,8 +18,8 @@ public enum WebMessageImpl implements Message {
 
     ERROR_WEB_001(MessageStatusImpl.ERROR, "요청한 값이 잘못되었습니다."),
 
-    ERROR_WEB_998(MessageStatusImpl.ERROR, "오류가 발생했습니다. 관리자에게 문의하십시오."),
-    ERROR_WEB_999(MessageStatusImpl.ERROR, "오류가 발생했습니다. 관리자에게 문의하십시오.");
+    ERROR_WEB_998(MessageStatusImpl.ERROR, "문제가 발생했습니다. 관리자에게 문의하십시오."),
+    ERROR_WEB_999(MessageStatusImpl.ERROR, "문제가 발생했습니다. 관리자에게 문의하십시오.");
 
     private final MessageStatus status;
     private final String value;

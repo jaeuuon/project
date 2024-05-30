@@ -41,13 +41,6 @@ public class ResponseErrorUtil {
     }
 
     /**
-     * 500에 대한 ResponseEntity 리턴(특정 메시지).
-     */
-    public static ResponseEntity<Object> internalServerError(HttpServletRequest request, Message message) {
-        return getResponseEntity(request, HttpStatus.INTERNAL_SERVER_ERROR, message);
-    }
-
-    /**
      * ResponseEntity 리턴.
      */
     private static ResponseEntity<Object> getResponseEntity(HttpServletRequest request, HttpStatus httpStatus, Message message) {
@@ -56,7 +49,7 @@ public class ResponseErrorUtil {
         }
 
         ResponseErrorDTO error = new ResponseErrorDTO(message);
-        ResponseDTO responseDTO = new ResponseDTO(Util.getPath(request), request.getMethod(), message, error);
+        ResponseDTO responseDTO = new ResponseDTO(WebUtil.getPath(request), request.getMethod(), message, error);
 
         return new ResponseEntity<>(responseDTO, httpStatus);
     }
@@ -66,7 +59,7 @@ public class ResponseErrorUtil {
      */
     public static ResponseEntity<Object> error(HttpServletRequest request, HttpStatus httpStatus, List<Message> messages) {
         List<ResponseErrorDTO> errors = messages.stream().map(ResponseErrorDTO::new).toList();
-        ResponseDTO responseDTO = new ResponseDTO(Util.getPath(request), request.getMethod(), messages.get(0), errors);
+        ResponseDTO responseDTO = new ResponseDTO(WebUtil.getPath(request), request.getMethod(), messages.get(0), errors);
 
         return new ResponseEntity<>(responseDTO, httpStatus);
     }
@@ -75,16 +68,9 @@ public class ResponseErrorUtil {
      * 401에 대한 Response 설정.
      */
     public void unauthorized(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        setResponse(request, response);
-    }
-
-    /**
-     * Response 설정.
-     */
-    private void setResponse(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Message message = Util.getErrorMessageByHttpStatus(HttpStatus.UNAUTHORIZED);
         ResponseErrorDTO error = new ResponseErrorDTO(message);
-        ResponseDTO responseDTO = new ResponseDTO(Util.getPath(request), request.getMethod(), message, error);
+        ResponseDTO responseDTO = new ResponseDTO(WebUtil.getPath(request), request.getMethod(), message, error);
 
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);

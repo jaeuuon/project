@@ -3,6 +3,7 @@ package kr.jaeuuon.security.source.api.authentication.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import kr.jaeuuon.common.basic.source.constant.CommonConstant;
+import kr.jaeuuon.common.jwt.source.constant.JwtConstant;
 import kr.jaeuuon.common.web.source.util.ResponseSuccessUtil;
 import kr.jaeuuon.security.source.api.authentication.dto.AuthenticationDTO;
 import kr.jaeuuon.security.source.api.authentication.service.AuthenticationService;
@@ -63,7 +64,7 @@ public class AuthenticationController {
     private HttpHeaders setHttpHeader(String jwtAccess) {
         HttpHeaders httpHeaders = new HttpHeaders();
 
-        httpHeaders.add(CommonConstant.HEADER_AUTHORIZATION, CommonConstant.HEADER_AUTHORIZATION_GRANT_TYPE + jwtAccess);
+        httpHeaders.add(JwtConstant.HEADER_AUTHORIZATION, JwtConstant.HEADER_AUTHORIZATION_GRANT_TYPE + jwtAccess);
 
         return httpHeaders;
     }

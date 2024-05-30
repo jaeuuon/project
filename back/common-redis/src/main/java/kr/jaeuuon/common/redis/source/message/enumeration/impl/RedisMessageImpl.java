@@ -11,8 +11,8 @@ import lombok.Getter;
 @Getter
 public enum RedisMessageImpl implements Message {
 
-    ERROR_REDIS_001(MessageStatusImpl.ERROR, "오류가 발생했습니다. 관리자에게 문의하십시오."),
-    ERROR_REDIS_002(MessageStatusImpl.ERROR, "오류가 발생했습니다. 관리자에게 문의하십시오.");
+    ERROR_REDIS_001(MessageStatusImpl.ERROR, "문제가 발생했습니다. 관리자에게 문의하십시오."),
+    ERROR_REDIS_002(MessageStatusImpl.ERROR, "문제가 발생했습니다. 관리자에게 문의하십시오.");
 
     private final MessageStatus status;
     private final String value;
