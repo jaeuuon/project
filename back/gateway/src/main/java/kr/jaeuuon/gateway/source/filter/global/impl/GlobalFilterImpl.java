@@ -2,7 +2,6 @@ package kr.jaeuuon.gateway.source.filter.global.impl;
 
 import io.jsonwebtoken.Claims;
 import kr.jaeuuon.common.basic.source.constant.CommonConstant;
-import kr.jaeuuon.common.basic.source.exception.CommonException;
 import kr.jaeuuon.common.jwt.source.constant.JwtConstant;
 import kr.jaeuuon.common.jwt.source.provider.JwtProvider;
 import kr.jaeuuon.gateway.source.logger.GatewayLogger;
@@ -39,7 +38,7 @@ public class GlobalFilterImpl implements GlobalFilter, Ordered {
         String jwt = getJwt(request);
 
         if (StringUtils.hasText(jwt)) {
-            request = setUserHeaders(request, requestIp, requestId, jwt);
+            request = setUserHeaders(request, requestId, jwt);
         } else {
             request = removeUserHeaders(request, requestId);
         }
@@ -67,8 +66,8 @@ public class GlobalFilterImpl implements GlobalFilter, Ordered {
     /**
      * 헤더 추가(Request-Id, User-Id/Authorities).
      */
-    private ServerHttpRequest setUserHeaders(ServerHttpRequest request, String requestIp, String requestId, String jwt) throws CommonException {
-        Claims claims = jwtProvider.getClaims(requestIp, requestId, jwt);
+    private ServerHttpRequest setUserHeaders(ServerHttpRequest request, String requestId, String jwt) {
+        Claims claims = jwtProvider.getClaims(jwt);
         String authorities = claims.get(JwtConstant.AUTHORITIES_KEY).toString();
 
         return request.mutate().headers(headers -> {

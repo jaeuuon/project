@@ -1,5 +1,6 @@
 package kr.jaeuuon.security.source.jwt.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import kr.jaeuuon.common.jwt.properties.JwtProperties;
 import kr.jaeuuon.common.redis.source.service.RedisService;
 import kr.jaeuuon.security.source.jwt.entity.Jwt;
@@ -24,22 +25,22 @@ public class JwtService {
     /**
      * 사용자 아이디를 키로하여 JWT(Refresh) 저장.
      */
-    public void add(long userId, String refresh) {
-        redisService.add(PREFIX, userId, new Jwt(refresh), jwtProperties.getRefreshExpirationMinutes());
+    public void add(long userId, String refresh) throws JsonProcessingException {
+        redisService.add(PREFIX, String.valueOf(userId), new Jwt(refresh), jwtProperties.getRefreshExpirationMinutes());
     }
 
     /**
      * 사용자 아이디를 키로하여 JWT(Refresh) 조회.
      */
-    public Optional<Jwt> get(long userId) {
-        return redisService.get(PREFIX, userId, Jwt.class);
+    public Optional<Jwt> get(long userId) throws JsonProcessingException {
+        return redisService.get(PREFIX, String.valueOf(userId), Jwt.class);
     }
 
     /**
      * 사용자 아이디를 키로하여 JWT(Refresh) 삭제.
      */
     public boolean remove(long userId) {
-        return redisService.remove(PREFIX, userId);
+        return redisService.remove(PREFIX, String.valueOf(userId));
     }
 
 }

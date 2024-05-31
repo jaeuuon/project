@@ -2,6 +2,7 @@ package kr.jaeuuon.security.source.security.provider.impl;
 
 import kr.jaeuuon.security.source.api.history.code.impl.ResultCode;
 import kr.jaeuuon.security.source.message.enumeration.impl.SecurityMessageImpl;
+import kr.jaeuuon.security.source.security.exception.SecurityException;
 import kr.jaeuuon.security.source.security.service.impl.UserDetailsServiceImpl;
 import kr.jaeuuon.security.source.security.userdetails.impl.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
@@ -28,18 +29,18 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
      * 사용자 인증 구현.
      */
     @Override
-    public Authentication authenticate(Authentication authentication) throws SecurityException {
+    public Authentication authenticate(Authentication authentication) {
         String email = authentication.getName();
         UserDetailsImpl userDetailsImpl = userDetailsServiceImpl.loadUserByUsername(email);
 
         if (userDetailsImpl == null) {
-            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_EMAIL);
+            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SCR_EMAIL);
         }
 
         String credentials = authentication.getCredentials().toString();
 
         if (!bCryptPasswordEncoder.matches(credentials, userDetailsImpl.getPassword())) {
-            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_PASSWORD, userDetailsImpl, ResultCode.ERROR_PASSWORD);
+            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SCR_PASSWORD, userDetailsImpl, ResultCode.ERROR_PASSWORD);
         }
 
         if (!userDetailsImpl.isEnabled()) {

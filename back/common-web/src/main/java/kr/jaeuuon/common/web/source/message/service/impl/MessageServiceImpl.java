@@ -20,7 +20,7 @@ public class MessageServiceImpl implements MessageService {
     public Message getByName(String name) {
         Message message = Stream.of(WebMessageImpl.values()).filter(item -> item.name().equals(name)).findAny().orElse(null);
 
-        return message != null ? message : MessageImpl.ERROR_BAD_REQUEST;
+        return message != null ? message : MessageImpl.ERROR_BSC_BAD_REQUEST;
     }
 
 }

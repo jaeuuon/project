@@ -18,7 +18,7 @@ public class SecurityMessageServiceImpl implements MessageService {
     public Message getByName(String name) {
         Message message = Stream.of(SecurityMessageImpl.values()).filter(securityMessage -> securityMessage.name().equals(name)).findAny().orElse(null);
 
-        return message != null ? message : MessageImpl.ERROR_BAD_REQUEST;
+        return message != null ? message : MessageImpl.ERROR_BSC_BAD_REQUEST;
     }
 
 }

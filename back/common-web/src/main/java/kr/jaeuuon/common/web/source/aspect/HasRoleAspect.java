@@ -36,11 +36,11 @@ public class HasRoleAspect {
      * Before(역할 체크 어노테이션).
      */
     @Before("hasRole(hasRole)")
-    public void beforeHasRole(HasRole hasRole) throws CommonException {
+    public void beforeHasRole(HasRole hasRole) {
         HttpServletRequest request = Util.getRequest();
 
         if (request == null) {
-            throw new CommonException(HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new CommonException(HttpStatus.UNAUTHORIZED);
         }
 
         Set<AuthorityCode> userRoles = getUserRoles(request);

@@ -1,5 +1,6 @@
 package kr.jaeuuon.security.source.api.authentication.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import kr.jaeuuon.common.basic.source.constant.CommonConstant;
@@ -29,23 +30,23 @@ public class AuthenticationController {
      * 헤더에 JWT(Access), 바디에 JWT(Refresh) 리턴.
      */
     @PostMapping
-    public ResponseEntity<Object> login(HttpServletRequest request, @RequestBody @Valid AuthenticationDTO authenticationDTO) {
+    public ResponseEntity<Object> login(HttpServletRequest request, @RequestBody @Valid AuthenticationDTO authenticationDTO) throws JsonProcessingException {
         UserDetailsImpl userDetailsImpl = authenticationService.getUserDetailsImpl(authenticationDTO);
         JwtDTO jwtDTO = authenticationService.createJwt(userDetailsImpl);
         HttpHeaders httpHeaders = setHttpHeader(jwtDTO.getAccess());
 
-        return ResponseSuccessUtil.ok(request, httpHeaders, SecurityMessageImpl.SUCCESS_SECU_LOGIN, jwtDTO);
+        return ResponseSuccessUtil.ok(request, httpHeaders, SecurityMessageImpl.SUCCESS_SCR_LOGIN, jwtDTO);
     }
 
     /**
      * 헤더에 JWT(Access), 바디에 JWT(Refresh)를 새로 생성하여 리턴.
      */
     @PutMapping
-    public ResponseEntity<Object> reissuance(HttpServletRequest request, @RequestHeader(CommonConstant.HEADER_REQUEST_ID) String requestId, @RequestHeader(CommonConstant.HEADER_USER_ID) long userId, @RequestBody @Valid JwtDTO jwtDTO) {
-        jwtDTO = authenticationService.reissuance(request.getRemoteAddr(), requestId, userId, jwtDTO);
+    public ResponseEntity<Object> reissuance(HttpServletRequest request, @RequestHeader(CommonConstant.HEADER_USER_ID) long userId, @RequestBody @Valid JwtDTO jwtDTO) throws JsonProcessingException {
+        jwtDTO = authenticationService.reissuance(userId, jwtDTO);
         HttpHeaders httpHeaders = setHttpHeader(jwtDTO.getAccess());
 
-        return ResponseSuccessUtil.ok(request, httpHeaders, SecurityMessageImpl.SUCCESS_SECU_REISSUANCE, jwtDTO);
+        return ResponseSuccessUtil.ok(request, httpHeaders, SecurityMessageImpl.SUCCESS_SCR_REISSUANCE, jwtDTO);
     }
 
     /**
@@ -55,7 +56,7 @@ public class AuthenticationController {
     public ResponseEntity<Object> logout(HttpServletRequest request, @RequestHeader(CommonConstant.HEADER_USER_ID) long userId) {
         authenticationService.logout(userId);
 
-        return ResponseSuccessUtil.ok(request, SecurityMessageImpl.SUCCESS_SECU_LOGOUT);
+        return ResponseSuccessUtil.ok(request, SecurityMessageImpl.SUCCESS_SCR_LOGOUT);
     }
 
     /**

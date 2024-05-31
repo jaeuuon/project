@@ -14,13 +14,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class AuthenticationDTO {
 
-    @NotBlank(message = "ERROR_SECU_EMAIL_BLANK")
-    @Size(min = 4, max = 100, message = "ERROR_SECU_EMAIL_SIZE")
-    @Email(message = "ERROR_SECU_EMAIL_FORMAT")
+    @NotBlank(message = "ERROR_SCR_EMAIL_BLANK")
+    @Size(min = 4, max = 100, message = "ERROR_SCR_EMAIL_SIZE")
+    @Email(message = "ERROR_SCR_EMAIL_FORMAT")
     private String email;
 
-    @NotBlank(message = "ERROR_SECU_PASSWORD_BLANK")
-    @Size(min = 4, max = 50, message = "ERROR_SECU_PASSWORD_SIZE")
+    @NotBlank(message = "ERROR_SCR_PASSWORD_BLANK")
+    @Size(min = 4, max = 50, message = "ERROR_SCR_PASSWORD_SIZE")
     private String password;
 
 }

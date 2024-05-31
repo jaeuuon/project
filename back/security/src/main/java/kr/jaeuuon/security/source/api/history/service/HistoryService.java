@@ -39,7 +39,7 @@ public class HistoryService {
     @Transactional(readOnly = true)
     public Page<HistoryDTO> getList(long userId, Pageable pageable, boolean isAdmin) {
         if (userService.get(userId) == null) {
-            throw new CommonException(HttpStatus.BAD_REQUEST, MessageImpl.ERROR_USER_NOT_FOUND);
+            throw new CommonException(HttpStatus.BAD_REQUEST, MessageImpl.ERROR_BSC_USER_NOT_FOUND);
         }
 
         return historyRepository.customFindByUserId(userId, pageable, isAdmin);

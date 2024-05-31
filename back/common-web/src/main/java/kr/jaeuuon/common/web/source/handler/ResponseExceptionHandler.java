@@ -65,7 +65,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
      * Valid 어노테이션의 message 값에 해당하는 Message 목록 리턴.
      */
     private List<Message> getMessagesByFieldErrors(List<FieldError> fieldErrors) {
-        return fieldErrors.stream().map(fieldError -> USED_VALIDS.contains(fieldError.getCode()) ? messageService.getByName(fieldError.getDefaultMessage()) : MessageImpl.ERROR_BAD_REQUEST).collect(Collectors.toList());
+        return fieldErrors.stream().map(fieldError -> USED_VALIDS.contains(fieldError.getCode()) ? messageService.getByName(fieldError.getDefaultMessage()) : MessageImpl.ERROR_BSC_BAD_REQUEST).collect(Collectors.toList());
     }
 
     /**

@@ -1,5 +1,6 @@
 package kr.jaeuuon.security.source.api.authentication.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import kr.jaeuuon.common.basic.source.code.impl.AuthorityCode;
 import kr.jaeuuon.common.basic.source.exception.CommonException;
 import kr.jaeuuon.common.basic.source.message.enumeration.impl.MessageImpl;
@@ -53,7 +54,7 @@ public class AuthenticationService {
     /**
      * JWT 생성 및 리턴.
      */
-    public JwtDTO createJwt(UserDetailsImpl userDetailsImpl) {
+    public JwtDTO createJwt(UserDetailsImpl userDetailsImpl) throws JsonProcessingException {
         String jwtAccess = jwtProvider.createAccess(userDetailsImpl.getId(), userDetailsImpl.getName(), getAuthorities(userDetailsImpl), getAuthorityValues(userDetailsImpl));
         String jwtRefresh = jwtProvider.createRefresh();
 
@@ -65,23 +66,23 @@ public class AuthenticationService {
     /**
      * JWT를 새로 생성 및 리턴.
      */
-    public JwtDTO reissuance(String requestIp, String requestId, long userId, JwtDTO jwtDTO) throws CommonException {
-        jwtProvider.getClaims(requestIp, requestId, jwtDTO.getRefresh());
+    public JwtDTO reissuance(long userId, JwtDTO jwtDTO) throws JsonProcessingException {
+        jwtProvider.getClaims(jwtDTO.getRefresh());
 
         Jwt jwt = jwtService.get(userId).orElseThrow(() -> new CommonException(HttpStatus.UNAUTHORIZED, JwtMessageImpl.ERROR_JWT_EXPIRED));
 
         if (!jwtDTO.getRefresh().equals(jwt.getRefresh())) {
-            throw new CommonException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_JWT_REFRESH_ALREADY);
+            throw new CommonException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SCR_JWT_REFRESH_ALREADY);
         }
 
         UserDetailsImpl userDetailsImpl = userService.getJoinAuthority(userId);
 
         if (userDetailsImpl == null) {
-            throw new CommonException(HttpStatus.UNAUTHORIZED, MessageImpl.ERROR_USER_NOT_FOUND);
+            throw new CommonException(HttpStatus.UNAUTHORIZED, MessageImpl.ERROR_BSC_USER_NOT_FOUND);
         } else if (!userDetailsImpl.isEnabled()) {
-            throw new CommonException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SECU_NOT_ACTIVATED);
+            throw new CommonException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SCR_NOT_ACTIVATED);
         } else if (ObjectUtils.isEmpty(userDetailsImpl.getAuthorities())) {
-            throw new CommonException(HttpStatus.UNAUTHORIZED, MessageImpl.ERROR_FORBIDDEN);
+            throw new CommonException(HttpStatus.UNAUTHORIZED, MessageImpl.ERROR_BSC_FORBIDDEN);
         }
 
         return createJwt(userDetailsImpl);
@@ -98,9 +99,9 @@ public class AuthenticationService {
     /**
      * JWT(Refresh) 삭제.
      */
-    public void logout(long userId) throws CommonException {
+    public void logout(long userId) {
         if (!jwtService.remove(userId)) {
-            throw new CommonException(HttpStatus.INTERNAL_SERVER_ERROR, SecurityMessageImpl.ERROR_SECU_LOGOUT);
+            throw new CommonException(HttpStatus.INTERNAL_SERVER_ERROR, SecurityMessageImpl.ERROR_SCR_LOGOUT);
         }
     }
 

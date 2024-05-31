@@ -86,16 +86,16 @@ public class Util {
      */
     public static Message getErrorMessageByHttpStatus(HttpStatus httpStatus) {
         return switch (httpStatus) {
-            case BAD_REQUEST -> MessageImpl.ERROR_BAD_REQUEST;
-            case UNAUTHORIZED -> MessageImpl.ERROR_UNAUTHORIZED;
-            case FORBIDDEN -> MessageImpl.ERROR_FORBIDDEN;
-            case NOT_FOUND -> MessageImpl.ERROR_NOT_FOUND;
-            case METHOD_NOT_ALLOWED -> MessageImpl.ERROR_METHOD_NOT_ALLOWED;
-            case NOT_ACCEPTABLE -> MessageImpl.ERROR_NOT_ACCEPTABLE;
-            case UNSUPPORTED_MEDIA_TYPE -> MessageImpl.ERROR_UNSUPPORTED_MEDIA_TYPE;
-            case INTERNAL_SERVER_ERROR -> MessageImpl.ERROR_INTERNAL_SERVER_ERROR;
-            case SERVICE_UNAVAILABLE -> MessageImpl.ERROR_SERVICE_UNAVAILABLE;
-            default -> MessageImpl.ERROR_UNKNOWN;
+            case BAD_REQUEST -> MessageImpl.ERROR_BSC_BAD_REQUEST;
+            case UNAUTHORIZED -> MessageImpl.ERROR_BSC_UNAUTHORIZED;
+            case FORBIDDEN -> MessageImpl.ERROR_BSC_FORBIDDEN;
+            case NOT_FOUND -> MessageImpl.ERROR_BSC_NOT_FOUND;
+            case METHOD_NOT_ALLOWED -> MessageImpl.ERROR_BSC_METHOD_NOT_ALLOWED;
+            case NOT_ACCEPTABLE -> MessageImpl.ERROR_BSC_NOT_ACCEPTABLE;
+            case UNSUPPORTED_MEDIA_TYPE -> MessageImpl.ERROR_BSC_UNSUPPORTED_MEDIA_TYPE;
+            case INTERNAL_SERVER_ERROR -> MessageImpl.ERROR_BSC_INTERNAL_SERVER_ERROR;
+            case SERVICE_UNAVAILABLE -> MessageImpl.ERROR_BSC_SERVICE_UNAVAILABLE;
+            default -> MessageImpl.ERROR_BSC_UNKNOWN;
         };
     }
 

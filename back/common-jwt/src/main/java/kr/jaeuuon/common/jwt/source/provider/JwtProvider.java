@@ -2,8 +2,6 @@ package kr.jaeuuon.common.jwt.source.provider;
 
 import io.jsonwebtoken.*;
 import kr.jaeuuon.common.basic.source.exception.CommonException;
-import kr.jaeuuon.common.basic.source.logger.CommonLogger;
-import kr.jaeuuon.common.basic.source.util.Util;
 import kr.jaeuuon.common.jwt.properties.JwtProperties;
 import kr.jaeuuon.common.jwt.source.constant.JwtConstant;
 import kr.jaeuuon.common.jwt.source.message.enumeration.impl.JwtMessageImpl;
@@ -54,16 +52,14 @@ public class JwtProvider {
     /**
      * 서명키로 JWT를 파싱하여 Claims 리턴.
      */
-    public Claims getClaims(String requestIp, String requestId, String jwt) throws CommonException {
+    public Claims getClaims(String jwt) {
         try {
             return Jwts.parserBuilder().setSigningKey(jwtProperties.getKey()).build().parseClaimsJws(jwt).getBody();
         } catch (Exception e) {
             if (e instanceof ExpiredJwtException) {
                 throw new CommonException(HttpStatus.UNAUTHORIZED, JwtMessageImpl.ERROR_JWT_EXPIRED);
             } else {
-                CommonLogger.error(requestIp, requestId, Util.getCallerClassAndMethodName(), e.getClass().getSimpleName(), e.getMessage());
-
-                throw new CommonException(HttpStatus.UNAUTHORIZED);
+                throw e;
             }
         }
     }
