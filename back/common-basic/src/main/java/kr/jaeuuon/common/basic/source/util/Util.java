@@ -99,13 +99,4 @@ public class Util {
         };
     }
 
-    /**
-     * 호출 클래스명, 메소드명 리턴.
-     */
-    public static String getCallerClassAndMethodName() {
-        StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[2];
-
-        return stackTraceElement.getClassName() + "." + stackTraceElement.getMethodName();
-    }
-
 }

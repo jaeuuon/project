@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import kr.jaeuuon.common.basic.source.dto.response.ResponseDTO;
 import kr.jaeuuon.common.basic.source.dto.response.ResponseErrorDTO;
 import kr.jaeuuon.common.basic.source.message.enumeration.Message;
+import kr.jaeuuon.common.basic.source.message.enumeration.impl.MessageImpl;
 import kr.jaeuuon.common.basic.source.util.Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -68,7 +69,7 @@ public class ResponseErrorUtil {
      * 401에 대한 Response 설정.
      */
     public void unauthorized(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Message message = Util.getErrorMessageByHttpStatus(HttpStatus.UNAUTHORIZED);
+        Message message = MessageImpl.ERROR_BSC_UNAUTHORIZED;
         ResponseErrorDTO error = new ResponseErrorDTO(message);
         ResponseDTO responseDTO = new ResponseDTO(WebUtil.getPath(request), request.getMethod(), message, error);
 

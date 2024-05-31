@@ -20,14 +20,23 @@ public class CommonLogger {
      * 오류(Exception) 로깅.
      */
     public static void logging(HttpServletRequest request, Exception e) {
-        log.error("[{}][{}][{}: {}({})]", request.getRemoteAddr(), Util.getRequestId(request), Util.getCallerClassAndMethodName(), e.getClass().getSimpleName(), e.getMessage());
+        log.error("[{}][{}][{}: {}({})]", request.getRemoteAddr(), Util.getRequestId(request), getCallerClassAndMethodName(), e.getClass().getSimpleName(), e.getMessage());
     }
 
     /**
      * 오류(Exception) 상세 로깅.
      */
     public static void loggingDetail(HttpServletRequest request, Exception e) {
-        log.error("[{}][{}][{}: {}]", request.getRemoteAddr(), Util.getRequestId(request), Util.getCallerClassAndMethodName(), e.getClass().getSimpleName(), e);
+        log.error("[{}][{}][{}: {}]", request.getRemoteAddr(), Util.getRequestId(request), getCallerClassAndMethodName(), e.getClass().getSimpleName(), e);
+    }
+
+    /**
+     * 호출 클래스명, 메소드명 리턴.
+     */
+    private static String getCallerClassAndMethodName() {
+        StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
+
+        return stackTraceElement.getClassName() + "." + stackTraceElement.getMethodName();
     }
 
 }

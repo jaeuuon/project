@@ -54,7 +54,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
             List<Message> messages = getMessagesByFieldErrors(fieldErrors);
             String codes = messages.stream().map(Object::toString).collect(Collectors.joining(","));
 
-            log.error("[{}][{}][{}: {}][codes: {}]", request.getRemoteAddr(), Util.getRequestId(request), Util.getCallerClassAndMethodName(), subEx.getClass().getSimpleName(), codes);
+            log.error("[{}][{}][{}: {}][codes: {}]", request.getRemoteAddr(), Util.getRequestId(request), getCallerClassAndMethodName(), subEx.getClass().getSimpleName(), codes);
 
             return ResponseErrorUtil.error(request, httpStatus, messages);
         } else {
@@ -88,9 +88,18 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleCommonException(HttpServletRequest request, CommonException ce) {
         Message message = ce.getCustomMessage();
 
-        log.error("[{}][{}][{}: {}({})][code: {}]", request.getRemoteAddr(), Util.getRequestId(request), Util.getCallerClassAndMethodName(), ce.getClass().getSimpleName(), message.getValue(), message);
+        log.error("[{}][{}][{}: {}({})][code: {}]", request.getRemoteAddr(), Util.getRequestId(request), getCallerClassAndMethodName(), ce.getClass().getSimpleName(), message.getValue(), message);
 
         return ResponseErrorUtil.error(request, ce.getHttpStatus(), ce.getCustomMessage());
+    }
+
+    /**
+     * 호출 클래스명, 메소드명 리턴.
+     */
+    private static String getCallerClassAndMethodName() {
+        StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[2];
+
+        return stackTraceElement.getClassName() + "." + stackTraceElement.getMethodName();
     }
 
 }
