@@ -3,7 +3,6 @@ package kr.jaeuuon.security.source.jwt.authentication;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import kr.jaeuuon.common.basic.source.logger.CommonLogger;
-import kr.jaeuuon.common.basic.source.util.Util;
 import kr.jaeuuon.common.web.source.util.ResponseErrorUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.AuthenticationException;
@@ -26,7 +25,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
      */
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
-        CommonLogger.error(request.getRemoteAddr(), Util.getRequestId(request), Util.getCallerClassAndMethodName(), authException.getClass().getSimpleName(), authException.getMessage());
+        CommonLogger.logging(request, authException);
 
         responseErrorUtil.unauthorized(request, response);
     }

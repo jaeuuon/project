@@ -9,6 +9,7 @@ import kr.jaeuuon.common.basic.source.util.Util;
 import kr.jaeuuon.common.web.source.message.service.MessageService;
 import kr.jaeuuon.common.web.source.util.ResponseErrorUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -28,6 +29,7 @@ import java.util.stream.Collectors;
 /**
  * 오류 처리.
  */
+@Slf4j
 @RestControllerAdvice
 @RequiredArgsConstructor
 public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
@@ -43,19 +45,20 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
      * ResponseEntityExceptionHandler 오류 응답 공통화.
      */
     @Override
-    protected ResponseEntity<Object> handleExceptionInternal(@NonNull Exception ex, Object body, @NonNull HttpHeaders headers, @NonNull HttpStatusCode statusCode, @NonNull WebRequest webRequest) {
+    protected ResponseEntity<Object> handleExceptionInternal(@NonNull Exception e, Object body, @NonNull HttpHeaders headers, @NonNull HttpStatusCode statusCode, @NonNull WebRequest webRequest) {
         HttpServletRequest request = ((ServletWebRequest) webRequest).getRequest();
         HttpStatus httpStatus = (HttpStatus) statusCode;
 
-        if (ex instanceof MethodArgumentNotValidException subEx) {
+        if (e instanceof MethodArgumentNotValidException subEx) {
             List<FieldError> fieldErrors = subEx.getFieldErrors();
             List<Message> messages = getMessagesByFieldErrors(fieldErrors);
+            String codes = messages.stream().map(Object::toString).collect(Collectors.joining(","));
 
-            CommonLogger.error(request, Util.getCallerClassAndMethodName(), ex.getClass().getSimpleName(), messages);
+            log.error("[{}][{}][{}: {}][codes: {}]", request.getRemoteAddr(), Util.getRequestId(request), Util.getCallerClassAndMethodName(), subEx.getClass().getSimpleName(), codes);
 
             return ResponseErrorUtil.error(request, httpStatus, messages);
         } else {
-            CommonLogger.error(request.getRemoteAddr(), Util.getRequestId(request), Util.getCallerClassAndMethodName(), ex.getClass().getSimpleName(), ex.getMessage());
+            CommonLogger.logging(request, e);
 
             return ResponseErrorUtil.error(request, httpStatus);
         }
@@ -73,17 +76,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<Object> handleException(HttpServletRequest request, Exception e) {
-        CommonLogger.error(request.getRemoteAddr(), Util.getRequestId(request), Util.getCallerClassAndMethodName(), e.getClass().getSimpleName(), e);
-
-        return ResponseErrorUtil.error(request, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    /**
-     * null 호출 오류 처리.
-     */
-    @ExceptionHandler(NullPointerException.class)
-    protected ResponseEntity<Object> handleNullPointerException(HttpServletRequest request, NullPointerException e) {
-        CommonLogger.error(request.getRemoteAddr(), Util.getRequestId(request), Util.getCallerClassAndMethodName(), e.getClass().getSimpleName(), e);
+        CommonLogger.loggingDetail(request, e);
 
         return ResponseErrorUtil.error(request, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -92,10 +85,12 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
      * 공통 오류 처리.
      */
     @ExceptionHandler(CommonException.class)
-    protected ResponseEntity<Object> handleCommonException(HttpServletRequest request, CommonException e) {
-        CommonLogger.error(request.getRemoteAddr(), Util.getRequestId(request), Util.getCallerClassAndMethodName(), e.getClass().getSimpleName(), e.getCustomMessage());
+    protected ResponseEntity<Object> handleCommonException(HttpServletRequest request, CommonException ce) {
+        Message message = ce.getCustomMessage();
 
-        return ResponseErrorUtil.error(request, e.getHttpStatus(), e.getCustomMessage());
+        log.error("[{}][{}][{}: {}({})][code: {}]", request.getRemoteAddr(), Util.getRequestId(request), Util.getCallerClassAndMethodName(), ce.getClass().getSimpleName(), message.getValue(), message);
+
+        return ResponseErrorUtil.error(request, ce.getHttpStatus(), ce.getCustomMessage());
     }
 
 }
