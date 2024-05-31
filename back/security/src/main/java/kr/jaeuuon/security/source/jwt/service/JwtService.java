@@ -13,14 +13,16 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class JwtService {
 
-    private static final String PREFIX = "project::jwt";
+    private static final String PREFIX = "project" + RedisService.SEPARATOR + "jwt";
 
     private final RedisService<Jwt> redisService;
 
     private final JwtProperties jwtProperties;
 
     public void add(long userId, String refresh) throws JsonProcessingException {
-        redisService.add(PREFIX, String.valueOf(userId), new Jwt(refresh), jwtProperties.getRefreshExpirationMinutes());
+        Jwt jwt = new Jwt(refresh);
+
+        redisService.add(PREFIX, String.valueOf(userId), jwt, jwtProperties.getExpirationMinutes());
     }
 
     public Optional<Jwt> get(long userId) throws JsonProcessingException {

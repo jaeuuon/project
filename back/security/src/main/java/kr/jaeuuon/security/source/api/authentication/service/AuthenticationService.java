@@ -46,7 +46,10 @@ public class AuthenticationService {
     }
 
     public JwtDTO createJwt(UserDetailsImpl userDetailsImpl) throws JsonProcessingException {
-        String jwtAccess = jwtProvider.createAccess(userDetailsImpl.getId(), userDetailsImpl.getName(), getAuthorities(userDetailsImpl), getAuthorityValues(userDetailsImpl));
+        String authorities = userDetailsImpl.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining(","));
+        String authorityValues = userDetailsImpl.getAuthorities().stream().map(GrantedAuthority::getAuthority).map(AuthorityCode::findByStringCode).map(AuthorityCode::getValue).collect(Collectors.joining(","));
+
+        String jwtAccess = jwtProvider.createAccess(userDetailsImpl.getId(), userDetailsImpl.getName(), authorities, authorityValues);
         String jwtRefresh = jwtProvider.createRefresh();
 
         jwtService.add(userDetailsImpl.getId(), jwtRefresh);
@@ -74,14 +77,6 @@ public class AuthenticationService {
         }
 
         return createJwt(userDetailsImpl);
-    }
-
-    private String getAuthorities(UserDetailsImpl userDetailsImpl) {
-        return userDetailsImpl.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining(","));
-    }
-
-    private String getAuthorityValues(UserDetailsImpl userDetailsImpl) {
-        return userDetailsImpl.getAuthorities().stream().map(GrantedAuthority::getAuthority).map(AuthorityCode::findByStringCode).map(AuthorityCode::getValue).collect(Collectors.joining(","));
     }
 
     public void logout(long userId) {

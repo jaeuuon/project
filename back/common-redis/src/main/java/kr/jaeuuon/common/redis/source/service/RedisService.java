@@ -13,6 +13,8 @@ import java.util.concurrent.TimeUnit;
 @RequiredArgsConstructor
 public class RedisService<T> {
 
+    public static final String SEPARATOR = "::";
+
     private final RedisTemplate<String, String> redisTemplate;
 
     private final ObjectMapper objectMapper;
@@ -41,7 +43,7 @@ public class RedisService<T> {
     }
 
     private String getPrefixKey(String prefix, String key) {
-        return prefix + "::" + key;
+        return prefix + SEPARATOR + key;
     }
 
 }

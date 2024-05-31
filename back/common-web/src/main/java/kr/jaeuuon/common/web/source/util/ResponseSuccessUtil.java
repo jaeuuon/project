@@ -18,10 +18,6 @@ public class ResponseSuccessUtil {
         return getResponseEntity(request, null, HttpStatus.OK, WebMessageImpl.SUCCESS_WEB_GET, content);
     }
 
-    public static ResponseEntity<Object> ok(HttpServletRequest request, Message message, Object content) {
-        return getResponseEntity(request, null, HttpStatus.OK, message, content);
-    }
-
     public static ResponseEntity<Object> ok(HttpServletRequest request, HttpHeaders httpHeaders, Message message, Object content) {
         return getResponseEntity(request, httpHeaders, HttpStatus.OK, message, content);
     }

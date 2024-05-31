@@ -79,7 +79,7 @@ public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHan
     }
 
     private String getCallerClassAndMethodName() {
-        StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
+        StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[2];
 
         return stackTraceElement.getClassName() + "." + stackTraceElement.getMethodName();
     }

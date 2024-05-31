@@ -19,8 +19,7 @@ public class JwtProperties {
     private String secret;
     private Key key;
 
-    private long accessExpirationMinutes;
-    private long refreshExpirationMinutes;
+    private long expirationMinutes;
 
     public void setSecret(String secret) {
         this.secret = secret;

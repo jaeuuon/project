@@ -1,7 +1,7 @@
 package kr.jaeuuon.security.source.api.history.repository.impl;
 
+import com.querydsl.core.types.ConstructorExpression;
 import com.querydsl.core.types.Expression;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import kr.jaeuuon.common.jpa.source.repository.impl.AbstractBaseRepositoryCustomImpl;
@@ -25,15 +25,15 @@ public class HistoryRepositoryCustomImpl extends AbstractBaseRepositoryCustomImp
     public Page<HistoryDTO> customFindByUserId(long userId, Pageable pageable, boolean isAdmin) {
         QHistory history = QHistory.history;
 
-        JPQLQuery<HistoryDTO> query = jpaQueryFactory.select(isAdmin ? new QHistoryDTO(history.requestIp, history.user.id, history.resultCode, history.createdTime) : new QHistoryDTO(history.requestIp, history.resultCode, history.createdTime)).from(history)
-                .where(equalsUserId(userId))
+        JPQLQuery<HistoryDTO> query = jpaQueryFactory.select(getExpr(history, isAdmin)).from(history)
+                .where(QHistory.history.user.id.eq(userId))
                 .orderBy(getOrders(pageable.getSort())).offset(pageable.getOffset()).limit(pageable.getPageSize());
 
         return PageableExecutionUtils.getPage(query.fetch(), pageable, query::fetchCount);
     }
 
-    private BooleanExpression equalsUserId(long userId) {
-        return QHistory.history.user.id.eq(userId);
+    private ConstructorExpression<HistoryDTO> getExpr(QHistory history, boolean isAdmin) {
+        return isAdmin ? new QHistoryDTO(history.requestIp, history.user.id, history.resultCode, history.createdTime) : new QHistoryDTO(history.requestIp, history.resultCode, history.createdTime);
     }
 
     @Override

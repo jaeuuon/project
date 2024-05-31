@@ -25,7 +25,7 @@ public class ResponseErrorUtil {
     private final ObjectMapper objectMapper;
 
     public static ResponseEntity<Object> error(HttpServletRequest request, HttpStatus httpStatus) {
-        return getResponseEntity(request, httpStatus, null);
+        return getResponseEntity(request, httpStatus, Util.getErrorMessageByHttpStatus(httpStatus));
     }
 
     public static ResponseEntity<Object> error(HttpServletRequest request, HttpStatus httpStatus, Message message) {
@@ -33,10 +33,6 @@ public class ResponseErrorUtil {
     }
 
     private static ResponseEntity<Object> getResponseEntity(HttpServletRequest request, HttpStatus httpStatus, Message message) {
-        if (message == null) {
-            message = Util.getErrorMessageByHttpStatus(httpStatus);
-        }
-
         ResponseErrorDTO error = new ResponseErrorDTO(message);
         ResponseDTO responseDTO = new ResponseDTO(WebUtil.getPath(request), request.getMethod(), message, error);
 

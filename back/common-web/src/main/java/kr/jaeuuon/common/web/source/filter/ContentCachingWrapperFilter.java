@@ -24,7 +24,6 @@ import org.springframework.web.util.ContentCachingRequestWrapper;
 import org.springframework.web.util.ContentCachingResponseWrapper;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -51,7 +50,7 @@ public class ContentCachingWrapperFilter extends OncePerRequestFilter {
         cachingResponse.copyBodyToResponse();
     }
 
-    public void logging(ContentCachingRequestWrapper request, ContentCachingResponseWrapper response, long startTime) {
+    private void logging(ContentCachingRequestWrapper request, ContentCachingResponseWrapper response, long startTime) {
         HttpStatus httpStatus = HttpStatus.resolve(response.getStatus());
         String processingTime = String.format("%,.3f s", (System.currentTimeMillis() - startTime) * 0.001);
 
@@ -60,8 +59,7 @@ public class ContentCachingWrapperFilter extends OncePerRequestFilter {
         } else {
             try {
                 ResponseDTO responseDTO = objectMapper.readValue(response.getContentAsByteArray(), ResponseDTO.class);
-                Collection<ResponseErrorDTO> errors = responseDTO.getErrors();
-                String codes = errors.stream().map(ResponseErrorDTO::getCode).collect(Collectors.joining(","));
+                String codes = responseDTO.getErrors().stream().map(ResponseErrorDTO::getCode).collect(Collectors.joining(","));
 
                 if (withoutParameterProperties.isWithout(request.getMethod(), request.getServletPath())) {
                     loggingDefault(request, httpStatus, codes, processingTime);

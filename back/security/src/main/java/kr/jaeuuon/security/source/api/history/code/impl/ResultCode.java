@@ -22,9 +22,11 @@ public enum ResultCode implements CommonCode {
     }
 
     public static class ResultCodeConverter extends CommonCodeConverter<ResultCode> {
+
         public ResultCodeConverter() {
             super(ResultCode.class);
         }
+
     }
 
 }

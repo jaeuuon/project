@@ -34,7 +34,7 @@ public class HasRoleAspect {
             throw new CommonException(HttpStatus.UNAUTHORIZED);
         }
 
-        Set<AuthorityCode> userRoles = getUserRoles(request);
+        Set<AuthorityCode> userRoles = Util.getUserAuthorities(request).stream().filter(authority -> authority.name().startsWith("ROLE_")).collect(Collectors.toSet());
         Set<AuthorityCode> targetRoles = new HashSet<>(Arrays.asList(hasRole.value()));
 
         userRoles.retainAll(targetRoles);
@@ -42,12 +42,6 @@ public class HasRoleAspect {
         if (userRoles.isEmpty()) {
             throw new CommonException(HttpStatus.FORBIDDEN);
         }
-    }
-
-    private Set<AuthorityCode> getUserRoles(HttpServletRequest request) {
-        Set<AuthorityCode> authorities = Util.getUserAuthorities(request);
-
-        return authorities.stream().filter(authority -> authority.name().startsWith("ROLE_")).collect(Collectors.toSet());
     }
 
 }

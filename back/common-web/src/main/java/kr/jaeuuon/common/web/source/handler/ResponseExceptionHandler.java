@@ -48,7 +48,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
         if (e instanceof MethodArgumentNotValidException subEx) {
             List<FieldError> fieldErrors = subEx.getFieldErrors();
-            List<Message> messages = getMessagesByFieldErrors(fieldErrors);
+            List<Message> messages = fieldErrors.stream().map(this::getMessage).collect(Collectors.toList());
             String codes = messages.stream().map(Object::toString).collect(Collectors.joining(","));
 
             log.error("[{}][{}][{}: {}][codes: {}]", request.getRemoteAddr(), Util.getRequestId(request), getCallerClassAndMethodName(), subEx.getClass().getSimpleName(), codes);
@@ -61,8 +61,8 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
         }
     }
 
-    private List<Message> getMessagesByFieldErrors(List<FieldError> fieldErrors) {
-        return fieldErrors.stream().map(fieldError -> USED_VALIDS.contains(fieldError.getCode()) ? messageService.getByName(fieldError.getDefaultMessage()) : MessageImpl.ERROR_BSC_BAD_REQUEST).collect(Collectors.toList());
+    private Message getMessage(FieldError fieldError) {
+        return USED_VALIDS.contains(fieldError.getCode()) ? messageService.getByName(fieldError.getDefaultMessage()) : MessageImpl.ERROR_BSC_BAD_REQUEST;
     }
 
     @ExceptionHandler(Exception.class)

@@ -1,4 +1,3 @@
 jwt:
   secret: ${PROJECT_JWT_SECRET}
-  access-expiration-minutes: 10
-  refresh-expiration-minutes: 60
+  expiration-minutes: 10
