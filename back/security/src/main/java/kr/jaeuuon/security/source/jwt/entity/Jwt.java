@@ -4,9 +4,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/**
- * JWT 엔티티(Redis).
- */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Jwt {

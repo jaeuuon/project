@@ -15,30 +15,20 @@ import org.springframework.util.StringUtils;
 
 import java.lang.reflect.InvocationTargetException;
 
-/**
- * 이벤트 발생 AOP.
- */
 @Aspect
 @Component
 @RequiredArgsConstructor
 public class PublishEventAspect {
 
     private static final String SPEL_REGEX = "^#\\{(.*)\\}$";
-
     private static final ExpressionParser EXPRESSION_PARSER = new SpelExpressionParser();
 
     private final ApplicationEventPublisher applicationEventPublisher;
 
-    /**
-     * Pointcut(이벤트 발생 어노테이션).
-     */
     @Pointcut("@annotation(publishEvent)")
     public void publishEvent(PublishEvent publishEvent) {
     }
 
-    /**
-     * AfterReturning(이벤트 발생 어노테이션).
-     */
     @AfterReturning(pointcut = "publishEvent(publishEvent)", returning = "retVal")
     public void afterReturningPublishEvent(PublishEvent publishEvent, Object retVal) throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         Object event;
@@ -65,9 +55,6 @@ public class PublishEventAspect {
         applicationEventPublisher.publishEvent(event);
     }
 
-    /**
-     * AfterThrowing(이벤트 발생 어노테이션).
-     */
     @AfterThrowing(pointcut = "publishEvent(publishEvent)", throwing = "commonException")
     public void afterThrowingPublishEvent(PublishEvent publishEvent, CommonException commonException) throws InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
         if (publishEvent.isThrowing()) {

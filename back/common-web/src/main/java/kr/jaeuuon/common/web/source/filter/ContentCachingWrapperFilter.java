@@ -37,9 +37,6 @@ public class ContentCachingWrapperFilter extends OncePerRequestFilter {
 
     private final WithoutParameterProperties withoutParameterProperties;
 
-    /**
-     * HttpServletRequest → ContentCachingWrapperFilter 변환 및 로깅.
-     */
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         ContentCachingRequestWrapper cachingRequest = new ContentCachingRequestWrapper(request);
@@ -54,9 +51,6 @@ public class ContentCachingWrapperFilter extends OncePerRequestFilter {
         cachingResponse.copyBodyToResponse();
     }
 
-    /**
-     * 요청 및 응답 로깅.
-     */
     public void logging(ContentCachingRequestWrapper request, ContentCachingResponseWrapper response, long startTime) {
         HttpStatus httpStatus = HttpStatus.resolve(response.getStatus());
         String processingTime = String.format("%,.3f s", (System.currentTimeMillis() - startTime) * 0.001);

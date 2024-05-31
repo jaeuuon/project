@@ -9,9 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.stream.Stream;
 
-/**
- * Valid 어노테이션의 message 값에 대한 Message를 찾는 인터페이스 구현.
- */
 @Service
 @ConditionalOnProperty(prefix = "spring.common.web.message", name = "use-service-impl", havingValue = "true")
 public class MessageServiceImpl implements MessageService {

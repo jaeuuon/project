@@ -3,9 +3,6 @@ package kr.jaeuuon.common.basic.source.message.enumeration.impl;
 import kr.jaeuuon.common.basic.source.message.enumeration.MessageStatus;
 import lombok.Getter;
 
-/**
- * 메시지 상태 구현.
- */
 @Getter
 public enum MessageStatusImpl implements MessageStatus {
 

@@ -9,21 +9,12 @@ import org.springframework.data.domain.Sort;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 공통 레파지토리 구현.
- */
 public abstract class AbstractBaseRepositoryCustomImpl implements BaseRepositoryCustom {
 
     protected static final String CREATED_TIME = "created_time";
 
-    /**
-     * 정렬 프로퍼티에 대한 컬럼 리턴.
-     */
     protected abstract Expression<? extends Comparable<?>> getExpression(String property);
 
-    /**
-     * 공통 정렬 구현.
-     */
     @Override
     public OrderSpecifier<?>[] getOrders(Sort sort) {
         List<OrderSpecifier<?>> orders = new ArrayList<>();

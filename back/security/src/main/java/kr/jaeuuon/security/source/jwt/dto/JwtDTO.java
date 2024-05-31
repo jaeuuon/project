@@ -6,9 +6,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/**
- * 로그인/재발급 시 사용.
- */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class JwtDTO {

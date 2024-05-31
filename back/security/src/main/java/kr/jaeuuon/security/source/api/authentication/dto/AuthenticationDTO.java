@@ -7,9 +7,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/**
- * 로그인 시 사용.
- */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class AuthenticationDTO {

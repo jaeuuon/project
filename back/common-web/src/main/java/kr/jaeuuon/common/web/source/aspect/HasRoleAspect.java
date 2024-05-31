@@ -17,24 +17,15 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * 역할 체크 AOP.
- */
 @Aspect
 @Component
 @RequiredArgsConstructor
 public class HasRoleAspect {
 
-    /**
-     * Pointcut(역할 체크 어노테이션).
-     */
     @Pointcut("@annotation(hasRole)")
     public void hasRole(HasRole hasRole) {
     }
 
-    /**
-     * Before(역할 체크 어노테이션).
-     */
     @Before("hasRole(hasRole)")
     public void beforeHasRole(HasRole hasRole) {
         HttpServletRequest request = Util.getRequest();
@@ -53,9 +44,6 @@ public class HasRoleAspect {
         }
     }
 
-    /**
-     * 헤더의 사용자 권한에서 역할 리턴(User-Authorities).
-     */
     private Set<AuthorityCode> getUserRoles(HttpServletRequest request) {
         Set<AuthorityCode> authorities = Util.getUserAuthorities(request);
 

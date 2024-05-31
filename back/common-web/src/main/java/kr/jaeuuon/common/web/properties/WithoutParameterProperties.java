@@ -9,9 +9,6 @@ import org.springframework.util.AntPathMatcher;
 
 import java.util.List;
 
-/**
- * 오류 시 로그에서 파라미터를 출력하지 않을 메서드와 경로 목록.
- */
 @ConfigurationProperties(prefix = "spring.common.web.log")
 @Setter
 @Getter
@@ -22,9 +19,6 @@ public class WithoutParameterProperties {
 
     private AntPathMatcher antPathMatcher = new AntPathMatcher();
 
-    /**
-     * 해당 메서드와 경로가 출력하지 않을 대상인지 확인.
-     */
     public boolean isWithout(String method, String path) {
         if (withoutParameters == null) {
             return false;

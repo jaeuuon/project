@@ -1,8 +1,5 @@
 package kr.jaeuuon.common.jwt.source.constant;
 
-/**
- * 프로젝트 상수.
- */
 public class JwtConstant {
 
     public static final String HEADER_AUTHORIZATION = "Authorization";

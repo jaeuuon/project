@@ -5,9 +5,6 @@ import lombok.Getter;
 
 import java.util.stream.Stream;
 
-/**
- * 권한 코드.
- */
 @Getter
 public enum AuthorityCode implements CommonCode {
 

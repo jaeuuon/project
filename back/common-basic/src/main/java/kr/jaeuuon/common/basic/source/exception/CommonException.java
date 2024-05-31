@@ -5,9 +5,6 @@ import kr.jaeuuon.common.basic.source.util.Util;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
-/**
- * 공통 Exception.
- */
 @Getter
 public class CommonException extends RuntimeException {
 

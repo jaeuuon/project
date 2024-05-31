@@ -12,9 +12,6 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.domain.Persistable;
 
-/**
- * 사용자 인증 기록 엔티티.
- */
 @Entity
 @Table(schema = "security", name = "tb_history")
 @DynamicInsert

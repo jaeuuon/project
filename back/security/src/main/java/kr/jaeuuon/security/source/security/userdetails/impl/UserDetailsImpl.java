@@ -16,9 +16,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * UserDetails 구현.
- */
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserDetailsImpl implements UserDetails {
 
@@ -34,17 +31,11 @@ public class UserDetailsImpl implements UserDetails {
 
     private StatusCode statusCode;
 
-    /**
-     * 필터에서의 사용자 생성용.
-     */
     public UserDetailsImpl(long id, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.authorities = new HashSet<>(authorities);
     }
 
-    /**
-     * Querydsl 조회용 Projection.
-     */
     @QueryProjection
     public UserDetailsImpl(long id, String password, String name, Set<Authority> authorities, StatusCode statusCode) {
         this.id = id;
@@ -89,9 +80,6 @@ public class UserDetailsImpl implements UserDetails {
         return true;
     }
 
-    /**
-     * Querydsl 조회용 Authority.
-     */
     @Getter
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     @EqualsAndHashCode(of = "code")

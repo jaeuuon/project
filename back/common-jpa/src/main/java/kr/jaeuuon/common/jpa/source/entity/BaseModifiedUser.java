@@ -7,9 +7,6 @@ import lombok.Getter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-/**
- * 공통 엔티티(생성/수정 시간, 생성/수정자).
- */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @Getter

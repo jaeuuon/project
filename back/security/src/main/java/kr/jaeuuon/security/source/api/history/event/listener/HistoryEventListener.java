@@ -8,18 +8,12 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
-/**
- * 이벤트 처리.
- */
 @Component
 @RequiredArgsConstructor
 public class HistoryEventListener {
 
     private final HistoryService historyService;
 
-    /**
-     * 사용자 인증 이벤트 성공/실패 처리.
-     */
     @Async
     @EventListener
     public void authenticationEventListener(AuthenticationEvent authenticationEvent) {

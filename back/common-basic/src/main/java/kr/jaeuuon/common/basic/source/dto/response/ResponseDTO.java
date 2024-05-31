@@ -10,9 +10,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * 응답 시 사용.
- */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ResponseDTO {
@@ -24,9 +21,6 @@ public class ResponseDTO {
     private List<ResponseErrorDTO> errors;
     private String timestamp;
 
-    /**
-     * 성공 응답 시의 리턴.
-     */
     public ResponseDTO(String path, String method, Message message, Object content) {
         setDefault(path, method, message);
 
@@ -34,9 +28,6 @@ public class ResponseDTO {
         errors = new ArrayList<>();
     }
 
-    /**
-     * 오류 응답 시의 리턴.
-     */
     public ResponseDTO(String path, String method, Message message, ResponseErrorDTO error) {
         setDefault(path, method, message);
 
@@ -44,9 +35,6 @@ public class ResponseDTO {
         errors = Collections.singletonList(error);
     }
 
-    /**
-     * 오류 응답 시의 리턴.
-     */
     public ResponseDTO(String path, String method, Message message, List<ResponseErrorDTO> errors) {
         setDefault(path, method, message);
 

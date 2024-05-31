@@ -7,9 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * 공통 주소 엔티티.
- */
 @Embeddable
 @Getter
 @Setter

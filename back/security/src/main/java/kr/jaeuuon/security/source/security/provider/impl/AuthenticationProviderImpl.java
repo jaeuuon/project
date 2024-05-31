@@ -14,9 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 
-/**
- * AuthenticationProvider 구현.
- */
 @Component
 @RequiredArgsConstructor
 public class AuthenticationProviderImpl implements AuthenticationProvider {
@@ -25,9 +22,6 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    /**
-     * 사용자 인증 구현.
-     */
     @Override
     public Authentication authenticate(Authentication authentication) {
         String email = authentication.getName();

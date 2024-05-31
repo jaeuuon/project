@@ -10,9 +10,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-/**
- * 사용자 인증 이벤트.
- */
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class AuthenticationEvent implements CommonEvent<UserDetailsImpl> {
@@ -25,9 +22,6 @@ public class AuthenticationEvent implements CommonEvent<UserDetailsImpl> {
 
     private boolean isThrowing;
 
-    /**
-     * 인증 성공.
-     */
     public AuthenticationEvent(UserDetailsImpl userDetailsImpl) {
         HttpServletRequest request = Util.getRequest();
 
@@ -40,9 +34,6 @@ public class AuthenticationEvent implements CommonEvent<UserDetailsImpl> {
         resultCode = ResultCode.SUCCESS;
     }
 
-    /**
-     * 인증 실패.
-     */
     public AuthenticationEvent(SecurityException securityException) {
         HttpServletRequest request = Util.getRequest();
 

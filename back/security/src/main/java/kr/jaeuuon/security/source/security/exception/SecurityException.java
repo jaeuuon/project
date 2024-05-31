@@ -7,9 +7,6 @@ import kr.jaeuuon.security.source.security.userdetails.impl.UserDetailsImpl;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
-/**
- * Security Exception.
- */
 @Getter
 public class SecurityException extends CommonException {
 

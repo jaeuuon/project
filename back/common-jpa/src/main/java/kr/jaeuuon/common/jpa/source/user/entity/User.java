@@ -13,9 +13,6 @@ import org.springframework.data.domain.Persistable;
 
 import java.util.List;
 
-/**
- * 사용자 엔티티.
- */
 @Entity
 @Table(schema = "common", name = "tb_user", uniqueConstraints = @UniqueConstraint(name = "tb_user_ukey_email", columnNames = "email"))
 @DynamicInsert

@@ -16,9 +16,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * 로그인/재발급/로그아웃 컨트롤러.
- */
 @RestController
 @RequestMapping("/authentication")
 @RequiredArgsConstructor
@@ -26,9 +23,6 @@ public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
 
-    /**
-     * 헤더에 JWT(Access), 바디에 JWT(Refresh) 리턴.
-     */
     @PostMapping
     public ResponseEntity<Object> login(HttpServletRequest request, @RequestBody @Valid AuthenticationDTO authenticationDTO) throws JsonProcessingException {
         UserDetailsImpl userDetailsImpl = authenticationService.getUserDetailsImpl(authenticationDTO);
@@ -38,9 +32,6 @@ public class AuthenticationController {
         return ResponseSuccessUtil.ok(request, httpHeaders, SecurityMessageImpl.SUCCESS_SCR_LOGIN, jwtDTO);
     }
 
-    /**
-     * 헤더에 JWT(Access), 바디에 JWT(Refresh)를 새로 생성하여 리턴.
-     */
     @PutMapping
     public ResponseEntity<Object> reissuance(HttpServletRequest request, @RequestHeader(CommonConstant.HEADER_USER_ID) long userId, @RequestBody @Valid JwtDTO jwtDTO) throws JsonProcessingException {
         jwtDTO = authenticationService.reissuance(userId, jwtDTO);
@@ -49,9 +40,6 @@ public class AuthenticationController {
         return ResponseSuccessUtil.ok(request, httpHeaders, SecurityMessageImpl.SUCCESS_SCR_REISSUANCE, jwtDTO);
     }
 
-    /**
-     * JWT(Refresh) 삭제.
-     */
     @DeleteMapping
     public ResponseEntity<Object> logout(HttpServletRequest request, @RequestHeader(CommonConstant.HEADER_USER_ID) long userId) {
         authenticationService.logout(userId);
@@ -59,9 +47,6 @@ public class AuthenticationController {
         return ResponseSuccessUtil.ok(request, SecurityMessageImpl.SUCCESS_SCR_LOGOUT);
     }
 
-    /**
-     * 헤더 생성(Authorization).
-     */
     private HttpHeaders setHttpHeader(String jwtAccess) {
         HttpHeaders httpHeaders = new HttpHeaders();
 

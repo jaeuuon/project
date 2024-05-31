@@ -11,9 +11,6 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-/**
- * 프로젝트 설정.
- */
 @Configuration
 @ConfigurationPropertiesScan(basePackages = "kr.jaeuuon.common.redis")
 @RequiredArgsConstructor
@@ -21,9 +18,6 @@ public class RedisConfig {
 
     private final RedisProperties redisProperties;
 
-    /**
-     * Redis Client 설정.
-     */
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
@@ -36,9 +30,6 @@ public class RedisConfig {
         return new LettuceConnectionFactory(redisStandaloneConfiguration);
     }
 
-    /**
-     * RedisTemplate 설정.
-     */
     @Bean
     public RedisTemplate<String, String> redisTemplate() {
         RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();

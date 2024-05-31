@@ -6,9 +6,6 @@ import kr.jaeuuon.common.basic.source.code.CommonCode;
 
 import java.util.stream.Stream;
 
-/**
- * 공통 코드 컨버터(객체 ↔ 데이터베이스).
- */
 @Convert
 public abstract class CommonCodeConverter<T extends CommonCode> implements AttributeConverter<T, String> {
 

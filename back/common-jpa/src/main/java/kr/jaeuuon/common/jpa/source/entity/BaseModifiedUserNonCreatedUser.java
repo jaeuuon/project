@@ -10,9 +10,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.sql.Timestamp;
 
-/**
- * 공통 엔티티(생성/수정 시간, 생성/수정자).
- */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @Getter

@@ -14,9 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-/**
- * Security 설정.
- */
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -24,9 +21,6 @@ public class SecurityConfig {
 
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
-    /**
-     * CSRF, Session, Login Form, 권한, 핸들링, 필터 설정.
-     */
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
@@ -43,9 +37,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-    /**
-     * 패스워드 암호화 방식 등록.
-     */
     @Bean
     BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();

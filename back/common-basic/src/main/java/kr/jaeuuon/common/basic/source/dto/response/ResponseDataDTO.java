@@ -12,9 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * 성공 응답 시 사용.
- */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonNaming(SnakeCaseStrategy.class)
 @Getter
@@ -29,9 +26,6 @@ public class ResponseDataDTO {
     private int page;
     private int totalPages;
 
-    /**
-     * 오류 응답 시의 리턴.
-     */
     public ResponseDataDTO() {
         code = null;
         message = null;
@@ -39,9 +33,6 @@ public class ResponseDataDTO {
         setContentByEmpty();
     }
 
-    /**
-     * 성공 응답 시의 리턴.
-     */
     public ResponseDataDTO(Message message, Object content) {
         code = message.toString();
         this.message = message.getValue();

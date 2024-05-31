@@ -8,9 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 
-/**
- * 인증 필터.
- */
 @Component
 public class AuthenticationGatewayFilterFactory extends AbstractGatewayFilterFactory<AuthenticationGatewayFilterFactory.Config> {
 
@@ -27,9 +24,6 @@ public class AuthenticationGatewayFilterFactory extends AbstractGatewayFilterFac
         };
     }
 
-    /**
-     * 헤더가 있는지 체크(User-Id).
-     */
     private void validation(ServerHttpRequest request) {
         if (request.getHeaders().getFirst(CommonConstant.HEADER_USER_ID) == null) {
             throw new CommonException(HttpStatus.UNAUTHORIZED);

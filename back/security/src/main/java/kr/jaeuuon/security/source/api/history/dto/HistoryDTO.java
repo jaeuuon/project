@@ -12,9 +12,6 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 
-/**
- * 사용자 인증 기록 조회 시 사용.
- */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonNaming(SnakeCaseStrategy.class)
 @Getter
@@ -26,9 +23,6 @@ public class HistoryDTO {
     private String result;
     private String createdTime;
 
-    /**
-     * 사용자 인증 기록 조회(본인) 시의 리턴.
-     */
     @QueryProjection
     public HistoryDTO(String requestIp, ResultCode resultCode, Timestamp createdTime) {
         this.requestIp = requestIp;
@@ -36,9 +30,6 @@ public class HistoryDTO {
         this.createdTime = Util.getFormattedZonedDateTime(createdTime);
     }
 
-    /**
-     * 사용자 인증 기록 조회(특정 사용자) 시의 리턴.
-     */
     @QueryProjection
     public HistoryDTO(String requestIp, Long userId, ResultCode resultCode, Timestamp createdTime) {
         this.requestIp = requestIp;

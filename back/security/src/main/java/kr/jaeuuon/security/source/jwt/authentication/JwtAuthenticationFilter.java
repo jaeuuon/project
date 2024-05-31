@@ -21,15 +21,9 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * 헤더가 있을 경우 인증객체 생성(User-Id).
- */
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    /**
-     * 헤더가 있을 경우 인증객체 생성(User-Id).
-     */
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
         Long id = Util.getUserId(request);
@@ -41,9 +35,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    /**
-     * 헤더의 데이터로 인증객체 생성(User-Id/Authorities).
-     */
     private void setAuthentication(long id, Set<AuthorityCode> authorities) {
         Collection<? extends GrantedAuthority> grantedAuthorities = authorities.stream().map(authority -> new SimpleGrantedAuthority(authority.name())).collect(Collectors.toSet());
         UserDetailsImpl userDetailsImpl = new UserDetailsImpl(id, grantedAuthorities);

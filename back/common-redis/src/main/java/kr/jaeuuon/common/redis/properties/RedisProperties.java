@@ -6,9 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-/**
- * Redis 접속정보, 만료시간.
- */
 @ConfigurationProperties(prefix = "spring.cache.redis")
 @Setter
 @Getter

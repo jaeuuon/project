@@ -23,9 +23,6 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-/**
- * 게이트웨이 오류 처리.
- */
 @Slf4j
 @Order(-2)
 @Component
@@ -43,9 +40,6 @@ public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHan
         return RouterFunctions.route(RequestPredicates.all(), this::renderErrorResponse);
     }
 
-    /**
-     * AbstractErrorWebExceptionHandler 오류 응답 공통화.
-     */
     private Mono<ServerResponse> renderErrorResponse(ServerRequest request) {
         ServerWebExchange exchange = request.exchange();
         ServerHttpRequest httpRequest = exchange.getRequest();
@@ -84,9 +78,6 @@ public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHan
         return ServerResponse.status(httpStatus).contentType(MediaType.APPLICATION_JSON).body(BodyInserters.fromValue(responseDTO));
     }
 
-    /**
-     * 호출 클래스명, 메소드명 리턴.
-     */
     private String getCallerClassAndMethodName() {
         StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
 

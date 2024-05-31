@@ -15,9 +15,6 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.time.Duration;
 
-/**
- * 캐시 설정.
- */
 @EnableCaching
 @Configuration
 @RequiredArgsConstructor
@@ -29,9 +26,6 @@ public class CacheConfig {
 
     private final RedisProperties redisProperties;
 
-    /**
-     * 캐시 매니저 설정.
-     */
     @Bean
     public RedisCacheManager redisCacheManager() {
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig().disableCachingNullValues()

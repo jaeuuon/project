@@ -11,32 +11,20 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-/**
- * JWT 생성 및 검증.
- */
 @Component
 @RequiredArgsConstructor
 public class JwtProvider {
 
     private final JwtProperties jwtProperties;
 
-    /**
-     * JWT(Access) 생성 및 리턴.
-     */
     public String createAccess(long id, String name, String authorities, String authorityValues) {
         return create(id, name, authorities, authorityValues);
     }
 
-    /**
-     * JWT(Refresh) 생성 및 리턴.
-     */
     public String createRefresh() {
         return create(null, null, null, null);
     }
 
-    /**
-     * JWT(Access/Refresh) 생성 및 리턴.
-     */
     private String create(Long id, String name, String authorities, String authorityValues) {
         JwtBuilder jwt = Jwts.builder();
 
@@ -49,9 +37,6 @@ public class JwtProvider {
         return jwt.signWith(jwtProperties.getKey(), SignatureAlgorithm.HS256).compact();
     }
 
-    /**
-     * 서명키로 JWT를 파싱하여 Claims 리턴.
-     */
     public Claims getClaims(String jwt) {
         try {
             return Jwts.parserBuilder().setSigningKey(jwtProperties.getKey()).build().parseClaimsJws(jwt).getBody();

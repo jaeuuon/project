@@ -5,9 +5,6 @@ import kr.jaeuuon.common.basic.source.code.CommonCode;
 import kr.jaeuuon.common.jpa.source.code.converter.CommonCodeConverter;
 import lombok.Getter;
 
-/**
- * 데이터 상태 코드.
- */
 @Getter
 public enum StatusCode implements CommonCode {
 
@@ -22,9 +19,6 @@ public enum StatusCode implements CommonCode {
         this.value = value;
     }
 
-    /**
-     * 데이터 상태 코드 컨버터.
-     */
     @Converter(autoApply = true)
     public static class StatusCodeConverter extends CommonCodeConverter<StatusCode> {
 

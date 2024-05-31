@@ -12,9 +12,6 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.domain.Persistable;
 
-/**
- * 사용자 ↔ 권한 매핑 엔티티.
- */
 @Entity
 @Table(schema = "common", name = "tb_user_authority")
 @DynamicInsert

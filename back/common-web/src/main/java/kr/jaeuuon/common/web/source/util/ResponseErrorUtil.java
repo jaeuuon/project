@@ -18,32 +18,20 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-/**
- * 공통 응답(오류) 유틸.
- */
 @Component
 @RequiredArgsConstructor
 public class ResponseErrorUtil {
 
     private final ObjectMapper objectMapper;
 
-    /**
-     * HttpStatus에 대한 ResponseEntity 리턴.
-     */
     public static ResponseEntity<Object> error(HttpServletRequest request, HttpStatus httpStatus) {
         return getResponseEntity(request, httpStatus, null);
     }
 
-    /**
-     * HttpStatus에 대한 ResponseEntity 리턴(특정 메시지).
-     */
     public static ResponseEntity<Object> error(HttpServletRequest request, HttpStatus httpStatus, Message message) {
         return getResponseEntity(request, httpStatus, message);
     }
 
-    /**
-     * ResponseEntity 리턴.
-     */
     private static ResponseEntity<Object> getResponseEntity(HttpServletRequest request, HttpStatus httpStatus, Message message) {
         if (message == null) {
             message = Util.getErrorMessageByHttpStatus(httpStatus);
@@ -55,9 +43,6 @@ public class ResponseErrorUtil {
         return new ResponseEntity<>(responseDTO, httpStatus);
     }
 
-    /**
-     * HttpStatus에 대한 ResponseEntity 리턴(복수 메시지).
-     */
     public static ResponseEntity<Object> error(HttpServletRequest request, HttpStatus httpStatus, List<Message> messages) {
         List<ResponseErrorDTO> errors = messages.stream().map(ResponseErrorDTO::new).toList();
         ResponseDTO responseDTO = new ResponseDTO(WebUtil.getPath(request), request.getMethod(), messages.get(0), errors);
@@ -65,9 +50,6 @@ public class ResponseErrorUtil {
         return new ResponseEntity<>(responseDTO, httpStatus);
     }
 
-    /**
-     * 401에 대한 Response 설정.
-     */
     public void unauthorized(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Message message = MessageImpl.ERROR_BSC_UNAUTHORIZED;
         ResponseErrorDTO error = new ResponseErrorDTO(message);

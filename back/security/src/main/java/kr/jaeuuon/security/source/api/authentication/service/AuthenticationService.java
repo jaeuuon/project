@@ -26,9 +26,6 @@ import org.springframework.util.ObjectUtils;
 
 import java.util.stream.Collectors;
 
-/**
- * 로그인/재발급/로그아웃 서비스.
- */
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -40,9 +37,6 @@ public class AuthenticationService {
 
     private final JwtProvider jwtProvider;
 
-    /**
-     * 사용자 리턴.
-     */
     @PublishEvent(event = AuthenticationEvent.class, isThrowing = true)
     public UserDetailsImpl getUserDetailsImpl(AuthenticationDTO authenticationDTO) {
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(authenticationDTO.getEmail(), authenticationDTO.getPassword());
@@ -51,9 +45,6 @@ public class AuthenticationService {
         return (UserDetailsImpl) authentication.getPrincipal();
     }
 
-    /**
-     * JWT 생성 및 리턴.
-     */
     public JwtDTO createJwt(UserDetailsImpl userDetailsImpl) throws JsonProcessingException {
         String jwtAccess = jwtProvider.createAccess(userDetailsImpl.getId(), userDetailsImpl.getName(), getAuthorities(userDetailsImpl), getAuthorityValues(userDetailsImpl));
         String jwtRefresh = jwtProvider.createRefresh();
@@ -63,9 +54,6 @@ public class AuthenticationService {
         return new JwtDTO(jwtAccess, jwtRefresh);
     }
 
-    /**
-     * JWT를 새로 생성 및 리턴.
-     */
     public JwtDTO reissuance(long userId, JwtDTO jwtDTO) throws JsonProcessingException {
         jwtProvider.getClaims(jwtDTO.getRefresh());
 
@@ -96,9 +84,6 @@ public class AuthenticationService {
         return userDetailsImpl.getAuthorities().stream().map(GrantedAuthority::getAuthority).map(AuthorityCode::findByStringCode).map(AuthorityCode::getValue).collect(Collectors.joining(","));
     }
 
-    /**
-     * JWT(Refresh) 삭제.
-     */
     public void logout(long userId) {
         if (!jwtService.remove(userId)) {
             throw new CommonException(HttpStatus.INTERNAL_SERVER_ERROR, SecurityMessageImpl.ERROR_SCR_LOGOUT);

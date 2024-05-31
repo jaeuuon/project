@@ -4,9 +4,6 @@ import kr.jaeuuon.common.basic.source.message.enumeration.Message;
 import kr.jaeuuon.common.basic.source.message.enumeration.MessageStatus;
 import lombok.Getter;
 
-/**
- * 프로젝트 메시지 구현.
- */
 @Getter
 public enum MessageImpl implements Message {
 

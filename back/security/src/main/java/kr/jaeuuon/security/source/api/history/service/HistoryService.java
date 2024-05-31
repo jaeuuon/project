@@ -14,9 +14,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * 사용자 인증 기록 서비스.
- */
 @Service
 @RequiredArgsConstructor
 public class HistoryService {
@@ -25,17 +22,11 @@ public class HistoryService {
 
     private final HistoryRepository historyRepository;
 
-    /**
-     * 사용자 인증 기록 저장.
-     */
     @Transactional
     public void add(String requestIp, String requestId, long userId, ResultCode resultCode) {
         historyRepository.save(new History(requestIp, requestId, userId, resultCode));
     }
 
-    /**
-     * 사용자 인증 기록 조회.
-     */
     @Transactional(readOnly = true)
     public Page<HistoryDTO> getList(long userId, Pageable pageable, boolean isAdmin) {
         if (userService.get(userId) == null) {
