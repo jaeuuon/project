@@ -4,9 +4,9 @@ import io.jsonwebtoken.Claims;
 import kr.jaeuuon.common.basic.source.constant.CommonConstant;
 import kr.jaeuuon.common.jwt.source.constant.JwtConstant;
 import kr.jaeuuon.common.jwt.source.provider.JwtProvider;
-import kr.jaeuuon.gateway.source.logger.GatewayLogger;
 import kr.jaeuuon.gateway.source.util.GatewayUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -20,6 +20,7 @@ import reactor.core.publisher.Mono;
 /**
  * 글로벌 필터.
  */
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class GlobalFilterImpl implements GlobalFilter, Ordered {
@@ -31,25 +32,21 @@ public class GlobalFilterImpl implements GlobalFilter, Ordered {
      */
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        ServerHttpRequest request = exchange.getRequest();
-
-        String requestIp = GatewayUtil.getRequestIp(exchange);
-        String requestId = request.getId();
-        String jwt = getJwt(request);
-
-        if (StringUtils.hasText(jwt)) {
-            request = setUserHeaders(request, requestId, jwt);
-        } else {
-            request = removeUserHeaders(request, requestId);
-        }
+        ServerHttpRequest request = setUserHeaders(exchange.getRequest(), getJwt(exchange.getRequest()));
 
         return chain.filter(exchange.mutate().request(request).build()).then(Mono.fromRunnable(() -> {
             HttpStatus httpStatus = (HttpStatus) exchange.getResponse().getStatusCode();
 
+            String requestIp = GatewayUtil.getRequestIp(exchange);
+            String requestId = request.getId();
+            String userId = GatewayUtil.getUserId(request);
+            String methodName = request.getMethod().name();
+            String path = request.getPath().value();
+
             if (httpStatus != null && !httpStatus.isError()) {
-                GatewayLogger.info(requestIp, requestId, exchange.getRequest(), httpStatus);
+                log.info("[{}][{}][uid: {}][{} {}][status: {}]", requestIp, requestId, userId, methodName, path, httpStatus);
             } else {
-                GatewayLogger.error(requestIp, requestId, exchange.getRequest(), httpStatus);
+                log.error("[{}][{}][uid: {}][{} {}][status: {}]", requestIp, requestId, userId, methodName, path, httpStatus);
             }
         }));
     }
@@ -64,29 +61,21 @@ public class GlobalFilterImpl implements GlobalFilter, Ordered {
     }
 
     /**
-     * 헤더 추가(Request-Id, User-Id/Authorities).
+     * 헤더 추가(Request-Id) 및 헤더(User-Id/Authorities) 추가 또는 제거.
      */
-    private ServerHttpRequest setUserHeaders(ServerHttpRequest request, String requestId, String jwt) {
-        Claims claims = jwtProvider.getClaims(jwt);
-        String authorities = claims.get(JwtConstant.AUTHORITIES_KEY).toString();
-
+    private ServerHttpRequest setUserHeaders(ServerHttpRequest request, String jwt) {
         return request.mutate().headers(headers -> {
-            headers.set(CommonConstant.HEADER_REQUEST_ID, requestId);
+            headers.set(CommonConstant.HEADER_REQUEST_ID, request.getId());
 
-            headers.set(CommonConstant.HEADER_USER_ID, claims.get(JwtConstant.ID_KEY).toString());
-            headers.set(CommonConstant.HEADER_USER_AUTHORITIES, authorities);
-        }).build();
-    }
+            if (StringUtils.hasText(jwt)) {
+                Claims claims = jwtProvider.getClaims(jwt);
 
-    /**
-     * 헤더 추가(Request-Id) 및 헤더(User-Id/Authorities) 제거.
-     */
-    private ServerHttpRequest removeUserHeaders(ServerHttpRequest request, String requestId) {
-        return request.mutate().headers(headers -> {
-            headers.set(CommonConstant.HEADER_REQUEST_ID, requestId);
-
-            headers.remove(CommonConstant.HEADER_USER_ID);
-            headers.remove(CommonConstant.HEADER_USER_AUTHORITIES);
+                headers.set(CommonConstant.HEADER_USER_ID, claims.get(JwtConstant.ID_KEY).toString());
+                headers.set(CommonConstant.HEADER_USER_AUTHORITIES, claims.get(JwtConstant.AUTHORITIES_KEY).toString());
+            } else {
+                headers.remove(CommonConstant.HEADER_USER_ID);
+                headers.remove(CommonConstant.HEADER_USER_AUTHORITIES);
+            }
         }).build();
     }
 

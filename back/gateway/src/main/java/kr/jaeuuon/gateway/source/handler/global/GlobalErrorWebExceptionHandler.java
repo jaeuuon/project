@@ -3,11 +3,10 @@ package kr.jaeuuon.gateway.source.handler.global;
 import kr.jaeuuon.common.basic.source.dto.response.ResponseDTO;
 import kr.jaeuuon.common.basic.source.dto.response.ResponseErrorDTO;
 import kr.jaeuuon.common.basic.source.exception.CommonException;
-import kr.jaeuuon.common.basic.source.logger.CommonLogger;
 import kr.jaeuuon.common.basic.source.message.enumeration.Message;
 import kr.jaeuuon.common.basic.source.util.Util;
-import kr.jaeuuon.gateway.source.logger.GatewayLogger;
 import kr.jaeuuon.gateway.source.util.GatewayUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.web.WebProperties.Resources;
 import org.springframework.boot.autoconfigure.web.reactive.error.AbstractErrorWebExceptionHandler;
 import org.springframework.boot.web.reactive.error.ErrorAttributes;
@@ -27,6 +26,7 @@ import reactor.core.publisher.Mono;
 /**
  * 게이트웨이 오류 처리.
  */
+@Slf4j
 @Order(-2)
 @Component
 public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHandler {
@@ -61,7 +61,7 @@ public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHan
             httpStatus = ce.getHttpStatus();
             message = ce.getCustomMessage();
 
-            CommonLogger.error(requestIp, requestId, Util.getCallerClassAndMethodName(), ce.getClass().getSimpleName(), message);
+            log.error("[{}][{}][{}: {}({})][code: {}]", requestIp, requestId, getCallerClassAndMethodName(), error.getClass().getSimpleName(), message.getValue(), message);
         } else {
             if (error instanceof ResponseStatusException rse) {
                 httpStatus = HttpStatus.resolve(rse.getStatusCode().value());
@@ -73,15 +73,24 @@ public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHan
 
             message = Util.getErrorMessageByHttpStatus(httpStatus);
 
-            CommonLogger.error(requestIp, requestId, Util.getCallerClassAndMethodName(), error.getClass().getSimpleName(), error.getMessage());
+            log.error("[{}][{}][{}: {}({})]", requestIp, requestId, getCallerClassAndMethodName(), error.getClass().getSimpleName(), message);
         }
 
-        GatewayLogger.error(requestIp, requestId, httpRequest, httpStatus, message);
+        log.error("[{}][{}][uid: {}][{} {}][status: {}][code: {}]", requestIp, requestId, GatewayUtil.getUserId(httpRequest), httpRequest.getMethod().name(), httpRequest.getPath().value(), httpStatus, message);
 
         ResponseErrorDTO responseErrorDTO = new ResponseErrorDTO(message);
         ResponseDTO responseDTO = new ResponseDTO(request.path(), request.method().name(), message, responseErrorDTO);
 
         return ServerResponse.status(httpStatus).contentType(MediaType.APPLICATION_JSON).body(BodyInserters.fromValue(responseDTO));
+    }
+
+    /**
+     * 호출 클래스명, 메소드명 리턴.
+     */
+    private String getCallerClassAndMethodName() {
+        StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[3];
+
+        return stackTraceElement.getClassName() + "." + stackTraceElement.getMethodName();
     }
 
 }
