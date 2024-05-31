@@ -41,7 +41,7 @@ public class History extends BaseTime implements Persistable<Long> {
     public History(String requestIp, String requestId, long userId, ResultCode resultCode) {
         this.requestIp = requestIp;
         this.requestId = requestId;
-        this.user = new User(userId);
+        user = new User(userId);
         this.resultCode = resultCode;
     }
 

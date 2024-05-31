@@ -41,9 +41,33 @@ public class ResponseDataDTO {
             setContentByEmpty();
         } else {
             if (content instanceof Page<?> contentPage) {
-                setContentByPage(contentPage);
+                this.content = contentPage.getContent();
+
+                elements = contentPage.getNumberOfElements();
+                totalElements = contentPage.getTotalElements();
+
+                size = contentPage.getSize();
+
+                page = (contentPage.getNumber() + 1);
+
+                int totalPages = contentPage.getTotalPages();
+                this.totalPages = totalPages > 0 ? totalPages : 1;
             } else {
-                setContent(content);
+                if (content instanceof List<?> contents) {
+                    this.content = contents;
+                } else {
+                    this.content = Collections.singletonList(content);
+                }
+
+                int size = this.content.size();
+
+                elements = size;
+                totalElements = size;
+
+                this.size = size;
+
+                page = 1;
+                totalPages = 1;
             }
         }
     }
@@ -55,38 +79,6 @@ public class ResponseDataDTO {
         totalElements = 0L;
 
         size = 0;
-
-        page = 1;
-        totalPages = 1;
-    }
-
-    private void setContentByPage(Page<?> page) {
-        content = page.getContent();
-
-        elements = page.getNumberOfElements();
-        totalElements = page.getTotalElements();
-
-        size = page.getSize();
-
-        this.page = (page.getNumber() + 1);
-
-        int totalPages = page.getTotalPages();
-        this.totalPages = totalPages > 0 ? totalPages : 1;
-    }
-
-    private void setContent(Object content) {
-        if (content instanceof List<?> contents) {
-            this.content = contents;
-        } else {
-            this.content = Collections.singletonList(content);
-        }
-
-        int size = this.content.size();
-
-        elements = size;
-        totalElements = size;
-
-        this.size = size;
 
         page = 1;
         totalPages = 1;
