@@ -20,9 +20,7 @@ public class JwtService {
     private final JwtProperties jwtProperties;
 
     public void add(long userId, String refresh) throws JsonProcessingException {
-        Jwt jwt = new Jwt(refresh);
-
-        redisService.add(PREFIX, String.valueOf(userId), jwt, jwtProperties.getExpirationMinutes());
+        redisService.add(PREFIX, String.valueOf(userId), new Jwt(refresh), jwtProperties.getExpirationMinutes());
     }
 
     public Optional<Jwt> get(long userId) throws JsonProcessingException {

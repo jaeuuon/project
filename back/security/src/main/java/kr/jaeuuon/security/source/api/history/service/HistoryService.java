@@ -24,9 +24,7 @@ public class HistoryService {
 
     @Transactional
     public void add(String requestIp, String requestId, long userId, ResultCode resultCode) {
-        History history = new History(requestIp, requestId, userId, resultCode);
-
-        historyRepository.save(history);
+        historyRepository.save(new History(requestIp, requestId, userId, resultCode));
     }
 
     @Transactional(readOnly = true)

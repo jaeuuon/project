@@ -48,6 +48,7 @@ public class ResponseErrorUtil {
 
     public void unauthorized(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Message message = MessageImpl.ERROR_BSC_UNAUTHORIZED;
+
         ResponseErrorDTO error = new ResponseErrorDTO(message);
         ResponseDTO responseDTO = new ResponseDTO(WebUtil.getPath(request), request.getMethod(), message, error);
 

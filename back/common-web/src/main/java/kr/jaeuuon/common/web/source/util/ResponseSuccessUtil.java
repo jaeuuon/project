@@ -37,7 +37,7 @@ public class ResponseSuccessUtil {
     private static ResponseEntity<Object> getResponseEntity(HttpServletRequest request, HttpHeaders httpHeaders, HttpStatus httpStatus, Message message, Object content) {
         ResponseDTO responseDTO = new ResponseDTO(WebUtil.getPath(request), request.getMethod(), message, content);
 
-        return httpHeaders != null ? new ResponseEntity<>(responseDTO, httpHeaders, httpStatus) : new ResponseEntity<>(responseDTO, httpStatus);
+        return new ResponseEntity<>(responseDTO, httpHeaders, httpStatus);
     }
 
 }

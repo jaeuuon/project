@@ -27,13 +27,12 @@ public class JwtProvider {
 
     private String create(Long id, String name, String authorities, String authorityValues) {
         JwtBuilder jwt = Jwts.builder();
-        Date expiration = new Date(System.currentTimeMillis() + (jwtProperties.getExpirationMinutes() * 60 * 1000));
 
         if (authorities != null) {
-            jwt.claim(JwtConstant.ID_KEY, id).claim(JwtConstant.NAME_KEY, name).claim(JwtConstant.AUTHORITIES_KEY, authorities).claim(JwtConstant.AUTHORITY_VALUES_KEY, authorityValues).setExpiration(expiration);
-        } else {
-            jwt.setExpiration(expiration);
+            jwt.claim(JwtConstant.ID_KEY, id).claim(JwtConstant.NAME_KEY, name).claim(JwtConstant.AUTHORITIES_KEY, authorities).claim(JwtConstant.AUTHORITY_VALUES_KEY, authorityValues);
         }
+
+        jwt.setExpiration(new Date(System.currentTimeMillis() + (jwtProperties.getExpirationMinutes() * 60 * 1000)));
 
         return jwt.signWith(jwtProperties.getKey(), SignatureAlgorithm.HS256).compact();
     }

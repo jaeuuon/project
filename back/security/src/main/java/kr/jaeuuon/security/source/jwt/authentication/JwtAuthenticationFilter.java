@@ -28,8 +28,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (id != null) {
             Collection<? extends GrantedAuthority> grantedAuthorities = Util.getUserAuthorities(request).stream().map(authority -> new SimpleGrantedAuthority(authority.name())).collect(Collectors.toSet());
-            UserDetailsImpl userDetailsImpl = new UserDetailsImpl(id, grantedAuthorities);
-            Authentication authentication = new UsernamePasswordAuthenticationToken(userDetailsImpl, null, grantedAuthorities);
+            Authentication authentication = new UsernamePasswordAuthenticationToken(new UserDetailsImpl(id, grantedAuthorities), null, grantedAuthorities);
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
