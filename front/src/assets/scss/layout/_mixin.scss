@@ -3,12 +3,11 @@
 @mixin div-default-header {
     height: calc(var.$headerHeight - var.$borderSize);
     padding: var.$padding;
-
-    @content;
 }
 
-@mixin div-default($padding) {
-    padding: $padding;
+@mixin div-default-footer {
+    padding: var.$padding;
+    color: var.$colorFooter;
 
     @content;
 }

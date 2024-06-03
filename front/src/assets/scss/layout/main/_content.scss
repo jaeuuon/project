@@ -1,11 +1,6 @@
 @use '../variables' as var;
 
 #grid-main-content {
-    padding: var.$padding 0;
-}
-
-@media (min-width: var.$widthLg) {
-    #grid-main-content {
-        padding: var.$padding 0 var.$padding var.$padding;
-    }
+    margin: var.$margin;
+    padding: var.$padding;
 }

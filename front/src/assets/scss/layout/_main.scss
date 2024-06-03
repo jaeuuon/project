@@ -5,9 +5,7 @@
 @use './main/content';
 
 #div-main {
-    @include mixin.div-default(0 var.$padding) {
-        margin-top: var.$headerHeight;
-    }
+    margin-top: var.$headerHeight;
 
     #grid-main {
         max-width: var.$widthXl;

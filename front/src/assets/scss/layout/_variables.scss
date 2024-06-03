@@ -6,7 +6,6 @@ $modalIndex: 1200;
 
 $margin: 5px;
 $padding: $margin;
-$paddingHalf: calc($padding / 2);
 
 $borderSize: 1px;
 $border: $borderSize solid rgba(25, 118, 210, 0.5);
@@ -14,7 +13,7 @@ $borderRadius: 4px;
 
 $sidebarWidth: 200px;
 
-$headerHeight: 55px;
+$headerHeight: 56px;
 $headerInnerHeight: calc($headerHeight - (($margin + $padding) * 2) - $borderSize);
 
 $colorFooter: #808080;

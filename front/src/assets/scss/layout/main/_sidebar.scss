@@ -25,6 +25,7 @@
             padding-bottom: 0;
 
             li > div {
+                margin: var.$margin;
                 padding: 4px 16px;
                 border-radius: var.$borderRadius;
             }
@@ -51,17 +52,8 @@
     #grid-main-sidebar {
         z-index: initial;
         position: initial;
-        top: initial;
-        left: initial;
-        height: initial;
         transition: initial;
         transform: initial;
-
-        #div-main-sidebar-content {
-            height: initial;
-            padding: var.$padding var.$padding var.$padding 0;
-            overflow: initial;
-        }
 
         #div-main-sidebar-icon {
             display: none;

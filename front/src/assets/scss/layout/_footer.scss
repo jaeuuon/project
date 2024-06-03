@@ -2,19 +2,17 @@
 @use './mixin' as mixin;
 
 #div-footer {
-    @include mixin.div-default(var.$padding) {
-        border-top: var.$border;
-    }
+    border-top: var.$border;
 
     #grid-footer {
         max-width: var.$widthXl;
         margin: auto;
 
         #div-footer-creator {
-            color: var.$colorFooter;
+            @include mixin.div-default-footer;
 
             p {
-                margin: 0;
+                margin: var.$margin;
 
                 span {
                     text-decoration: underline;
@@ -24,11 +22,11 @@
         }
 
         #div-footer-theme-color {
-            color: var.$colorFooter;
-            text-align: right;
+            @include mixin.div-default-footer;
 
             p {
-                margin: 0;
+                margin: var.$margin;
+                text-align: right;
 
                 span {
                     padding: 2px 5px 1px 5px;
@@ -39,12 +37,12 @@
         }
 
         #div-footer-skill {
-            padding-top: var.$paddingHalf;
-            padding-bottom: 30px;
-            text-align: center;
+            @include mixin.div-default-footer {
+                text-align: center;
+            }
 
             img {
-                padding: var.$paddingHalf;
+                margin: var.$margin;
                 cursor: pointer;
             }
         }
