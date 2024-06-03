@@ -40,18 +40,16 @@ const Header = ({
                 <Grid id="grid-header-content" item xs>
                     {Object.values(constant.MENU).map((detail: Detail, index) => {
                         return (
-                            <Button key={`button-header-menu-${index}`} startIcon={detail.icon} onClick={() => navigate(detail.path)}>
+                            <Button variant="outlined" key={`button-header-menu-${index}`} startIcon={detail.icon} onClick={() => navigate(detail.path)}>
                                 <span className="span-button-label">{detail.label}</span>
                             </Button>
                         );
                     })}
                 </Grid>
-                <Grid id="grid-header-user" item xs="auto">
+                <Grid id="grid-header-user-and-mode" item xs="auto">
                     <Button variant="outlined" startIcon={<Login />}>
                         <span className="span-button-label">Login</span>
                     </Button>
-                </Grid>
-                <Grid id="grid-header-mode" item xs="auto">
                     <Button variant="outlined" onClick={() => setMode(!isLight ? 'light' : 'dark')}>
                         {isLight ? <LightModeOutlined /> : <DarkModeOutlined />}
                     </Button>

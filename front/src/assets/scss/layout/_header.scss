@@ -2,17 +2,15 @@
 @use './mixin' as mixin;
 
 #div-header {
-    @include mixin.div-default(var.$padding) {
-        z-index: var.$modalIndex;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: var.$headerHeight;
-        border-bottom: var.$border;
-        backdrop-filter: var.$backdropFilter;
-        box-shadow: var.$boxShadow;
-    }
+    z-index: var.$modalIndex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var.$headerHeight;
+    border-bottom: var.$border;
+    backdrop-filter: var.$backdropFilter;
+    box-shadow: var.$boxShadow;
 
     &.mode-light {
         background-color: var.$backgroundColorLight;
@@ -31,42 +29,22 @@
         margin: auto;
 
         #grid-header-icon {
-            height: var.$headerInnerHeight;
-            padding-right: var.$padding;
+            @include mixin.div-default-header;
 
             img {
                 height: var.$headerInnerHeight;
+                margin: var.$margin;
             }
         }
 
         #grid-header-content {
-            height: var.$headerInnerHeight;
-            padding-right: var.$padding;
-
-            button {
-                margin-left: var.$margin;
-
-                span:first-child {
-                    margin-left: 0;
-                    margin-right: 0;
-                }
-            }
+            @include mixin.div-default-header;
         }
 
-        #grid-header-user {
-            height: var.$headerInnerHeight;
-            padding-right: var.$padding;
+        #grid-header-user-and-mode {
+            @include mixin.div-default-header;
 
-            button {
-                span:first-child {
-                    margin-left: 0;
-                    margin-right: 0;
-                }
-            }
-        }
-
-        #grid-header-mode {
-            button {
+            button:last-child {
                 width: var.$headerInnerHeight;
                 min-width: var.$headerInnerHeight;
             }
@@ -76,7 +54,13 @@
             width: var.$headerInnerHeight;
             min-width: var.$headerInnerHeight;
             height: var.$headerInnerHeight;
+            margin: var.$margin;
             font-weight: bold;
+
+            span:first-child {
+                margin-left: 0;
+                margin-right: 0;
+            }
 
             .span-button-label {
                 display: none;
@@ -88,30 +72,17 @@
 @media (min-width: var.$widthSm) {
     #div-header {
         #grid-header {
-            #grid-header-content {
-                button {
-                    span:first-child {
-                        margin-left: -4px;
-                        margin-right: 8px;
-                    }
-                }
-            }
-
-            #grid-header-user {
-                button {
-                    span:first-child {
-                        margin-left: -4px;
-                        margin-right: 8px;
-                    }
-                }
-            }
-
             button {
-                width: initial;
+                width: auto;
                 min-width: 64px;
 
+                span:first-child {
+                    margin-left: -4px;
+                    margin-right: 8px;
+                }
+
                 .span-button-label {
-                    display: initial;
+                    display: block;
                 }
             }
         }

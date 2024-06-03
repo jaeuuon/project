@@ -1,3 +1,12 @@
+@use './variables' as var;
+
+@mixin div-default-header {
+    height: calc(var.$headerHeight - var.$borderSize);
+    padding: var.$padding;
+
+    @content;
+}
+
 @mixin div-default($padding) {
     padding: $padding;
 
