@@ -40,7 +40,7 @@ const Header = ({
                 <Grid id="grid-header-content" item xs>
                     {Object.values(constant.MENU).map((detail: Detail, index) => {
                         return (
-                            <Button variant="outlined" key={`button-header-menu-${index}`} startIcon={detail.icon} onClick={() => navigate(detail.path)}>
+                            <Button key={`button-header-menu-${index}`} startIcon={detail.icon} onClick={() => navigate(detail.path)}>
                                 <span className="span-button-label">{detail.label}</span>
                             </Button>
                         );
