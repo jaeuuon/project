@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { PaletteMode } from '@mui/material/index';
 import { useTheme } from '@mui/material/styles';
@@ -16,6 +16,8 @@ const Header = ({
 }: {
     mode: PaletteMode; setMode: (mode: PaletteMode) => void;
 }) => {
+    const navigate = useNavigate();
+
     const theme = useTheme();
     const isLight = isThemeLight(theme);
 
@@ -38,11 +40,9 @@ const Header = ({
                 <Grid id="grid-header-content" item xs>
                     {Object.values(constant.MENU).map((detail: Detail, index) => {
                         return (
-                            <Link key={`link-header-menu-${index}`} to={detail.path}>
-                                <Button startIcon={detail.icon}>
-                                    <span className="span-button-label">{detail.label}</span>
-                                </Button>
-                            </Link>
+                            <Button key={`button-header-menu-${index}`} startIcon={detail.icon} onClick={() => navigate(detail.path)}>
+                                <span className="span-button-label">{detail.label}</span>
+                            </Button>
                         );
                     })}
                 </Grid>

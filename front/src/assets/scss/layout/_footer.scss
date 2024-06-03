@@ -3,7 +3,6 @@
 
 #div-footer {
     @include mixin.div-default(var.$padding) {
-        min-height: 70px;
         border-top: var.$border;
     }
 
