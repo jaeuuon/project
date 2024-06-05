@@ -8,9 +8,9 @@
         max-width: var.$widthXl;
         margin: auto;
 
-        #div-footer-creator {
+        #grid-footer-creator {
             @include mixin.div-default-footer {
-                color: var.$colorFooter;
+                color: var.$footerColor;
             }
 
             p {
@@ -23,9 +23,9 @@
             }
         }
 
-        #div-footer-theme-color {
+        #grid-footer-theme-color {
             @include mixin.div-default-footer {
-                color: var.$colorFooter;
+                color: var.$footerColor;
             }
 
             p {
@@ -40,7 +40,7 @@
             }
         }
 
-        #div-footer-skill {
+        #grid-footer-skill {
             @include mixin.div-default-footer {
                 text-align: center;
             }

@@ -1,10 +1,20 @@
+import { useEffect } from 'react';
+
 const Modal = ({
-    setOpenSidebar
+    isOpen, setOpen
 }: {
-    setOpenSidebar: (isOpenSidebar: boolean) => void;
+    isOpen: boolean; setOpen: (setOpen: boolean) => void;
 }) => {
+    useEffect(() => {
+        document.body.style.overflow = isOpen ? 'hidden' : 'initial';
+    }, [isOpen]);
+
     return (
-        <div id="div-modal" onClick={() => setOpenSidebar(false)} />
+        <>
+            {isOpen &&
+                <div id="div-modal" onClick={() => setOpen(false)} />
+            }
+        </>
     );
 };
 

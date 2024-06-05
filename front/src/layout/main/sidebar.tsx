@@ -39,12 +39,10 @@ const Sidebar = () => {
     };
 
     useEffect(() => {
+        setOpenSidebar(false);
+
         window.scrollTo(0, 0);
     }, [location.pathname]);
-
-    useEffect(() => {
-        document.body.style.overflow = isOpenSidebar ? 'hidden' : 'initial';
-    }, [isOpenSidebar]);
 
     useEffect(() => {
         const onResize = () => {
@@ -64,9 +62,7 @@ const Sidebar = () => {
 
     return (
         <>
-            {isOpenSidebar &&
-                <Modal setOpenSidebar={setOpenSidebar} />
-            }
+            <Modal isOpen={isOpenSidebar} setOpen={setOpenSidebar} />
             <Grid id="grid-main-sidebar" className={isOpenSidebar ? 'sidebar-open' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper }} ref={sidebar}>
                 <div id="div-main-sidebar-content">
                     <List>

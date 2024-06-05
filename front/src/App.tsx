@@ -44,7 +44,7 @@ const App = () => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Header mode={mode} setMode={setMode} />
+            <Header setMode={setMode} />
             <Main />
             <Footer />
         </ThemeProvider>

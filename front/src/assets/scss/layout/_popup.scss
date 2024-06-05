@@ -1,0 +1,42 @@
+@use './variables' as var;
+
+#div-popup {
+    z-index: var.$modalIndex;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border: var.$border;
+    border-radius: var.$borderRadius;
+    transform: translate(-50%, -50%);
+
+    #root > & {
+        z-index: calc(var.$modalIndex + 1);
+    }
+
+    #grid-popup-header {
+        padding: var.$padding;
+        border-bottom: var.$border;
+
+        #grid-popup-header-icon {
+            width: var.$popupIconSize;
+            height: var.$popupIconSize;
+            margin: var.$margin;
+
+            svg {
+                width: var.$popupIconSize;
+                height: var.$popupIconSize;
+            }
+        }
+
+        #grid-popup-header-label {
+            margin: var.$margin;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    }
+
+    #div-popup-content {
+        margin: var.$margin;
+        padding: var.$padding;
+    }
+}

@@ -1,8 +1,8 @@
+$modalIndex: 2000;
+
 $widthSm: 600px;
 $widthLg: 1200px;
 $widthXl: 1536px;
-
-$modalIndex: 1200;
 
 $margin: 5px;
 $padding: $margin;
@@ -16,7 +16,9 @@ $sidebarWidth: 200px;
 $headerHeight: 56px;
 $headerInnerHeight: calc($headerHeight - (($margin + $padding) * 2) - $borderSize);
 
-$colorFooter: #808080;
+$footerColor: #808080;
+
+$popupIconSize: 27px;
 
 $backgroundColorLight: rgba(248, 249, 250, 0.75);
 $backgroundColorDark: rgba(33, 37, 41, 0.75);
