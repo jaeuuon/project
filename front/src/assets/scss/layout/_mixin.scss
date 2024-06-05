@@ -7,7 +7,6 @@
 
 @mixin div-default-footer {
     padding: var.$padding;
-    color: var.$colorFooter;
 
     @content;
 }

@@ -9,7 +9,9 @@
         margin: auto;
 
         #div-footer-creator {
-            @include mixin.div-default-footer;
+            @include mixin.div-default-footer {
+                color: var.$colorFooter;
+            }
 
             p {
                 margin: var.$margin;
@@ -22,7 +24,9 @@
         }
 
         #div-footer-theme-color {
-            @include mixin.div-default-footer;
+            @include mixin.div-default-footer {
+                color: var.$colorFooter;
+            }
 
             p {
                 margin: var.$margin;
