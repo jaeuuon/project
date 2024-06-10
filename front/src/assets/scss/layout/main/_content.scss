@@ -1,6 +1,9 @@
-@use '../variables' as var;
+@use '../../variables' as var;
 
 #grid-main-content {
-    margin: var.$margin;
     padding: var.$padding;
+
+    & > div {
+        margin: var.$margin;
+    }
 }

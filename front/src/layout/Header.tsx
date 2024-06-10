@@ -1,30 +1,27 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { PaletteMode } from '@mui/material/index';
 import { useTheme } from '@mui/material/styles';
 import { Grid, Button, Tooltip } from '@mui/material';
 import { Login, LightModeOutlined, DarkModeOutlined } from '@mui/icons-material';
 
-import Popup from './popup';
+import Popup from './Popup';
+import LoginPopup from '../pages/popup/Login';
 
-import { Detail } from '../types/menu';
+import HeaderType from '../types/layout/header';
+import { Detail } from '../types/layout/menu';
 
 import constant from '../common/constant';
 import { isThemeLight, getCssClassByTheme } from '../common/utils';
 
-const Header = ({
-    setMode
-}: {
-    setMode: (mode: PaletteMode) => void;
-}) => {
+const Header = ({ setMode }: HeaderType) => {
     const navigate = useNavigate();
 
     const theme = useTheme();
     const isLight = isThemeLight(theme);
 
     const [isTop, setTop] = useState(true);
-    const [isOpenLogin, setOpenLogin] = useState(false);
+    const [isVisibleLogin, setVisibleLogin] = useState(false);
 
     useEffect(() => {
         const onScroll = () => setTop(window.scrollY === 0 ? true : false);
@@ -51,7 +48,7 @@ const Header = ({
                         })}
                     </Grid>
                     <Grid id="grid-header-user-and-mode" item xs="auto">
-                        <Button variant="outlined" startIcon={<Login />} onClick={() => setOpenLogin(true)}>
+                        <Button variant="outlined" startIcon={<Login />} onClick={() => setVisibleLogin(true)}>
                             <span className="span-button-label">Login</span>
                         </Button>
                         <Tooltip title="Light / Dark" placement="bottom-end" arrow>
@@ -62,7 +59,7 @@ const Header = ({
                     </Grid>
                 </Grid>
             </div>
-            <Popup isOpen={isOpenLogin} setOpen={setOpenLogin} width={400} icon={<Login />} label="Login" />
+            <Popup isVisible={isVisibleLogin} setVisible={setVisibleLogin} width={400} icon={<Login />} label="Login" content={<LoginPopup />} />
         </>
     );
 };

@@ -4,8 +4,8 @@ import { useTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-import Sidebar from './main/sidebar';
-import Content from './main/content';
+import Sidebar from './main/Sidebar';
+import Content from './main/Content';
 
 import { getCssClassByTheme } from '../common/utils';
 

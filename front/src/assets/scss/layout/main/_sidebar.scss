@@ -1,4 +1,4 @@
-@use '../variables' as var;
+@use '../../variables' as var;
 
 #grid-main-sidebar {
     z-index: var.$modalIndex;
@@ -11,7 +11,7 @@
     transition: transform 0.5s;
     transform: translateX(- var.$sidebarWidth);
 
-    &.sidebar-open {
+    &.visible {
         transform: translateX(0);
     }
 
@@ -58,8 +58,10 @@
         transition: initial;
         transform: initial;
 
-        #div-main-sidebar-icon {
-            display: none;
+        #div-main-sidebar {
+            &-icon {
+                display: none;
+            }
         }
     }
 }

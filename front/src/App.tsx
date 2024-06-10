@@ -4,9 +4,9 @@ import { PaletteMode } from '@mui/material/index';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-import Header from './layout/header';
-import Main from './layout/main';
-import Footer from './layout/footer';
+import Header from './layout/Header';
+import Main from './layout/Main';
+import Footer from './layout/Footer';
 
 import './assets/scss/app.scss';
 

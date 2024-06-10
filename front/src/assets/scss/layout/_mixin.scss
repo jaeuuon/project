@@ -1,4 +1,4 @@
-@use './variables' as var;
+@use '../variables' as var;
 
 @mixin div-default-header {
     height: calc(var.$headerHeight - var.$borderSize);

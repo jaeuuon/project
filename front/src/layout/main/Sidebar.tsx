@@ -12,9 +12,10 @@ import {
 } from '@mui/material';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
 
-import Modal from '../modal';
+import Modal from '../Modal';
 
-import { Detail } from '../../types/menu';
+import { Detail } from '../../types/layout/menu';
+import SubMenu from '../../types/layout/menu/subMenu';
 
 import constant from '../../common/constant';
 
@@ -28,9 +29,9 @@ const Sidebar = () => {
 
     const theme = useTheme();
 
-    const [isOpenSidebar, setOpenSidebar] = useState(false);
+    const [isVisibleSidebar, setVisibleSidebar] = useState(false);
 
-    const onClickListItem = (path: string, isOpen?: boolean) => {
+    const onClickListItem = ({ path, isOpen }: SubMenu) => {
         if (isOpen) {
             window.open(path);
         } else {
@@ -39,7 +40,7 @@ const Sidebar = () => {
     };
 
     useEffect(() => {
-        setOpenSidebar(false);
+        setVisibleSidebar(false);
 
         window.scrollTo(0, 0);
     }, [location.pathname]);
@@ -50,7 +51,7 @@ const Sidebar = () => {
                 const styles = window.getComputedStyle(sidebar.current);
 
                 if (styles.position !== 'fixed') {
-                    setOpenSidebar(false);
+                    setVisibleSidebar(false);
                 }
             }
         };
@@ -62,13 +63,13 @@ const Sidebar = () => {
 
     return (
         <>
-            <Modal isOpen={isOpenSidebar} setOpen={setOpenSidebar} />
-            <Grid id="grid-main-sidebar" className={isOpenSidebar ? 'sidebar-open' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper }} ref={sidebar}>
+            <Modal isVisible={isVisibleSidebar} setVisible={setVisibleSidebar} />
+            <Grid id="grid-main-sidebar" className={isVisibleSidebar ? 'visible' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper }} ref={sidebar}>
                 <div id="div-main-sidebar-content">
                     <List>
                         {menu?.subMenus.map((subMenu, index) => {
                             return (
-                                <ListItem key={`list-item-header-menu-${index}`} disablePadding onClick={() => onClickListItem(subMenu.path, subMenu.isOpen)}>
+                                <ListItem key={`list-item-header-menu-${index}`} disablePadding onClick={() => onClickListItem(subMenu)}>
                                     <ListItemButton>
                                         <ListItemIcon>{subMenu.icon}</ListItemIcon>
                                         <ListItemText primary={subMenu.label} />
@@ -78,8 +79,8 @@ const Sidebar = () => {
                         })}
                     </List>
                 </div>
-                <div id="div-main-sidebar-icon" style={{ backgroundColor: theme.palette.background.paper }} onClick={() => setOpenSidebar(!isOpenSidebar)}>
-                    {isOpenSidebar ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                <div id="div-main-sidebar-icon" style={{ backgroundColor: theme.palette.background.paper }} onClick={() => setVisibleSidebar(!isVisibleSidebar)}>
+                    {isVisibleSidebar ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
                 </div>
             </Grid>
         </>

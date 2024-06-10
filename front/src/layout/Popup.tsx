@@ -2,21 +2,20 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Button, Tooltip } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
-import Modal from './modal';
+import Modal from './Modal';
+
+import PopupType from '../types/layout/popup';
 
 const Popup = ({
-    isOpen, setOpen,
-    width, icon, label
-}: {
-    isOpen: boolean; setOpen: (setOpen: boolean) => void;
-    width: number; icon: JSX.Element; label: string;
-}) => {
+    isVisible, setVisible,
+    width, icon, label, content
+}: PopupType) => {
     const theme = useTheme();
 
     return (
         <>
-            <Modal isOpen={isOpen} setOpen={setOpen} />
-            {isOpen &&
+            <Modal isVisible={isVisible} setVisible={setVisible} />
+            {isVisible &&
                 <div id="div-popup" style={{ width: width, backgroundColor: theme.palette.background.paper }}>
                     <Grid id="grid-popup-header" container style={{ color: theme.palette.primary.main }}>
                         <Grid id="grid-popup-header-icon" item xs="auto">{icon}</Grid>
@@ -25,14 +24,14 @@ const Popup = ({
                         </Grid>
                         <Grid id="grid-popup-header-close" item xs="auto">
                             <Tooltip title="Close" placement="bottom-end" arrow>
-                                <Button onClick={() => setOpen(false)}>
+                                <Button onClick={() => setVisible(false)}>
                                     <Close />
                                 </Button>
                             </Tooltip>
                         </Grid>
                     </Grid>
                     <div id="div-popup-content">
-                        <p>This is popup !!!</p>
+                        <div>{content}</div>
                     </div>
                 </div>
             }

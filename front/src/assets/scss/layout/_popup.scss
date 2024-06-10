@@ -1,4 +1,4 @@
-@use './variables' as var;
+@use '../variables' as var;
 
 #div-popup {
     z-index: var.$modalIndex;
@@ -51,7 +51,10 @@
     }
 
     &-content {
-        margin: var.$margin;
-        padding: var.$padding;
+        padding: calc(var.$padding * 2);
+
+        & > div {
+            margin: calc(var.$margin * 2);
+        }
     }
 }
