@@ -7,7 +7,7 @@ const Footer = () => {
         <div id="div-footer">
             <Grid id="grid-footer" container>
                 <Grid id="grid-footer-creator" item xs={6}>
-                    <p>Created by <Tooltip title="GitHub profile" arrow><span onClick={() => window.open(constant.FOOTER.CREATOR.URL)}>{constant.FOOTER.CREATOR.NAME}</span></Tooltip>.</p>
+                    <p>Created by <Tooltip title="GitHub profile" placement="top" arrow><span onClick={() => window.open(constant.FOOTER.CREATOR.URL)}>{constant.FOOTER.CREATOR.NAME}</span></Tooltip>.</p>
                 </Grid>
                 <Grid id="grid-footer-theme-color" item xs={6}>
                     <p>Theme color is <span style={{ backgroundColor: constant.FOOTER.THEME_COLOR }}>{constant.FOOTER.THEME_COLOR}</span></p>

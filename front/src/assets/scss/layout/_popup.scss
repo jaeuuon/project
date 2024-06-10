@@ -18,25 +18,39 @@
         padding: var.$padding;
         border-bottom: var.$border;
 
-        #grid-popup-header-icon {
-            width: var.$popupIconSize;
-            height: var.$popupIconSize;
-            margin: var.$margin;
+        &-icon,
+        &-close {
+            width: calc(var.$popupIconSize + (var.$margin * 2));
+            height: calc(var.$popupIconSize + (var.$margin * 2));
+        }
 
-            svg {
+        &-icon {
+            & svg {
                 width: var.$popupIconSize;
                 height: var.$popupIconSize;
+                margin: var.$margin;
             }
         }
 
-        #grid-popup-header-label {
-            margin: var.$margin;
-            font-size: 18px;
-            font-weight: bold;
+        &-close {
+            & button {
+                width: var.$popupIconSize;
+                min-width: var.$popupIconSize;
+                height: var.$popupIconSize;
+                margin: var.$margin;
+            }
+        }
+
+        &-label {
+            & p {
+                margin: var.$margin;
+                font-size: 18px;
+                font-weight: bold;
+            }
         }
     }
 
-    #div-popup-content {
+    &-content {
         margin: var.$margin;
         padding: var.$padding;
     }

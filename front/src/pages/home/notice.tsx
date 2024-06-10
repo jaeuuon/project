@@ -1,6 +1,6 @@
 const Notice = () => {
     return (
-        <span>Notice</span>
+        <p>Notice</p>
     );
 };
 

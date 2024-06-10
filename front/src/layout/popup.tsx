@@ -1,14 +1,15 @@
 import { useTheme } from '@mui/material/styles';
-import { Grid } from '@mui/material';
+import { Grid, Button } from '@mui/material';
+import { Close } from '@mui/icons-material';
 
 import Modal from './modal';
 
 const Popup = ({
     isOpen, setOpen,
-    icon, label
+    width, icon, label
 }: {
     isOpen: boolean; setOpen: (setOpen: boolean) => void;
-    icon: JSX.Element; label: string;
+    width: number; icon: JSX.Element; label: string;
 }) => {
     const theme = useTheme();
 
@@ -16,15 +17,20 @@ const Popup = ({
         <>
             <Modal isOpen={isOpen} setOpen={setOpen} />
             {isOpen &&
-                <div id="div-popup" style={{ backgroundColor: theme.palette.background.paper }}>
+                <div id="div-popup" style={{ width: width, backgroundColor: theme.palette.background.paper }}>
                     <Grid id="grid-popup-header" container style={{ color: theme.palette.primary.main }}>
                         <Grid id="grid-popup-header-icon" item xs="auto">{icon}</Grid>
                         <Grid id="grid-popup-header-label" item xs>
-                            <span>{label}</span>
+                            <p>{label}</p>
+                        </Grid>
+                        <Grid id="grid-popup-header-close" item xs="auto">
+                            <Button onClick={() => setOpen(false)}>
+                                <Close />
+                            </Button>
                         </Grid>
                     </Grid>
                     <div id="div-popup-content">
-                        <span>This is popup !!!</span>
+                        <p>This is popup !!!</p>
                     </div>
                 </div>
             }

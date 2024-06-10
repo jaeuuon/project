@@ -28,7 +28,7 @@
         max-width: var.$widthXl;
         margin: auto;
 
-        #grid-header-icon {
+        &-icon {
             @include mixin.div-default-header;
 
             img {
@@ -37,11 +37,11 @@
             }
         }
 
-        #grid-header-content {
+        &-content {
             @include mixin.div-default-header;
         }
 
-        #grid-header-user-and-mode {
+        &-user-and-mode {
             @include mixin.div-default-header;
 
             button:last-child {

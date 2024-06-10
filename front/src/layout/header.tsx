@@ -54,7 +54,7 @@ const Header = ({
                         <Button variant="outlined" startIcon={<Login />} onClick={() => setOpenLogin(true)}>
                             <span className="span-button-label">Login</span>
                         </Button>
-                        <Tooltip title="Light / Dark" arrow>
+                        <Tooltip title="Light / Dark" placement="bottom-end" arrow>
                             <Button variant="outlined" onClick={() => setMode(!isLight ? 'light' : 'dark')}>
                                 {isLight ? <LightModeOutlined /> : <DarkModeOutlined />}
                             </Button>
@@ -62,7 +62,7 @@ const Header = ({
                     </Grid>
                 </Grid>
             </div>
-            <Popup isOpen={isOpenLogin} setOpen={setOpenLogin} icon={<Login />} label="Login" />
+            <Popup isOpen={isOpenLogin} setOpen={setOpenLogin} width={400} icon={<Login />} label="Login" />
         </>
     );
 };
