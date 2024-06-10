@@ -1,5 +1,5 @@
 import { useTheme } from '@mui/material/styles';
-import { Grid, Button } from '@mui/material';
+import { Grid, Button, Tooltip } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
 import Modal from './modal';
@@ -24,9 +24,11 @@ const Popup = ({
                             <p>{label}</p>
                         </Grid>
                         <Grid id="grid-popup-header-close" item xs="auto">
-                            <Button onClick={() => setOpen(false)}>
-                                <Close />
-                            </Button>
+                            <Tooltip title="Close" placement="bottom-end" arrow>
+                                <Button onClick={() => setOpen(false)}>
+                                    <Close />
+                                </Button>
+                            </Tooltip>
                         </Grid>
                     </Grid>
                     <div id="div-popup-content">
