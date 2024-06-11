@@ -1,6 +1,9 @@
 import User from '../types/user';
 
-const initState: User = {};
+const initState: User = {
+    email: '',
+    password: ''
+};
 
 const SET = 'user/SET' as const;
 

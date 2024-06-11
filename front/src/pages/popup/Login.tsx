@@ -1,20 +1,36 @@
+import { useState } from 'react';
+
 import { Button } from '@mui/material';
 
 import TextField from '../../components/common/TextField';
 
+import LoginParams from '../../types/params/pages/popup/login';
+
+import { getOnChange } from '../../common/utils';
+
 const Login = () => {
+    const [user, setUser] = useState<LoginParams>({});
+
+    const onChange = getOnChange(user, setUser);
+
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        console.log(user);
+    };
+
     return (
-        <div id="div-login">
+        <form id="form-login" onSubmit={onSubmit}>
             <div>
-                <TextField name="email" label="Email" isFullWidth={true} autoComplete="email" />
+                <TextField name="email" label="Email" isFullWidth={true} autoComplete="email" value={user.email} onChange={onChange} />
             </div>
             <div>
-                <TextField type="password" name="password" label="Password" isFullWidth={true} autoComplete="current-password" />
+                <TextField type="password" name="password" label="Password" isFullWidth={true} autoComplete="current-password" value={user.password} onChange={onChange} />
             </div>
             <div id="div-login-submit">
-                <Button variant="contained">Login</Button>
+                <Button type="submit" variant="contained">Login</Button>
             </div>
-        </div>
+        </form>
     );
 };
 

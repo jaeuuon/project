@@ -1,7 +1,7 @@
 @use '../variables' as var;
 
-#div-login {
-    &-submit {
+#form-login {
+    #div-login-submit {
         button {
             width: 100%;
             margin-top: calc((var.$margin * 2) + (var.$padding * 2));
