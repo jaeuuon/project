@@ -10,7 +10,7 @@ export const getCssClassByTheme = (theme: Theme) => {
 
 export const getOnChange = (state: any, setState: React.Dispatch<React.SetStateAction<any>>) => {
     return (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value.trim() !== '') {
+        if (e.target.value !== '') {
             setState({ ...state, [e.target.name]: e.target.value });
         } else {
             delete state[e.target.name];
