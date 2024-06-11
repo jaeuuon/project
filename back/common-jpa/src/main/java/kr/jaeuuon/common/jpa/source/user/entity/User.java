@@ -2,7 +2,7 @@ package kr.jaeuuon.common.jpa.source.user.entity;
 
 import jakarta.persistence.*;
 import kr.jaeuuon.common.jpa.source.code.impl.StatusCode;
-import kr.jaeuuon.common.jpa.source.entity.BaseModifiedUserNonCreatedUser;
+import kr.jaeuuon.common.jpa.source.entity.ModifiedUserNonCreatedUser;
 import kr.jaeuuon.common.jpa.source.entity.embeddable.Address;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -19,7 +19,7 @@ import java.util.List;
 @DynamicUpdate
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class User extends BaseModifiedUserNonCreatedUser implements Persistable<Long> {
+public class User extends ModifiedUserNonCreatedUser implements Persistable<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

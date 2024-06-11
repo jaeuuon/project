@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import kr.jaeuuon.common.basic.source.code.impl.AuthorityCode;
 import kr.jaeuuon.common.jpa.source.code.converter.AuthorityCodeConverter;
 import kr.jaeuuon.common.jpa.source.code.impl.StatusCode;
-import kr.jaeuuon.common.jpa.source.entity.BaseModifiedUser;
+import kr.jaeuuon.common.jpa.source.entity.ModifiedUser;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +18,7 @@ import org.springframework.data.domain.Persistable;
 @DynamicUpdate
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class UserAuthority extends BaseModifiedUser implements Persistable<Long> {
+public class UserAuthority extends ModifiedUser implements Persistable<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

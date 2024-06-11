@@ -10,7 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @Getter
-public abstract class BaseModifiedUser extends BaseModifiedUserNonCreatedUser {
+public abstract class ModifiedUser extends ModifiedUserNonCreatedUser {
 
     @CreatedBy
     @Column(nullable = false, updatable = false)

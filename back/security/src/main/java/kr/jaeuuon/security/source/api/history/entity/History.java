@@ -1,7 +1,7 @@
 package kr.jaeuuon.security.source.api.history.entity;
 
 import jakarta.persistence.*;
-import kr.jaeuuon.common.jpa.source.entity.BaseTime;
+import kr.jaeuuon.common.jpa.source.entity.CreatedTime;
 import kr.jaeuuon.common.jpa.source.user.entity.User;
 import kr.jaeuuon.security.source.api.history.code.impl.ResultCode;
 import kr.jaeuuon.security.source.api.history.code.impl.ResultCode.ResultCodeConverter;
@@ -18,7 +18,7 @@ import org.springframework.data.domain.Persistable;
 @DynamicUpdate
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class History extends BaseTime implements Persistable<Long> {
+public class History extends CreatedTime implements Persistable<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @Getter
-public abstract class BaseTime {
+public abstract class CreatedTime {
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
