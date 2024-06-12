@@ -2,6 +2,8 @@
 
 [WSL 설치 | Microsoft Learn](https://learn.microsoft.com/ko-kr/windows/wsl/install)
 
+[WSL의 고급 설정 구성 | Microsoft Learn](https://learn.microsoft.com/ko-kr/windows/wsl/wsl-config)
+
 ## 1. 설치
 ```
 wsl --install
@@ -25,4 +27,15 @@ wsl --install -d <Distribution Name>
 ## 5. 배포판 삭제
 ```
 wsl --unregister <Distribution Name>
+```
+
+## 6. wslconfig
+```
+C:\Users\<UserName>\.wslconfig
+
+[wsl2]
+networkingMode=mirrored
+```
+```
+wsl --shutdown
 ```

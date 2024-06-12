@@ -4,7 +4,11 @@ import { Button } from '@mui/material';
 
 import TextField from '../../components/common/TextField';
 
-import LoginParams from '../../types/params/pages/popup/login';
+import { postLogin } from '../../apis/pages/popup/login';
+import LoginParams from '../../types/data/request/pages/popup/login';
+
+import Response from '../../types/common/response';
+import { status } from '../../types/common/response';
 
 import { getOnChange } from '../../common/utils';
 
@@ -13,10 +17,16 @@ const Login = () => {
 
     const onChange = getOnChange(user, setUser);
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        console.log(user);
+        const response: Response = await postLogin(user);
+
+        if (response.status === status.SUCCESS) {
+            console.log("성공 : ", response);
+        } else {
+            console.log("실패 : ", response);
+        }
     };
 
     return (
