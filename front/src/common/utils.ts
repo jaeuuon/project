@@ -60,7 +60,6 @@ export const getResponseError = (error: any) => {
     if (typeof data === 'object') {
         return data;
     } else {
-
         const response: Response = {
             path: process.env.REACT_APP_BASE_URL + error.config.url,
             method: error.config.method.toUpperCase(),
