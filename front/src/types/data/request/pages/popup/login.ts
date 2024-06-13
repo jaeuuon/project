@@ -1,6 +1,6 @@
-import Dictionary from "../../../../common/dictionary";
+import Input from "../../../../common/input";
 
-export default interface Login extends Dictionary {
+export default interface Login extends Input {
     email?: string;
     password?: string;
 };

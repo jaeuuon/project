@@ -14,8 +14,7 @@ import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
 
 import Modal from '../Modal';
 
-import { Detail } from '../../types/layout/menu';
-import SubMenu from '../../types/layout/menu/subMenu';
+import { Detail, SubMenu } from '../../types/layout/menu';
 
 import constant from '../../common/constant';
 

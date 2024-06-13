@@ -9,7 +9,9 @@ import LoginParams from '../../types/data/request/pages/popup/login';
 
 import Response from '../../types/common/response';
 import { statusCode } from '../../enums/common/status';
-import { Code, emailCode, passwordCode } from '../../enums/errors/pages/popup/login';
+
+import { CodeMessage } from '../../types/common/code';
+import { emailCode, passwordCode } from '../../enums/errors/pages/popup/login';
 
 import { getOnChange, includesCode } from '../../common/utils';
 
@@ -50,35 +52,25 @@ const Login = () => {
 
     const validation = () => {
         if (!user.email) {
-            return emailError(emailCode.BLANK);
+            return error(email, emailCode.BLANK);
         } else if (user.email.length < 4 || user.email.length > 100) {
-            return emailError(emailCode.SIZE);
+            return error(email, emailCode.SIZE);
         } else if (!user.email.match(/^.+@.+$/)) {
-            return emailError(emailCode.FORMAT);
+            return error(email, emailCode.FORMAT);
         } else if (!user.password) {
-            return passwordError(passwordCode.BLANK);
+            return error(password, passwordCode.BLANK);
         } else if (user.password.length < 4 || user.password.length > 50) {
-            return passwordError(passwordCode.SIZE);
+            return error(password, passwordCode.SIZE);
         }
 
         return true;
     };
 
-    const emailError = (code: Code) => {
-        email.current?.focus();
+    const error = (ref: React.RefObject<HTMLInputElement>, codeMessage: CodeMessage) => {
+        ref.current?.focus();
 
-        return error(code);
-    };
-
-    const passwordError = (code: Code) => {
-        password.current?.focus();
-
-        return error(code);
-    };
-
-    const error = (code: Code) => {
-        setCode(code.CODE);
-        setMessage(code.MESSAGE);
+        setCode(codeMessage.CODE);
+        setMessage(codeMessage.MESSAGE);
 
         return false;
     }
