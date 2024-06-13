@@ -1,7 +1,7 @@
 import { Theme } from '@mui/material/styles';
 
 import Dictionary from '../types/common/dictionary';
-import { Key } from '../types/common/utils';
+import { SearchCode } from '../types/common/utils';
 import Response from '../types/common/response';
 import { statusCode } from '../enums/common/status';
 
@@ -13,8 +13,8 @@ export const getCssClassByTheme = (theme: Theme) => {
     return isThemeLight(theme) ? 'mode-light' : 'mode-dark';
 };
 
-export const includes = (object: object, key: Key) => {
-    return key ? key in object : false;
+export const includesCode = (code: object, searchCode: SearchCode) => {
+    return Object.values(code).some((code) => code.CODE === searchCode);
 };
 
 export const getTimestamp = () => {

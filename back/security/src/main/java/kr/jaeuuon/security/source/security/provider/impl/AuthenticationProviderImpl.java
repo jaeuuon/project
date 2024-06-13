@@ -28,13 +28,13 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
         UserDetailsImpl userDetailsImpl = userDetailsServiceImpl.loadUserByUsername(email);
 
         if (userDetailsImpl == null) {
-            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SCR_EMAIL);
+            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SCR_EMAIL_WRONG);
         }
 
         String credentials = authentication.getCredentials().toString();
 
         if (!bCryptPasswordEncoder.matches(credentials, userDetailsImpl.getPassword())) {
-            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SCR_PASSWORD, userDetailsImpl, ResultCode.ERROR_PASSWORD);
+            throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SCR_PASSWORD_WRONG, userDetailsImpl, ResultCode.ERROR_PASSWORD);
         }
 
         if (!userDetailsImpl.isEnabled()) {

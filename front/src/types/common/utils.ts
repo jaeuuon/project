@@ -1,1 +1,1 @@
-export type Key = string | undefined;
+export type SearchCode = string | undefined;
