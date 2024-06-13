@@ -30,4 +30,4 @@ export default interface Response {
     data: Success;
     errors: Error[];
     timestamp: string;
-}
+};

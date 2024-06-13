@@ -5,4 +5,4 @@ export default interface Popup extends Modal {
     icon: JSX.Element;
     label: string;
     content: JSX.Element;
-}
+};
