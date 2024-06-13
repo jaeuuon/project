@@ -1,6 +1,6 @@
-export default interface Login {
-    [index: string | symbol]: string | undefined;
+import Dictionary from "../../../../common/dictionary";
 
+export default interface Login extends Dictionary {
     email?: string;
     password?: string;
 };

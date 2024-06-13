@@ -1,6 +1,7 @@
 import { Theme } from '@mui/material/styles';
 
-import { SearchElement } from '../types/common/utils';
+import Dictionary from '../types/common/dictionary';
+import { Key } from '../types/common/utils';
 import Response from '../types/common/response';
 import { statusCode } from '../enums/common/status';
 
@@ -12,8 +13,8 @@ export const getCssClassByTheme = (theme: Theme) => {
     return isThemeLight(theme) ? 'mode-light' : 'mode-dark';
 };
 
-export const includes = <T extends string>(array: ReadonlyArray<T>, searchElement: SearchElement) => {
-    return array.some((item) => item === searchElement);
+export const includes = (object: object, key: Key) => {
+    return key ? key in object : false;
 };
 
 export const getTimestamp = () => {
@@ -41,7 +42,7 @@ export const getTimestamp = () => {
     return result;
 };
 
-export const getOnChange = (state: any, setState: React.Dispatch<React.SetStateAction<any>>) => {
+export const getOnChange = (state: Dictionary, setState: React.Dispatch<React.SetStateAction<Dictionary>>) => {
     return (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value !== '') {
             setState({ ...state, [e.target.name]: e.target.value });

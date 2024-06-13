@@ -9,7 +9,7 @@ import LoginParams from '../../types/data/request/pages/popup/login';
 
 import Response from '../../types/common/response';
 import { statusCode } from '../../enums/common/status';
-import { emailCodes, passwordCodes } from '../../enums/errors/pages/popup/login';
+import { emailCode, passwordCode } from '../../enums/errors/pages/popup/login';
 
 import { getOnChange, includes } from '../../common/utils';
 
@@ -35,9 +35,9 @@ const Login = () => {
             const error = response.errors[0];
             const code = error.code;
 
-            if (includes(emailCodes, code)) {
+            if (includes(emailCode, code)) {
                 email.current?.focus();
-            } else if (includes(passwordCodes, code)) {
+            } else if (includes(passwordCode, code)) {
                 password.current?.focus();
             }
 
@@ -49,10 +49,10 @@ const Login = () => {
     return (
         <form id="form-login" onSubmit={onSubmit}>
             <div>
-                <TextField name="email" label="Email" isFullWidth={true} autoComplete="email" value={user.email} isError={includes(emailCodes, code)} ref={email} onChange={onChange} />
+                <TextField name="email" label="Email" isFullWidth={true} autoComplete="email" value={user.email} isError={includes(emailCode, code)} ref={email} onChange={onChange} />
             </div>
             <div>
-                <TextField type="password" name="password" label="Password" isFullWidth={true} autoComplete="current-password" value={user.password} isError={includes(passwordCodes, code)} ref={password} onChange={onChange} />
+                <TextField type="password" name="password" label="Password" isFullWidth={true} autoComplete="current-password" value={user.password} isError={includes(passwordCode, code)} ref={password} onChange={onChange} />
             </div>
             <div id="div-login-alert">
                 {message &&

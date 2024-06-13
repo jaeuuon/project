@@ -1,1 +1,1 @@
-export type SearchElement = string | undefined;
+export type Key = string | undefined;

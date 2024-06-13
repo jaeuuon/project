@@ -4,6 +4,7 @@
     #div-login {
         &-alert {
             margin-top: calc(var.$margin + var.$padding);
+            word-break: keep-all;
         }
 
         &-submit {
