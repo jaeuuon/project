@@ -6,6 +6,8 @@
 
 [NGINX Reverse Proxy | NGINX Documentation](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
 
+[NGINX SSL Termination | NGINX Documentation](https://docs.nginx.com/nginx/admin-guide/security-controls/terminating-ssl-http/)
+
 ## 1. 설치
 ```
 sudo apt update
@@ -31,12 +33,22 @@ upstream apis {
 }
 
 server {
-	listen 80;
-	listen [::]:80;
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	return 301 https://$host$request_uri;
+}
+
+server {
+	listen 443 ssl;
+	listen [::]:443 ssl;
 
 	root /var/www/html;
 
 	server_name jaeuuon.kr www.jaeuuon.kr;
+
+	ssl_certificate /etc/nginx/ssl/jaeuuon.kr.pem;
+	ssl_certificate_key /etc/nginx/ssl/jaeuuon.kr.key;
 
 	location / {
 		try_files $uri $uri/ /;
