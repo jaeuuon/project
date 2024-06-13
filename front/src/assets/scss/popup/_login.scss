@@ -5,6 +5,10 @@
         &-alert {
             margin-top: calc(var.$margin + var.$padding);
             word-break: keep-all;
+
+            p {
+                margin: 0;
+            }
         }
 
         &-submit {

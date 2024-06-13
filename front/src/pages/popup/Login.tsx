@@ -85,7 +85,9 @@ const Login = () => {
             </div>
             <div id="div-login-alert">
                 {message &&
-                    <Alert severity="error">{message}</Alert>
+                    <Alert severity="error">
+                        <p>{message}</p>
+                    </Alert>
                 }
             </div>
             <div id="div-login-submit">

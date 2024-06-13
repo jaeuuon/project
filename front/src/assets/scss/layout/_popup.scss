@@ -25,27 +25,27 @@
         }
 
         &-icon {
-            & svg {
+            svg {
                 width: var.$popupIconSize;
-                height: var.$popupIconSize;
-                margin: var.$margin;
-            }
-        }
-
-        &-close {
-            & button {
-                width: var.$popupIconSize;
-                min-width: var.$popupIconSize;
                 height: var.$popupIconSize;
                 margin: var.$margin;
             }
         }
 
         &-label {
-            & p {
+            p {
                 margin: var.$margin;
                 font-size: 18px;
                 font-weight: bold;
+            }
+        }
+
+        &-close {
+            button {
+                width: var.$popupIconSize;
+                min-width: var.$popupIconSize;
+                height: var.$popupIconSize;
+                margin: var.$margin;
             }
         }
     }
