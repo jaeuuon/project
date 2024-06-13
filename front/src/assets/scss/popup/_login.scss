@@ -1,10 +1,16 @@
 @use '../variables' as var;
 
 #form-login {
-    #div-login-submit {
-        button {
-            width: 100%;
-            margin-top: calc((var.$margin * 2) + (var.$padding * 2));
+    #div-login {
+        &-alert {
+            margin-top: calc(var.$margin + var.$padding);
+        }
+
+        &-submit {
+            button {
+                width: 100%;
+                margin-top: calc((var.$margin * 2) + (var.$padding * 2));
+            }
         }
     }
 }

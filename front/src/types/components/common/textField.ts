@@ -5,5 +5,6 @@ export default interface TextField {
     isFullWidth?: boolean;
     autoComplete?: string;
     value?: string;
+    isError?: boolean;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };

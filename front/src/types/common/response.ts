@@ -1,11 +1,4 @@
-import { Union } from './union';
-
-export const status = {
-    SUCCESS: '성공',
-    ERROR: '실패'
-} as const;
-
-type Status = Union<typeof status>;
+import { StatusCode } from '../../enums/common/status';
 
 export interface Success {
     code?: string;
@@ -26,7 +19,7 @@ export interface Error {
 export default interface Response {
     path: string;
     method: string;
-    status: Status;
+    status: StatusCode;
     data: Success;
     errors: Error[];
     timestamp: string;

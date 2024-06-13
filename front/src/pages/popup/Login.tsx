@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
-import { Button } from '@mui/material';
+import { Button, Alert } from '@mui/material';
 
 import TextField from '../../components/common/TextField';
 
@@ -8,12 +8,19 @@ import { postLogin } from '../../apis/pages/popup/login';
 import LoginParams from '../../types/data/request/pages/popup/login';
 
 import Response from '../../types/common/response';
-import { status } from '../../types/common/response';
+import { statusCode } from '../../enums/common/status';
+import { emailCodes, passwordCodes } from '../../enums/errors/pages/popup/login';
 
-import { getOnChange } from '../../common/utils';
+import { getOnChange, includes } from '../../common/utils';
 
 const Login = () => {
+    const email = useRef<HTMLInputElement>(null);
+    const password = useRef<HTMLInputElement>(null);
+
     const [user, setUser] = useState<LoginParams>({});
+
+    const [code, setCode] = useState<string>();
+    const [message, setMessage] = useState<string>();
 
     const onChange = getOnChange(user, setUser);
 
@@ -22,20 +29,35 @@ const Login = () => {
 
         const response: Response = await postLogin(user);
 
-        if (response.status === status.SUCCESS) {
+        if (response.status === statusCode.SUCCESS) {
             console.log("성공 : ", response);
         } else {
-            console.log("실패 : ", response);
+            const error = response.errors[0];
+            const code = error.code;
+
+            if (includes(emailCodes, code)) {
+                email.current?.focus();
+            } else if (includes(passwordCodes, code)) {
+                password.current?.focus();
+            }
+
+            setCode(code);
+            setMessage(error.message);
         }
     };
 
     return (
         <form id="form-login" onSubmit={onSubmit}>
             <div>
-                <TextField name="email" label="Email" isFullWidth={true} autoComplete="email" value={user.email} onChange={onChange} />
+                <TextField name="email" label="Email" isFullWidth={true} autoComplete="email" value={user.email} isError={includes(emailCodes, code)} ref={email} onChange={onChange} />
             </div>
             <div>
-                <TextField type="password" name="password" label="Password" isFullWidth={true} autoComplete="current-password" value={user.password} onChange={onChange} />
+                <TextField type="password" name="password" label="Password" isFullWidth={true} autoComplete="current-password" value={user.password} isError={includes(passwordCodes, code)} ref={password} onChange={onChange} />
+            </div>
+            <div id="div-login-alert">
+                {message &&
+                    <Alert severity="error">{message}</Alert>
+                }
             </div>
             <div id="div-login-submit">
                 <Button type="submit" variant="contained">Login</Button>

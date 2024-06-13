@@ -1,7 +1,8 @@
 import { Theme } from '@mui/material/styles';
 
+import { SearchElement } from '../types/common/utils';
 import Response from '../types/common/response';
-import { status, Success } from '../types/common/response';
+import { statusCode } from '../enums/common/status';
 
 export const isThemeLight = (theme: Theme) => {
     return theme.palette.mode === 'light';
@@ -9,6 +10,10 @@ export const isThemeLight = (theme: Theme) => {
 
 export const getCssClassByTheme = (theme: Theme) => {
     return isThemeLight(theme) ? 'mode-light' : 'mode-dark';
+};
+
+export const includes = <T extends string>(array: ReadonlyArray<T>, searchElement: SearchElement) => {
+    return array.some((item) => item === searchElement);
 };
 
 export const getTimestamp = () => {
@@ -58,7 +63,7 @@ export const getResponseError = (error: any) => {
         const response: Response = {
             path: process.env.REACT_APP_BASE_URL + error.config.url,
             method: error.config.method.toUpperCase(),
-            status: status.ERROR,
+            status: statusCode.ERROR,
             data: {
                 content: [],
                 elements: 0,
