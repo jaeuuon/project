@@ -1,10 +1,10 @@
 import axios from '../../';
 
-import LoginParams from '../../../types/data/request/pages/popup/login';
+import { Params } from '../../../types/apis/pages/popup/login';
 
 import { getResponseError } from '../../../common/utils';
 
-export const postLogin = async (params: LoginParams) => {
+export const postLogin = async (params: Params) => {
     try {
         const response = await axios.post('/security/authentication', params);
 

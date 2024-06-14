@@ -1,5 +1,14 @@
 import { StatusCode } from '../../enums/common/status';
 
+export default interface Response {
+    path: string;
+    method: string;
+    status: StatusCode;
+    data: Data;
+    errors: Error[];
+    timestamp: string;
+};
+
 export interface Data {
     code?: string;
     message?: string;
@@ -14,13 +23,4 @@ export interface Data {
 export interface Error {
     code: string;
     message: string;
-};
-
-export default interface Response {
-    path: string;
-    method: string;
-    status: StatusCode;
-    data: Data;
-    errors: Error[];
-    timestamp: string;
 };

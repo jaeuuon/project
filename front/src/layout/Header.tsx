@@ -5,13 +5,14 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Button, Tooltip } from '@mui/material';
 import { Login, LightModeOutlined, DarkModeOutlined } from '@mui/icons-material';
 
+import constant from '../common/constant';
+
+import HeaderType from '../types/layout/header';
+import { Detail } from '../types/common/menu';
+
 import Popup from './Popup';
 import LoginPopup from '../pages/popup/Login';
 
-import HeaderType from '../types/layout/header';
-import { Detail } from '../types/layout/menu';
-
-import constant from '../common/constant';
 import { isThemeLight, getCssClassByTheme } from '../common/utils';
 
 const Header = ({ setMode }: HeaderType) => {

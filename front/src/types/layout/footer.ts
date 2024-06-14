@@ -1,3 +1,9 @@
+export default interface Footer {
+    SKILL_BADGES: SkillBadge[]; 
+    THEME_COLOR: string;
+    CREATOR: Creator;
+};
+
 interface SkillBadge {
     SRC: string;
     ALT: string;
@@ -7,10 +13,4 @@ interface SkillBadge {
 interface Creator {
     URL: string;
     NAME: string;
-};
-
-export default interface Footer {
-    SKILL_BADGES: SkillBadge[]; 
-    THEME_COLOR: string;
-    CREATOR: Creator;
 };

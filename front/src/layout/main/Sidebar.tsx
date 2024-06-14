@@ -12,11 +12,11 @@ import {
 } from '@mui/material';
 import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
 
-import Modal from '../Modal';
-
-import { Detail, SubMenu } from '../../types/layout/menu';
-
 import constant from '../../common/constant';
+
+import { Detail, SubMenu } from '../../types/common/menu';
+
+import Modal from '../Modal';
 
 const Sidebar = () => {
     const location = useLocation();

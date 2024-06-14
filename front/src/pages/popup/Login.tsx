@@ -2,16 +2,16 @@ import { useRef, useState } from 'react';
 
 import { Button, Alert } from '@mui/material';
 
-import TextField from '../../components/common/TextField';
+import { statusCode } from '../../enums/common/status';
+import { emailCode, passwordCode } from '../../enums/errors/pages/popup/login';
+
+import { Params } from '../../types/apis/pages/popup/login';
+import Response from '../../types/common/response';
+import { CodeMessage } from '../../types/common/code';
 
 import { postLogin } from '../../apis/pages/popup/login';
-import LoginParams from '../../types/data/request/pages/popup/login';
 
-import Response from '../../types/common/response';
-import { statusCode } from '../../enums/common/status';
-
-import { CodeMessage } from '../../types/common/code';
-import { emailCode, passwordCode } from '../../enums/errors/pages/popup/login';
+import TextField from '../../components/common/TextField';
 
 import { getOnChange, includesCode } from '../../common/utils';
 
@@ -19,7 +19,7 @@ const Login = () => {
     const email = useRef<HTMLInputElement>(null);
     const password = useRef<HTMLInputElement>(null);
 
-    const [user, setUser] = useState<LoginParams>({});
+    const [user, setUser] = useState<Params>({});
 
     const [code, setCode] = useState<string>();
     const [message, setMessage] = useState<string>();
