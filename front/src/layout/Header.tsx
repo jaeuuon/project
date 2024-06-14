@@ -8,7 +8,7 @@ import { Login, LightModeOutlined, DarkModeOutlined } from '@mui/icons-material'
 import constant from '../common/constant';
 
 import type HeaderType from '../types/layout/header';
-import type { Detail } from '../types/common/menu';
+import type { Detail } from '../types/layout/menu';
 
 import Popup from './Popup';
 import LoginPopup from '../pages/popup/Login';

@@ -1,4 +1,4 @@
-import type Menu from './menu';
+import type Menu from '../layout/menu';
 import type Footer from '../layout/footer';
 
 export default interface Constant {

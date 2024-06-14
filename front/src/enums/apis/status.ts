@@ -1,4 +1,4 @@
-import type { Union } from './union';
+import type { Union } from '../union';
 
 export const statusCode = {
     SUCCESS: '성공',

@@ -2,18 +2,19 @@ import { useRef, useState } from 'react';
 
 import { Button, Alert } from '@mui/material';
 
-import { statusCode } from '../../enums/common/status';
-import { emailCode, passwordCode } from '../../enums/errors/pages/popup/login';
+import { statusCode } from '../../enums/apis/status';
+import { emailErrorCode, passwordErrorCode } from '../../enums/apis/pages/popup/login';
 
-import type { default as Content, Params } from '../../types/apis/pages/popup/login';
-import type Response from '../../types/common/response';
-import type { CodeMessage } from '../../types/common/code';
+import type { Params } from '../../types/apis/pages/popup/login';
+import type Response from '../../types/apis/response';
+import type { CodeMessage } from '../../types/apis/code';
+import type Payload from '../../types/pages/popup/login';
 
 import { postLogin } from '../../apis/pages/popup/login';
 
 import TextField from '../../components/common/TextField';
 
-import { getOnChange, snakeToCamel, includesCode } from '../../common/utils';
+import { getOnChange, getPayload, includesCode } from '../../common/utils';
 
 const Login = () => {
     const email = useRef<HTMLInputElement>(null);
@@ -33,22 +34,20 @@ const Login = () => {
             const response: Response = await postLogin(user);
 
             if (response.status === statusCode.SUCCESS) {
-                const content: Content = response.data.content[0];
+                const payload: Payload = getPayload(response.data.content[0])
 
-                var base64Url = content.access.split('.')[1];
-                var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-                var jsonPayload = decodeURIComponent(atob(base64).split('').map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+                console.log(payload);
 
-                console.log(snakeToCamel(JSON.parse(jsonPayload)));
-
-
+                /*
+                    User에 이름 및 역할 세팅.
+                */
             } else {
                 const error = response.errors[0];
                 const code = error.code;
 
-                if (includesCode(emailCode, code)) {
+                if (includesCode(emailErrorCode, code)) {
                     email.current?.focus();
-                } else if (includesCode(passwordCode, code)) {
+                } else if (includesCode(passwordErrorCode, code)) {
                     password.current?.focus();
                 }
 
@@ -60,15 +59,15 @@ const Login = () => {
 
     const validation = () => {
         if (!user.email) {
-            return error(email, emailCode.BLANK);
+            return error(email, emailErrorCode.BLANK);
         } else if (user.email.length < 4 || user.email.length > 100) {
-            return error(email, emailCode.SIZE);
+            return error(email, emailErrorCode.SIZE);
         } else if (!user.email.match(/^.+@.+$/)) {
-            return error(email, emailCode.FORMAT);
+            return error(email, emailErrorCode.FORMAT);
         } else if (!user.password) {
-            return error(password, passwordCode.BLANK);
+            return error(password, passwordErrorCode.BLANK);
         } else if (user.password.length < 4 || user.password.length > 50) {
-            return error(password, passwordCode.SIZE);
+            return error(password, passwordErrorCode.SIZE);
         }
 
         return true;
@@ -86,10 +85,10 @@ const Login = () => {
     return (
         <form id="form-login" onSubmit={onSubmit}>
             <div>
-                <TextField name="email" label="Email" isFullWidth={true} autoComplete="email" value={user.email} isError={includesCode(emailCode, code)} ref={email} onChange={onChange} />
+                <TextField name="email" label="Email" isFullWidth={true} autoComplete="email" value={user.email} isError={includesCode(emailErrorCode, code)} ref={email} onChange={onChange} />
             </div>
             <div>
-                <TextField type="password" name="password" label="Password" isFullWidth={true} autoComplete="current-password" value={user.password} isError={includesCode(passwordCode, code)} ref={password} onChange={onChange} />
+                <TextField type="password" name="password" label="Password" isFullWidth={true} autoComplete="current-password" value={user.password} isError={includesCode(passwordErrorCode, code)} ref={password} onChange={onChange} />
             </div>
             <div id="div-login-alert">
                 {message &&

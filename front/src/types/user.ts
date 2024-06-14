@@ -1,4 +1,10 @@
 export default interface User {
-    email: string;
-    password: string;
+    id: number;
+    name: string;
+    authorities: authority[];
+};
+
+export interface authority {
+    code: string;
+    value: string;
 };

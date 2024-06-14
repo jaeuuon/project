@@ -1,4 +1,4 @@
-import type { StatusCode } from '../../enums/common/status';
+import type { StatusCode } from '../../enums/apis/status';
 
 export default interface Response {
     path: string;
