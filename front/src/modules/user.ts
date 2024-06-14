@@ -1,21 +1,19 @@
 import type User from '../types/user';
 
-const initState: User = {
-    id: 0,
-    name: '',
-    authorities: []
-};
+const initState: User = {};
 
-const SET = 'user/SET' as const;
+const action = {
+    SET: 'user/SET'
+} as const;
 
-export const set = (user: User) => ({ type: SET, payload: user });
+export const set = (user: User) => ({ type: action.SET, payload: user });
 
-type Action = 
+type Action =
     | ReturnType<typeof set>;
 
 const user = (state: User = initState, { type, payload }: Action) => {
     switch (type) {
-        case SET:
+        case action.SET:
             return { ...state, ...payload };
         default:
             return state;

@@ -1,7 +1,7 @@
 export default interface User {
-    id: number;
-    name: string;
-    authorities: authority[];
+    id?: number;
+    name?: string;
+    authorities?: authority[];
 };
 
 export interface authority {
