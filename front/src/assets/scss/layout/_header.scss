@@ -3,10 +3,8 @@
 
 #div-header {
     z-index: var.$modalIndex;
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
     height: var.$headerHeight;
     border-bottom: var.$border;
     backdrop-filter: var.$backdropFilter;

@@ -5,8 +5,6 @@
 @use './main/content';
 
 #div-main {
-    margin-top: var.$headerHeight;
-
     #grid-main {
         max-width: var.$widthXl;
         margin: auto;
