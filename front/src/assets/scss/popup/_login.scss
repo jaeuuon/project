@@ -3,11 +3,32 @@
 #form-login {
     #div-login {
         &-alert {
-            margin-top: calc(var.$margin + var.$padding);
-            word-break: keep-all;
+            .MuiAlert {
+                &-root {
+                    margin-top: 10px;
+                }
 
-            p {
-                margin: 0;
+                &-icon {
+                    align-items: center;
+                }
+
+                &-message {
+                    width: 100%;
+
+                    p {
+                        margin: 0;
+                        text-align: center;
+
+                        &#p-message {
+                            word-break: keep-all;
+                        }
+
+                        &#p-code {
+                            margin-top: 5px;
+                            word-break: break-all;
+                        }
+                    }
+                }
             }
         }
 

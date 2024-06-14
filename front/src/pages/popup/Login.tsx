@@ -5,7 +5,7 @@ import { Button, Alert } from '@mui/material';
 import { statusCode } from '../../enums/common/status';
 import { emailCode, passwordCode } from '../../enums/errors/pages/popup/login';
 
-import type { Params } from '../../types/apis/pages/popup/login';
+import type { default as Content, Params } from '../../types/apis/pages/popup/login';
 import type Response from '../../types/common/response';
 import type { CodeMessage } from '../../types/common/code';
 
@@ -13,7 +13,7 @@ import { postLogin } from '../../apis/pages/popup/login';
 
 import TextField from '../../components/common/TextField';
 
-import { getOnChange, includesCode } from '../../common/utils';
+import { getOnChange, snakeToCamel, includesCode } from '../../common/utils';
 
 const Login = () => {
     const email = useRef<HTMLInputElement>(null);
@@ -35,23 +35,12 @@ const Login = () => {
             if (response.status === statusCode.SUCCESS) {
                 const content: Content = response.data.content[0];
 
-
-
-
-
-
-
-
-
-
-
-
-
                 var base64Url = content.access.split('.')[1];
                 var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
                 var jsonPayload = decodeURIComponent(atob(base64).split('').map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
 
-                console.log(jsonPayload);
+                console.log(snakeToCamel(JSON.parse(jsonPayload)));
+
 
             } else {
                 const error = response.errors[0];
@@ -105,7 +94,8 @@ const Login = () => {
             <div id="div-login-alert">
                 {message &&
                     <Alert severity="error">
-                        <p>{message}</p>
+                        <p id="p-message">{message}</p>
+                        <p id="p-code">[{code}]</p>
                     </Alert>
                 }
             </div>

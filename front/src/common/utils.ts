@@ -56,11 +56,23 @@ export const getOnChange = (state: Input, setState: React.Dispatch<React.SetStat
     };
 };
 
+export const snakeToCamel = (object: object): any => {
+    if (Array.isArray(object)) {
+        return object.map((value) => snakeToCamel(value));
+    } else if (object !== null && typeof object === 'object') {
+        return Object.entries(object).reduce((accumulator, [key, value]) => (
+            { ...accumulator, [key.replace(/_(.)/g, (_match, string) => string.toUpperCase())]: snakeToCamel(value) }
+        ), {});
+    }
+
+    return object;
+};
+
 export const getResponseError = (error: any) => {
     const data = error.response.data;
 
     if (typeof data === 'object') {
-        return data;
+        return snakeToCamel(data);
     } else {
         const response: Response = {
             path: process.env.REACT_APP_BASE_URL + error.config.url,
@@ -69,10 +81,10 @@ export const getResponseError = (error: any) => {
             data: {
                 content: [],
                 elements: 0,
-                total_elements: 0,
+                totalElements: 0,
                 size: 0,
                 page: 1,
-                total_pages: 1
+                totalPages: 1
             },
             errors: [{
                 code: 'ERROR_FRT_INTERNAL_SERVER_ERROR',
