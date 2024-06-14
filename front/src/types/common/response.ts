@@ -1,4 +1,4 @@
-import { StatusCode } from '../../enums/common/status';
+import type { StatusCode } from '../../enums/common/status';
 
 export default interface Response {
     path: string;
@@ -14,10 +14,10 @@ export interface Data {
     message?: string;
     content: any[];
     elements: number;
-    total_elements: number;
+    totalElements: number;
     size: number;
     page: number;
-    total_pages: number;
+    totalPages: number;
 };
 
 export interface Error {

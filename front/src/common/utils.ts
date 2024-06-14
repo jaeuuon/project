@@ -1,11 +1,11 @@
-import { Theme } from '@mui/material/styles';
+import type { Theme } from '@mui/material/styles';
 
 import { statusCode } from '../enums/common/status';
 
-import Code from '../types/common/code';
-import { SearchCode } from '../types/common/utils';
-import Input from '../types/common/input';
-import Response from '../types/common/response';
+import type Code from '../types/common/code';
+import type { SearchCode } from '../types/common/utils';
+import type Input from '../types/common/input';
+import type Response from '../types/common/response';
 
 export const isThemeLight = (theme: Theme) => {
     return theme.palette.mode === 'light';

@@ -1,5 +1,5 @@
-import Menu from './menu';
-import Footer from '../layout/footer';
+import type Menu from './menu';
+import type Footer from '../layout/footer';
 
 export default interface Constant {
     MENU: Menu;

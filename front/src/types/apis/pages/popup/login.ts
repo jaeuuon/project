@@ -1,4 +1,4 @@
-import Input from "../../../common/input";
+import type Input from "../../../common/input";
 
 export interface Params extends Input {
     email?: string;

@@ -1,6 +1,6 @@
 import axios from '../../';
 
-import { Params } from '../../../types/apis/pages/popup/login';
+import type { Params } from '../../../types/apis/pages/popup/login';
 
 import { getResponseError } from '../../../common/utils';
 

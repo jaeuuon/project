@@ -2,7 +2,7 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Button, Tooltip } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
-import PopupType from '../types/layout/popup';
+import type PopupType from '../types/layout/popup';
 
 import Modal from './Modal';
 

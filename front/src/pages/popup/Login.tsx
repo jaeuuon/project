@@ -5,9 +5,9 @@ import { Button, Alert } from '@mui/material';
 import { statusCode } from '../../enums/common/status';
 import { emailCode, passwordCode } from '../../enums/errors/pages/popup/login';
 
-import Content, { Params } from '../../types/apis/pages/popup/login';
-import Response from '../../types/common/response';
-import { CodeMessage } from '../../types/common/code';
+import type { Params } from '../../types/apis/pages/popup/login';
+import type Response from '../../types/common/response';
+import type { CodeMessage } from '../../types/common/code';
 
 import { postLogin } from '../../apis/pages/popup/login';
 
@@ -37,6 +37,21 @@ const Login = () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+                var base64Url = content.access.split('.')[1];
+                var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                var jsonPayload = decodeURIComponent(atob(base64).split('').map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+
+                console.log(jsonPayload);
 
             } else {
                 const error = response.errors[0];
