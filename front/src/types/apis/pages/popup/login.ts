@@ -5,7 +5,7 @@ export interface Params extends Input {
     password?: string;
 };
 
-export default interface Data {
+export default interface Content {
     access: string;
     refresh: string;
 };

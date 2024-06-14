@@ -5,7 +5,7 @@ import { Button, Alert } from '@mui/material';
 import { statusCode } from '../../enums/common/status';
 import { emailCode, passwordCode } from '../../enums/errors/pages/popup/login';
 
-import { Params } from '../../types/apis/pages/popup/login';
+import Content, { Params } from '../../types/apis/pages/popup/login';
 import Response from '../../types/common/response';
 import { CodeMessage } from '../../types/common/code';
 
@@ -33,7 +33,11 @@ const Login = () => {
             const response: Response = await postLogin(user);
 
             if (response.status === statusCode.SUCCESS) {
-                console.log("성공 : ", response);
+                const content: Content = response.data.content[0];
+
+
+
+
             } else {
                 const error = response.errors[0];
                 const code = error.code;
