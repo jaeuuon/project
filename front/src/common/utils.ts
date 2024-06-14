@@ -40,6 +40,18 @@ export const includesCode = (code: Code, searchCode: SearchCode) => {
     return Object.values(code).some((code) => code.CODE === searchCode);
 };
 
+export const camelToSnake = (object: object): any => {
+    if (Array.isArray(object)) {
+        return object.map((value) => camelToSnake(value));
+    } else if (object !== null && typeof object === 'object') {
+        return Object.entries(object).reduce((accumulator, [key, value]) => (
+            { ...accumulator, [key.replace(/([A-Z])/g, (_match, string) => '_' + string.toLowerCase())]: camelToSnake(value) }
+        ), {});
+    }
+
+    return object;
+};
+
 export const snakeToCamel = (object: object): any => {
     if (Array.isArray(object)) {
         return object.map((value) => snakeToCamel(value));

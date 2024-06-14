@@ -1,3 +1,5 @@
+@use './variables' as var;
+
 @use './layout/modal';
 @use './layout/header';
 @use './layout/main';
@@ -5,3 +7,7 @@
 @use './layout/popup';
 
 @use './popup/login';
+
+body {
+    min-width: var.$widthMin;
+}

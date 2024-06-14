@@ -6,15 +6,18 @@
     top: 50%;
     left: 50%;
     max-width: calc(100% - ((var.$margin + var.$padding) * 2));
+    max-height: calc(100% - ((var.$margin + var.$padding) * 2));
     border: var.$border;
     border-radius: var.$borderRadius;
     transform: translate(-50%, -50%);
+    overflow: auto;
 
     #root > & {
         z-index: calc(var.$modalIndex + 1);
     }
 
     #grid-popup-header {
+        min-width: calc(var.$widthMin - ((var.$margin + var.$padding) * 2));
         padding: var.$padding;
         border-bottom: var.$border;
 
@@ -51,6 +54,7 @@
     }
 
     &-content {
+        min-width: calc(var.$widthMin - ((var.$margin + var.$padding) * 2));
         padding: calc(var.$padding * 2);
 
         & > div {
