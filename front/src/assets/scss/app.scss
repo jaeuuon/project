@@ -10,4 +10,8 @@
 
 body {
     min-width: var.$widthMin;
+
+    .MuiButton-root {
+        font-weight: bold;
+    }
 }

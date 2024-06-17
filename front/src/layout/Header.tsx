@@ -30,6 +30,8 @@ const Header = ({ setMode }: HeaderType) => {
     const [isTop, setTop] = useState(true);
     const [isVisibleLogin, setVisibleLogin] = useState(false);
 
+    useEffect(() => setVisibleLogin(false), [user.id]);
+
     useEffect(() => {
         const onScroll = () => setTop(window.scrollY === 0 ? true : false);
 
@@ -57,9 +59,11 @@ const Header = ({ setMode }: HeaderType) => {
                     <Grid id="grid-header-user-and-mode" item xs="auto">
                         {user.id
                             ? <>
-                                <Avatar>
-                                    <Person />
-                                </Avatar>
+                                <Tooltip title={user.name} placement="bottom" arrow>
+                                    <Avatar>
+                                        <Person />
+                                    </Avatar>
+                                </Tooltip>
                                 <Tooltip title="Logout" placement="bottom" arrow>
                                     <Button id="button-logout" variant="outlined">
                                         <Logout />
