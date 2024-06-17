@@ -3,7 +3,7 @@ import type { Theme } from '@mui/material/styles';
 import { statusCode } from '../enums/apis/status';
 
 import type Input from '../types/components/input';
-import type Content from '../types/apis/pages/popup/login';
+import type Payload from '../types/pages/popup/login';
 import type Code from '../types/apis/code';
 import type { SearchCode } from '../types/common/utils';
 import type Response from '../types/apis/response';
@@ -28,8 +28,8 @@ export const getOnChange = (state: Input, setState: React.Dispatch<React.SetStat
     };
 };
 
-export const getPayload = (content: Content) => {
-    const base64Url = content.access.split('.')[1];
+export const getPayload = (access: string): Payload => {
+    const base64Url = access.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     const jsonPayload = decodeURIComponent(atob(base64).split('').map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
 
@@ -64,7 +64,7 @@ export const snakeToCamel = (object: object): any => {
     return object;
 };
 
-export const getResponseError = (error: any) => {
+export const getResponseError = (error: any): Response => {
     const data = error.response.data;
 
     if (typeof data === 'object') {

@@ -5,7 +5,7 @@ import { Button, Alert } from '@mui/material';
 import { statusCode } from '../../enums/apis/status';
 import { emailErrorCode, passwordErrorCode } from '../../enums/apis/pages/popup/login';
 
-import type { Params } from '../../types/apis/pages/popup/login';
+import type { Params, default as Content } from '../../types/apis/pages/popup/login';
 import type Response from '../../types/apis/response';
 import type { CodeMessage } from '../../types/apis/code';
 import type Payload from '../../types/pages/popup/login';
@@ -34,7 +34,8 @@ const Login = () => {
             const response: Response = await postLogin(user);
 
             if (response.status === statusCode.SUCCESS) {
-                const payload: Payload = getPayload(response.data.content[0])
+                const content: Content = response.data.content[0];
+                const payload: Payload = getPayload(content.access);
 
                 console.log(payload);
 
