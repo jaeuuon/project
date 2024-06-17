@@ -3,7 +3,7 @@ import {
     CampaignOutlined,
     InfoOutlined,
     ContactSupportOutlined,
-    CodeOutlined
+    GitHub
 } from '@mui/icons-material';
 
 import type Constant from '../types/common/constant';
@@ -33,7 +33,7 @@ const constant: Constant = {
                     path: '/information/contact'
                 },
                 {
-                    icon: <CodeOutlined />,
+                    icon: <GitHub />,
                     label: 'GitHub',
                     path: 'https://github.com/jaeuuon/project',
                     isOpen: true

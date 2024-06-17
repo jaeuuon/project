@@ -1,10 +1,13 @@
 import type { Theme } from '@mui/material/styles';
 
-import { statusCode } from '../enums/apis/status';
+import { roles as userRoles, type Roles as UserRoles } from '../enums/user';
+import { status } from '../enums/apis/status';
 
 import type Input from '../types/components/input';
 import type Payload from '../types/pages/popup/login';
-import type Code from '../types/apis/code';
+import type CodeValue from '../types/codeValue';
+import type User from '../types/user';
+import type CodeMessage from '../types/apis/codeMessage';
 import type { SearchCode } from '../types/common/utils';
 import type Response from '../types/apis/response';
 
@@ -36,8 +39,33 @@ export const getPayload = (access: string): Payload => {
     return snakeToCamel(JSON.parse(jsonPayload));
 };
 
-export const includesCode = (code: Code, searchCode: SearchCode) => {
-    return Object.values(code).some((code) => code.CODE === searchCode);
+export const getUserByPayload = (payload: Payload): User => {
+    const authorities = payload.authorities.split(',');
+    const authorityValues = payload.authorityValues.split(',');
+
+    const roles: CodeValue<UserRoles>[] = [];
+
+    authorities.forEach((authority, index) => {
+        userRoles.some((userRole) => {
+            if (userRole === authority) {
+                roles.push({ CODE: userRole, VALUE: authorityValues[index] });
+
+                return true;
+            } else {
+                return false;
+            }
+        });
+    });
+
+    return {
+        id: payload.id,
+        name: payload.name,
+        roles: roles
+    };
+};
+
+export const includesCode = (codeMessage: CodeMessage, searchCode: SearchCode) => {
+    return Object.values(codeMessage).some((codeMessage) => codeMessage.CODE === searchCode);
 };
 
 export const camelToSnake = (object: object): any => {
@@ -73,7 +101,7 @@ export const getResponseError = (error: any): Response => {
         const response: Response = {
             path: process.env.REACT_APP_BASE_URL + error.config.url,
             method: error.config.method.toUpperCase(),
-            status: statusCode.ERROR,
+            status: status.ERROR,
             data: {
                 content: [],
                 elements: 0,

@@ -1,6 +1,10 @@
 import type User from '../types/user';
 
-const initState: User = {};
+const initState: User = {
+    id: undefined,
+    name: undefined,
+    roles: []
+};
 
 const action = {
     SET: 'user/SET'

@@ -1,10 +1,12 @@
-export default interface User {
-    id?: number;
-    name?: string;
-    authorities?: authority[];
-};
+import type { Roles } from '../enums/user';
 
-export interface authority {
-    code: string;
-    value: string;
+import type CodeValue from './codeValue';
+
+type Id = number | undefined;
+type Name = string | undefined;
+
+export default interface User {
+    id: Id;
+    name: Name;
+    roles: CodeValue<Roles>[];
 };

@@ -40,9 +40,20 @@
         }
 
         &-user-and-mode {
-            @include mixin.div-default-header;
+            @include mixin.div-default-header {
+                display: flex;
+            }
 
-            button:last-child {
+            .MuiAvatar {
+                &-root {
+                    width: var.$headerInnerHeight;
+                    height: var.$headerInnerHeight;
+                    margin: var.$margin;
+                }
+            }
+
+            #button-logout,
+            #button-set-mode {
                 width: var.$headerInnerHeight;
                 min-width: var.$headerInnerHeight;
             }

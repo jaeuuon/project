@@ -1,14 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useSelector } from 'react-redux';
+
 import { useTheme } from '@mui/material/styles';
-import { Grid, Button, Tooltip } from '@mui/material';
-import { Login, LightModeOutlined, DarkModeOutlined } from '@mui/icons-material';
+import { Grid, Button, Avatar, Tooltip } from '@mui/material';
+import { Person, Logout, Login, LightModeOutlined, DarkModeOutlined } from '@mui/icons-material';
 
 import constant from '../common/constant';
 
 import type HeaderType from '../types/layout/header';
 import type { Detail } from '../types/layout/menu';
+
+import { RootState } from '../modules';
 
 import Popup from './Popup';
 import LoginPopup from '../pages/popup/Login';
@@ -17,6 +21,8 @@ import { isThemeLight, getCssClassByTheme } from '../common/utils';
 
 const Header = ({ setMode }: HeaderType) => {
     const navigate = useNavigate();
+
+    const user = useSelector((state: RootState) => state.user);
 
     const theme = useTheme();
     const isLight = isThemeLight(theme);
@@ -49,11 +55,23 @@ const Header = ({ setMode }: HeaderType) => {
                         })}
                     </Grid>
                     <Grid id="grid-header-user-and-mode" item xs="auto">
-                        <Button variant="outlined" startIcon={<Login />} onClick={() => setVisibleLogin(true)}>
-                            <span className="span-button-label">Login</span>
-                        </Button>
+                        {user.id
+                            ? <>
+                                <Avatar>
+                                    <Person />
+                                </Avatar>
+                                <Tooltip title="Logout" placement="bottom" arrow>
+                                    <Button id="button-logout" variant="outlined">
+                                        <Logout />
+                                    </Button>
+                                </Tooltip>
+                            </>
+                            : <Button variant="outlined" startIcon={<Login />} onClick={() => setVisibleLogin(true)}>
+                                <span className="span-button-label">Login</span>
+                            </Button>
+                        }
                         <Tooltip title="Light / Dark" placement="bottom-end" arrow>
-                            <Button variant="outlined" onClick={() => setMode(!isLight ? 'light' : 'dark')}>
+                            <Button id="button-set-mode" variant="outlined" onClick={() => setMode(!isLight ? 'light' : 'dark')}>
                                 {isLight ? <LightModeOutlined /> : <DarkModeOutlined />}
                             </Button>
                         </Tooltip>
