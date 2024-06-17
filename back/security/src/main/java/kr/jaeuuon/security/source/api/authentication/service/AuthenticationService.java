@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import kr.jaeuuon.common.basic.source.code.impl.AuthorityCode;
 import kr.jaeuuon.common.basic.source.exception.CommonException;
 import kr.jaeuuon.common.basic.source.message.enumeration.impl.MessageImpl;
+import kr.jaeuuon.common.jwt.properties.JwtProperties;
 import kr.jaeuuon.common.jwt.source.message.enumeration.impl.JwtMessageImpl;
 import kr.jaeuuon.common.jwt.source.provider.JwtProvider;
 import kr.jaeuuon.common.web.source.annotation.PublishEvent;
@@ -24,6 +25,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.util.Date;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,6 +39,8 @@ public class AuthenticationService {
 
     private final JwtProvider jwtProvider;
 
+    private final JwtProperties jwtProperties;
+
     @PublishEvent(event = AuthenticationEvent.class, isThrowing = true)
     public UserDetailsImpl getUserDetailsImpl(AuthenticationDTO authenticationDTO) {
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(authenticationDTO.getEmail(), authenticationDTO.getPassword());
@@ -49,8 +53,10 @@ public class AuthenticationService {
         String authorities = userDetailsImpl.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.joining(","));
         String authorityValues = userDetailsImpl.getAuthorities().stream().map(GrantedAuthority::getAuthority).map(AuthorityCode::findByStringCode).map(AuthorityCode::getValue).collect(Collectors.joining(","));
 
-        String jwtAccess = jwtProvider.createAccess(userDetailsImpl.getId(), userDetailsImpl.getName(), authorities, authorityValues);
-        String jwtRefresh = jwtProvider.createRefresh();
+        Date expiration = new Date(System.currentTimeMillis() + (jwtProperties.getExpirationMinutes() * 60 * 1000));
+
+        String jwtAccess = jwtProvider.createAccess(userDetailsImpl.getId(), userDetailsImpl.getEmail(), userDetailsImpl.getName(), authorities, authorityValues, expiration);
+        String jwtRefresh = jwtProvider.createRefresh(expiration);
 
         jwtService.add(userDetailsImpl.getId(), jwtRefresh);
 

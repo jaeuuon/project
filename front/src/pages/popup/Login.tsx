@@ -102,7 +102,9 @@ const Login = () => {
                 }
             </div>
             <div id="div-login-submit">
-                <Button type="submit" variant="contained">Login</Button>
+                <Button type="submit" variant="contained">
+                    <span>Login</span>
+                </Button>
             </div>
         </form>
     );

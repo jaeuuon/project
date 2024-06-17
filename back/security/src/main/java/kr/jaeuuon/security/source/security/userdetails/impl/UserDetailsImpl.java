@@ -22,6 +22,9 @@ public class UserDetailsImpl implements UserDetails {
     @Getter
     private long id;
 
+    @Getter
+    private String email;
+
     private String password;
 
     @Getter
@@ -37,8 +40,9 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     @QueryProjection
-    public UserDetailsImpl(long id, String password, String name, Set<Authority> authorities, StatusCode statusCode) {
+    public UserDetailsImpl(long id, String email, String password, String name, Set<Authority> authorities, StatusCode statusCode) {
         this.id = id;
+        this.email = email;
         this.password = password;
         this.name = name;
         this.authorities = authorities.stream().filter(authority -> authority.getCode() != null).map(authority -> new SimpleGrantedAuthority(authority.getCode().name())).collect(Collectors.toSet());

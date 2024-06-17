@@ -14,4 +14,18 @@ body {
     .MuiButton-root {
         font-weight: bold;
     }
+
+    .MuiTooltip-tooltip {
+        padding: var.$padding calc(var.$padding * 2);
+
+        .p-tooltip {
+            & {
+                margin: 0;
+                text-align: center;
+            }
+            &:not(:first-child) {
+                margin-top: calc(var.$margin / 2);
+            }
+        }
+    }
 }

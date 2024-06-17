@@ -17,22 +17,22 @@ public class JwtProvider {
 
     private final JwtProperties jwtProperties;
 
-    public String createAccess(long id, String name, String authorities, String authorityValues) {
-        return create(id, name, authorities, authorityValues);
+    public String createAccess(long id, String email, String name, String authorities, String authorityValues, Date expiration) {
+        return create(id, email, name, authorities, authorityValues, expiration);
     }
 
-    public String createRefresh() {
-        return create(null, null, null, null);
+    public String createRefresh(Date expiration) {
+        return create(null, null, null, null, null, expiration);
     }
 
-    private String create(Long id, String name, String authorities, String authorityValues) {
+    private String create(Long id, String email, String name, String authorities, String authorityValues, Date expiration) {
         JwtBuilder jwt = Jwts.builder();
 
-        if (authorities != null) {
-            jwt.claim(JwtConstant.ID_KEY, id).claim(JwtConstant.NAME_KEY, name).claim(JwtConstant.AUTHORITIES_KEY, authorities).claim(JwtConstant.AUTHORITY_VALUES_KEY, authorityValues);
+        if (id != null) {
+            jwt.claim(JwtConstant.ID_KEY, id).claim(JwtConstant.EMAIL_KEY, email).claim(JwtConstant.NAME_KEY, name).claim(JwtConstant.AUTHORITIES_KEY, authorities).claim(JwtConstant.AUTHORITY_VALUES_KEY, authorityValues);
         }
 
-        jwt.setExpiration(new Date(System.currentTimeMillis() + (jwtProperties.getExpirationMinutes() * 60 * 1000)));
+        jwt.setExpiration(expiration);
 
         return jwt.signWith(jwtProperties.getKey(), SignatureAlgorithm.HS256).compact();
     }

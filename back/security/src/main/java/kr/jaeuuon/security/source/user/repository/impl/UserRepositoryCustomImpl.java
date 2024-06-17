@@ -39,7 +39,7 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom {
         Map<Long, UserDetailsImpl> result = jpaQueryFactory.from(user)
                 .leftJoin(user.authorities, userAuthority).on(userAuthority.statusCode.eq(StatusCode.ACTIVATED))
                 .where(equalsIdOrEmail(id, email))
-                .transform(GroupBy.groupBy(user.id).as(new QUserDetailsImpl(user.id, user.password, user.name, GroupBy.set(new QUserDetailsImpl_Authority(userAuthority.authorityCode)), user.statusCode)));
+                .transform(GroupBy.groupBy(user.id).as(new QUserDetailsImpl(user.id, user.email, user.password, user.name, GroupBy.set(new QUserDetailsImpl_Authority(userAuthority.authorityCode)), user.statusCode)));
 
         return result.values().stream().findAny();
     }

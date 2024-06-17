@@ -45,8 +45,8 @@ export const getUserByPayload = (payload: Payload): User => {
 
     const roles: CodeValue<UserRoles>[] = [];
 
-    authorities.forEach((authority, index) => {
-        userRoles.some((userRole) => {
+    userRoles.forEach((userRole) => {
+        authorities.some((authority, index) => {
             if (userRole === authority) {
                 roles.push({ CODE: userRole, VALUE: authorityValues[index] });
 
@@ -59,6 +59,7 @@ export const getUserByPayload = (payload: Payload): User => {
 
     return {
         id: payload.id,
+        email: payload.email,
         name: payload.name,
         roles: roles
     };

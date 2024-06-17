@@ -2,6 +2,7 @@ import type User from '../types/user';
 
 const initState: User = {
     id: undefined,
+    email: undefined,
     name: undefined,
     roles: []
 };

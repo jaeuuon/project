@@ -59,7 +59,10 @@ const Header = ({ setMode }: HeaderType) => {
                     <Grid id="grid-header-user-and-mode" item xs="auto">
                         {user.id
                             ? <>
-                                <Tooltip title={user.name} placement="bottom" arrow>
+                                <Tooltip title={<>
+                                    <p className="p-tooltip">{user.name} ({user.roles[0].VALUE})</p>
+                                    <p className="p-tooltip">{user.email}</p>
+                                </>} placement="bottom" arrow>
                                     <Avatar>
                                         <Person />
                                     </Avatar>
