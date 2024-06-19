@@ -30,8 +30,6 @@ const Header = ({ setMode }: HeaderType) => {
     const [isTop, setTop] = useState(true);
     const [isVisibleLogin, setVisibleLogin] = useState(false);
 
-    useEffect(() => setVisibleLogin(false), [user.id]);
-
     useEffect(() => {
         const onScroll = () => setTop(window.scrollY === 0 ? true : false);
 
@@ -85,7 +83,7 @@ const Header = ({ setMode }: HeaderType) => {
                     </Grid>
                 </Grid>
             </div>
-            <Popup isVisible={isVisibleLogin} setVisible={setVisibleLogin} width={400} icon={<Login />} label="Login" content={<LoginPopup />} />
+            <Popup isVisible={isVisibleLogin} setVisible={setVisibleLogin} width={400} icon={<Login />} label="Login" content={<LoginPopup setVisible={setVisibleLogin} />} />
         </>
     );
 };

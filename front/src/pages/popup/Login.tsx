@@ -7,6 +7,7 @@ import { Button, Alert } from '@mui/material';
 import { status } from '../../enums/apis/status';
 import { emailError, passwordError } from '../../enums/apis/pages/popup/login';
 
+import type LoginType from '../../types/pages/popup/login';
 import type { Params, default as Content } from '../../types/apis/pages/popup/login';
 import type { Detail } from '../../types/apis/codeMessage';
 
@@ -18,7 +19,7 @@ import TextField from '../../components/common/TextField';
 
 import { getOnChange, getPayload, getUserByPayload, includesCode } from '../../common/utils';
 
-const Login = () => {
+const Login = ({ setVisible }: LoginType) => {
     const email = useRef<HTMLInputElement>(null);
     const password = useRef<HTMLInputElement>(null);
 
@@ -44,6 +45,7 @@ const Login = () => {
                 const user = getUserByPayload(payload);
 
                 dispatch(set(user));
+                setVisible(false);
             } else {
                 const error = response.errors[0];
                 const code = error.code;

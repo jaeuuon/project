@@ -4,7 +4,7 @@ import { roles as userRoles, type Roles as UserRoles } from '../enums/user';
 import { status } from '../enums/apis/status';
 
 import type Input from '../types/components/input';
-import type Payload from '../types/pages/popup/login';
+import type { Payload } from '../types/pages/popup/login';
 import type CodeValue from '../types/codeValue';
 import type User from '../types/user';
 import type CodeMessage from '../types/apis/codeMessage';
