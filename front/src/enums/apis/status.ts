@@ -1,4 +1,4 @@
-import type { Union } from '../union';
+import type { Union } from 'enums/union';
 
 export const status = {
     SUCCESS: '성공',

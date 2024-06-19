@@ -2,9 +2,9 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Button, Tooltip } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
-import type PopupType from '../types/layout/popup';
+import type PopupType from 'types/layout/popup';
 
-import Modal from './Modal';
+import Modal from 'layout/Modal';
 
 const Popup = ({
     isVisible, setVisible,

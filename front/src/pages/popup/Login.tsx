@@ -4,20 +4,20 @@ import { useDispatch } from 'react-redux';
 
 import { Button, Alert } from '@mui/material';
 
-import { status } from '../../enums/apis/status';
-import { emailError, passwordError } from '../../enums/apis/pages/popup/login';
+import { status } from 'enums/apis/status';
+import { emailError, passwordError } from 'enums/apis/pages/popup/login';
 
-import type LoginType from '../../types/pages/popup/login';
-import type { Params, default as Content } from '../../types/apis/pages/popup/login';
-import type { Detail } from '../../types/apis/codeMessage';
+import type LoginType from 'types/pages/popup/login';
+import type { Params, default as Content } from 'types/apis/pages/popup/login';
+import type { Detail } from 'types/apis/codeMessage';
 
-import { set } from '../../modules/user';
+import { set } from 'modules/user';
 
-import { postLogin } from '../../apis/pages/popup/login';
+import { postLogin } from 'apis/pages/popup/login';
 
-import TextField from '../../components/common/TextField';
+import TextField from 'components/common/TextField';
 
-import { getOnChange, getPayload, getUserByPayload, includesCode } from '../../common/utils';
+import { getOnChange, getPayload, getUserByPayload, includesCode } from 'common/utils';
 
 const Login = ({ setVisible }: LoginType) => {
     const email = useRef<HTMLInputElement>(null);

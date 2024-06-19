@@ -7,17 +7,17 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Button, Avatar, Tooltip } from '@mui/material';
 import { Person, Logout, Login, LightModeOutlined, DarkModeOutlined } from '@mui/icons-material';
 
-import constant from '../common/constant';
+import constant from 'common/constant';
 
-import type HeaderType from '../types/layout/header';
-import type { Detail } from '../types/layout/menu';
+import type HeaderType from 'types/layout/header';
+import type { Detail } from 'types/layout/menu';
 
-import { RootState } from '../modules';
+import { RootState } from 'modules';
 
-import Popup from './Popup';
-import LoginPopup from '../pages/popup/Login';
+import Popup from 'layout/Popup';
+import LoginPopup from 'pages/popup/Login';
 
-import { isThemeLight, getCssClassByTheme } from '../common/utils';
+import { isThemeLight, getCssClassByTheme } from 'common/utils';
 
 const Header = ({ setMode }: HeaderType) => {
     const navigate = useNavigate();

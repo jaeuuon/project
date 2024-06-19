@@ -1,9 +1,9 @@
-import axios from '../../';
+import axios from 'apis';
 
-import type { Params } from '../../../types/apis/pages/popup/login';
-import type Response from '../../../types/apis/response';
+import type { Params } from 'types/apis/pages/popup/login';
+import type Response from 'types/apis/response';
 
-import { camelToSnake, snakeToCamel, getResponseError } from '../../../common/utils';
+import { camelToSnake, snakeToCamel, getResponseError } from 'common/utils';
 
 export const postLogin = async (params: Params): Promise<Response> => {
     try {

@@ -6,7 +6,7 @@ import {
     GitHub
 } from '@mui/icons-material';
 
-import type Constant from '../types/common/constant';
+import type Constant from 'types/common/constant';
 
 const constant: Constant = {
     MENU: {

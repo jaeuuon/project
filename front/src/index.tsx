@@ -4,14 +4,15 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './modules';
+import rootReducer from 'modules';
 
-import App from './App';
+import App from 'App';
 
 import '@fontsource/roboto/400.css';
-import './assets/css/index.css';
 
-import reportWebVitals from './reportWebVitals';
+import 'assets/css/index.css';
+
+import reportWebVitals from 'reportWebVitals';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement

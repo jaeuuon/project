@@ -4,10 +4,10 @@ import { useTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-import Sidebar from './main/Sidebar';
-import Content from './main/Content';
+import Sidebar from 'layout/main/Sidebar';
+import Content from 'layout/main/Content';
 
-import { getCssClassByTheme } from '../common/utils';
+import { getCssClassByTheme } from 'common/utils';
 
 const Main = () => {
     const theme = useTheme();

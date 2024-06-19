@@ -1,6 +1,6 @@
 import { Grid, Tooltip } from '@mui/material';
 
-import constant from '../common/constant';
+import constant from 'common/constant';
 
 const Footer = () => {
     return (

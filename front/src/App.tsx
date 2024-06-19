@@ -4,11 +4,11 @@ import { PaletteMode } from '@mui/material/index';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
-import Header from './layout/Header';
-import Main from './layout/Main';
-import Footer from './layout/Footer';
+import Header from 'layout/Header';
+import Main from 'layout/Main';
+import Footer from 'layout/Footer';
 
-import './assets/scss/app.scss';
+import 'assets/scss/app.scss';
 
 const getMql = () => window.matchMedia("(prefers-color-scheme: light)");
 

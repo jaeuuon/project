@@ -1,15 +1,15 @@
 import type { Theme } from '@mui/material/styles';
 
-import { roles as userRoles, type Roles as UserRoles } from '../enums/user';
-import { status } from '../enums/apis/status';
+import { roles as userRoles, type Roles as UserRoles } from 'enums/user';
+import { status } from 'enums/apis/status';
 
-import type Input from '../types/components/input';
-import type { Payload } from '../types/pages/popup/login';
-import type CodeValue from '../types/codeValue';
-import type User from '../types/user';
-import type CodeMessage from '../types/apis/codeMessage';
-import type { SearchCode } from '../types/common/utils';
-import type Response from '../types/apis/response';
+import type Input from 'types/components/input';
+import type { Payload } from 'types/pages/popup/login';
+import type CodeValue from 'types/codeValue';
+import type User from 'types/user';
+import type CodeMessage from 'types/apis/codeMessage';
+import type { SearchCode } from 'types/common/utils';
+import type Response from 'types/apis/response';
 
 export const isThemeLight = (theme: Theme) => {
     return theme.palette.mode === 'light';

@@ -1,4 +1,4 @@
-import type Modal from './modal';
+import type Modal from 'types/layout/modal';
 
 export default interface Popup extends Modal {
     width: number;

@@ -1,6 +1,6 @@
-import type { Roles } from '../enums/user';
+import type { Roles } from 'enums/user';
 
-import type CodeValue from './codeValue';
+import type CodeValue from 'types/codeValue';
 
 type Id = number | undefined;
 type Email = string | undefined;
