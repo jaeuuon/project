@@ -69,6 +69,13 @@ const constant: Constant = {
             URL: 'https://github.com/jaeuuon',
             NAME: 'jaeuuon'
         }
+    },
+    AUTHORIZATION: {
+        TYPE: 'Bearer ',
+        SESSION_STORAGE: {
+            ACCESS: 'access',
+            REFRESH: 'refresh'
+        }
     }
 };
 
