@@ -29,10 +29,12 @@ redis-cli
 PONG
 ```
 
-## 4. requirepass
+## 4. bind & requirepass
 ```
 sudo vi /etc/redis/redis.conf
 
+...
+bind 0.0.0.0
 ...
 requirepass foobared
 ...
