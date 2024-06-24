@@ -1,5 +1,12 @@
 import { Grid, Tooltip } from '@mui/material';
 
+const creator =  {
+    url: 'https://github.com/jaeuuon',
+    name: 'jaeuuon'
+};
+
+const themeColor = '#1976d2';
+
 const skillBadges = [
     {
         src: 'https://img.shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=white',
@@ -21,14 +28,7 @@ const skillBadges = [
         alt: 'CSS3',
         url: 'https://www.w3.org/Style/CSS'
     }
-] as const;
-
-const themeColor = '#1976d2';
-
-const creator =  {
-    url: 'https://github.com/jaeuuon',
-    name: 'jaeuuon'
-} as const;
+];
 
 const Footer = () => {
     return (
