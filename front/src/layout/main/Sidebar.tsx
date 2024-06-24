@@ -24,7 +24,7 @@ const Sidebar = () => {
 
     const navigate = useNavigate();
 
-    const sidebar = useRef<HTMLInputElement>(null);
+    const sidebarRef = useRef<HTMLInputElement>(null);
 
     const theme = useTheme();
 
@@ -46,8 +46,8 @@ const Sidebar = () => {
 
     useEffect(() => {
         const onResize = () => {
-            if (sidebar?.current) {
-                const styles = window.getComputedStyle(sidebar.current);
+            if (sidebarRef?.current) {
+                const styles = window.getComputedStyle(sidebarRef.current);
 
                 if (styles.position !== 'fixed') {
                     setVisibleSidebar(false);
@@ -63,7 +63,7 @@ const Sidebar = () => {
     return (
         <>
             <Modal isVisible={isVisibleSidebar} setVisible={setVisibleSidebar} />
-            <Grid id="grid-main-sidebar" className={isVisibleSidebar ? 'visible' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper }} ref={sidebar}>
+            <Grid id="grid-main-sidebar" className={isVisibleSidebar ? 'visible' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper }} ref={sidebarRef}>
                 <div id="div-main-sidebar-content">
                     <List>
                         {menu?.subMenus.map((subMenu, index) => {

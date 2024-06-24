@@ -7,11 +7,11 @@ import { camelToSnake, snakeToCamel, getResponseError } from 'common/utils';
 
 export const postLogin = async (params: Params): Promise<Response> => {
     try {
-        const response = await axios.post('/security/authentication', camelToSnake(params));
+        const { data, headers } = await axios.post('/security/authentication', camelToSnake(params));
 
-        axios.defaults.headers.common.Authorization = response.headers.authorization;
+        axios.defaults.headers.common.Authorization = headers.authorization;
 
-        return snakeToCamel(response.data);
+        return snakeToCamel(data);
     } catch(error: any) {
         return getResponseError(error);
     }
@@ -19,11 +19,11 @@ export const postLogin = async (params: Params): Promise<Response> => {
 
 export const putReissuance = async (): Promise<Response> => {
     try {
-        const response = await axios.put('/security/authentication');
+        const { data, headers } = await axios.put('/security/authentication');
 
-        axios.defaults.headers.common.Authorization = response.headers.authorization;
+        axios.defaults.headers.common.Authorization = headers.authorization;
 
-        return snakeToCamel(response.data);
+        return snakeToCamel(data);
     } catch(error: any) {
         return getResponseError(error);
     }

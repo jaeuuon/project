@@ -41,7 +41,9 @@ public class JwtProvider {
         try {
             return Jwts.parserBuilder().setSigningKey(jwtProperties.getKey()).build().parseClaimsJws(jwt).getBody();
         } catch (Exception e) {
-            if (e instanceof ExpiredJwtException) {
+            if (e instanceof IllegalArgumentException) {
+                throw new CommonException(HttpStatus.UNAUTHORIZED);
+            } else if (e instanceof ExpiredJwtException) {
                 throw new CommonException(HttpStatus.UNAUTHORIZED, JwtMessageImpl.ERROR_JWT_EXPIRED);
             } else {
                 throw e;

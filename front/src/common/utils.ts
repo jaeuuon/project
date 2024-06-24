@@ -20,11 +20,11 @@ export const getCssClassByTheme = (theme: Theme) => {
 };
 
 export const getOnChange = (state: Input, setState: React.Dispatch<React.SetStateAction<Input>>) => {
-    return (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value !== '') {
-            setState({ ...state, [e.target.name]: e.target.value });
+    return ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+        if (target.value !== '') {
+            setState({ ...state, [target.name]: target.value });
         } else {
-            delete state[e.target.name];
+            delete state[target.name];
 
             setState({ ...state });
         }
@@ -39,9 +39,11 @@ export const getPayload = (access: string): Payload => {
     return snakeToCamel(JSON.parse(jsonPayload));
 };
 
-export const getUserByPayload = (payload: Payload): User => {
-    const authorities = payload.authorities.split(',');
-    const authorityValues = payload.authorityValues.split(',');
+export const getUserByPayload = ({
+    id, email, name, authorities: payloadAuthorities, authorityValues: payloadAuthorityValues, exp
+}: Payload): User => {
+    const authorities = payloadAuthorities.split(',');
+    const authorityValues = payloadAuthorityValues.split(',');
 
     const roles: CodeValue<UserRoles>[] = [];
 
@@ -58,10 +60,11 @@ export const getUserByPayload = (payload: Payload): User => {
     });
 
     return {
-        id: payload.id,
-        email: payload.email,
-        name: payload.name,
-        roles: roles
+        id: id,
+        email: email,
+        name: name,
+        roles: roles,
+        exp: exp
     };
 };
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,6 +14,7 @@ import { status } from 'enums/apis/status';
 import type HeaderType from 'types/layout/header';
 import type { Detail } from 'types/layout/menu';
 import type { default as LoginContent } from 'types/apis/pages/popup/login';
+import type User from 'types/user';
 
 import { RootState } from 'modules';
 import { set } from 'modules/user';
@@ -37,20 +38,39 @@ const Header = ({ setMode }: HeaderType) => {
     const [isTop, setTop] = useState(true);
     const [isVisibleLogin, setVisibleLogin] = useState(false);
 
-    useEffect(() => {
-        const reissuance = async () => {
-            const { status: responseStatus, data } = await putReissuance();
+    const reissuance = useCallback(async () => {
+        const { status: responseStatus, data } = await putReissuance();
 
-            if (responseStatus === status.SUCCESS) {
-                const { access }: LoginContent = data.content[0];
-                const user = getUserByPayload(getPayload(access));
+        if (responseStatus === status.SUCCESS) {
+            const { access }: LoginContent = data.content[0];
+            const user = getUserByPayload(getPayload(access));
 
-                dispatch(set(user));
+            dispatch(set(user));
+
+            const delay = getDelay(user);
+
+            if (delay > 0) {
+                setTimeout(reissuance, delay);
             }
-        };
-
-        reissuance();
+        } else if (user.id) {
+            // redux 유저 삭제.
+            // 알림 표시.
+        }
     }, [dispatch]);
+
+    const getDelay = ({ exp }: User) => exp ? (exp * 1000) - 30000 - Date.now() : 0;
+
+    useEffect(() => {
+        reissuance();
+    }, [reissuance]);
+
+    useEffect(() => {
+        const delay = getDelay(user);
+
+        if (delay > 0) {
+            setTimeout(reissuance, delay);
+        }
+    }, [user, reissuance]);
 
     useEffect(() => {
         const onScroll = () => setTop(window.scrollY === 0 ? true : false);

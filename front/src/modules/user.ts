@@ -4,7 +4,8 @@ const initState: User = {
     id: undefined,
     email: undefined,
     name: undefined,
-    roles: []
+    roles: [],
+    exp: undefined
 };
 
 const action = {

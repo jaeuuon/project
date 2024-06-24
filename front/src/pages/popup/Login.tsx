@@ -20,8 +20,8 @@ import TextField from 'components/common/TextField';
 import { getOnChange, getPayload, getUserByPayload, includesCode } from 'common/utils';
 
 const Login = ({ setVisible }: LoginType) => {
-    const email = useRef<HTMLInputElement>(null);
-    const password = useRef<HTMLInputElement>(null);
+    const emailRef = useRef<HTMLInputElement>(null);
+    const passwordRef = useRef<HTMLInputElement>(null);
 
     const dispatch = useDispatch();
 
@@ -40,49 +40,49 @@ const Login = ({ setVisible }: LoginType) => {
 
             if (responseStatus === status.SUCCESS) {
                 const { access }: Content = data.content[0];
-
-                const payload = getPayload(access);
-                const user = getUserByPayload(payload);
+                const user = getUserByPayload(getPayload(access));
 
                 dispatch(set(user));
+
                 setVisible(false);
             } else {
-                const error = errors[0];
-                const code = error.code;
+                const { code, message } = errors[0];
 
                 if (includesCode(emailError, code)) {
-                    email.current?.focus();
+                    emailRef.current?.focus();
                 } else if (includesCode(passwordError, code)) {
-                    password.current?.focus();
+                    passwordRef.current?.focus();
                 }
 
                 setCode(code);
-                setMessage(error.message);
+                setMessage(message);
             }
         }
     };
 
     const validation = () => {
-        if (!params.email) {
-            return error(email, emailError.BLANK);
-        } else if (params.email.length < 4 || params.email.length > 100) {
-            return error(email, emailError.SIZE);
-        } else if (!params.email.match(/^.+@.+$/)) {
-            return error(email, emailError.FORMAT);
-        } else if (!params.password) {
-            return error(password, passwordError.BLANK);
-        } else if (params.password.length < 4 || params.password.length > 50) {
-            return error(password, passwordError.SIZE);
+        const { email, password } = params;
+
+        if (!email) {
+            return error(emailRef, emailError.BLANK);
+        } else if (email.length < 4 || email.length > 100) {
+            return error(emailRef, emailError.SIZE);
+        } else if (!email.match(/^.+@.+$/)) {
+            return error(emailRef, emailError.FORMAT);
+        } else if (!password) {
+            return error(passwordRef, passwordError.BLANK);
+        } else if (password.length < 4 || password.length > 50) {
+            return error(passwordRef, passwordError.SIZE);
         }
 
         return true;
     };
 
-    const error = (ref: React.RefObject<HTMLInputElement>, detail: Detail) => {
-        ref.current?.focus();
+    const error = (inputRef: React.RefObject<HTMLInputElement>, { CODE, MESSAGE }: Detail) => {
+        inputRef.current?.focus();
 
-        setCode(detail.CODE);
-        setMessage(detail.MESSAGE);
+        setCode(CODE);
+        setMessage(MESSAGE);
 
         return false;
     }
@@ -90,10 +90,10 @@ const Login = ({ setVisible }: LoginType) => {
     return (
         <form id="form-login" onSubmit={onSubmit}>
             <div>
-                <TextField name="email" label="Email" isFullWidth={true} autoComplete="email" value={params.email} isError={includesCode(emailError, code)} ref={email} onChange={onChange} />
+                <TextField name="email" label="Email" isFullWidth={true} autoComplete="email" value={params.email} isError={includesCode(emailError, code)} ref={emailRef} onChange={onChange} />
             </div>
             <div>
-                <TextField type="password" name="password" label="Password" isFullWidth={true} autoComplete="current-password" value={params.password} isError={includesCode(passwordError, code)} ref={password} onChange={onChange} />
+                <TextField type="password" name="password" label="Password" isFullWidth={true} autoComplete="current-password" value={params.password} isError={includesCode(passwordError, code)} ref={passwordRef} onChange={onChange} />
             </div>
             <div id="div-login-alert">
                 {message &&
