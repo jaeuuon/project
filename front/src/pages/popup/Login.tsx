@@ -9,16 +9,16 @@ import { emailError, passwordError } from 'enums/apis/pages/popup/login';
 
 import type LoginType from 'types/pages/popup/login';
 import type { Params, default as Content } from 'types/apis/pages/popup/login';
-import type { Detail } from 'types/apis/codeMessage';
+import type { CodeMessageDetail } from 'types/apis/common';
 
-import { set } from 'modules/user';
+import { setUser } from 'modules/user';
 
 import { postLogin } from 'apis/pages/popup/login';
 
 import TextField from 'components/common/TextField';
 
-import { getPayloadByAccess, getUserByPayload } from 'common/payload';
-import { getOnChange, getDelayByUser, includesCode } from 'common/utils';
+import { getPayload, getUser, getDelay } from 'common/payload';
+import { getOnChange, includesCode } from 'common/utils';
 
 const Login = ({
     setVisible, reissuance
@@ -43,12 +43,14 @@ const Login = ({
 
             if (responseStatus === status.SUCCESS) {
                 const { access }: Content = data.content[0];
-                const user = getUserByPayload(getPayloadByAccess(access));
 
-                dispatch(set(user));
+                const payload = getPayload(access);
+                const user = getUser(payload);
+
+                dispatch(setUser(user));
 
                 setVisible(false);
-                setTimeout(reissuance, getDelayByUser(user));
+                setTimeout(reissuance, getDelay(payload));
             } else {
                 const { code, message } = errors[0];
 
@@ -82,11 +84,11 @@ const Login = ({
         return true;
     };
 
-    const error = (inputRef: React.RefObject<HTMLInputElement>, { CODE, MESSAGE }: Detail) => {
+    const error = (inputRef: React.RefObject<HTMLInputElement>, { code, message }: CodeMessageDetail) => {
         inputRef.current?.focus();
 
-        setCode(CODE);
-        setMessage(MESSAGE);
+        setCode(code);
+        setMessage(message);
 
         return false;
     }

@@ -1,7 +1,7 @@
 import axios from 'apis';
 
+import type Response from 'types/apis/common';
 import type { Params } from 'types/apis/pages/popup/login';
-import type Response from 'types/apis/response';
 
 import { camelToSnake, snakeToCamel, getResponseError } from 'common/utils';
 

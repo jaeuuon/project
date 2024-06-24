@@ -1,4 +1,4 @@
 export default interface CodeValue<T> {
-    CODE: T;
-    VALUE: string;
+    code: T;
+    value: string;
 };

@@ -24,3 +24,12 @@ export interface Error {
     code: string;
     message: string;
 };
+
+export interface CodeMessage {
+    [index: string]: CodeMessageDetail;
+};
+
+export interface CodeMessageDetail {
+    code: string;
+    message: string;
+};

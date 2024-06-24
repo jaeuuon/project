@@ -2,11 +2,9 @@ import type { Theme } from '@mui/material/styles';
 
 import { status } from 'enums/apis/status';
 
-import type Input from 'types/components/input';
-import type User from 'types/user';
-import type CodeMessage from 'types/apis/codeMessage';
+import type { Input } from 'types/components/common';
+import type { default as Response, CodeMessage } from 'types/apis/common';
 import type { SearchCode } from 'types/common/utils';
-import type Response from 'types/apis/response';
 
 export const camelToSnake = (any: any): any => {
     if (Array.isArray(any)) {
@@ -22,8 +20,6 @@ export const camelToSnake = (any: any): any => {
 
 export const getCssClassByTheme = (theme: Theme) => isThemeLight(theme) ? 'mode-light' : 'mode-dark';
 export const isThemeLight = (theme: Theme) => theme.palette.mode === 'light';
-
-export const getDelayByUser = ({ exp }: User) => exp ? (exp * 1000) - 30000 - Date.now() : 0;
 
 export const getOnChange = (state: Input, setState: React.Dispatch<React.SetStateAction<Input>>) => {
     return ({ target }: React.ChangeEvent<HTMLInputElement>) => {
@@ -91,7 +87,7 @@ export const getTimestamp = () => {
     return result;
 };
 
-export const includesCode = (codeMessage: CodeMessage, searchCode: SearchCode) => Object.values(codeMessage).some((codeMessage) => codeMessage.CODE === searchCode);
+export const includesCode = (codeMessage: CodeMessage, searchCode: SearchCode) => Object.values(codeMessage).some(({ code }) => code === searchCode);
 
 export const snakeToCamel = (any: any): any => {
     if (Array.isArray(any)) {

@@ -13,12 +13,12 @@ const action = {
     SET: 'user/SET'
 } as const;
 
-export const init = () => ({ type: action.INIT, payload: initState });
-export const set = (user: User) => ({ type: action.SET, payload: user });
+export const initUser = () => ({ type: action.INIT, payload: initState });
+export const setUser = (user: User) => ({ type: action.SET, payload: user });
 
 type Action =
-    | ReturnType<typeof init>
-    | ReturnType<typeof set>;
+    | ReturnType<typeof initUser>
+    | ReturnType<typeof setUser>;
 
 const user = (state: User = initState, { type, payload }: Action) => {
     switch (type) {

@@ -5,26 +5,40 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useTheme } from '@mui/material/styles';
 import { Grid, Button, Avatar, Tooltip } from '@mui/material';
-import { Person, Logout, Login, LightModeOutlined, DarkModeOutlined } from '@mui/icons-material';
-
-import constant from 'common/constant';
+import {
+    HomeOutlined, InfoOutlined,
+    Person, Logout, Login,
+    LightModeOutlined, DarkModeOutlined
+} from '@mui/icons-material';
 
 import { status } from 'enums/apis/status';
 
 import type HeaderType from 'types/layout/header';
-import type { Detail } from 'types/layout/menu';
 import type { default as LoginContent } from 'types/apis/pages/popup/login';
 
 import { RootState } from 'modules';
-import { init, set } from 'modules/user';
+import { initUser, setUser } from 'modules/user';
 
 import { putReissuance } from 'apis/pages/popup/login';
 
 import Popup from 'layout/Popup';
 import LoginPopup from 'pages/popup/Login';
 
-import { getPayloadByAccess, getUserByPayload } from 'common/payload';
-import { isThemeLight, getCssClassByTheme, getDelayByUser } from 'common/utils';
+import { getPayload, getUser, getDelay } from 'common/payload';
+import { isThemeLight, getCssClassByTheme } from 'common/utils';
+
+const menu = {
+    home: {
+        icon: <HomeOutlined />,
+        label: 'Home',
+        path: '/'
+    },
+    information: {
+        icon: <InfoOutlined />,
+        label: 'Information',
+        path: '/information'
+    }
+};
 
 const Header = ({ setMode }: HeaderType) => {
     const navigate = useNavigate();
@@ -43,13 +57,15 @@ const Header = ({ setMode }: HeaderType) => {
 
         if (responseStatus === status.SUCCESS) {
             const { access }: LoginContent = data.content[0];
-            const user = getUserByPayload(getPayloadByAccess(access));
 
-            dispatch(set(user));
+            const payload = getPayload(access);
+            const user = getUser(payload);
 
-            setTimeout(reissuance, getDelayByUser(user));
+            dispatch(setUser(user));
+
+            setTimeout(reissuance, getDelay(payload));
         } else {
-            dispatch(init());
+            dispatch(initUser());
 
             // 메시지에 따른 알림 표시.
         }
@@ -75,7 +91,7 @@ const Header = ({ setMode }: HeaderType) => {
                         <img src="/logo192.png" alt="logo" />
                     </Grid>
                     <Grid id="grid-header-content" item xs>
-                        {Object.values(constant.MENU).map((detail: Detail, index) => {
+                        {Object.values(menu).map((detail, index) => {
                             return (
                                 <Button key={`button-header-menu-${index}`} startIcon={detail.icon} onClick={() => navigate(detail.path)}>
                                     <span className="span-button-label">{detail.label}</span>
@@ -87,7 +103,7 @@ const Header = ({ setMode }: HeaderType) => {
                         {user.id
                             ? <>
                                 <Tooltip title={<>
-                                    <p className="p-tooltip">{user.name} ({user.roles[0].VALUE})</p>
+                                    <p className="p-tooltip">{user.name} ({user.roles[0].value})</p>
                                     <p className="p-tooltip">{user.email}</p>
                                 </>} placement="bottom" arrow>
                                     <Avatar>

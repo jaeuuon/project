@@ -10,18 +10,46 @@ import {
     ListItemIcon,
     ListItemText
 } from '@mui/material';
-import { KeyboardArrowLeft, KeyboardArrowRight } from '@mui/icons-material';
-
-import constant from 'common/constant';
-
-import type { Detail, SubMenu } from 'types/layout/menu';
+import {
+    CampaignOutlined, ContactSupportOutlined, GitHub,
+    KeyboardArrowLeft, KeyboardArrowRight
+} from '@mui/icons-material';
 
 import Modal from 'layout/Modal';
 
-const Sidebar = () => {
-    const location = useLocation();
-    const menu: Detail = Object.values(constant.MENU).find((detail: Detail) => detail.path === location.pathname || detail.subMenus.find((subMenu) => subMenu.path === location.pathname));
+const menu = {
+    home: {
+        path: '/',
+        subMenus: [
+            {
+                icon: <CampaignOutlined />,
+                label: '공지사항',
+                path: '/notice',
+                isOpen: false
+            }
+        ]
+    },
+    information: {
+        path: '/information',
+        subMenus: [
+            {
+                icon: <ContactSupportOutlined />,
+                label: 'Contact',
+                path: '/information/contact',
+                isOpen: false
+            },
+            {
+                icon: <GitHub />,
+                label: 'GitHub',
+                path: 'https://github.com/jaeuuon/project',
+                isOpen: true
+            }
+        ]
+    }
+};
 
+const Sidebar = () => {
+    const { pathname } = useLocation();
     const navigate = useNavigate();
 
     const sidebarRef = useRef<HTMLInputElement>(null);
@@ -30,19 +58,11 @@ const Sidebar = () => {
 
     const [isVisibleSidebar, setVisibleSidebar] = useState(false);
 
-    const onClickListItem = ({ path, isOpen }: SubMenu) => {
-        if (isOpen) {
-            window.open(path);
-        } else {
-            navigate(path);
-        }
-    };
-
     useEffect(() => {
         setVisibleSidebar(false);
 
         window.scrollTo(0, 0);
-    }, [location.pathname]);
+    }, [pathname]);
 
     useEffect(() => {
         const onResize = () => {
@@ -66,12 +86,12 @@ const Sidebar = () => {
             <Grid id="grid-main-sidebar" className={isVisibleSidebar ? 'visible' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper }} ref={sidebarRef}>
                 <div id="div-main-sidebar-content">
                     <List>
-                        {menu?.subMenus.map((subMenu, index) => {
+                        {Object.values(menu).find(({ path, subMenus }) => path === pathname || subMenus.find(({ path }) => path === pathname))?.subMenus.map(({ icon, label, path, isOpen }, index) => {
                             return (
-                                <ListItem key={`list-item-header-menu-${index}`} disablePadding onClick={() => onClickListItem(subMenu)}>
+                                <ListItem key={`list-item-header-menu-${index}`} disablePadding onClick={() => isOpen ? window.open(path) : navigate(path)}>
                                     <ListItemButton>
-                                        <ListItemIcon>{subMenu.icon}</ListItemIcon>
-                                        <ListItemText primary={subMenu.label} />
+                                        <ListItemIcon>{icon}</ListItemIcon>
+                                        <ListItemText primary={label} />
                                     </ListItemButton>
                                 </ListItem>
                             );
