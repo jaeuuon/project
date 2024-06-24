@@ -17,9 +17,12 @@ import { postLogin } from 'apis/pages/popup/login';
 
 import TextField from 'components/common/TextField';
 
-import { getOnChange, getPayload, getUserByPayload, includesCode } from 'common/utils';
+import { getPayloadByAccess, getUserByPayload } from 'common/payload';
+import { getOnChange, getDelayByUser, includesCode } from 'common/utils';
 
-const Login = ({ setVisible }: LoginType) => {
+const Login = ({
+    setVisible, reissuance
+}: LoginType) => {
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -40,11 +43,12 @@ const Login = ({ setVisible }: LoginType) => {
 
             if (responseStatus === status.SUCCESS) {
                 const { access }: Content = data.content[0];
-                const user = getUserByPayload(getPayload(access));
+                const user = getUserByPayload(getPayloadByAccess(access));
 
                 dispatch(set(user));
 
                 setVisible(false);
+                setTimeout(reissuance, getDelayByUser(user));
             } else {
                 const { code, message } = errors[0];
 

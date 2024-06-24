@@ -14,17 +14,17 @@ import { status } from 'enums/apis/status';
 import type HeaderType from 'types/layout/header';
 import type { Detail } from 'types/layout/menu';
 import type { default as LoginContent } from 'types/apis/pages/popup/login';
-import type User from 'types/user';
 
 import { RootState } from 'modules';
-import { set } from 'modules/user';
+import { init, set } from 'modules/user';
 
 import { putReissuance } from 'apis/pages/popup/login';
 
 import Popup from 'layout/Popup';
 import LoginPopup from 'pages/popup/Login';
 
-import { isThemeLight, getCssClassByTheme, getPayload, getUserByPayload } from 'common/utils';
+import { getPayloadByAccess, getUserByPayload } from 'common/payload';
+import { isThemeLight, getCssClassByTheme, getDelayByUser } from 'common/utils';
 
 const Header = ({ setMode }: HeaderType) => {
     const navigate = useNavigate();
@@ -43,34 +43,21 @@ const Header = ({ setMode }: HeaderType) => {
 
         if (responseStatus === status.SUCCESS) {
             const { access }: LoginContent = data.content[0];
-            const user = getUserByPayload(getPayload(access));
+            const user = getUserByPayload(getPayloadByAccess(access));
 
             dispatch(set(user));
 
-            const delay = getDelay(user);
+            setTimeout(reissuance, getDelayByUser(user));
+        } else {
+            dispatch(init());
 
-            if (delay > 0) {
-                setTimeout(reissuance, delay);
-            }
-        } else if (user.id) {
-            // redux 유저 삭제.
-            // 알림 표시.
+            // 메시지에 따른 알림 표시.
         }
     }, [dispatch]);
-
-    const getDelay = ({ exp }: User) => exp ? (exp * 1000) - 30000 - Date.now() : 0;
 
     useEffect(() => {
         reissuance();
     }, [reissuance]);
-
-    useEffect(() => {
-        const delay = getDelay(user);
-
-        if (delay > 0) {
-            setTimeout(reissuance, delay);
-        }
-    }, [user, reissuance]);
 
     useEffect(() => {
         const onScroll = () => setTop(window.scrollY === 0 ? true : false);
@@ -125,7 +112,7 @@ const Header = ({ setMode }: HeaderType) => {
                     </Grid>
                 </Grid>
             </div>
-            <Popup isVisible={isVisibleLogin} setVisible={setVisibleLogin} width={400} icon={<Login />} label="Login" content={<LoginPopup setVisible={setVisibleLogin} />} />
+            <Popup isVisible={isVisibleLogin} setVisible={setVisibleLogin} width={400} icon={<Login />} label="Login" content={<LoginPopup setVisible={setVisibleLogin} reissuance={reissuance} />} />
         </>
     );
 };

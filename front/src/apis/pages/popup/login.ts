@@ -5,9 +5,11 @@ import type Response from 'types/apis/response';
 
 import { camelToSnake, snakeToCamel, getResponseError } from 'common/utils';
 
+const url = '/security/authentication';
+
 export const postLogin = async (params: Params): Promise<Response> => {
     try {
-        const { data, headers } = await axios.post('/security/authentication', camelToSnake(params));
+        const { data, headers } = await axios.post(url, camelToSnake(params));
 
         axios.defaults.headers.common.Authorization = headers.authorization;
 
@@ -19,7 +21,7 @@ export const postLogin = async (params: Params): Promise<Response> => {
 
 export const putReissuance = async (): Promise<Response> => {
     try {
-        const { data, headers } = await axios.put('/security/authentication');
+        const { data, headers } = await axios.put(url);
 
         axios.defaults.headers.common.Authorization = headers.authorization;
 
