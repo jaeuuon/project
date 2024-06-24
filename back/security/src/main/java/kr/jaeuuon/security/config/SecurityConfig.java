@@ -29,6 +29,7 @@ public class SecurityConfig {
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> {
                     authorize.requestMatchers(HttpMethod.POST, "/authentication").permitAll();
+                    authorize.requestMatchers(HttpMethod.PUT, "/authentication").permitAll();
                     authorize.anyRequest().authenticated();
                 })
                 .exceptionHandling((exception) -> exception.authenticationEntryPoint(jwtAuthenticationEntryPoint))

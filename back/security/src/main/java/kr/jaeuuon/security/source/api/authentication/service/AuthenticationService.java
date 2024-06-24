@@ -63,12 +63,12 @@ public class AuthenticationService {
         return new JwtDTO(jwtAccess, jwtRefresh);
     }
 
-    public JwtDTO reissuance(long userId, JwtDTO jwtDTO) throws JsonProcessingException {
-        jwtProvider.getClaims(jwtDTO.getRefresh());
+    public JwtDTO reissuance(long userId, String refresh) throws JsonProcessingException {
+        jwtProvider.getClaims(refresh);
 
         Jwt jwt = jwtService.get(userId).orElseThrow(() -> new CommonException(HttpStatus.UNAUTHORIZED, JwtMessageImpl.ERROR_JWT_EXPIRED));
 
-        if (!jwtDTO.getRefresh().equals(jwt.getRefresh())) {
+        if (!jwt.getRefresh().equals(refresh)) {
             throw new CommonException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SCR_JWT_REFRESH_ALREADY);
         }
 

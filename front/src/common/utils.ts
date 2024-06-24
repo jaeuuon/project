@@ -69,28 +69,28 @@ export const includesCode = (codeMessage: CodeMessage, searchCode: SearchCode) =
     return Object.values(codeMessage).some((codeMessage) => codeMessage.CODE === searchCode);
 };
 
-export const camelToSnake = (object: object): any => {
-    if (Array.isArray(object)) {
-        return object.map((value) => camelToSnake(value));
-    } else if (object !== null && typeof object === 'object') {
-        return Object.entries(object).reduce((accumulator, [key, value]) => (
+export const camelToSnake = (any: any): any => {
+    if (Array.isArray(any)) {
+        return any.map((value) => camelToSnake(value));
+    } else if (any !== null && typeof any === 'object') {
+        return Object.entries(any).reduce((accumulator, [key, value]) => (
             { ...accumulator, [key.replace(/([A-Z])/g, (_match, string) => '_' + string.toLowerCase())]: camelToSnake(value) }
         ), {});
     }
 
-    return object;
+    return any;
 };
 
-export const snakeToCamel = (object: object): any => {
-    if (Array.isArray(object)) {
-        return object.map((value) => snakeToCamel(value));
-    } else if (object !== null && typeof object === 'object') {
-        return Object.entries(object).reduce((accumulator, [key, value]) => (
+export const snakeToCamel = (any: any): any => {
+    if (Array.isArray(any)) {
+        return any.map((value) => snakeToCamel(value));
+    } else if (any !== null && typeof any === 'object') {
+        return Object.entries(any).reduce((accumulator, [key, value]) => (
             { ...accumulator, [key.replace(/_(.)/g, (_match, string) => string.toUpperCase())]: snakeToCamel(value) }
         ), {});
     }
 
-    return object;
+    return any;
 };
 
 export const getResponseError = (error: any): Response => {

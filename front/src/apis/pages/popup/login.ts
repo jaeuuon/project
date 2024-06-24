@@ -9,6 +9,8 @@ export const postLogin = async (params: Params): Promise<Response> => {
     try {
         const response = await axios.post('/security/authentication', camelToSnake(params));
 
+        axios.defaults.headers.common.Authorization = response.headers.authorization;
+
         return snakeToCamel(response.data);
     } catch(error: any) {
         return getResponseError(error);

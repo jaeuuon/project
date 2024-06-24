@@ -4,10 +4,6 @@ import { useDispatch } from 'react-redux';
 
 import { Button, Alert } from '@mui/material';
 
-import axios from 'apis';
-
-import constant from 'common/constant';
-
 import { status } from 'enums/apis/status';
 import { emailError, passwordError } from 'enums/apis/pages/popup/login';
 
@@ -40,24 +36,18 @@ const Login = ({ setVisible }: LoginType) => {
         e.preventDefault();
 
         if (validation()) {
-            const response = await postLogin(params);
+            const { status: responseStatus, data, errors } = await postLogin(params);
 
-            if (response.status === status.SUCCESS) {
-                const content: Content = response.data.content[0];
+            if (responseStatus === status.SUCCESS) {
+                const { access }: Content = data.content[0];
 
-                axios.defaults.headers.common.Authorization = constant.AUTHORIZATION.TYPE + content.access;
-                // sessionStorage.setItem(constant.AUTHORIZATION.SESSION_STORAGE.ACCESS, content.access);
-                // sessionStorage.setItem(constant.AUTHORIZATION.SESSION_STORAGE.REFRESH, content.refresh);
-                // back => Set-Cookie: access=...; Secure; HttpOnly;
-                // back => Set-Cookie: refresh=...; Secure; HttpOnly;
-
-                const payload = getPayload(content.access);
+                const payload = getPayload(access);
                 const user = getUserByPayload(payload);
 
                 dispatch(set(user));
                 setVisible(false);
             } else {
-                const error = response.errors[0];
+                const error = errors[0];
                 const code = error.code;
 
                 if (includesCode(emailError, code)) {

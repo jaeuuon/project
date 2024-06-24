@@ -7,5 +7,4 @@ export interface Params extends Input {
 
 export default interface Content {
     access: string;
-    refresh: string;
 };

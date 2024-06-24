@@ -1,6 +1,6 @@
 package kr.jaeuuon.security.source.jwt.dto;
 
-import jakarta.validation.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ public class JwtDTO {
 
     private String access;
 
-    @NotBlank(message = "ERROR_SCR_JWT_REFRESH_BLANK")
+    @JsonIgnore
     private String refresh;
 
     public JwtDTO(String access, String refresh) {

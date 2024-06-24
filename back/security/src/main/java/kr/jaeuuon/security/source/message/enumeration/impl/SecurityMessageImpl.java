@@ -24,7 +24,6 @@ public enum SecurityMessageImpl implements Message {
     ERROR_SCR_PASSWORD_SIZE(MessageStatusImpl.ERROR, "비밀번호는 4자에서 50자 사이여야 합니다."),
     ERROR_SCR_PASSWORD_WRONG(MessageStatusImpl.ERROR, "비밀번호가 잘못되었습니다."),
 
-    ERROR_SCR_JWT_REFRESH_BLANK(MessageStatusImpl.ERROR, "재발급 토큰이 비어 있습니다."),
     ERROR_SCR_JWT_REFRESH_ALREADY(MessageStatusImpl.ERROR, "다른 기기(브라우저)에서 접속되어 토큰 재발급이 불가능합니다.");
 
     private final MessageStatus status;
