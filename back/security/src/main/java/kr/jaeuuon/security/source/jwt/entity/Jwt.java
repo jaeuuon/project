@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Jwt {
 
-    private String refresh;
+    private long userId;
 
-    public Jwt(String refresh) {
-        this.refresh = refresh;
+    public Jwt(long userId) {
+        this.userId = userId;
     }
 
 }

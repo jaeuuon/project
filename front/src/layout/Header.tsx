@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useTheme } from '@mui/material/styles';
 import { Grid, Button, Avatar, Tooltip } from '@mui/material';
@@ -9,19 +9,26 @@ import { Person, Logout, Login, LightModeOutlined, DarkModeOutlined } from '@mui
 
 import constant from 'common/constant';
 
+import { status } from 'enums/apis/status';
+
 import type HeaderType from 'types/layout/header';
 import type { Detail } from 'types/layout/menu';
+import type { default as LoginContent } from 'types/apis/pages/popup/login';
 
 import { RootState } from 'modules';
+import { set } from 'modules/user';
+
+import { putReissuance } from 'apis/pages/popup/login';
 
 import Popup from 'layout/Popup';
 import LoginPopup from 'pages/popup/Login';
 
-import { isThemeLight, getCssClassByTheme } from 'common/utils';
+import { isThemeLight, getCssClassByTheme, getPayload, getUserByPayload } from 'common/utils';
 
 const Header = ({ setMode }: HeaderType) => {
     const navigate = useNavigate();
 
+    const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.user);
 
     const theme = useTheme();
@@ -29,6 +36,21 @@ const Header = ({ setMode }: HeaderType) => {
 
     const [isTop, setTop] = useState(true);
     const [isVisibleLogin, setVisibleLogin] = useState(false);
+
+    useEffect(() => {
+        const reissuance = async () => {
+            const { status: responseStatus, data } = await putReissuance();
+
+            if (responseStatus === status.SUCCESS) {
+                const { access }: LoginContent = data.content[0];
+                const user = getUserByPayload(getPayload(access));
+
+                dispatch(set(user));
+            }
+        };
+
+        reissuance();
+    }, [dispatch]);
 
     useEffect(() => {
         const onScroll = () => setTop(window.scrollY === 0 ? true : false);

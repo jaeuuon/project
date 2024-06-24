@@ -19,16 +19,16 @@ public class JwtService {
 
     private final JwtProperties jwtProperties;
 
-    public void add(long userId, String refresh) throws JsonProcessingException {
-        redisService.add(PREFIX, String.valueOf(userId), new Jwt(refresh), jwtProperties.getExpirationMinutes());
+    public void add(String refresh, long userId) throws JsonProcessingException {
+        redisService.add(PREFIX, refresh, new Jwt(userId), jwtProperties.getExpirationMinutes());
     }
 
-    public Optional<Jwt> get(long userId) throws JsonProcessingException {
-        return redisService.get(PREFIX, String.valueOf(userId), Jwt.class);
+    public Optional<Jwt> get(String refresh) throws JsonProcessingException {
+        return redisService.get(PREFIX, refresh, Jwt.class);
     }
 
-    public boolean remove(long userId) {
-        return redisService.remove(PREFIX, String.valueOf(userId));
+    public boolean remove(String refresh) {
+        return redisService.remove(PREFIX, refresh);
     }
 
 }

@@ -16,3 +16,15 @@ export const postLogin = async (params: Params): Promise<Response> => {
         return getResponseError(error);
     }
 };
+
+export const putReissuance = async (): Promise<Response> => {
+    try {
+        const response = await axios.put('/security/authentication');
+
+        axios.defaults.headers.common.Authorization = response.headers.authorization;
+
+        return snakeToCamel(response.data);
+    } catch(error: any) {
+        return getResponseError(error);
+    }
+};

@@ -11,7 +11,6 @@ import kr.jaeuuon.common.web.source.annotation.PublishEvent;
 import kr.jaeuuon.security.source.api.authentication.dto.AuthenticationDTO;
 import kr.jaeuuon.security.source.api.authentication.event.AuthenticationEvent;
 import kr.jaeuuon.security.source.jwt.dto.JwtDTO;
-import kr.jaeuuon.security.source.jwt.entity.Jwt;
 import kr.jaeuuon.security.source.jwt.service.JwtService;
 import kr.jaeuuon.security.source.message.enumeration.impl.SecurityMessageImpl;
 import kr.jaeuuon.security.source.security.userdetails.impl.UserDetailsImpl;
@@ -58,20 +57,15 @@ public class AuthenticationService {
         String jwtAccess = jwtProvider.createAccess(userDetailsImpl.getId(), userDetailsImpl.getEmail(), userDetailsImpl.getName(), authorities, authorityValues, expiration);
         String jwtRefresh = jwtProvider.createRefresh(expiration);
 
-        jwtService.add(userDetailsImpl.getId(), jwtRefresh);
+        jwtService.add(jwtRefresh, userDetailsImpl.getId());
 
-        return new JwtDTO(jwtAccess, jwtRefresh);
+        return new JwtDTO(jwtAccess, jwtRefresh, jwtProperties.getExpirationMinutes());
     }
 
-    public JwtDTO reissuance(long userId, String refresh) throws JsonProcessingException {
+    public JwtDTO reissuance(String refresh) throws JsonProcessingException {
         jwtProvider.getClaims(refresh);
 
-        Jwt jwt = jwtService.get(userId).orElseThrow(() -> new CommonException(HttpStatus.UNAUTHORIZED, JwtMessageImpl.ERROR_JWT_EXPIRED));
-
-        if (!jwt.getRefresh().equals(refresh)) {
-            throw new CommonException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SCR_JWT_REFRESH_ALREADY);
-        }
-
+        long userId = jwtService.get(refresh).orElseThrow(() -> new CommonException(HttpStatus.UNAUTHORIZED, JwtMessageImpl.ERROR_JWT_EXPIRED)).getUserId();
         UserDetailsImpl userDetailsImpl = userService.getJoinAuthority(userId);
 
         if (userDetailsImpl == null) {
@@ -82,11 +76,13 @@ public class AuthenticationService {
             throw new CommonException(HttpStatus.UNAUTHORIZED, MessageImpl.ERROR_BSC_FORBIDDEN);
         }
 
+        jwtService.remove(refresh);
+
         return createJwt(userDetailsImpl);
     }
 
-    public void logout(long userId) {
-        if (!jwtService.remove(userId)) {
+    public void logout(String refresh) {
+        if (!jwtService.remove(refresh)) {
             throw new CommonException(HttpStatus.INTERNAL_SERVER_ERROR, SecurityMessageImpl.ERROR_SCR_LOGOUT);
         }
     }

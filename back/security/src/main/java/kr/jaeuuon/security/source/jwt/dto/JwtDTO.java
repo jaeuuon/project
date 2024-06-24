@@ -14,9 +14,13 @@ public class JwtDTO {
     @JsonIgnore
     private String refresh;
 
-    public JwtDTO(String access, String refresh) {
+    @JsonIgnore
+    private long expirationMinutes;
+
+    public JwtDTO(String access, String refresh, long expirationMinutes) {
         this.access = access;
         this.refresh = refresh;
+        this.expirationMinutes = expirationMinutes;
     }
 
 }
