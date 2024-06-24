@@ -15,34 +15,33 @@ import {
     KeyboardArrowLeft, KeyboardArrowRight
 } from '@mui/icons-material';
 
+import { menu as headerMenu } from 'layout/Header';
+
 import Modal from 'layout/Modal';
 
 const menu = {
     home: {
-        path: '/',
+        path: headerMenu.home.path,
         subMenus: [
             {
                 icon: <CampaignOutlined />,
                 label: '공지사항',
-                path: '/notice',
-                isOpen: false
+                path: '/notice'
             }
         ]
     },
     information: {
-        path: '/information',
+        path: headerMenu.information.path,
         subMenus: [
             {
                 icon: <ContactSupportOutlined />,
                 label: 'Contact',
-                path: '/information/contact',
-                isOpen: false
+                path: headerMenu.information.path + '/contact'
             },
             {
                 icon: <GitHub />,
                 label: 'GitHub',
-                path: 'https://github.com/jaeuuon/project',
-                isOpen: true
+                path: 'https://github.com/jaeuuon/project'
             }
         ]
     }
@@ -86,9 +85,9 @@ const Sidebar = () => {
             <Grid id="grid-main-sidebar" className={isVisibleSidebar ? 'visible' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper }} ref={sidebarRef}>
                 <div id="div-main-sidebar-content">
                     <List>
-                        {Object.values(menu).find(({ path, subMenus }) => path === pathname || subMenus.find(({ path }) => path === pathname))?.subMenus.map(({ icon, label, path, isOpen }, index) => {
+                        {Object.values(menu).find(({ path, subMenus }) => path === pathname || subMenus.find(({ path }) => path === pathname))?.subMenus.map(({ icon, label, path }, index) => {
                             return (
-                                <ListItem key={`list-item-header-menu-${index}`} disablePadding onClick={() => isOpen ? window.open(path) : navigate(path)}>
+                                <ListItem key={`list-item-header-menu-${index}`} disablePadding onClick={() => path.startsWith('http') ? window.open(path) : navigate(path)}>
                                     <ListItemButton>
                                         <ListItemIcon>{icon}</ListItemIcon>
                                         <ListItemText primary={label} />

@@ -27,7 +27,7 @@ import LoginPopup from 'pages/popup/Login';
 import { getPayload, getUser, getDelay } from 'common/payload';
 import { isThemeLight, getCssClassByTheme } from 'common/utils';
 
-const menu = {
+export const menu = {
     home: {
         icon: <HomeOutlined />,
         label: 'Home',
