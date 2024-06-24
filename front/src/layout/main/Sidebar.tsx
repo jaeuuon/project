@@ -85,16 +85,14 @@ const Sidebar = () => {
             <Grid id="grid-main-sidebar" className={isVisibleSidebar ? 'visible' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper }} ref={sidebarRef}>
                 <div id="div-main-sidebar-content">
                     <List>
-                        {Object.values(menu).find(({ path, subMenus }) => path === pathname || subMenus.find(({ path }) => path === pathname))?.subMenus.map(({ icon, label, path }, index) => {
-                            return (
-                                <ListItem key={`list-item-header-menu-${index}`} disablePadding onClick={() => path.startsWith('http') ? window.open(path) : navigate(path)}>
-                                    <ListItemButton>
-                                        <ListItemIcon>{icon}</ListItemIcon>
-                                        <ListItemText primary={label} />
-                                    </ListItemButton>
-                                </ListItem>
-                            );
-                        })}
+                        {Object.values(menu).find(({ path, subMenus }) => path === pathname || subMenus.find(({ path }) => path === pathname))?.subMenus.map(({ icon, label, path }, index) =>
+                            <ListItem key={`list-item-header-menu-${index}`} disablePadding onClick={() => path.startsWith('http') ? window.open(path) : navigate(path)}>
+                                <ListItemButton>
+                                    <ListItemIcon>{icon}</ListItemIcon>
+                                    <ListItemText primary={label} />
+                                </ListItemButton>
+                            </ListItem>
+                        )}
                     </List>
                 </div>
                 <div id="div-main-sidebar-icon" style={{ backgroundColor: theme.palette.background.paper }} onClick={() => setVisibleSidebar(!isVisibleSidebar)}>
