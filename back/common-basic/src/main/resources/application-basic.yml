@@ -1,0 +1,5 @@
+logging:
+  level:
+    com.netflix.discovery.DiscoveryClient: warn
+    com.netflix.discovery.shared.resolver.aws.ConfigClusterResolver: warn
+    com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient: warn
