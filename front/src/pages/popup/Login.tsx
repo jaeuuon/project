@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 
 import { Button, Alert } from '@mui/material';
 
+import JSEncrypt from "jsencrypt";
+
 import { status } from 'enums/apis/status';
 import { emailError, passwordError } from 'enums/apis/pages/popup/login';
 
@@ -35,11 +37,17 @@ const Login = ({
 
     const onChange = getOnChange(params, setParams);
 
+    const jsEncrypt = new JSEncrypt();
+    jsEncrypt.setPublicKey(process.env.REACT_APP_PUBLIC_KEY || '');
+
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (validation()) {
-            const { status: responseStatus, data, errors } = await postLogin(params);
+            const { status: responseStatus, data, errors } = await postLogin({
+                email: params.email,
+                password: jsEncrypt.encrypt(params.password || '').toString()
+            });
 
             if (responseStatus === status.SUCCESS) {
                 const { access }: Content = data.content[0];

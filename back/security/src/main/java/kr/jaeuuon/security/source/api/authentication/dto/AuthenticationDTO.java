@@ -17,7 +17,7 @@ public class AuthenticationDTO {
     private String email;
 
     @NotBlank(message = "ERROR_SCR_PASSWORD_BLANK")
-    @Size(min = 4, max = 50, message = "ERROR_SCR_PASSWORD_SIZE")
+    @Size(min = 88, max = 88, message = "ERROR_SCR_PASSWORD_SIZE")
     private String password;
 
 }
