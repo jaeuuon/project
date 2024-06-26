@@ -19,6 +19,8 @@ import { menu as headerMenu } from 'layout/Header';
 
 import Modal from 'layout/Modal';
 
+import { getBorderColor } from 'common/utils';
+
 const menu = {
     home: {
         path: headerMenu.home.path,
@@ -54,6 +56,7 @@ const Sidebar = () => {
     const sidebarRef = useRef<HTMLInputElement>(null);
 
     const theme = useTheme();
+    const borderColor = getBorderColor(theme);
 
     const [isVisibleSidebar, setVisibleSidebar] = useState(false);
 
@@ -82,7 +85,7 @@ const Sidebar = () => {
     return (
         <>
             <Modal isVisible={isVisibleSidebar} setVisible={setVisibleSidebar} />
-            <Grid id="grid-main-sidebar" className={isVisibleSidebar ? 'visible' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper }} ref={sidebarRef}>
+            <Grid id="grid-main-sidebar" className={isVisibleSidebar ? 'visible' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper, borderColor }} ref={sidebarRef}>
                 <div id="div-main-sidebar-content">
                     <List>
                         {Object.values(menu).find(({ path, subMenus }) => path === pathname || subMenus.find(({ path }) => path === pathname))?.subMenus.map(({ icon, label, path }, index) =>
@@ -95,7 +98,7 @@ const Sidebar = () => {
                         )}
                     </List>
                 </div>
-                <div id="div-main-sidebar-icon" style={{ backgroundColor: theme.palette.background.paper }} onClick={() => setVisibleSidebar(!isVisibleSidebar)}>
+                <div id="div-main-sidebar-icon" style={{ backgroundColor: theme.palette.background.paper, borderColor }} onClick={() => setVisibleSidebar(!isVisibleSidebar)}>
                     {isVisibleSidebar ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
                 </div>
             </Grid>

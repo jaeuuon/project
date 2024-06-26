@@ -25,7 +25,7 @@ import Popup from 'layout/Popup';
 import LoginPopup from 'pages/popup/Login';
 
 import { getPayload, getUser, getDelay } from 'common/payload';
-import { isThemeLight, getCssClassByTheme } from 'common/utils';
+import { isThemeLight, getCssClassByTheme, getBorderColor } from 'common/utils';
 
 export const menu = {
     home: {
@@ -85,7 +85,7 @@ const Header = ({ setMode }: HeaderType) => {
 
     return (
         <>
-            <div id="div-header" className={[getCssClassByTheme(theme), (isTop ? 'box-shadow-none' : '')].join(' ')}>
+            <div id="div-header" className={[getCssClassByTheme(theme), (isTop ? 'box-shadow-none' : '')].join(' ')} style={{ borderColor: getBorderColor(theme) }}>
                 <Grid id="grid-header" container>
                     <Grid id="grid-header-icon" item xs="auto">
                         <img src="/logo192.png" alt="logo" />

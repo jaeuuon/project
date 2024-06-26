@@ -18,6 +18,8 @@ export const camelToSnake = (any: any): any => {
     return any;
 };
 
+export const getBorderColor = (theme: Theme) => theme.palette.primary.main + '80';
+
 export const getCssClassByTheme = (theme: Theme) => isThemeLight(theme) ? 'mode-light' : 'mode-dark';
 export const isThemeLight = (theme: Theme) => theme.palette.mode === 'light';
 

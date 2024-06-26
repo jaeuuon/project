@@ -1,11 +1,12 @@
+import { useTheme } from '@mui/material/styles';
 import { Grid, Tooltip } from '@mui/material';
+
+import { getBorderColor } from 'common/utils';
 
 const creator =  {
     url: 'https://github.com/jaeuuon',
     name: 'jaeuuon'
 };
-
-const themeColor = '#1976d2';
 
 const skillBadges = [
     {
@@ -31,14 +32,16 @@ const skillBadges = [
 ];
 
 const Footer = () => {
+    const theme = useTheme();
+
     return (
-        <div id="div-footer">
+        <div id="div-footer" style={{ borderColor: getBorderColor(theme) }}>
             <Grid id="grid-footer" container>
                 <Grid id="grid-footer-creator" item xs={6}>
                     <p>Created by <Tooltip title="GitHub profile" placement="top" arrow><span onClick={() => window.open(creator.url)}>{creator.name}</span></Tooltip>.</p>
                 </Grid>
                 <Grid id="grid-footer-theme-color" item xs={6}>
-                    <p>Theme color is <span style={{ backgroundColor: themeColor }}>{themeColor}</span></p>
+                    <p>Theme color is <span style={{ backgroundColor: theme.palette.primary.main }}>{theme.palette.primary.main}</span></p>
                 </Grid>
                 <Grid id="grid-footer-skill" item xs={12}>
                     {skillBadges.map((skillBadge, index) =>

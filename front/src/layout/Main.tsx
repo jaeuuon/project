@@ -7,7 +7,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Sidebar from 'layout/main/Sidebar';
 import Content from 'layout/main/Content';
 
-import { getCssClassByTheme } from 'common/utils';
+import { getCssClassByTheme, getBorderColor } from 'common/utils';
 
 const Main = () => {
     const theme = useTheme();
@@ -29,7 +29,7 @@ const Main = () => {
                 <Content />
             </Grid>
             {isVisibleToTop &&
-                <div id="div-main-to-top" className={getCssClassByTheme(theme)} onClick={() => window.scroll({ top: 0, behavior: 'smooth' })}>
+                <div id="div-main-to-top" className={getCssClassByTheme(theme)} style={{ borderColor: getBorderColor(theme) }} onClick={() => window.scroll({ top: 0, behavior: 'smooth' })}>
                     <KeyboardArrowUpIcon />
                 </div>
             }

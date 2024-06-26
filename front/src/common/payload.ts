@@ -34,13 +34,7 @@ export const getUser = ({
         });
     });
 
-    return {
-        id: id,
-        email: email,
-        name: name,
-        roles: roles,
-        exp: exp
-    };
+    return { id, email, name, roles, exp };
 };
 
 export const getDelay = ({ exp }: Payload) => (exp * 1000) - 30000 - Date.now();
