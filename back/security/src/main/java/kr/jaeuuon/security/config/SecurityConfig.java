@@ -3,6 +3,7 @@ package kr.jaeuuon.security.config;
 import kr.jaeuuon.security.source.jwt.authentication.JwtAuthenticationEntryPoint;
 import kr.jaeuuon.security.source.jwt.authentication.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -15,6 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
+@ConfigurationPropertiesScan(basePackages = "kr.jaeuuon.security")
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {

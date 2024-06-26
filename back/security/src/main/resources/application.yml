@@ -39,6 +39,9 @@ spring:
           - method: POST
             path: /authentication
 
+security:
+  private-key: ${PROJECT_SECURITY_PRIVATE_KEY}
+
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}

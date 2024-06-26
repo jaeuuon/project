@@ -22,6 +22,7 @@ public enum SecurityMessageImpl implements Message {
 
     ERROR_SCR_PASSWORD_BLANK(MessageStatusImpl.ERROR, "비밀번호를 입력하십시오."),
     ERROR_SCR_PASSWORD_SIZE(MessageStatusImpl.ERROR, "비밀번호가 잘못되었습니다."),
+    ERROR_SCR_PASSWORD_DECRYPT(MessageStatusImpl.ERROR, "비밀번호를 비교하는 중에 문제가 발생했습니다. 관리자에게 문의하십시오."),
     ERROR_SCR_PASSWORD_WRONG(MessageStatusImpl.ERROR, "비밀번호가 잘못되었습니다.");
 
     private final MessageStatus status;

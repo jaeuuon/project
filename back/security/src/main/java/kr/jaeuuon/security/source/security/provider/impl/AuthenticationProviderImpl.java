@@ -1,5 +1,7 @@
 package kr.jaeuuon.security.source.security.provider.impl;
 
+import kr.jaeuuon.common.basic.source.exception.CommonException;
+import kr.jaeuuon.security.properties.SecurityProperties;
 import kr.jaeuuon.security.source.api.history.code.impl.ResultCode;
 import kr.jaeuuon.security.source.message.enumeration.impl.SecurityMessageImpl;
 import kr.jaeuuon.security.source.security.exception.SecurityException;
@@ -14,6 +16,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 
+import java.security.GeneralSecurityException;
+
 @Component
 @RequiredArgsConstructor
 public class AuthenticationProviderImpl implements AuthenticationProvider {
@@ -21,6 +25,8 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
     private final UserDetailsServiceImpl userDetailsServiceImpl;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    private final SecurityProperties securityProperties;
 
     @Override
     public Authentication authenticate(Authentication authentication) {
@@ -32,6 +38,12 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
         }
 
         String credentials = authentication.getCredentials().toString();
+
+        try {
+            credentials = securityProperties.decrypt(credentials);
+        } catch (GeneralSecurityException e) {
+            throw new CommonException(HttpStatus.INTERNAL_SERVER_ERROR, SecurityMessageImpl.ERROR_SCR_PASSWORD_DECRYPT);
+        }
 
         if (!bCryptPasswordEncoder.matches(credentials, userDetailsImpl.getPassword())) {
             throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SCR_PASSWORD_WRONG, userDetailsImpl, ResultCode.ERROR_PASSWORD);
