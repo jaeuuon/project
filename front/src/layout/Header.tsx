@@ -27,6 +27,8 @@ import LoginPopup from 'pages/popup/Login';
 import { getPayload, getUser, getDelay } from 'common/payload';
 import { isThemeLight, getCssClassByTheme, getBorderColor } from 'common/utils';
 
+import Logo from 'Logo';
+
 export const menu = {
     home: {
         icon: <HomeOutlined />,
@@ -88,7 +90,7 @@ const Header = ({ setMode }: HeaderType) => {
             <div id="div-header" className={[getCssClassByTheme(theme), (isTop ? 'box-shadow-none' : '')].join(' ')} style={{ borderColor: getBorderColor(theme) }}>
                 <Grid id="grid-header" container>
                     <Grid id="grid-header-icon" item xs="auto">
-                        <img src="/logo192.png" alt="logo" />
+                        <Logo />
                     </Grid>
                     <Grid id="grid-header-content" item xs>
                         {Object.values(menu).map((detail, index) => {

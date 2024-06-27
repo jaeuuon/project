@@ -29,7 +29,7 @@
         &-icon {
             @include mixin.div-default-header;
 
-            img {
+            svg {
                 height: var.$headerInnerHeight;
                 margin: var.$margin;
             }
