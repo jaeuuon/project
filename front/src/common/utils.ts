@@ -19,6 +19,7 @@ export const camelToSnake = (any: any): any => {
 };
 
 export const getBorderColor = (theme: Theme) => theme.palette.primary.main + '80';
+export const getHoverBackgroundColor = (theme: Theme) => theme.palette.grey[400] + Math.round(255 - (255 * theme.palette.action.hoverOpacity)).toString(16).padStart(2, '0');
 
 export const getCssClassByTheme = (theme: Theme) => isThemeLight(theme) ? 'mode-light' : 'mode-dark';
 export const isThemeLight = (theme: Theme) => theme.palette.mode === 'light';

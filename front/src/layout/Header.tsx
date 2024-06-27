@@ -25,7 +25,7 @@ import Popup from 'layout/Popup';
 import LoginPopup from 'pages/popup/Login';
 
 import { getPayload, getUser, getDelay } from 'common/payload';
-import { isThemeLight, getCssClassByTheme, getBorderColor } from 'common/utils';
+import { isThemeLight, getCssClassByTheme, getBorderColor, getHoverBackgroundColor } from 'common/utils';
 
 import Logo from 'Logo';
 
@@ -50,9 +50,12 @@ const Header = ({ setMode }: HeaderType) => {
 
     const theme = useTheme();
     const isLight = isThemeLight(theme);
+    const borderColor = getBorderColor(theme);
+    const hoverBackgroundColor = getHoverBackgroundColor(theme);
 
     const [isTop, setTop] = useState(true);
     const [isVisibleLogin, setVisibleLogin] = useState(false);
+    const [isMouseHover, setMouseHover] = useState(false);
 
     const reissuance = useCallback(async () => {
         const { status: responseStatus, data } = await putReissuance();
@@ -87,7 +90,7 @@ const Header = ({ setMode }: HeaderType) => {
 
     return (
         <>
-            <div id="div-header" className={[getCssClassByTheme(theme), (isTop ? 'box-shadow-none' : '')].join(' ')} style={{ borderColor: getBorderColor(theme) }}>
+            <div id="div-header" className={[getCssClassByTheme(theme), (isTop ? 'box-shadow-none' : '')].join(' ')} style={{ borderColor }}>
                 <Grid id="grid-header" container>
                     <Grid id="grid-header-icon" item xs="auto">
                         <Logo />
@@ -104,14 +107,21 @@ const Header = ({ setMode }: HeaderType) => {
                     <Grid id="grid-header-user-and-mode" item xs="auto">
                         {user.id
                             ? <>
-                                <Tooltip title={<>
-                                    <p className="p-tooltip">{user.name} ({user.roles[0].value})</p>
-                                    <p className="p-tooltip">{user.email}</p>
-                                </>} placement="bottom" arrow>
-                                    <Avatar>
-                                        <Person />
-                                    </Avatar>
-                                </Tooltip>
+                                <div id="div-header-user-avatar" onMouseEnter={() => setMouseHover(true)} onMouseLeave={() => setMouseHover(false)}>
+                                    <Tooltip title={
+                                        <>
+                                            <p className="p-tooltip">{user.name} ({user.roles[0].value})</p>
+                                            <p className="p-tooltip">{user.email}</p>
+                                        </>
+                                    } placement="bottom" arrow>
+                                        <Avatar style={{
+                                            borderColor: isMouseHover ? theme.palette.primary.main : borderColor,
+                                            backgroundColor: isMouseHover ? hoverBackgroundColor : theme.palette.grey[400]
+                                        }}>
+                                            <Person />
+                                        </Avatar>
+                                    </Tooltip>
+                                </div>
                                 <Tooltip title="Logout" placement="bottom" arrow>
                                     <Button id="button-logout" variant="outlined">
                                         <Logout />

@@ -44,11 +44,18 @@
                 display: flex;
             }
 
-            .MuiAvatar {
-                &-root {
-                    width: var.$headerInnerHeight;
-                    height: var.$headerInnerHeight;
-                    margin: var.$margin;
+            #div-header-user-avatar {
+                width: var.$headerInnerHeight;
+                height: var.$headerInnerHeight;
+                margin: var.$margin;
+                cursor: pointer;
+
+                .MuiAvatar {
+                    &-root {
+                        width: 100%;
+                        height: 100%;
+                        border: var.$border;
+                    }
                 }
             }
 
