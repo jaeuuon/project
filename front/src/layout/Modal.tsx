@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
-import type ModalType from 'types/layout/modal';
+import type Visible from 'types/visible';
 
 const Modal = ({
     isVisible, setVisibleFalse
-}: ModalType) => {
+}: Visible) => {
     useEffect(() => {
         document.body.style.overflow = isVisible ? 'hidden' : 'initial';
     }, [isVisible]);

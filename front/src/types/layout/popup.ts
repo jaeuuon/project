@@ -1,6 +1,6 @@
-import type Modal from 'types/layout/modal';
+import type Visible from 'types/visible';
 
-export default interface Popup extends Modal {
+export default interface Popup extends Visible {
     width: number;
     icon: JSX.Element;
     label: string;

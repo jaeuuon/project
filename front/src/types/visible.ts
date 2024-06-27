@@ -1,4 +1,4 @@
-export default interface Modal {
+export default interface Visible {
     isVisible: boolean;
     setVisibleFalse: () => void;
 };

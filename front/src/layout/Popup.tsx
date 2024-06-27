@@ -9,8 +9,8 @@ import Modal from 'layout/Modal';
 import { getBorderColor } from 'common/utils';
 
 const Popup = ({
-    isVisible, setVisibleFalse,
-    width, icon, label, content
+    width, icon, label, content,
+    isVisible, setVisibleFalse
 }: PopupType) => {
     const theme = useTheme();
     const borderColor = getBorderColor(theme);
