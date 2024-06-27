@@ -60,6 +60,8 @@ const Sidebar = () => {
 
     const [isVisibleSidebar, setVisibleSidebar] = useState(false);
 
+    const onClick = () => setVisibleSidebar(!isVisibleSidebar);
+
     useEffect(() => {
         setVisibleSidebar(false);
 
@@ -98,7 +100,7 @@ const Sidebar = () => {
                         )}
                     </List>
                 </div>
-                <div id="div-main-sidebar-icon" style={{ backgroundColor: theme.palette.background.paper, borderColor }} onClick={() => setVisibleSidebar(!isVisibleSidebar)}>
+                <div id="div-main-sidebar-icon" style={{ backgroundColor: theme.palette.background.paper, borderColor }} onClick={onClick}>
                     {isVisibleSidebar ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
                 </div>
             </Grid>

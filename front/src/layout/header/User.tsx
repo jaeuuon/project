@@ -19,10 +19,13 @@ const User = () => {
 
     const [isMouseHover, setMouseHover] = useState(false);
 
+    const onMouseEnter = () => setMouseHover(true);
+    const onMouseLeave = () => setMouseHover(false);
+
     return (
         <>
             {user.id &&
-                <div id="div-header-user" onMouseEnter={() => setMouseHover(true)} onMouseLeave={() => setMouseHover(false)}>
+                <div id="div-header-user" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                     <Tooltip title={
                         <>
                             <p className="p-tooltip">{user.name} ({user.roles[0].value})</p>

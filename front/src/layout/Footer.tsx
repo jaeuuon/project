@@ -34,11 +34,13 @@ const skillBadges = [
 const Footer = () => {
     const theme = useTheme();
 
+    const onClick = () => window.open(creator.url);
+
     return (
         <div id="div-footer" style={{ borderColor: getBorderColor(theme) }}>
             <Grid id="grid-footer" container>
                 <Grid id="grid-footer-creator" item xs={6}>
-                    <p>Created by <Tooltip title="GitHub profile" placement="top" arrow><span onClick={() => window.open(creator.url)}>{creator.name}</span></Tooltip>.</p>
+                    <p>Created by <Tooltip title="GitHub profile" placement="top" arrow><span onClick={onClick}>{creator.name}</span></Tooltip>.</p>
                 </Grid>
                 <Grid id="grid-footer-theme-color" item xs={6}>
                     <p>Theme color is <span style={{ backgroundColor: theme.palette.primary.main }}>{theme.palette.primary.main}</span></p>

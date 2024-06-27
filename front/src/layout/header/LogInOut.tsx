@@ -10,6 +10,8 @@ import { RootState } from 'modules';
 const LogInOut = ({ setVisibleLogin }: LogInOutType) => {
     const user = useSelector((state: RootState) => state.user);
 
+    const onClick = () => setVisibleLogin(true);
+
     return (
         <>
             {user.id
@@ -18,7 +20,7 @@ const LogInOut = ({ setVisibleLogin }: LogInOutType) => {
                         <Logout />
                     </Button>
                 </Tooltip>
-                : <Button variant="outlined" startIcon={<Login />} onClick={() => setVisibleLogin(true)}>
+                : <Button variant="outlined" startIcon={<Login />} onClick={onClick}>
                     <span className="span-button-label">Login</span>
                 </Button>
             }

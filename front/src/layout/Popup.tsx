@@ -15,6 +15,8 @@ const Popup = ({
     const theme = useTheme();
     const borderColor = getBorderColor(theme);
 
+    const onClick = () => setVisible(false);
+
     return (
         <>
             <Modal isVisible={isVisible} setVisible={setVisible} />
@@ -27,7 +29,7 @@ const Popup = ({
                         </Grid>
                         <Grid id="grid-popup-header-close" item xs="auto">
                             <Tooltip title="Close" placement="bottom-end" arrow>
-                                <Button onClick={() => setVisible(false)}>
+                                <Button onClick={onClick}>
                                     <Close />
                                 </Button>
                             </Tooltip>

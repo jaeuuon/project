@@ -21,13 +21,11 @@ const Menu = () => {
 
     return (
         <Grid id="grid-header-menu" item xs>
-            {Object.values(menu).map((detail, index) => {
-                return (
-                    <Button key={`button-header-menu-${index}`} startIcon={detail.icon} onClick={() => navigate(detail.path)}>
-                        <span className="span-button-label">{detail.label}</span>
-                    </Button>
-                );
-            })}
+            {Object.values(menu).map((detail, index) =>
+                <Button key={`button-header-menu-${index}`} startIcon={detail.icon} onClick={() => navigate(detail.path)}>
+                    <span className="span-button-label">{detail.label}</span>
+                </Button>
+            )}
         </Grid>
     );
 };

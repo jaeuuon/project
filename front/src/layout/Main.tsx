@@ -14,6 +14,8 @@ const Main = () => {
 
     const [isVisibleToTop, setVisibleToTop] = useState(false);
 
+    const onClick = () => window.scroll({ top: 0, behavior: 'smooth' });
+
     useEffect(() => {
         const onScroll = () => setVisibleToTop(window.scrollY >= 100 ? true : false);
 
@@ -29,7 +31,7 @@ const Main = () => {
                 <Content />
             </Grid>
             {isVisibleToTop &&
-                <div id="div-main-to-top" className={getCssClassByTheme(theme)} style={{ borderColor: getBorderColor(theme) }} onClick={() => window.scroll({ top: 0, behavior: 'smooth' })}>
+                <div id="div-main-to-top" className={getCssClassByTheme(theme)} style={{ borderColor: getBorderColor(theme) }} onClick={onClick}>
                     <KeyboardArrowUpIcon />
                 </div>
             }

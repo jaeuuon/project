@@ -5,6 +5,8 @@ import type ModalType from 'types/layout/modal';
 const Modal = ({
     isVisible, setVisible
 }: ModalType) => {
+    const onClick = () => setVisible(false);
+
     useEffect(() => {
         document.body.style.overflow = isVisible ? 'hidden' : 'initial';
     }, [isVisible]);
@@ -12,7 +14,7 @@ const Modal = ({
     return (
         <>
             {isVisible &&
-                <div id="div-modal" onClick={() => setVisible(false)} />
+                <div id="div-modal" onClick={onClick} />
             }
         </>
     );
