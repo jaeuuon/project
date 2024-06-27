@@ -36,6 +36,9 @@ const Header = ({ setMode }: HeaderType) => {
     const [isTop, setTop] = useState(true);
     const [isVisibleLogin, setVisibleLogin] = useState(false);
 
+    const setVisibleLoginTrue = () => setVisibleLogin(true);
+    const setVisibleLoginFalse = () => setVisibleLogin(false);
+
     const reissuance = useCallback(async () => {
         const { status: responseStatus, data } = await putReissuance();
 
@@ -75,12 +78,12 @@ const Header = ({ setMode }: HeaderType) => {
                     <Menu />
                     <Grid id="grid-header-user-and-mode" item xs="auto">
                         <User />
-                        <LogInOut setVisibleLogin={setVisibleLogin} />
+                        <LogInOut setVisibleLoginTrue={setVisibleLoginTrue} />
                         <Mode setMode={setMode} />
                     </Grid>
                 </Grid>
             </div>
-            <Popup isVisible={isVisibleLogin} setVisible={setVisibleLogin} width={400} icon={<Login />} label="Login" content={<LoginPopup setVisible={setVisibleLogin} reissuance={reissuance} />} />
+            <Popup isVisible={isVisibleLogin} setVisibleFalse={setVisibleLoginFalse} width={400} icon={<Login />} label="Login" content={<LoginPopup setVisibleFalse={setVisibleLoginFalse} reissuance={reissuance} />} />
         </>
     );
 };

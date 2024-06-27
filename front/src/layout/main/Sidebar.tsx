@@ -58,12 +58,13 @@ const Sidebar = () => {
     const theme = useTheme();
     const borderColor = getBorderColor(theme);
 
-    const [isVisibleSidebar, setVisibleSidebar] = useState(false);
+    const [isVisible, setVisible] = useState(false);
 
-    const onClick = () => setVisibleSidebar(!isVisibleSidebar);
+    const setVisibleFalse = () => setVisible(false);
+    const onClick = () => setVisible(!isVisible);
 
     useEffect(() => {
-        setVisibleSidebar(false);
+        setVisible(false);
 
         window.scrollTo(0, 0);
     }, [pathname]);
@@ -74,7 +75,7 @@ const Sidebar = () => {
                 const styles = window.getComputedStyle(sidebarRef.current);
 
                 if (styles.position !== 'fixed') {
-                    setVisibleSidebar(false);
+                    setVisible(false);
                 }
             }
         };
@@ -86,8 +87,8 @@ const Sidebar = () => {
 
     return (
         <>
-            <Modal isVisible={isVisibleSidebar} setVisible={setVisibleSidebar} />
-            <Grid id="grid-main-sidebar" className={isVisibleSidebar ? 'visible' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper, borderColor }} ref={sidebarRef}>
+            <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
+            <Grid id="grid-main-sidebar" className={isVisible ? 'visible' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper, borderColor }} ref={sidebarRef}>
                 <div id="div-main-sidebar-content">
                     <List>
                         {Object.values(menu).find(({ path, subMenus }) => path === pathname || subMenus.find(({ path }) => path === pathname))?.subMenus.map(({ icon, label, path }, index) =>
@@ -101,7 +102,7 @@ const Sidebar = () => {
                     </List>
                 </div>
                 <div id="div-main-sidebar-icon" style={{ backgroundColor: theme.palette.background.paper, borderColor }} onClick={onClick}>
-                    {isVisibleSidebar ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                    {isVisible ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
                 </div>
             </Grid>
         </>

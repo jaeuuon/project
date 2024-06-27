@@ -23,7 +23,7 @@ import { getPayload, getUser, getDelay } from 'common/payload';
 import { getOnChange, includesCode } from 'common/utils';
 
 const Login = ({
-    setVisible, reissuance
+    setVisibleFalse, reissuance
 }: LoginType) => {
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
@@ -57,7 +57,7 @@ const Login = ({
 
                 dispatch(setUser(user));
 
-                setVisible(false);
+                setVisibleFalse();
                 setTimeout(reissuance, getDelay(payload));
             } else {
                 const { code, message } = errors[0];

@@ -7,10 +7,8 @@ import type LogInOutType from 'types/layout/header/logInOut';
 
 import { RootState } from 'modules';
 
-const LogInOut = ({ setVisibleLogin }: LogInOutType) => {
+const LogInOut = ({ setVisibleLoginTrue }: LogInOutType) => {
     const user = useSelector((state: RootState) => state.user);
-
-    const onClick = () => setVisibleLogin(true);
 
     return (
         <>
@@ -20,7 +18,7 @@ const LogInOut = ({ setVisibleLogin }: LogInOutType) => {
                         <Logout />
                     </Button>
                 </Tooltip>
-                : <Button variant="outlined" startIcon={<Login />} onClick={onClick}>
+                : <Button variant="outlined" startIcon={<Login />} onClick={setVisibleLoginTrue}>
                     <span className="span-button-label">Login</span>
                 </Button>
             }

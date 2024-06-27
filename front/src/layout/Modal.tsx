@@ -3,10 +3,8 @@ import { useEffect } from 'react';
 import type ModalType from 'types/layout/modal';
 
 const Modal = ({
-    isVisible, setVisible
+    isVisible, setVisibleFalse
 }: ModalType) => {
-    const onClick = () => setVisible(false);
-
     useEffect(() => {
         document.body.style.overflow = isVisible ? 'hidden' : 'initial';
     }, [isVisible]);
@@ -14,7 +12,7 @@ const Modal = ({
     return (
         <>
             {isVisible &&
-                <div id="div-modal" onClick={onClick} />
+                <div id="div-modal" onClick={setVisibleFalse} />
             }
         </>
     );

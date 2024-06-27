@@ -1,4 +1,4 @@
 export default interface Login {
-    setVisible: (isVisible: boolean) => void;
+    setVisibleFalse: () => void;
     reissuance: () => Promise<void>;
 };

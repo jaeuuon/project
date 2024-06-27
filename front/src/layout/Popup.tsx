@@ -9,17 +9,15 @@ import Modal from 'layout/Modal';
 import { getBorderColor } from 'common/utils';
 
 const Popup = ({
-    isVisible, setVisible,
+    isVisible, setVisibleFalse,
     width, icon, label, content
 }: PopupType) => {
     const theme = useTheme();
     const borderColor = getBorderColor(theme);
 
-    const onClick = () => setVisible(false);
-
     return (
         <>
-            <Modal isVisible={isVisible} setVisible={setVisible} />
+            <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
             {isVisible &&
                 <div id="div-popup" style={{ width, backgroundColor: theme.palette.background.paper, borderColor }}>
                     <Grid id="grid-popup-header" container style={{ color: theme.palette.primary.main, borderColor }}>
@@ -29,7 +27,7 @@ const Popup = ({
                         </Grid>
                         <Grid id="grid-popup-header-close" item xs="auto">
                             <Tooltip title="Close" placement="bottom-end" arrow>
-                                <Button onClick={onClick}>
+                                <Button onClick={setVisibleFalse}>
                                     <Close />
                                 </Button>
                             </Tooltip>
