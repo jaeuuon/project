@@ -40,7 +40,7 @@ const Header = ({ setMode }: HeaderType) => {
     const setVisibleLoginFalse = () => setVisibleLogin(false);
 
     const reissuance = useCallback(async () => {
-        const { status: responseStatus, data } = await putReissuance();
+        const { status: responseStatus, data, errors } = await putReissuance();
 
         if (responseStatus === status.SUCCESS) {
             const { access }: LoginContent = data.content[0];
@@ -55,6 +55,7 @@ const Header = ({ setMode }: HeaderType) => {
             dispatch(initUser());
 
             // 메시지에 따른 알림 표시.
+            // const { code, message } = errors[0];
         }
     }, [dispatch]);
 

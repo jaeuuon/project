@@ -30,3 +30,15 @@ export const putReissuance = async (): Promise<Response> => {
         return getResponseError(error);
     }
 };
+
+export const deleteLogout = async (): Promise<Response> => {
+    try {
+        const { data } = await axios.delete(url);
+
+        axios.defaults.headers.common.Authorization = undefined;
+
+        return snakeToCamel(data);
+    } catch(error: any) {
+        return getResponseError(error);
+    }
+};
