@@ -15,7 +15,7 @@ import {
     KeyboardArrowLeft, KeyboardArrowRight
 } from '@mui/icons-material';
 
-import { menu as headerMenu } from 'layout/Header';
+import { menu as headerMenu } from 'layout/header/Menu';
 
 import Modal from 'layout/Modal';
 

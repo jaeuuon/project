@@ -1,61 +1,40 @@
 import { useState, useCallback, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { useTheme } from '@mui/material/styles';
-import { Grid, Button, Avatar, Tooltip } from '@mui/material';
-import {
-    HomeOutlined, InfoOutlined,
-    Person, Logout, Login,
-    LightModeOutlined, DarkModeOutlined
-} from '@mui/icons-material';
+import { Grid } from '@mui/material';
+import { Login } from '@mui/icons-material';
 
 import { status } from 'enums/apis/status';
 
 import type HeaderType from 'types/layout/header';
 import type { default as LoginContent } from 'types/apis/pages/popup/login';
 
-import { RootState } from 'modules';
 import { initUser, setUser } from 'modules/user';
 
 import { putReissuance } from 'apis/pages/popup/login';
+
+import Icon from 'layout/header/Icon';
+import Menu from 'layout/header/Menu';
+import User from 'layout/header/User';
+import LogInOut from 'layout/header/LogInOut';
+import Mode from 'layout/header/Mode';
 
 import Popup from 'layout/Popup';
 import LoginPopup from 'pages/popup/Login';
 
 import { getPayload, getUser, getDelay } from 'common/payload';
-import { isThemeLight, getCssClassByTheme, getBorderColor, getHoverBackgroundColor } from 'common/utils';
-
-import Logo from 'Logo';
-
-export const menu = {
-    home: {
-        icon: <HomeOutlined />,
-        label: 'Home',
-        path: '/'
-    },
-    information: {
-        icon: <InfoOutlined />,
-        label: 'Information',
-        path: '/information'
-    }
-};
+import { getCssClassByTheme, getBorderColor } from 'common/utils';
 
 const Header = ({ setMode }: HeaderType) => {
-    const navigate = useNavigate();
-
     const dispatch = useDispatch();
-    const user = useSelector((state: RootState) => state.user);
 
     const theme = useTheme();
-    const isLight = isThemeLight(theme);
     const borderColor = getBorderColor(theme);
-    const hoverBackgroundColor = getHoverBackgroundColor(theme);
 
     const [isTop, setTop] = useState(true);
     const [isVisibleLogin, setVisibleLogin] = useState(false);
-    const [isMouseHover, setMouseHover] = useState(false);
 
     const reissuance = useCallback(async () => {
         const { status: responseStatus, data } = await putReissuance();
@@ -92,51 +71,12 @@ const Header = ({ setMode }: HeaderType) => {
         <>
             <div id="div-header" className={[getCssClassByTheme(theme), (isTop ? 'box-shadow-none' : '')].join(' ')} style={{ borderColor }}>
                 <Grid id="grid-header" container>
-                    <Grid id="grid-header-icon" item xs="auto">
-                        <Logo />
-                    </Grid>
-                    <Grid id="grid-header-content" item xs>
-                        {Object.values(menu).map((detail, index) => {
-                            return (
-                                <Button key={`button-header-menu-${index}`} startIcon={detail.icon} onClick={() => navigate(detail.path)}>
-                                    <span className="span-button-label">{detail.label}</span>
-                                </Button>
-                            );
-                        })}
-                    </Grid>
+                    <Icon />
+                    <Menu />
                     <Grid id="grid-header-user-and-mode" item xs="auto">
-                        {user.id
-                            ? <>
-                                <div id="div-header-user-avatar" onMouseEnter={() => setMouseHover(true)} onMouseLeave={() => setMouseHover(false)}>
-                                    <Tooltip title={
-                                        <>
-                                            <p className="p-tooltip">{user.name} ({user.roles[0].value})</p>
-                                            <p className="p-tooltip">{user.email}</p>
-                                        </>
-                                    } placement="bottom" arrow>
-                                        <Avatar style={{
-                                            borderColor: isMouseHover ? theme.palette.primary.main : borderColor,
-                                            backgroundColor: isMouseHover ? hoverBackgroundColor : theme.palette.grey[400]
-                                        }}>
-                                            <Person />
-                                        </Avatar>
-                                    </Tooltip>
-                                </div>
-                                <Tooltip title="Logout" placement="bottom" arrow>
-                                    <Button id="button-logout" variant="outlined">
-                                        <Logout />
-                                    </Button>
-                                </Tooltip>
-                            </>
-                            : <Button variant="outlined" startIcon={<Login />} onClick={() => setVisibleLogin(true)}>
-                                <span className="span-button-label">Login</span>
-                            </Button>
-                        }
-                        <Tooltip title="Light / Dark" placement="bottom-end" arrow>
-                            <Button id="button-set-mode" variant="outlined" onClick={() => setMode(!isLight ? 'light' : 'dark')}>
-                                {isLight ? <LightModeOutlined /> : <DarkModeOutlined />}
-                            </Button>
-                        </Tooltip>
+                        <User />
+                        <LogInOut setVisibleLogin={setVisibleLogin} />
+                        <Mode setMode={setMode} />
                     </Grid>
                 </Grid>
             </div>
