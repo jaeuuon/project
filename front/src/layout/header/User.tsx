@@ -28,8 +28,8 @@ const User = () => {
                 <div id="div-header-user" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                     <Tooltip title={
                         <>
-                            <p className="p-tooltip">{user.name} ({user.roles[0].value})</p>
-                            <p className="p-tooltip">{user.email}</p>
+                            <p>{user.name} ({user.roles[0].value})</p>
+                            <p>{user.email}</p>
                         </>
                     } placement="bottom" arrow>
                         <Avatar style={{

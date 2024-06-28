@@ -19,12 +19,11 @@ body {
     .MuiTooltip-tooltip {
         padding: var.$padding calc(var.$padding * 2);
 
-        .p-tooltip {
-            & {
-                margin: 0;
-                text-align: center;
-            }
-            &:not(:first-child) {
+        p {
+            margin: 0;
+            text-align: center;
+
+            &:nth-of-type(n + 2) {
                 margin-top: calc(var.$margin / 2);
             }
         }
@@ -41,11 +40,11 @@ body {
                 margin: 0;
                 text-align: center;
 
-                &#p-message {
+                &.p-message {
                     word-break: keep-all;
                 }
 
-                &#p-code {
+                &.p-code {
                     margin-top: 5px;
                     word-break: break-all;
                 }

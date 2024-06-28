@@ -99,25 +99,17 @@ const Login = ({
 
     return (
         <form id="form-login" onSubmit={onSubmit}>
-            <div>
-                <TextField name="email" label="Email" isFullWidth={true} autoComplete="email" value={params.email} isError={includesCode(emailError, error?.code)} ref={emailRef} onChange={onChange} />
-            </div>
-            <div>
-                <TextField type="password" name="password" label="Password" isFullWidth={true} autoComplete="current-password" value={params.password} isError={includesCode(passwordError, error?.code)} ref={passwordRef} onChange={onChange} />
-            </div>
-            <div id="div-login-alert">
-                {error &&
-                    <Alert severity="error">
-                        <p id="p-message">{error.message}</p>
-                        <p id="p-code">[{error.code}]</p>
-                    </Alert>
-                }
-            </div>
-            <div id="div-login-submit">
-                <Button type="submit" variant="contained">
-                    <span>Login</span>
-                </Button>
-            </div>
+            <TextField name="email" label="Email" isFullWidth={true} autoComplete="email" value={params.email} isError={includesCode(emailError, error?.code)} ref={emailRef} onChange={onChange} />
+            <TextField type="password" name="password" label="Password" isFullWidth={true} autoComplete="current-password" value={params.password} isError={includesCode(passwordError, error?.code)} ref={passwordRef} onChange={onChange} />
+            {error &&
+                <Alert severity="error">
+                    <p className="p-message">{error.message}</p>
+                    <p className="p-code">[{error.code}]</p>
+                </Alert>
+            }
+            <Button id="button-login-submit" type="submit" variant="contained">
+                <span>Login</span>
+            </Button>
         </form>
     );
 };

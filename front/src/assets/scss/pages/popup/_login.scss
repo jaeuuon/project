@@ -1,20 +1,14 @@
 @use '../../variables' as var;
 
 #form-login {
-    #div-login {
-        &-alert {
-            .MuiAlert {
-                &-root {
-                    margin-top: 10px;
-                }
-            }
+    .MuiAlert {
+        &-root {
+            margin-top: 10px;
         }
+    }
 
-        &-submit {
-            button {
-                width: 100%;
-                margin-top: calc((var.$margin * 2) + (var.$padding * 2));
-            }
-        }
+    #button-login-submit {
+        width: 100%;
+        margin-top: 20px;
     }
 }
