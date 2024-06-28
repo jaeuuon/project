@@ -11,7 +11,7 @@ import { emailError, passwordError } from 'enums/apis/pages/popup/login';
 
 import type LoginType from 'types/pages/popup/login';
 import type { Params, default as Content } from 'types/apis/pages/popup/login';
-import type { CodeMessageDetail } from 'types/apis/common';
+import type { Error } from 'types/apis/common';
 
 import { setUser } from 'modules/user';
 
@@ -22,6 +22,9 @@ import TextField from 'components/common/TextField';
 import { getPayload, getUser, getDelay } from 'common/payload';
 import { getOnChange, includesCode } from 'common/utils';
 
+const jsEncrypt = new JSEncrypt();
+jsEncrypt.setPublicKey(process.env.REACT_APP_PUBLIC_KEY || '');
+
 const Login = ({
     setVisibleFalse, reissuance
 }: LoginType) => {
@@ -31,14 +34,9 @@ const Login = ({
     const dispatch = useDispatch();
 
     const [params, setParams] = useState<Params>({});
-
-    const [code, setCode] = useState<string>();
-    const [message, setMessage] = useState<string>();
+    const [error, setError] = useState<Error>();
 
     const onChange = getOnChange(params, setParams);
-
-    const jsEncrypt = new JSEncrypt();
-    jsEncrypt.setPublicKey(process.env.REACT_APP_PUBLIC_KEY || '');
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -60,16 +58,15 @@ const Login = ({
                 setVisibleFalse();
                 setTimeout(reissuance, getDelay(payload));
             } else {
-                const { code, message } = errors[0];
+                const error = errors[0];
 
-                if (includesCode(emailError, code)) {
+                if (includesCode(emailError, error.code)) {
                     emailRef.current?.focus();
-                } else if (includesCode(passwordError, code)) {
+                } else if (includesCode(passwordError, error.code)) {
                     passwordRef.current?.focus();
                 }
 
-                setCode(code);
-                setMessage(message);
+                setError(error);
             }
         }
     };
@@ -78,25 +75,24 @@ const Login = ({
         const { email, password } = params;
 
         if (!email) {
-            return error(emailRef, emailError.BLANK);
+            return focusAndSetError(emailRef, emailError.BLANK);
         } else if (email.length < 4 || email.length > 100) {
-            return error(emailRef, emailError.SIZE);
+            return focusAndSetError(emailRef, emailError.SIZE);
         } else if (!email.match(/^.+@.+$/)) {
-            return error(emailRef, emailError.FORMAT);
+            return focusAndSetError(emailRef, emailError.FORMAT);
         } else if (!password) {
-            return error(passwordRef, passwordError.BLANK);
+            return focusAndSetError(passwordRef, passwordError.BLANK);
         } else if (password.length < 4 || password.length > 50) {
-            return error(passwordRef, passwordError.SIZE);
+            return focusAndSetError(passwordRef, passwordError.SIZE);
         }
 
         return true;
     };
 
-    const error = (inputRef: React.RefObject<HTMLInputElement>, { code, message }: CodeMessageDetail) => {
+    const focusAndSetError = (inputRef: React.RefObject<HTMLInputElement>, error: Error) => {
         inputRef.current?.focus();
 
-        setCode(code);
-        setMessage(message);
+        setError(error);
 
         return false;
     }
@@ -104,16 +100,16 @@ const Login = ({
     return (
         <form id="form-login" onSubmit={onSubmit}>
             <div>
-                <TextField name="email" label="Email" isFullWidth={true} autoComplete="email" value={params.email} isError={includesCode(emailError, code)} ref={emailRef} onChange={onChange} />
+                <TextField name="email" label="Email" isFullWidth={true} autoComplete="email" value={params.email} isError={includesCode(emailError, error?.code)} ref={emailRef} onChange={onChange} />
             </div>
             <div>
-                <TextField type="password" name="password" label="Password" isFullWidth={true} autoComplete="current-password" value={params.password} isError={includesCode(passwordError, code)} ref={passwordRef} onChange={onChange} />
+                <TextField type="password" name="password" label="Password" isFullWidth={true} autoComplete="current-password" value={params.password} isError={includesCode(passwordError, error?.code)} ref={passwordRef} onChange={onChange} />
             </div>
             <div id="div-login-alert">
-                {message &&
+                {error &&
                     <Alert severity="error">
-                        <p id="p-message">{message}</p>
-                        <p id="p-code">[{code}]</p>
+                        <p id="p-message">{error.message}</p>
+                        <p id="p-code">[{error.code}]</p>
                     </Alert>
                 }
             </div>

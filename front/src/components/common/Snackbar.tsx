@@ -1,13 +1,20 @@
-import { Snackbar as MaterialSnackbar } from '@mui/material';
+import { Snackbar as MaterialSnackbar, Slide, SlideProps, Alert } from '@mui/material';
 
-import type Snackbar from 'types/components/common/snackbar';
+import type SnackbarType from 'types/components/common/snackbar';
+
+const SlideTransition = (props: SlideProps) => <Slide {...props} direction="up" />;
 
 const Snackbar = ({
-    key, message,
+    error,
     isVisible, setVisibleFalse
-}: Snackbar) => {
+}: SnackbarType) => {
     return (
-        <MaterialSnackbar key={key} open={isVisible} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} message={message} autoHideDuration={5000} onClose={setVisibleFalse} />
+        <MaterialSnackbar key={error.code} open={isVisible} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} TransitionComponent={SlideTransition} autoHideDuration={5000} onClose={setVisibleFalse}>
+            <Alert severity="error" onClose={setVisibleFalse}>
+                <p id="p-message">{error.message}</p>
+                <p id="p-code">[{error.code}]</p>
+            </Alert>
+        </MaterialSnackbar>
     );
 };
 

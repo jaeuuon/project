@@ -31,10 +31,10 @@ const skillBadges = [
     }
 ];
 
+const onClick = () => window.open(creator.url);
+
 const Footer = () => {
     const theme = useTheme();
-
-    const onClick = () => window.open(creator.url);
 
     return (
         <div id="div-footer" style={{ borderColor: getBorderColor(theme) }}>

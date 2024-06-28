@@ -1,6 +1,6 @@
-import type Visible from 'types/visible';
+import Visible from 'types/visible';
+import type { Error } from 'types/apis/common';
 
 export default interface Snackbar extends Visible {
-    key: string;
-    message: string;
+    error: Error;
 };

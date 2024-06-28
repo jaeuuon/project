@@ -28,4 +28,27 @@ body {
             }
         }
     }
+    .MuiAlert {
+        &-icon {
+            align-items: center;
+        }
+
+        &-message {
+            width: 100%;
+
+            p {
+                margin: 0;
+                text-align: center;
+
+                &#p-message {
+                    word-break: keep-all;
+                }
+
+                &#p-code {
+                    margin-top: 5px;
+                    word-break: break-all;
+                }
+            }
+        }
+    }
 }

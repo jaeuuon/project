@@ -7,9 +7,11 @@ import { Grid } from '@mui/material';
 import { Login } from '@mui/icons-material';
 
 import { status } from 'enums/apis/status';
+import { reissuanceIgnoreError } from 'enums/apis/layout/header';
 
 import type HeaderType from 'types/layout/header';
 import type { default as LoginContent } from 'types/apis/pages/popup/login';
+import type { Error } from 'types/apis/common';
 
 import { initUser, setUser } from 'modules/user';
 
@@ -24,8 +26,10 @@ import Mode from 'layout/header/Mode';
 import Popup from 'layout/Popup';
 import LoginPopup from 'pages/popup/Login';
 
+import Snackbar from 'components/common/Snackbar';
+
 import { getPayload, getUser, getDelay } from 'common/payload';
-import { getCssClassByTheme, getBorderColor } from 'common/utils';
+import { getCssClassByTheme, getBorderColor, includesCode } from 'common/utils';
 
 const Header = ({ setMode }: HeaderType) => {
     const dispatch = useDispatch();
@@ -36,8 +40,12 @@ const Header = ({ setMode }: HeaderType) => {
     const [isTop, setTop] = useState(true);
     const [isVisibleLogin, setVisibleLogin] = useState(false);
 
+    const [error, setError] = useState<Error>();
+    const [isVisibleError, setVisibleError] = useState(false);
+
     const setVisibleLoginTrue = () => setVisibleLogin(true);
     const setVisibleLoginFalse = () => setVisibleLogin(false);
+    const setVisibleErrorFalse = () => setVisibleError(false);
 
     const reissuance = useCallback(async () => {
         const { status: responseStatus, data, errors } = await putReissuance();
@@ -54,8 +62,12 @@ const Header = ({ setMode }: HeaderType) => {
         } else {
             dispatch(initUser());
 
-            // 메시지에 따른 알림 표시.
-            // const { code, message } = errors[0];
+            const error = errors[0];
+
+            if (!includesCode(reissuanceIgnoreError, error.code)) {
+                setError(error);
+                setVisibleError(true);
+            }
         }
     }, [dispatch]);
 
@@ -64,7 +76,7 @@ const Header = ({ setMode }: HeaderType) => {
     }, [reissuance]);
 
     useEffect(() => {
-        const onScroll = () => setTop(window.scrollY === 0 ? true : false);
+        const onScroll = () => setTop(window.scrollY === 0 && true);
 
         window.addEventListener('scroll', onScroll);
 
@@ -85,6 +97,9 @@ const Header = ({ setMode }: HeaderType) => {
                 </Grid>
             </div>
             <Popup isVisible={isVisibleLogin} setVisibleFalse={setVisibleLoginFalse} width={400} icon={<Login />} label="Login" content={<LoginPopup setVisibleFalse={setVisibleLoginFalse} reissuance={reissuance} />} />
+            {error &&
+                <Snackbar error={error} isVisible={isVisibleError} setVisibleFalse={setVisibleErrorFalse} />
+            }
         </>
     );
 };

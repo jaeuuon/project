@@ -9,15 +9,15 @@ import Content from 'layout/main/Content';
 
 import { getCssClassByTheme, getBorderColor } from 'common/utils';
 
+const onClick = () => window.scroll({ top: 0, behavior: 'smooth' });
+
 const Main = () => {
     const theme = useTheme();
 
     const [isVisibleToTop, setVisibleToTop] = useState(false);
 
-    const onClick = () => window.scroll({ top: 0, behavior: 'smooth' });
-
     useEffect(() => {
-        const onScroll = () => setVisibleToTop(window.scrollY >= 100 ? true : false);
+        const onScroll = () => setVisibleToTop(window.scrollY >= 100 && true);
 
         window.addEventListener('scroll', onScroll);
 

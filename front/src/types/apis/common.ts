@@ -26,10 +26,5 @@ export interface Error {
 };
 
 export interface CodeMessage {
-    [index: string]: CodeMessageDetail;
-};
-
-export interface CodeMessageDetail {
-    code: string;
-    message: string;
-};
+    [index: string]: Error;
+}
