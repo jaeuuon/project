@@ -4,13 +4,13 @@ import { Close } from '@mui/icons-material';
 
 import type PopupType from 'types/layout/popup';
 
-import Modal from 'layout/Modal';
-
 import { getBorderColor } from 'common/utils';
 
+import Modal from 'components/common/Modal';
+
 const Popup = ({
-    width, icon, label, content,
-    isVisible, setVisibleFalse
+    isVisible, setVisibleFalse,
+    width, icon, label, content
 }: PopupType) => {
     const theme = useTheme();
     const borderColor = getBorderColor(theme);

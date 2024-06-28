@@ -17,6 +17,9 @@ import { initUser, setUser } from 'modules/user';
 
 import { putReissuance } from 'apis/pages/popup/login';
 
+import { getPayload, getUser, getDelay } from 'common/payload';
+import { getCssClassByTheme, getBorderColor, includesCode } from 'common/utils';
+
 import Icon from 'layout/header/Icon';
 import Menu from 'layout/header/Menu';
 import User from 'layout/header/User';
@@ -27,9 +30,6 @@ import Popup from 'layout/Popup';
 import LoginPopup from 'pages/popup/Login';
 
 import Snackbar from 'components/common/Snackbar';
-
-import { getPayload, getUser, getDelay } from 'common/payload';
-import { getCssClassByTheme, getBorderColor, includesCode } from 'common/utils';
 
 const Header = ({ setMode }: HeaderType) => {
     const dispatch = useDispatch();
@@ -45,6 +45,8 @@ const Header = ({ setMode }: HeaderType) => {
 
     const setVisibleLoginTrue = () => setVisibleLogin(true);
     const setVisibleLoginFalse = () => setVisibleLogin(false);
+
+    const setVisibleErrorTrue = () => setVisibleError(true);
     const setVisibleErrorFalse = () => setVisibleError(false);
 
     const reissuance = useCallback(async () => {
@@ -91,15 +93,15 @@ const Header = ({ setMode }: HeaderType) => {
                     <Menu />
                     <Grid id="grid-header-user-and-mode" item xs="auto">
                         <User />
-                        <LogInOut setVisibleLoginTrue={setVisibleLoginTrue} />
+                        <LogInOut setError={setError} setVisibleErrorTrue={setVisibleErrorTrue} setVisibleLoginTrue={setVisibleLoginTrue} />
                         <Mode setMode={setMode} />
                     </Grid>
                 </Grid>
             </div>
-            <Popup isVisible={isVisibleLogin} setVisibleFalse={setVisibleLoginFalse} width={400} icon={<Login />} label="Login" content={<LoginPopup setVisibleFalse={setVisibleLoginFalse} reissuance={reissuance} />} />
-            {error &&
-                <Snackbar error={error} isVisible={isVisibleError} setVisibleFalse={setVisibleErrorFalse} />
-            }
+            <Popup isVisible={isVisibleLogin} setVisibleFalse={setVisibleLoginFalse} width={400} icon={<Login />} label="Login" content={
+                <LoginPopup setVisibleFalse={setVisibleLoginFalse} reissuance={reissuance} />
+            } />
+            <Snackbar isVisible={isVisibleError} setVisibleFalse={setVisibleErrorFalse} error={error} />
         </>
     );
 };

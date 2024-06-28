@@ -17,9 +17,9 @@ import {
 
 import { menu as headerMenu } from 'layout/header/Menu';
 
-import Modal from 'layout/Modal';
-
 import { getBorderColor } from 'common/utils';
+
+import Modal from 'components/common/Modal';
 
 const menu = {
     home: {

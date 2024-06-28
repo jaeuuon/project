@@ -12,7 +12,10 @@ import { initUser } from 'modules/user';
 
 import { deleteLogout } from 'apis/pages/popup/login';
 
-const LogInOut = ({ setVisibleLoginTrue }: LogInOutType) => {
+const LogInOut = ({
+    setError, setVisibleErrorTrue,
+    setVisibleLoginTrue
+}: LogInOutType) => {
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.user);
 
@@ -22,8 +25,8 @@ const LogInOut = ({ setVisibleLoginTrue }: LogInOutType) => {
         if (responseStatus === status.SUCCESS) {
             dispatch(initUser());
         } else {
-            // 알림 표시.
-            // const { code, message } = errors[0];
+            setError(errors[0]);
+            setVisibleErrorTrue();
         }
     };
 

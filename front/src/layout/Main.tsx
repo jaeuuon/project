@@ -4,10 +4,10 @@ import { useTheme } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
+import { getCssClassByTheme, getBorderColor } from 'common/utils';
+
 import Sidebar from 'layout/main/Sidebar';
 import Content from 'layout/main/Content';
-
-import { getCssClassByTheme, getBorderColor } from 'common/utils';
 
 const onClick = () => window.scroll({ top: 0, behavior: 'smooth' });
 

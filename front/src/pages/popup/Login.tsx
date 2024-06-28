@@ -17,10 +17,10 @@ import { setUser } from 'modules/user';
 
 import { postLogin } from 'apis/pages/popup/login';
 
-import TextField from 'components/common/TextField';
-
 import { getPayload, getUser, getDelay } from 'common/payload';
 import { getOnChange, includesCode } from 'common/utils';
+
+import TextField from 'components/common/TextField';
 
 const jsEncrypt = new JSEncrypt();
 jsEncrypt.setPublicKey(process.env.REACT_APP_PUBLIC_KEY || '');
