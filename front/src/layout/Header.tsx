@@ -41,13 +41,13 @@ const Header = ({ setMode }: HeaderType) => {
     const [isVisibleLogin, setVisibleLogin] = useState(false);
 
     const [error, setError] = useState<Error>();
-    const [isVisibleError, setVisibleError] = useState(false);
+    const [isVisibleSnackbar, setVisibleSnackbar] = useState(false);
 
     const setVisibleLoginTrue = () => setVisibleLogin(true);
     const setVisibleLoginFalse = () => setVisibleLogin(false);
 
-    const setVisibleErrorTrue = () => setVisibleError(true);
-    const setVisibleErrorFalse = () => setVisibleError(false);
+    const setVisibleSnackbarTrue = () => setVisibleSnackbar(true);
+    const setVisibleSnackbarFalse = () => setVisibleSnackbar(false);
 
     const reissuance = useCallback(async () => {
         const { status: responseStatus, data, errors } = await putReissuance();
@@ -68,7 +68,7 @@ const Header = ({ setMode }: HeaderType) => {
 
             if (!includesCode(reissuanceIgnoreError, error.code)) {
                 setError(error);
-                setVisibleError(true);
+                setVisibleSnackbar(true);
             }
         }
     }, [dispatch]);
@@ -93,7 +93,7 @@ const Header = ({ setMode }: HeaderType) => {
                     <Menu />
                     <Grid id="grid-header-user-and-mode" item xs="auto">
                         <User />
-                        <LogInOut setError={setError} setVisibleErrorTrue={setVisibleErrorTrue} setVisibleLoginTrue={setVisibleLoginTrue} />
+                        <LogInOut setError={setError} setVisibleSnackbarTrue={setVisibleSnackbarTrue} setVisibleLoginTrue={setVisibleLoginTrue} />
                         <Mode setMode={setMode} />
                     </Grid>
                 </Grid>
@@ -101,7 +101,7 @@ const Header = ({ setMode }: HeaderType) => {
             <Popup isVisible={isVisibleLogin} setVisibleFalse={setVisibleLoginFalse} width={400} icon={<Login />} label="Login" content={
                 <LoginPopup setVisibleFalse={setVisibleLoginFalse} reissuance={reissuance} />
             } />
-            <Snackbar isVisible={isVisibleError} setVisibleFalse={setVisibleErrorFalse} error={error} />
+            <Snackbar isVisible={isVisibleSnackbar} setVisibleFalse={setVisibleSnackbarFalse} error={error} />
         </>
     );
 };

@@ -13,7 +13,7 @@ import { initUser } from 'modules/user';
 import { deleteLogout } from 'apis/pages/popup/login';
 
 const LogInOut = ({
-    setError, setVisibleErrorTrue,
+    setError, setVisibleSnackbarTrue,
     setVisibleLoginTrue
 }: LogInOutType) => {
     const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const LogInOut = ({
             dispatch(initUser());
         } else {
             setError(errors[0]);
-            setVisibleErrorTrue();
+            setVisibleSnackbarTrue();
         }
     };
 
