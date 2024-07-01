@@ -11,7 +11,7 @@ import { emailError, passwordError } from 'enums/apis/pages/popup/login';
 
 import type LoginType from 'types/pages/popup/login';
 import type { Params, default as Content } from 'types/apis/pages/popup/login';
-import type { Error } from 'types/apis/common';
+import type { CodeMessage } from 'types/apis/common';
 
 import { setUser } from 'modules/user';
 
@@ -34,7 +34,7 @@ const Login = ({
     const dispatch = useDispatch();
 
     const [params, setParams] = useState<Params>({});
-    const [error, setError] = useState<Error>();
+    const [error, setError] = useState<CodeMessage>();
 
     const onChange = getOnChange(params, setParams);
 
@@ -89,7 +89,7 @@ const Login = ({
         return true;
     };
 
-    const focusAndSetError = (inputRef: React.RefObject<HTMLInputElement>, error: Error) => {
+    const focusAndSetError = (inputRef: React.RefObject<HTMLInputElement>, error: CodeMessage) => {
         inputRef.current?.focus();
 
         setError(error);

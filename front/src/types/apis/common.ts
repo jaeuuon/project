@@ -5,13 +5,11 @@ export default interface Response {
     method: string;
     status: Status;
     data: Data;
-    errors: Error[];
+    errors: CodeMessage[];
     timestamp: string;
 };
 
-export interface Data {
-    code?: string;
-    message?: string;
+export interface Data extends CodeMessage {
     content: any[];
     elements: number;
     totalElements: number;
@@ -20,11 +18,7 @@ export interface Data {
     totalPages: number;
 };
 
-export interface Error {
+export interface CodeMessage {
     code: string;
     message: string;
 };
-
-export interface CodeMessage {
-    [index: string]: Error;
-}
