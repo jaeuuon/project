@@ -2,14 +2,10 @@ import type { Roles } from 'enums/user';
 
 import type CodeValue from 'types/codeValue';
 
-type Id = number | undefined;
-type Email = string | undefined;
-type Name = string | undefined;
-
 export default interface User {
-    id: Id;
-    email: Email;
-    name: Name;
-    roles: CodeValue<Roles>[];
-    exp: number;
+    id?: number;
+    email?: string;
+    name?: string;
+    roles?: CodeValue<Roles>[];
+    exp?: number;
 };

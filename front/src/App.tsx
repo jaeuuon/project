@@ -7,6 +7,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Header from 'layout/Header';
 import Main from 'layout/Main';
 import Footer from 'layout/Footer';
+import Snackbar from 'layout/Snackbar';
 
 import 'assets/scss/app.scss';
 
@@ -47,6 +48,7 @@ const App = () => {
             <Header setMode={setMode} />
             <Main />
             <Footer />
+            <Snackbar />
         </ThemeProvider>
     );
 };

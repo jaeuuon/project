@@ -1,6 +1,6 @@
 package kr.jaeuuon.security.source.user.service;
 
-import kr.jaeuuon.common.jpa.source.user.entity.User;
+import kr.jaeuuon.common.jpa.source.entity.user.User;
 import kr.jaeuuon.security.source.security.userdetails.impl.UserDetailsImpl;
 import kr.jaeuuon.security.source.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

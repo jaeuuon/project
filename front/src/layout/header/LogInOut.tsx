@@ -9,11 +9,11 @@ import type LogInOutType from 'types/layout/header/logInOut';
 
 import { RootState } from 'modules';
 import { initUser } from 'modules/layout/header/user';
+import { setSnackbarSuccess, setSnackbarError } from 'modules/layout/snackbar';
 
 import { deleteLogout } from 'apis/pages/popup/login';
 
 const LogInOut = ({
-    setSeverity, setCodeMessage,
     setVisibleLoginTrue
 }: LogInOutType) => {
     const dispatch = useDispatch();
@@ -25,13 +25,10 @@ const LogInOut = ({
 
         if (responseStatus === status.SUCCESS) {
             dispatch(initUser());
-
-            setSeverity('success');
+            dispatch(setSnackbarSuccess({ code, message }));
         } else {
-            setSeverity('error');
+            dispatch(setSnackbarError({ code, message }));
         }
-
-        setCodeMessage({ code, message });
     };
 
     return (

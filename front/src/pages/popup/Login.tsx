@@ -14,6 +14,7 @@ import type { Params, default as Content } from 'types/apis/pages/popup/login';
 import type { CodeMessage } from 'types/apis/common';
 
 import { setUser } from 'modules/layout/header/user';
+import { setSnackbarSuccess } from 'modules/layout/snackbar';
 
 import { postLogin } from 'apis/pages/popup/login';
 
@@ -55,6 +56,7 @@ const Login = ({
                 const user = getUser(payload);
 
                 dispatch(setUser(user));
+                dispatch(setSnackbarSuccess({ code, message }));
 
                 setVisibleFalse();
                 setTimeout(reissuance, getDelay(payload));

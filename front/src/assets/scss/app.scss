@@ -39,13 +39,13 @@ body {
             p {
                 margin: 0;
                 text-align: center;
+                line-height: 20px;
 
-                &.p-message {
+                &:nth-of-type(1) {
                     word-break: keep-all;
                 }
 
-                &.p-code {
-                    margin-top: 5px;
+                &:nth-of-type(2) {
                     word-break: break-all;
                 }
             }

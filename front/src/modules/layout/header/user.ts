@@ -1,16 +1,10 @@
 import type User from 'types/layout/header/user';
 
-const initState: User = {
-    id: undefined,
-    email: undefined,
-    name: undefined,
-    roles: [],
-    exp: 0
-};
+const initState: User = {};
 
 const action = {
-    INIT: 'user/INIT',
-    SET: 'user/SET'
+    INIT: 'user/init',
+    SET: 'user/set'
 } as const;
 
 export const initUser = () => ({ type: action.INIT, payload: initState });

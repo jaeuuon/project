@@ -11,7 +11,7 @@ import { RootState } from 'modules';
 import { getBorderColor, getHoverBackgroundColor } from 'common/utils';
 
 const User = () => {
-    const user = useSelector((state: RootState) => state.user);
+    const { id, email, name, roles } = useSelector((state: RootState) => state.user);
 
     const theme = useTheme();
     const borderColor = getBorderColor(theme);
@@ -24,12 +24,17 @@ const User = () => {
 
     return (
         <>
-            {user.id &&
+            {id &&
                 <div id="div-header-user" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                     <Tooltip title={
                         <>
-                            <p>{user.name} ({user.roles[0].value})</p>
-                            <p>{user.email}</p>
+                            <p>
+                                {name}
+                                {roles && roles.length > 0 &&
+                                    <> ({roles[0].value})</>
+                                }
+                            </p>
+                            <p>{email}</p>
                         </>
                     } placement="bottom" arrow>
                         <Avatar style={{

@@ -2,7 +2,7 @@ package kr.jaeuuon.security.source.api.history.entity;
 
 import jakarta.persistence.*;
 import kr.jaeuuon.common.jpa.source.entity.CreatedTime;
-import kr.jaeuuon.common.jpa.source.user.entity.User;
+import kr.jaeuuon.common.jpa.source.entity.user.User;
 import kr.jaeuuon.security.source.api.history.code.impl.ResultCode;
 import kr.jaeuuon.security.source.api.history.code.impl.ResultCode.ResultCodeConverter;
 import lombok.AccessLevel;

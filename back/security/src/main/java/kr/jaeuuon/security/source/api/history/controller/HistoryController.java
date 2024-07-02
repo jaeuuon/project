@@ -24,7 +24,7 @@ public class HistoryController {
     }
 
     @GetMapping("/{userId}/list")
-    @HasRole({AuthorityCode.ROLE_ADMIN})
+    @HasRole({ AuthorityCode.ROLE_ADMIN })
     public ResponseEntity<Object> getListByUserId(HttpServletRequest request, @PathVariable long userId, Pageable pageable) {
         return ResponseSuccessUtil.ok(request, historyService.getList(userId, pageable, true));
     }

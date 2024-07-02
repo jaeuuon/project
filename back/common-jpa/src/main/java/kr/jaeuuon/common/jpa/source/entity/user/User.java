@@ -1,4 +1,4 @@
-package kr.jaeuuon.common.jpa.source.user.entity;
+package kr.jaeuuon.common.jpa.source.entity.user;
 
 import jakarta.persistence.*;
 import kr.jaeuuon.common.jpa.source.code.impl.StatusCode;
