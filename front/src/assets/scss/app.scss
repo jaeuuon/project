@@ -20,14 +20,11 @@ body {
         padding: var.$padding calc(var.$padding * 2);
 
         p {
-            margin: 0;
+            margin: calc(var.$margin / 2) 0;
             text-align: center;
-
-            &:nth-of-type(n + 2) {
-                margin-top: calc(var.$margin / 2);
-            }
         }
     }
+
     .MuiAlert {
         &-icon {
             align-items: center;
