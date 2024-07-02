@@ -1,4 +1,5 @@
-export default interface Login {
-    setVisibleFalse: () => void;
+import type { VisibleFalse } from 'types/visible';
+
+export default interface Login extends VisibleFalse {
     reissuance: () => Promise<void>;
 };

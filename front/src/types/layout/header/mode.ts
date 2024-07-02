@@ -1,5 +1,3 @@
-import type { PaletteMode } from '@mui/material/index';
+import type Header from 'types/layout/header';
 
-export default interface Mode {
-    setMode: (mode: PaletteMode) => void;
-};
+export default interface Mode extends Header {};

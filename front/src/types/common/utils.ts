@@ -1,6 +1,6 @@
 import type { CodeMessage } from 'types/apis/common';
 
-export interface CodeMessageError {
+export interface CodeMessageEnum {
     [index: string]: CodeMessage;
 }
 
