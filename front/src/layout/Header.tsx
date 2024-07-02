@@ -3,7 +3,7 @@ import { useState, useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useTheme } from '@mui/material/styles';
-import { Grid } from '@mui/material';
+import { AlertColor, Grid } from '@mui/material';
 import { Login } from '@mui/icons-material';
 
 import { status } from 'enums/apis/status';
@@ -11,7 +11,7 @@ import { reissuanceIgnoreError } from 'enums/apis/layout/header';
 
 import type HeaderType from 'types/layout/header';
 import type { default as LoginContent } from 'types/apis/pages/popup/login';
-import type { Error } from 'types/apis/common';
+import type { CodeMessage } from 'types/apis/common';
 
 import { initUser, setUser } from 'modules/user';
 
@@ -40,14 +40,11 @@ const Header = ({ setMode }: HeaderType) => {
     const [isTop, setTop] = useState(true);
     const [isVisibleLogin, setVisibleLogin] = useState(false);
 
-    const [error, setError] = useState<Error>();
-    const [isVisibleSnackbar, setVisibleSnackbar] = useState(false);
+    const [severity, setSeverity] = useState<AlertColor>();
+    const [codeMessage, setCodeMessage] = useState<CodeMessage>();
 
     const setVisibleLoginTrue = () => setVisibleLogin(true);
     const setVisibleLoginFalse = () => setVisibleLogin(false);
-
-    const setVisibleSnackbarTrue = () => setVisibleSnackbar(true);
-    const setVisibleSnackbarFalse = () => setVisibleSnackbar(false);
 
     const reissuance = useCallback(async () => {
         const { status: responseStatus, data, errors } = await putReissuance();
@@ -60,6 +57,9 @@ const Header = ({ setMode }: HeaderType) => {
 
             dispatch(setUser(user));
 
+            setSeverity('success');
+            setCodeMessage({ code: data.code, message: data.message });
+
             setTimeout(reissuance, getDelay(payload));
         } else {
             dispatch(initUser());
@@ -67,8 +67,8 @@ const Header = ({ setMode }: HeaderType) => {
             const error = errors[0];
 
             if (!includesCode(reissuanceIgnoreError, error.code)) {
-                setError(error);
-                setVisibleSnackbar(true);
+                setSeverity('error');
+                setCodeMessage(error);
             }
         }
     }, [dispatch]);
@@ -93,7 +93,7 @@ const Header = ({ setMode }: HeaderType) => {
                     <Menu />
                     <Grid id="grid-header-user-and-mode" item xs="auto">
                         <User />
-                        <LogInOut setError={setError} setVisibleSnackbarTrue={setVisibleSnackbarTrue} setVisibleLoginTrue={setVisibleLoginTrue} />
+                        <LogInOut setSeverity={setSeverity} setCodeMessage={setCodeMessage} setVisibleLoginTrue={setVisibleLoginTrue} />
                         <Mode setMode={setMode} />
                     </Grid>
                 </Grid>
@@ -101,7 +101,7 @@ const Header = ({ setMode }: HeaderType) => {
             <Popup isVisible={isVisibleLogin} setVisibleFalse={setVisibleLoginFalse} width={400} icon={<Login />} label="Login" content={
                 <LoginPopup setVisibleFalse={setVisibleLoginFalse} reissuance={reissuance} />
             } />
-            <Snackbar isVisible={isVisibleSnackbar} setVisibleFalse={setVisibleSnackbarFalse} error={error} />
+            <Snackbar severity={severity} codeMessage={codeMessage} />
         </>
     );
 };

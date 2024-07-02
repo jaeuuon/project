@@ -19,6 +19,6 @@ export interface Data extends CodeMessage {
 };
 
 export interface CodeMessage {
-    code: string;
-    message: string;
+    code?: string;
+    message?: string;
 };

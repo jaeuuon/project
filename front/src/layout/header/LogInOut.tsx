@@ -13,20 +13,23 @@ import { initUser } from 'modules/user';
 import { deleteLogout } from 'apis/pages/popup/login';
 
 const LogInOut = ({
-    setError, setVisibleSnackbarTrue,
+    setSeverity, setCodeMessage,
     setVisibleLoginTrue
 }: LogInOutType) => {
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.user);
 
     const onClick = async () => {
-        const { status: responseStatus, errors } = await deleteLogout();
+        const { status: responseStatus, data, errors } = await deleteLogout();
 
         if (responseStatus === status.SUCCESS) {
             dispatch(initUser());
+
+            setSeverity('success');
+            setCodeMessage({ code: data.code, message: data.message });
         } else {
-            setError(errors[0]);
-            setVisibleSnackbarTrue();
+            setSeverity('error');
+            setCodeMessage(errors[0]);
         }
     };
 

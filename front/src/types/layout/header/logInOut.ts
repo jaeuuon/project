@@ -1,7 +1,9 @@
-import type { Error } from 'types/apis/common';
+import { AlertColor } from '@mui/material';
+
+import type { CodeMessage } from 'types/apis/common';
 
 export default interface LogInOut {
-    setError: (error: Error) => void;
-    setVisibleSnackbarTrue: () => void;
+    setSeverity: (severity: AlertColor) => void;
+    setCodeMessage: (codeMessage: CodeMessage) => void;
     setVisibleLoginTrue: () => void;
 };
