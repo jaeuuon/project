@@ -10,14 +10,6 @@
     backdrop-filter: var.$backdropFilter;
     box-shadow: var.$boxShadow;
 
-    &.mode-light {
-        background-color: var.$backgroundColorLight;
-    }
-
-    &.mode-dark {
-        background-color: var.$backgroundColorDark;
-    }
-
     &.box-shadow-none {
         box-shadow: none;
     }
@@ -25,6 +17,18 @@
     &-grid {
         max-width: var.$widthXl;
         margin: auto;
+
+        button {
+            width: var.$headerInnerHeight;
+            min-width: var.$headerInnerHeight;
+            height: var.$headerInnerHeight;
+            margin: var.$margin;
+
+            span:first-child {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
 
         &-icon {
             @include mixin.layout-header-grid-default;
@@ -65,18 +69,6 @@
                         border: var.$border;
                     }
                 }
-            }
-        }
-
-        button {
-            width: var.$headerInnerHeight;
-            min-width: var.$headerInnerHeight;
-            height: var.$headerInnerHeight;
-            margin: var.$margin;
-
-            span:first-child {
-                margin-left: 0;
-                margin-right: 0;
             }
         }
     }

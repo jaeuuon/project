@@ -25,13 +25,13 @@ const Main = () => {
     }, []);
 
     return (
-        <div id="div-main">
-            <Grid id="grid-main" container>
+        <div id="layout-main">
+            <Grid id="layout-main-grid" container>
                 <Sidebar />
                 <Content />
             </Grid>
             {isVisibleToTop &&
-                <div id="div-main-to-top" className={getCssClassByTheme(theme)} style={{ borderColor: getBorderColor(theme) }} onClick={onClick}>
+                <div id="layout-main-to-top" className={getCssClassByTheme(theme)} style={{ borderColor: getBorderColor(theme) }} onClick={onClick}>
                     <KeyboardArrowUpIcon />
                 </div>
             }

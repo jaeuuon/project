@@ -37,15 +37,15 @@ const Footer = () => {
     const theme = useTheme();
 
     return (
-        <div id="div-footer" style={{ borderColor: getBorderColor(theme) }}>
-            <Grid id="grid-footer" container>
-                <Grid id="grid-footer-creator" item xs={6}>
+        <div id="layout-footer" style={{ borderColor: getBorderColor(theme) }}>
+            <Grid id="layout-footer-grid" container>
+                <Grid id="layout-footer-grid-creator" item xs={6}>
                     <p>Created by <Tooltip title="GitHub profile" placement="top" arrow><span onClick={onClick}>{creator.name}</span></Tooltip>.</p>
                 </Grid>
-                <Grid id="grid-footer-theme-color" item xs={6}>
+                <Grid id="layout-footer-grid-theme-color" item xs={6}>
                     <p>Theme color is <span style={{ backgroundColor: theme.palette.primary.main }}>{theme.palette.primary.main}</span></p>
                 </Grid>
-                <Grid id="grid-footer-skill" item xs={12}>
+                <Grid id="layout-footer-grid-skill" item xs={12}>
                     {skillBadges.map((skillBadge, index) =>
                         <img key={`img-footer-skill-${index}`} src={skillBadge.src} alt={skillBadge.alt} onClick={() => window.open(skillBadge.url)} />
                     )}

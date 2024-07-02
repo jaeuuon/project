@@ -9,7 +9,7 @@ import Contact from 'pages/information/Contact';
 
 const Content = () => {
     return (
-        <Grid id="grid-main-content" item xs>
+        <Grid id="layout-main-grid-content" item xs>
             <div>
                 <Routes>
                     <Route path="/" element={<Home />} />

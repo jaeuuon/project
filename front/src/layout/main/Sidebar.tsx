@@ -88,11 +88,11 @@ const Sidebar = () => {
     return (
         <>
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
-            <Grid id="grid-main-sidebar" className={isVisible ? 'visible' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper, borderColor }} ref={sidebarRef}>
-                <div id="div-main-sidebar-content">
+            <Grid id="layout-main-grid-sidebar" className={isVisible ? 'visible' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper, borderColor }} ref={sidebarRef}>
+                <div id="layout-main-grid-sidebar-menu">
                     <List>
                         {Object.values(menu).find(({ path, subMenus }) => path === pathname || subMenus.find(({ path }) => path === pathname))?.subMenus.map(({ icon, label, path }, index) =>
-                            <ListItem key={`list-item-header-menu-${index}`} disablePadding onClick={() => path.startsWith('http') ? window.open(path) : navigate(path)}>
+                            <ListItem key={`list-item-main-sidebar-menu-${index}`} disablePadding onClick={() => path.startsWith('http') ? window.open(path) : navigate(path)}>
                                 <ListItemButton>
                                     <ListItemIcon>{icon}</ListItemIcon>
                                     <ListItemText primary={label} />
@@ -101,7 +101,7 @@ const Sidebar = () => {
                         )}
                     </List>
                 </div>
-                <div id="div-main-sidebar-icon" style={{ backgroundColor: theme.palette.background.paper, borderColor }} onClick={onClick}>
+                <div id="layout-main-grid-sidebar-icon" style={{ backgroundColor: theme.palette.background.paper, borderColor }} onClick={onClick}>
                     {isVisible ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
                 </div>
             </Grid>

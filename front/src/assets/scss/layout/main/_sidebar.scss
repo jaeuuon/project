@@ -1,6 +1,6 @@
 @use '../../variables' as var;
 
-#grid-main-sidebar {
+#layout-main-grid-sidebar {
     z-index: var.$modalIndex;
     position: fixed;
     top: 0;
@@ -15,53 +15,49 @@
         transform: translateX(0);
     }
 
-    #div-main-sidebar {
-        &-content {
-            height: 100%;
-            padding: var.$padding;
-            overflow: auto;
-    
-            ul {
-                padding-top: 0;
-                padding-bottom: 0;
-    
-                li > div {
-                    margin: var.$margin;
-                    padding: 4px 16px;
-                    border-radius: var.$borderRadius;
-                }
+    &-menu {
+        height: 100%;
+        padding: var.$padding;
+        overflow: auto;
+
+        ul {
+            padding-top: 0;
+            padding-bottom: 0;
+
+            li > div {
+                margin: var.$margin;
+                padding: 4px 16px;
+                border-radius: var.$borderRadius;
             }
         }
+    }
 
-        &-icon {
-            display: flex;
-            position: absolute;
-            top: 50%;
-            right: -25px;
-            width: 25px;
-            height: 50px;
-            border: var.$border;
-            border-radius: 0 var.$borderRadius var.$borderRadius 0;
-            justify-content: center;
-            align-items: center;
-            transform: translateY(-50%);
-            cursor: pointer;
-        }
+    &-icon {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        right: -25px;
+        width: 25px;
+        height: 50px;
+        border: var.$border;
+        border-radius: 0 var.$borderRadius var.$borderRadius 0;
+        justify-content: center;
+        align-items: center;
+        transform: translateY(-50%);
+        cursor: pointer;
     }
 }
 
 @media (min-width: var.$widthLg) {
-    #grid-main-sidebar {
+    #layout-main-grid-sidebar {
         z-index: initial;
         position: initial;
         height: initial;
         transition: initial;
         transform: initial;
 
-        #div-main-sidebar {
-            &-icon {
-                display: none;
-            }
+        &-icon {
+            display: none;
         }
     }
 }

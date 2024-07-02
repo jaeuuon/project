@@ -1,35 +1,34 @@
 @use '../variables' as var;
 @use './mixin' as mixin;
 
-#div-footer {
+#layout-footer {
     border-top: var.$border;
 
-    #grid-footer {
+    &-grid {
         max-width: var.$widthXl;
         margin: auto;
 
+        p {
+            margin: var.$margin;
+        }
+
         &-creator {
-            @include mixin.div-default-footer {
+            @include mixin.layout-footer-grid-default {
                 color: var.$footerColor;
             }
 
-            p {
-                margin: var.$margin;
-
-                span {
-                    text-decoration: underline;
-                    cursor: pointer;
-                }
+            span {
+                text-decoration: underline;
+                cursor: pointer;
             }
         }
 
         &-theme-color {
-            @include mixin.div-default-footer {
+            @include mixin.layout-footer-grid-default {
                 color: var.$footerColor;
             }
 
             p {
-                margin: var.$margin;
                 text-align: right;
 
                 span {
@@ -41,7 +40,7 @@
         }
 
         &-skill {
-            @include mixin.div-default-footer {
+            @include mixin.layout-footer-grid-default {
                 text-align: center;
             }
 

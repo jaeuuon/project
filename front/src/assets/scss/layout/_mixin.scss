@@ -7,7 +7,7 @@
     @content;
 }
 
-@mixin div-default-footer {
+@mixin layout-footer-grid-default {
     padding: var.$padding;
 
     @content;

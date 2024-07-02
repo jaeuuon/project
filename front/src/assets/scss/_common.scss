@@ -4,6 +4,14 @@
     display: none;
 }
 
+.background-mode-light {
+    background-color: var.$backgroundColorLight;
+}
+
+.background-mode-dark {
+    background-color: var.$backgroundColorDark;
+}
+
 @media (min-width: var.$widthSm) {
     .display-none-sm {
         display: block;

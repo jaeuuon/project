@@ -4,8 +4,8 @@
 @use './main/sidebar';
 @use './main/content';
 
-#div-main {
-    #grid-main {
+#layout-main {
+    &-grid {
         max-width: var.$widthXl;
         margin: auto;
     }
@@ -24,13 +24,5 @@
         backdrop-filter: var.$backdropFilter;
         box-shadow: var.$boxShadow;
         cursor: pointer;
-
-        &.mode-light {
-            background-color: var.$backgroundColorLight;
-        }
-
-        &.mode-dark {
-            background-color: var.$backgroundColorDark;
-        }
     }
 }
