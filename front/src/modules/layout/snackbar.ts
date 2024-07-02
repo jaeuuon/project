@@ -5,7 +5,7 @@ const initState: Snackbar = {};
 
 const action = {
     SET_ERROR: 'snackbar/setError',
-    SET_SUCCESS: 'snackbar/setSuccess',
+    SET_SUCCESS: 'snackbar/setSuccess'
 } as const;
 
 export const setSnackbarError = (codeMessage: CodeMessage) => ({ type: action.SET_ERROR, payload: codeMessage });

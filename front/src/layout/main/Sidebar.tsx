@@ -50,13 +50,13 @@ const menu = {
 };
 
 const Sidebar = () => {
-    const { pathname } = useLocation();
-    const navigate = useNavigate();
+    const theme = useTheme();
+    const borderColor = getBorderColor(theme);
 
     const sidebarRef = useRef<HTMLInputElement>(null);
 
-    const theme = useTheme();
-    const borderColor = getBorderColor(theme);
+    const { pathname } = useLocation();
+    const navigate = useNavigate();
 
     const [isVisible, setVisible] = useState(false);
 

@@ -1,8 +1,7 @@
-export default interface Visible {
-    isVisible: boolean;
+export interface VisibleFalse {
     setVisibleFalse: () => void;
 };
 
-export interface VisibleFalse {
-    setVisibleFalse: () => void;
+export default interface Visible extends VisibleFalse {
+    isVisible: boolean;
 };

@@ -1,16 +1,20 @@
+import { useDispatch } from 'react-redux';
+
 import { useTheme } from '@mui/material/styles';
 import { Button, Tooltip } from '@mui/material';
 import { LightModeOutlined, DarkModeOutlined } from '@mui/icons-material';
 
-import type ModeType from 'types/layout/header/mode';
+import { setMode } from 'modules/layout/header/mode';
 
 import { isThemeLight } from 'common/utils';
 
-const Mode = ({ setMode }: ModeType) => {
+const Mode = () => {
     const theme = useTheme();
     const isLight = isThemeLight(theme);
 
-    const onClick = () => setMode(!isLight ? 'light' : 'dark');
+    const dispatch = useDispatch();
+
+    const onClick = () => dispatch(setMode(!isLight ? 'light' : 'dark'));
 
     return (
         <Tooltip title="Light / Dark" placement="bottom-end" arrow>

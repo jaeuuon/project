@@ -1,8 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
-import { PaletteMode } from '@mui/material/index';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+
+import { RootState } from 'modules';
+import { getMql, setMode } from 'modules/layout/header/mode';
 
 import Header from 'layout/Header';
 import Main from 'layout/Main';
@@ -11,10 +15,9 @@ import Snackbar from 'layout/Snackbar';
 
 import 'assets/scss/app.scss';
 
-const getMql = () => window.matchMedia("(prefers-color-scheme: light)");
-
 const App = () => {
-    const [mode, setMode] = useState<PaletteMode>(getMql().matches ? 'light' : 'dark');
+    const dispatch = useDispatch();
+    const mode = useSelector((state: RootState) => state.mode);
 
     const theme = createTheme({
         palette: {
@@ -30,7 +33,7 @@ const App = () => {
     useEffect(() => {
         const mql = getMql();
 
-        const onChange = ({ matches }: { matches: boolean; }) => setMode(matches ? 'light' : 'dark');
+        const onChange = ({ matches }: { matches: boolean; }) => dispatch(setMode(matches ? 'light' : 'dark'));
         const onBeforeunload = () => window.scrollTo(0, 0);
 
         mql.addEventListener('change', onChange);
@@ -40,12 +43,12 @@ const App = () => {
             mql.removeEventListener('change', onChange);
             window.removeEventListener('beforeunload', onBeforeunload);
         };
-    }, []);
+    }, [dispatch]);
 
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Header setMode={setMode} />
+            <Header />
             <Main />
             <Footer />
             <Snackbar />

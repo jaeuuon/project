@@ -1,4 +1,4 @@
-import type { Input } from 'types/components/common';
+import type { Input } from 'types/apis/common';
 
 export interface Params extends Input {
     email?: string;

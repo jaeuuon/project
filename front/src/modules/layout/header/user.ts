@@ -1,4 +1,4 @@
-import type User from 'types/layout/header/user';
+import type { User } from 'types/layout/header/user';
 
 const initState: User = {};
 
