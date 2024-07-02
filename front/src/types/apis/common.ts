@@ -5,7 +5,6 @@ export default interface Response {
     method: string;
     status: Status;
     data: Data;
-    errors: CodeMessage[];
     timestamp: string;
 };
 
@@ -19,6 +18,6 @@ export interface Data extends CodeMessage {
 };
 
 export interface CodeMessage {
-    code?: string;
-    message?: string;
+    code: string;
+    message: string;
 };

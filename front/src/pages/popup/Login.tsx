@@ -42,10 +42,11 @@ const Login = ({
         e.preventDefault();
 
         if (validation()) {
-            const { status: responseStatus, data, errors } = await postLogin({
+            const { status: responseStatus, data } = await postLogin({
                 email: params.email,
                 password: jsEncrypt.encrypt(params.password || '').toString()
             });
+            const { code, message } = data;
 
             if (responseStatus === status.SUCCESS) {
                 const { access }: Content = data.content[0];
@@ -58,15 +59,13 @@ const Login = ({
                 setVisibleFalse();
                 setTimeout(reissuance, getDelay(payload));
             } else {
-                const error = errors[0];
-
-                if (includesCode(emailError, error.code)) {
+                if (includesCode(emailError, code)) {
                     emailRef.current?.focus();
-                } else if (includesCode(passwordError, error.code)) {
+                } else if (includesCode(passwordError, code)) {
                     passwordRef.current?.focus();
                 }
 
-                setError(error);
+                setError({ code, message });
             }
         }
     };

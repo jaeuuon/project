@@ -47,6 +47,8 @@ export const getResponseError = (error: any): Response => {
             method: error.config.method.toUpperCase(),
             status: status.ERROR,
             data: {
+                code: 'ERROR_FRT_INTERNAL_SERVER_ERROR',
+                message: '문제가 발생했습니다. 관리자에게 문의하십시오.',
                 content: [],
                 elements: 0,
                 totalElements: 0,
@@ -54,10 +56,6 @@ export const getResponseError = (error: any): Response => {
                 page: 1,
                 totalPages: 1
             },
-            errors: [{
-                code: 'ERROR_FRT_INTERNAL_SERVER_ERROR',
-                message: '문제가 발생했습니다. 관리자에게 문의하십시오.'
-            }],
             timestamp: getTimestamp()
         };
 

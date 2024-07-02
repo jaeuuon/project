@@ -47,7 +47,8 @@ const Header = ({ setMode }: HeaderType) => {
     const setVisibleLoginFalse = () => setVisibleLogin(false);
 
     const reissuance = useCallback(async () => {
-        const { status: responseStatus, data, errors } = await putReissuance();
+        const { status: responseStatus, data } = await putReissuance();
+        const { code, message } = data;
 
         if (responseStatus === status.SUCCESS) {
             const { access }: LoginContent = data.content[0];
@@ -58,17 +59,15 @@ const Header = ({ setMode }: HeaderType) => {
             dispatch(setUser(user));
 
             setSeverity('success');
-            setCodeMessage({ code: data.code, message: data.message });
+            setCodeMessage({ code, message });
 
             setTimeout(reissuance, getDelay(payload));
         } else {
             dispatch(initUser());
 
-            const error = errors[0];
-
-            if (!includesCode(reissuanceIgnoreError, error.code)) {
+            if (!includesCode(reissuanceIgnoreError, code)) {
                 setSeverity('error');
-                setCodeMessage(error);
+                setCodeMessage({ code, message });
             }
         }
     }, [dispatch]);

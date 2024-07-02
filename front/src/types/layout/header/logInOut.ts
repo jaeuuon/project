@@ -1,9 +1,5 @@
-import { AlertColor } from '@mui/material';
+import { SnackbarSet } from 'types/components/common/snackbar';
 
-import type { CodeMessage } from 'types/apis/common';
-
-export default interface LogInOut {
-    setSeverity: (severity: AlertColor) => void;
-    setCodeMessage: (codeMessage: CodeMessage) => void;
+export default interface LogInOut extends SnackbarSet {
     setVisibleLoginTrue: () => void;
 };

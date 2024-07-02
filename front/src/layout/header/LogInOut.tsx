@@ -20,17 +20,18 @@ const LogInOut = ({
     const user = useSelector((state: RootState) => state.user);
 
     const onClick = async () => {
-        const { status: responseStatus, data, errors } = await deleteLogout();
+        const { status: responseStatus, data } = await deleteLogout();
+        const { code, message } = data;
 
         if (responseStatus === status.SUCCESS) {
             dispatch(initUser());
 
             setSeverity('success');
-            setCodeMessage({ code: data.code, message: data.message });
         } else {
             setSeverity('error');
-            setCodeMessage(errors[0]);
         }
+
+        setCodeMessage({ code, message });
     };
 
     return (
