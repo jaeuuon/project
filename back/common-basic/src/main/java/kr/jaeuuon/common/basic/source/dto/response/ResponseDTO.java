@@ -6,10 +6,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ResponseDTO {
@@ -18,28 +14,18 @@ public class ResponseDTO {
     private String method;
     private String status;
     private ResponseDataDTO data;
-    private List<ResponseErrorDTO> errors;
     private String timestamp;
+
+    public ResponseDTO(String path, String method, Message message) {
+        setDefault(path, method, message);
+
+        data = new ResponseDataDTO(message);
+    }
 
     public ResponseDTO(String path, String method, Message message, Object content) {
         setDefault(path, method, message);
 
         data = new ResponseDataDTO(message, content);
-        errors = new ArrayList<>();
-    }
-
-    public ResponseDTO(String path, String method, Message message, ResponseErrorDTO error) {
-        setDefault(path, method, message);
-
-        data = new ResponseDataDTO();
-        errors = Collections.singletonList(error);
-    }
-
-    public ResponseDTO(String path, String method, Message message, List<ResponseErrorDTO> errors) {
-        setDefault(path, method, message);
-
-        data = new ResponseDataDTO();
-        this.errors = errors;
     }
 
     private void setDefault(String path, String method, Message message) {

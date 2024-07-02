@@ -24,7 +24,6 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @RestControllerAdvice
@@ -48,12 +47,11 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
         if (e instanceof MethodArgumentNotValidException subEx) {
             List<FieldError> fieldErrors = subEx.getFieldErrors();
-            List<Message> messages = fieldErrors.stream().map(this::getMessage).collect(Collectors.toList());
-            String codes = messages.stream().map(Object::toString).collect(Collectors.joining(","));
+            Message message = getMessage(fieldErrors.get(0));
 
-            log.error("[{}][{}][{}: {}][codes: {}]", request.getRemoteAddr(), Util.getRequestId(request), getCallerClassAndMethodName(), subEx.getClass().getSimpleName(), codes);
+            log.error("[{}][{}][{}: {}][code: {}]", request.getRemoteAddr(), Util.getRequestId(request), getCallerClassAndMethodName(), subEx.getClass().getSimpleName(), message);
 
-            return ResponseErrorUtil.error(request, httpStatus, messages);
+            return ResponseErrorUtil.error(request, httpStatus, message);
         } else {
             CommonLogger.logging(request, e);
 

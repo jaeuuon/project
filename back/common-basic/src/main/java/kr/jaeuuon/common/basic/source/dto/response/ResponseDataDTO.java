@@ -26,9 +26,9 @@ public class ResponseDataDTO {
     private int page;
     private int totalPages;
 
-    public ResponseDataDTO() {
-        code = null;
-        message = null;
+    public ResponseDataDTO(Message message) {
+        code = message.toString();
+        this.message = message.getValue();
 
         setContentByEmpty();
     }

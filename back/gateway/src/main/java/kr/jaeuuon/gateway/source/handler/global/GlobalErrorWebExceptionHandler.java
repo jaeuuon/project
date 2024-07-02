@@ -1,7 +1,6 @@
 package kr.jaeuuon.gateway.source.handler.global;
 
 import kr.jaeuuon.common.basic.source.dto.response.ResponseDTO;
-import kr.jaeuuon.common.basic.source.dto.response.ResponseErrorDTO;
 import kr.jaeuuon.common.basic.source.exception.CommonException;
 import kr.jaeuuon.common.basic.source.message.enumeration.Message;
 import kr.jaeuuon.common.basic.source.util.Util;
@@ -72,8 +71,7 @@ public class GlobalErrorWebExceptionHandler extends AbstractErrorWebExceptionHan
 
         log.error("[{}][{}][uid: {}][{} {}][status: {}][code: {}]", requestIp, requestId, GatewayUtil.getUserId(httpRequest), httpRequest.getMethod().name(), httpRequest.getPath().value(), httpStatus, message);
 
-        ResponseErrorDTO responseErrorDTO = new ResponseErrorDTO(message);
-        ResponseDTO responseDTO = new ResponseDTO(request.path(), request.method().name(), message, responseErrorDTO);
+        ResponseDTO responseDTO = new ResponseDTO(request.path(), request.method().name(), message);
 
         return ServerResponse.status(httpStatus).contentType(MediaType.APPLICATION_JSON).body(BodyInserters.fromValue(responseDTO));
     }

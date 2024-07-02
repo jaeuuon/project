@@ -7,7 +7,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import kr.jaeuuon.common.basic.source.dto.response.ResponseDTO;
-import kr.jaeuuon.common.basic.source.dto.response.ResponseErrorDTO;
 import kr.jaeuuon.common.basic.source.logger.CommonLogger;
 import kr.jaeuuon.common.basic.source.util.Util;
 import kr.jaeuuon.common.web.properties.WithoutParameterProperties;
@@ -24,7 +23,6 @@ import org.springframework.web.util.ContentCachingRequestWrapper;
 import org.springframework.web.util.ContentCachingResponseWrapper;
 
 import java.io.IOException;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -59,10 +57,10 @@ public class ContentCachingWrapperFilter extends OncePerRequestFilter {
         } else {
             try {
                 ResponseDTO responseDTO = objectMapper.readValue(response.getContentAsByteArray(), ResponseDTO.class);
-                String codes = responseDTO.getErrors().stream().map(ResponseErrorDTO::getCode).collect(Collectors.joining(","));
+                String code = responseDTO.getData().getCode();
 
                 if (withoutParameterProperties.isWithout(request.getMethod(), request.getServletPath())) {
-                    loggingDefault(request, httpStatus, codes, processingTime);
+                    loggingDefault(request, httpStatus, code, processingTime);
                 } else {
                     String contentType = request.getContentType();
 
@@ -70,12 +68,12 @@ public class ContentCachingWrapperFilter extends OncePerRequestFilter {
                         if (contentType.equals(MediaType.APPLICATION_JSON_VALUE)) {
                             JsonNode content = objectMapper.readTree(request.getContentAsByteArray());
 
-                            log.error("[{}][{}][uid: {}][{} {}{}][content: {}][status: {}][codes: {}][processing time: {}]", request.getRemoteAddr(), Util.getRequestId(request), Util.getUserId(request), request.getMethod(), request.getContextPath(), request.getServletPath(), content, httpStatus, codes, processingTime);
+                            log.error("[{}][{}][uid: {}][{} {}{}][content: {}][status: {}][code: {}][processing time: {}]", request.getRemoteAddr(), Util.getRequestId(request), Util.getUserId(request), request.getMethod(), request.getContextPath(), request.getServletPath(), content, httpStatus, code, processingTime);
                         } else {
-                            log.error("[{}][{}][uid: {}][{} {}{}][content type: {}][status: {}][codes: {}][processing time: {}]", request.getRemoteAddr(), Util.getRequestId(request), Util.getUserId(request), request.getMethod(), request.getContextPath(), request.getServletPath(), contentType, httpStatus, codes, processingTime);
+                            log.error("[{}][{}][uid: {}][{} {}{}][content type: {}][status: {}][code: {}][processing time: {}]", request.getRemoteAddr(), Util.getRequestId(request), Util.getUserId(request), request.getMethod(), request.getContextPath(), request.getServletPath(), contentType, httpStatus, code, processingTime);
                         }
                     } else {
-                        logging(request, httpStatus, codes, processingTime);
+                        logging(request, httpStatus, code, processingTime);
                     }
                 }
             } catch (IOException e) {
@@ -85,18 +83,18 @@ public class ContentCachingWrapperFilter extends OncePerRequestFilter {
         }
     }
 
-    private void logging(ContentCachingRequestWrapper request, HttpStatus httpStatus, String codes, String processingTime) {
+    private void logging(ContentCachingRequestWrapper request, HttpStatus httpStatus, String code, String processingTime) {
         String query = request.getQueryString();
 
         if (query != null) {
-            log.error("[{}][{}][uid: {}][{} {}{}?{}][status: {}][codes: {}][processing time: {}]", request.getRemoteAddr(), Util.getRequestId(request), Util.getUserId(request), request.getMethod(), request.getContextPath(), request.getServletPath(), query, httpStatus, codes, processingTime);
+            log.error("[{}][{}][uid: {}][{} {}{}?{}][status: {}][code: {}][processing time: {}]", request.getRemoteAddr(), Util.getRequestId(request), Util.getUserId(request), request.getMethod(), request.getContextPath(), request.getServletPath(), query, httpStatus, code, processingTime);
         } else {
-            loggingDefault(request, httpStatus, codes, processingTime);
+            loggingDefault(request, httpStatus, code, processingTime);
         }
     }
 
-    private void loggingDefault(ContentCachingRequestWrapper request, HttpStatus httpStatus, String codes, String processingTime) {
-        log.error("[{}][{}][uid: {}][{} {}{}][status: {}][codes: {}][processing time: {}]", request.getRemoteAddr(), Util.getRequestId(request), Util.getUserId(request), request.getMethod(), request.getContextPath(), request.getServletPath(), httpStatus, codes, processingTime);
+    private void loggingDefault(ContentCachingRequestWrapper request, HttpStatus httpStatus, String code, String processingTime) {
+        log.error("[{}][{}][uid: {}][{} {}{}][status: {}][code: {}][processing time: {}]", request.getRemoteAddr(), Util.getRequestId(request), Util.getUserId(request), request.getMethod(), request.getContextPath(), request.getServletPath(), httpStatus, code, processingTime);
     }
 
 }
