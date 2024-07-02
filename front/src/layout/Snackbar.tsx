@@ -24,7 +24,7 @@ const Snackbar = () => {
     return (
         <>
             {codeMessage &&
-                <MaterialSnackbar key={codeMessage.code} open={isVisible} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} TransitionComponent={SlideTransition} autoHideDuration={500000} onClose={setVisibleFalse}>
+                <MaterialSnackbar key={codeMessage.code} open={isVisible} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} TransitionComponent={SlideTransition} autoHideDuration={5000} onClose={setVisibleFalse}>
                     <Alert severity={severity} onClose={setVisibleFalse}>
                         <p>{codeMessage.message}</p>
                         {severity === 'error' &&
