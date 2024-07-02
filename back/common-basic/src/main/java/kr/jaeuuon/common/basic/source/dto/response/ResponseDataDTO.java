@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import kr.jaeuuon.common.basic.source.message.enumeration.Message;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.util.ObjectUtils;
 
@@ -15,10 +17,11 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonNaming(SnakeCaseStrategy.class)
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ResponseDataDTO {
 
-    private final String code;
-    private final String message;
+    private String code;
+    private String message;
     private List<?> content;
     private int elements;
     private long totalElements;

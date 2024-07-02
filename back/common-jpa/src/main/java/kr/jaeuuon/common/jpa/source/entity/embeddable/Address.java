@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Embeddable
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Address {
 
