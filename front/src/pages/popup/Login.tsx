@@ -13,7 +13,7 @@ import type LoginType from 'types/pages/popup/login';
 import type { Params, default as Content } from 'types/apis/pages/popup/login';
 import type { CodeMessage } from 'types/apis/common';
 
-import { setUser } from 'modules/user';
+import { setUser } from 'modules/layout/header/user';
 
 import { postLogin } from 'apis/pages/popup/login';
 

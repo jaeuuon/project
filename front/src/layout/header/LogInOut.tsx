@@ -8,7 +8,7 @@ import { status } from 'enums/apis/status';
 import type LogInOutType from 'types/layout/header/logInOut';
 
 import { RootState } from 'modules';
-import { initUser } from 'modules/user';
+import { initUser } from 'modules/layout/header/user';
 
 import { deleteLogout } from 'apis/pages/popup/login';
 

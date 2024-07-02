@@ -13,7 +13,7 @@ import type HeaderType from 'types/layout/header';
 import type { default as LoginContent } from 'types/apis/pages/popup/login';
 import type { CodeMessage } from 'types/apis/common';
 
-import { initUser, setUser } from 'modules/user';
+import { initUser, setUser } from 'modules/layout/header/user';
 
 import { putReissuance } from 'apis/pages/popup/login';
 
