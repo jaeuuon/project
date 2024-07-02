@@ -38,7 +38,7 @@ const menu = {
             {
                 icon: <ContactSupportOutlined />,
                 label: 'Contact',
-                path: headerMenu.information.path + '/contact'
+                path: `${headerMenu.information.path}/contact`
             },
             {
                 icon: <GitHub />,

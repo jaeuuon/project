@@ -11,17 +11,17 @@ export const camelToSnake = (any: any): any => {
         return any.map((value) => camelToSnake(value));
     } else if (any !== null && typeof any === 'object') {
         return Object.entries(any).reduce((accumulator, [key, value]) => (
-            { ...accumulator, [key.replace(/([A-Z])/g, (_match, string) => '_' + string.toLowerCase())]: camelToSnake(value) }
+            { ...accumulator, [key.replace(/([A-Z])/g, (_match, string) => `_${string.toLowerCase()}`)]: camelToSnake(value) }
         ), {});
     }
 
     return any;
 };
 
-export const getBorderColor = (theme: Theme) => theme.palette.primary.main + '80';
-export const getHoverBackgroundColor = (theme: Theme) => theme.palette.grey[400] + Math.round(255 - (255 * theme.palette.action.hoverOpacity)).toString(16).padStart(2, '0');
+export const getBorderColor = (theme: Theme) => `${theme.palette.primary.main}80`;
+export const getHoverBackgroundColor = (theme: Theme) => `${theme.palette.grey[400]}${Math.round(255 - (255 * theme.palette.action.hoverOpacity)).toString(16).padStart(2, '0')}`;
 
-export const getCssClassByTheme = (theme: Theme) => 'background-mode-' + (isThemeLight(theme) ? 'light' : 'dark');
+export const getCssClassByTheme = (theme: Theme) => `background-mode-${isThemeLight(theme) ? 'light' : 'dark'}`;
 export const isThemeLight = (theme: Theme) => theme.palette.mode === 'light';
 
 export const getOnChange = (state: Input, setState: React.Dispatch<React.SetStateAction<Input>>) => {
@@ -43,7 +43,7 @@ export const getResponseError = (error: any): Response => {
         return snakeToCamel(data);
     } else {
         const response: Response = {
-            path: process.env.REACT_APP_BASE_URL + error.config.url,
+            path: `${process.env.REACT_APP_BASE_URL}${error.config.url}`,
             method: error.config.method.toUpperCase(),
             status: status.ERROR,
             data: {
@@ -77,7 +77,7 @@ export const getTimestamp = () => {
     const seconds = padStart(today.getSeconds());
     const milliseconds = today.getMilliseconds().toString().padStart(3, '0');
 
-    let result = year + '-' + month + '-' + date + ' ' + hours + ':' + minutes + ':' + seconds + '.' + milliseconds;
+    let result = `${year}-${month}-${date} ${hours}:${minutes}:${seconds}.${milliseconds}`;
 
     const timezone = today.toTimeString().match(/[+-]\d{4}/);
 
