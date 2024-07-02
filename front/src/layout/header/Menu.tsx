@@ -20,10 +20,10 @@ const Menu = () => {
     const navigate = useNavigate();
 
     return (
-        <Grid id="grid-header-menu" item xs>
+        <Grid id="layout-header-grid-menu" item xs>
             {Object.values(menu).map((detail, index) =>
                 <Button key={`button-header-menu-${index}`} startIcon={detail.icon} onClick={() => navigate(detail.path)}>
-                    <span className="span-button-label">{detail.label}</span>
+                    <span className="display-none-sm">{detail.label}</span>
                 </Button>
             )}
         </Grid>

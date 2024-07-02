@@ -26,11 +26,11 @@ const Header = () => {
 
     return (
         <>
-            <div id="div-header" className={[getCssClassByTheme(theme), (isTop ? 'box-shadow-none' : '')].join(' ')} style={{ borderColor }}>
-                <Grid id="grid-header" container>
+            <div id="layout-header" className={[getCssClassByTheme(theme), (isTop ? 'box-shadow-none' : '')].join(' ')} style={{ borderColor }}>
+                <Grid id="layout-header-grid" container>
                     <Icon />
                     <Menu />
-                    <Grid id="grid-header-user-and-mode" item xs="auto">
+                    <Grid id="layout-header-grid-user-and-mode" item xs="auto">
                         <User />
                         <Mode />
                     </Grid>

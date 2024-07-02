@@ -84,7 +84,7 @@ const User = () => {
         <>
             {id
                 ? <>
-                    <div id="div-header-user" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                    <div id="layout-header-grid-user-avatar" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                         <Tooltip title={
                             <>
                                 <p>
@@ -112,7 +112,7 @@ const User = () => {
                 </>
                 : <>
                     <Button variant="outlined" startIcon={<Login />} onClick={setVisibleLoginTrue}>
-                        <span className="span-button-label">Login</span>
+                        <span className="display-none-sm">Login</span>
                     </Button>
                     <Popup isVisible={isVisibleLogin} setVisibleFalse={setVisibleLoginFalse} width={400} icon={<Login />} label="Login" content={
                         <LoginPopup setVisibleFalse={setVisibleLoginFalse} reissuance={reissuance} />

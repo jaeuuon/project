@@ -1,7 +1,7 @@
 @use '../variables' as var;
 @use './mixin' as mixin;
 
-#div-header {
+#layout-header {
     z-index: var.$modalIndex;
     position: sticky;
     top: 0;
@@ -22,12 +22,12 @@
         box-shadow: none;
     }
 
-    #grid-header {
+    &-grid {
         max-width: var.$widthXl;
         margin: auto;
 
         &-icon {
-            @include mixin.div-default-header;
+            @include mixin.layout-header-grid-default;
 
             svg {
                 height: var.$headerInnerHeight;
@@ -36,15 +36,23 @@
         }
 
         &-menu {
-            @include mixin.div-default-header;
+            @include mixin.layout-header-grid-default;
         }
 
-        &-user-and-mode {
-            @include mixin.div-default-header {
-                display: flex;
+        &-user {
+            &-and-mode {
+                @include mixin.layout-header-grid-default {
+                    display: flex;
+                }
+
+                #button-logout,
+                #button-mode {
+                    width: var.$headerInnerHeight;
+                    min-width: var.$headerInnerHeight;
+                }
             }
 
-            #div-header-user {
+            &-avatar {
                 width: var.$headerInnerHeight;
                 height: var.$headerInnerHeight;
                 margin: var.$margin;
@@ -58,12 +66,6 @@
                     }
                 }
             }
-
-            #button-logout,
-            #button-set-mode {
-                width: var.$headerInnerHeight;
-                min-width: var.$headerInnerHeight;
-            }
         }
 
         button {
@@ -76,17 +78,13 @@
                 margin-left: 0;
                 margin-right: 0;
             }
-
-            .span-button-label {
-                display: none;
-            }
         }
     }
 }
 
 @media (min-width: var.$widthSm) {
-    #div-header {
-        #grid-header {
+    #layout-header {
+        &-grid {
             button {
                 width: auto;
                 min-width: 64px;
@@ -94,10 +92,6 @@
                 span:first-child {
                     margin-left: -4px;
                     margin-right: 8px;
-                }
-
-                .span-button-label {
-                    display: block;
                 }
             }
         }

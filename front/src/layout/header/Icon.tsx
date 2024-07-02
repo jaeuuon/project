@@ -4,7 +4,7 @@ import Logo from 'Logo';
 
 const Icon = () => {
     return (
-        <Grid id="grid-header-icon" item xs="auto">
+        <Grid id="layout-header-grid-icon" item xs="auto">
             <Logo />
         </Grid>
     );

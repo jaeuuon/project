@@ -1,6 +1,6 @@
 @use '../variables' as var;
 
-@mixin div-default-header {
+@mixin layout-header-grid-default {
     height: calc(var.$headerHeight - var.$borderSize);
     padding: var.$padding;
 

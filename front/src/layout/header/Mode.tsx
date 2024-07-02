@@ -18,7 +18,7 @@ const Mode = () => {
 
     return (
         <Tooltip title="Light / Dark" placement="bottom-end" arrow>
-            <Button id="button-set-mode" variant="outlined" onClick={onClick}>
+            <Button id="button-mode" variant="outlined" onClick={onClick}>
                 {isLight ? <LightModeOutlined /> : <DarkModeOutlined />}
             </Button>
         </Tooltip>
