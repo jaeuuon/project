@@ -51,10 +51,5 @@ body {
                 text-align: center;
             }
         }
-
-        &Snackbar-root {
-            position: absolute;
-            min-width: calc(var.$widthMin - 16px);
-        }
     }
 }
