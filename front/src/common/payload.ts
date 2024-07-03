@@ -1,4 +1,4 @@
-import { roles as userRoles, type Roles as UserRoles } from 'enums/user';
+import { roles as userRoles, type Roles as UserRoles } from 'enums/layout/header/user';
 
 import type Payload from 'types/common/payload';
 import type { User } from 'types/layout/header/user';
