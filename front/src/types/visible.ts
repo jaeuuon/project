@@ -2,6 +2,6 @@ export interface VisibleFalse {
     setVisibleFalse: () => void;
 };
 
-export default interface Visible extends VisibleFalse {
+export default interface Visible {
     isVisible: boolean;
 };

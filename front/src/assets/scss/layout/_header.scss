@@ -31,7 +31,14 @@
         }
 
         &-icon {
-            @include mixin.layout-header-grid-default;
+            @include mixin.layout-header-grid-default{
+                display: flex;
+            }
+
+            #button-main-sidebar {
+                width: var.$headerInnerHeight;
+                min-width: var.$headerInnerHeight;
+            }
 
             svg {
                 height: var.$headerInnerHeight;
@@ -84,6 +91,18 @@
                 span:first-child {
                     margin-left: -4px;
                     margin-right: 8px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: var.$widthLg) {
+    #layout-header {
+        &-grid {
+            &-icon {
+                #button-main-sidebar {
+                    display: none;
                 }
             }
         }

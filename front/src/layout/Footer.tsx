@@ -6,7 +6,7 @@ import { getBorderColor } from 'common/utils';
 const creator =  {
     url: 'https://github.com/jaeuuon',
     name: 'jaeuuon'
-};
+} as const;
 
 const skillBadges = [
     {
@@ -29,7 +29,7 @@ const skillBadges = [
         alt: 'CSS3',
         url: 'https://www.w3.org/Style/CSS'
     }
-];
+] as const;
 
 const onClick = () => window.open(creator.url);
 

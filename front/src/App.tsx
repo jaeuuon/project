@@ -6,7 +6,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import { RootState } from 'modules';
-import { getMql, setMode } from 'modules/layout/header/mode';
+import { getMql, setModeLight, setModeDark } from 'modules/layout/header/mode';
 
 import Header from 'layout/Header';
 import Main from 'layout/Main';
@@ -33,7 +33,7 @@ const App = () => {
     useEffect(() => {
         const mql = getMql();
 
-        const onChange = ({ matches }: { matches: boolean; }) => dispatch(setMode(matches ? 'light' : 'dark'));
+        const onChange = ({ matches }: { matches: boolean; }) => dispatch(matches ? setModeLight() : setModeDark());
         const onBeforeunload = () => window.scrollTo(0, 0);
 
         mql.addEventListener('change', onChange);

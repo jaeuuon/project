@@ -1,21 +1,16 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import { useTheme } from '@mui/material/styles';
-import {
-    Grid,
-    List,
-    ListItem,
-    ListItemButton,
-    ListItemIcon,
-    ListItemText
-} from '@mui/material';
-import {
-    CampaignOutlined, ContactSupportOutlined, GitHub,
-    KeyboardArrowLeft, KeyboardArrowRight
-} from '@mui/icons-material';
+import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { CampaignOutlined, ContactSupportOutlined, GitHub } from '@mui/icons-material';
 
 import { menu as headerMenu } from 'layout/header/Menu';
+
+import { RootState } from 'modules';
+import { closeSidebar } from 'modules/layout/main/sidebar';
 
 import { getBorderColor } from 'common/utils';
 
@@ -58,16 +53,16 @@ const Sidebar = () => {
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
-    const [isVisible, setVisible] = useState(false);
+    const dispatch = useDispatch();
+    const { isVisible } = useSelector((state: RootState) => state.sidebar);
 
-    const setVisibleFalse = () => setVisible(false);
-    const onClick = () => setVisible(!isVisible);
+    const setVisibleFalse = () => dispatch(closeSidebar());
 
     useEffect(() => {
-        setVisible(false);
+        dispatch(closeSidebar());
 
         window.scrollTo(0, 0);
-    }, [pathname]);
+    }, [pathname, dispatch]);
 
     useEffect(() => {
         const onResize = () => {
@@ -75,7 +70,7 @@ const Sidebar = () => {
                 const styles = window.getComputedStyle(sidebarRef.current);
 
                 if (styles.position !== 'fixed') {
-                    setVisible(false);
+                    dispatch(closeSidebar());
                 }
             }
         };
@@ -83,27 +78,22 @@ const Sidebar = () => {
         window.addEventListener('resize', onResize);
 
         return () => window.removeEventListener('resize', onResize);
-    }, []);
+    }, [dispatch]);
 
     return (
         <>
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
             <Grid id="layout-main-grid-sidebar" className={isVisible ? 'visible' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper, borderColor }} ref={sidebarRef}>
-                <div id="layout-main-grid-sidebar-menu">
-                    <List>
-                        {Object.values(menu).find(({ path, subMenus }) => path === pathname || subMenus.find(({ path }) => path === pathname))?.subMenus.map(({ icon, label, path }, index) =>
-                            <ListItem key={`list-item-main-sidebar-menu-${index}`} disablePadding onClick={() => path.startsWith('http') ? window.open(path) : navigate(path)}>
-                                <ListItemButton>
-                                    <ListItemIcon>{icon}</ListItemIcon>
-                                    <ListItemText primary={label} />
-                                </ListItemButton>
-                            </ListItem>
-                        )}
-                    </List>
-                </div>
-                <div id="layout-main-grid-sidebar-icon" style={{ backgroundColor: theme.palette.background.paper, borderColor }} onClick={onClick}>
-                    {isVisible ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-                </div>
+                <List>
+                    {Object.values(menu).find(({ path, subMenus }) => path === pathname || subMenus.find(({ path }) => path === pathname))?.subMenus.map(({ icon, label, path }, index) =>
+                        <ListItem key={`list-item-main-sidebar-${index}`} disablePadding onClick={() => path.startsWith('http') ? window.open(path) : navigate(path)}>
+                            <ListItemButton>
+                                <ListItemIcon>{icon}</ListItemIcon>
+                                <ListItemText primary={label} />
+                            </ListItemButton>
+                        </ListItem>
+                    )}
+                </List>
             </Grid>
         </>
     );

@@ -14,7 +14,7 @@ export const menu = {
         label: 'Information',
         path: '/information'
     }
-};
+} as const;
 
 const Menu = () => {
     const navigate = useNavigate();

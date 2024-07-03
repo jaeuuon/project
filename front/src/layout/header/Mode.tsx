@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 import { Button, Tooltip } from '@mui/material';
 import { LightModeOutlined, DarkModeOutlined } from '@mui/icons-material';
 
-import { setMode } from 'modules/layout/header/mode';
+import { setModeLight, setModeDark } from 'modules/layout/header/mode';
 
 import { isThemeLight } from 'common/utils';
 
@@ -14,7 +14,7 @@ const Mode = () => {
 
     const dispatch = useDispatch();
 
-    const onClick = () => dispatch(setMode(!isLight ? 'light' : 'dark'));
+    const onClick = () => dispatch(!isLight ? setModeLight() : setModeDark());
 
     return (
         <Tooltip title="Light / Dark" placement="bottom-end" arrow>

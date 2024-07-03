@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+import { useLocation } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -26,6 +27,8 @@ import LoginPopup from 'pages/popup/Login';
 const User = () => {
     const theme = useTheme();
 
+    const { pathname } = useLocation();
+
     const dispatch = useDispatch();
     const { id, email, name, roles } = useSelector((state: RootState) => state.user);
 
@@ -42,7 +45,7 @@ const User = () => {
     const setVisibleLoginTrue = () => setVisibleLogin(true);
     const setVisibleLoginFalse = () => setVisibleLogin(false);
 
-    const onClickLogout = async () => {
+    const onClick = async () => {
         const { status: responseStatus, data } = await deleteLogout();
         const { code, message } = data;
 
@@ -82,6 +85,10 @@ const User = () => {
         reissuance();
     }, [reissuance]);
 
+    useEffect(() => {
+        setVisibleLoginFalse();
+    }, [pathname]);
+
     return (
         <>
             {id
@@ -104,7 +111,7 @@ const User = () => {
                         </Tooltip>
                     </div>
                     <Tooltip title="Logout" placement="bottom" arrow>
-                        <Button id="button-logout" variant="outlined" onClick={onClickLogout}>
+                        <Button id="button-logout" variant="outlined" onClick={onClick}>
                             <Logout />
                         </Button>
                     </Tooltip>
@@ -113,11 +120,11 @@ const User = () => {
                     <Button variant="outlined" startIcon={<Login />} onClick={setVisibleLoginTrue}>
                         <span className="display-none-sm">Login</span>
                     </Button>
-                    <Popup isVisible={isVisibleLogin} setVisibleFalse={setVisibleLoginFalse} width={400} icon={<Login />} label="Login" content={
-                        <LoginPopup setVisibleFalse={setVisibleLoginFalse} reissuance={reissuance} />
-                    } />
                 </>
             }
+            <Popup isVisible={isVisibleLogin} setVisibleFalse={setVisibleLoginFalse} width={400} icon={<Login />} label="Login" content={
+                <LoginPopup setVisibleFalse={setVisibleLoginFalse} reissuance={reissuance} />
+            } />
         </>
     );
 };

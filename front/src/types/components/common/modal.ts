@@ -1,3 +1,3 @@
-import Visible from 'types/visible';
+import { default as Visible, VisibleFalse } from 'types/visible';
 
-export default interface Modal extends Visible {};
+export default interface Modal extends Visible, VisibleFalse {};

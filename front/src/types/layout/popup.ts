@@ -1,6 +1,6 @@
-import type Visible from 'types/visible';
+import type { default as Visible, VisibleFalse } from 'types/visible';
 
-export default interface Popup extends Visible {
+export default interface Popup extends Visible, VisibleFalse {
     width: number;
     icon: JSX.Element;
     label: string;
