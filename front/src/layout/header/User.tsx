@@ -8,7 +8,7 @@ import { Avatar, Button, Tooltip } from '@mui/material';
 import { Person, Logout, Login } from '@mui/icons-material';
 
 import { status } from 'enums/apis/status';
-import { reissuanceIgnoreError } from 'enums/apis/layout/header';
+import { reissuanceIgnoreError } from 'enums/apis/layout/header/user';
 
 import type { default as LoginContent } from 'types/apis/pages/popup/login';
 
