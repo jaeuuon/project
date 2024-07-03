@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useTheme } from '@mui/material/styles';
 import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import { CampaignOutlined, ContactSupportOutlined, GitHub } from '@mui/icons-material';
+import { CampaignOutlined, ContactSupportOutlined, GitHub, History } from '@mui/icons-material';
 
 import { menu as headerMenu } from 'layout/header/Menu';
 
@@ -16,13 +16,13 @@ import { getBorderColor } from 'common/utils';
 
 import Modal from 'components/common/Modal';
 
-const menu = {
+export const menu = {
     home: {
         path: headerMenu.home.path,
         subMenus: [
             {
                 icon: <CampaignOutlined />,
-                label: '공지사항',
+                label: 'Notice',
                 path: '/notice'
             }
         ]
@@ -41,8 +41,18 @@ const menu = {
                 path: 'https://github.com/jaeuuon/project'
             }
         ]
+    },
+    user: {
+        path: '/security',
+        subMenus: [
+            {
+                icon: <History />,
+                label: 'Login history',
+                path: `/security/history`
+            }
+        ]
     }
-};
+} as const;
 
 const Sidebar = () => {
     const theme = useTheme();
@@ -85,7 +95,19 @@ const Sidebar = () => {
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
             <Grid id="layout-main-grid-sidebar" className={isVisible ? 'visible' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper, borderColor }} ref={sidebarRef}>
                 <List>
-                    {Object.values(menu).find(({ path, subMenus }) => path === pathname || subMenus.find(({ path }) => path === pathname))?.subMenus.map(({ icon, label, path }, index) =>
+                    {Object.values(menu).find(({ path, subMenus }) => {
+                        if (path === pathname) {
+                            return true;
+                        }
+
+                        for (let i = 0; i < subMenus.length; i++) {
+                            if (subMenus[i].path === pathname) {
+                                return true;
+                            }
+                        }
+
+                        return false;
+                    })?.subMenus.map(({ icon, label, path }, index) =>
                         <ListItem key={`list-item-main-sidebar-${index}`} disablePadding onClick={() => path.startsWith('http') ? window.open(path) : navigate(path)}>
                             <ListItemButton>
                                 <ListItemIcon>{icon}</ListItemIcon>

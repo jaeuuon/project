@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,6 +9,7 @@ import { Person, Logout, Login } from '@mui/icons-material';
 
 import { status } from 'enums/apis/status';
 import { reissuanceIgnoreError } from 'enums/apis/layout/header/user';
+import { menu } from 'layout/main/Sidebar';
 
 import type { default as LoginContent } from 'types/apis/pages/popup/login';
 
@@ -28,6 +29,7 @@ const User = () => {
     const theme = useTheme();
 
     const { pathname } = useLocation();
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
     const { id, email, name, roles } = useSelector((state: RootState) => state.user);
@@ -45,7 +47,9 @@ const User = () => {
     const setVisibleLoginTrue = () => setVisibleLogin(true);
     const setVisibleLoginFalse = () => setVisibleLogin(false);
 
-    const onClick = async () => {
+    const onClickAvatar = () => navigate(menu.user.path);
+
+    const onClickLogout = async () => {
         const { status: responseStatus, data } = await deleteLogout();
         const { code, message } = data;
 
@@ -105,13 +109,13 @@ const User = () => {
                                 <p>{email}</p>
                             </>
                         } placement="bottom" arrow>
-                            <Avatar style={{ borderColor, backgroundColor }}>
+                            <Avatar style={{ borderColor, backgroundColor }} onClick={onClickAvatar}>
                                 <Person />
                             </Avatar>
                         </Tooltip>
                     </div>
                     <Tooltip title="Logout" placement="bottom" arrow>
-                        <Button id="button-logout" className="button-header" variant="outlined" onClick={onClick}>
+                        <Button id="button-logout" className="button-header" variant="outlined" onClick={onClickLogout}>
                             <Logout />
                         </Button>
                     </Tooltip>
