@@ -2,11 +2,9 @@ import { useState, useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
 
-import { Snackbar as MaterialSnackbar, Slide, SlideProps, Alert } from '@mui/material';
+import { Snackbar as MaterialSnackbar, Alert } from '@mui/material';
 
 import { RootState } from 'modules';
-
-const SlideTransition = (props: SlideProps) => <Slide {...props} direction="up" />;
 
 const Snackbar = () => {
     const { severity, codeMessage } = useSelector((state: RootState) => state.snackbar);
@@ -24,7 +22,7 @@ const Snackbar = () => {
     return (
         <>
             {codeMessage &&
-                <MaterialSnackbar key={codeMessage.code} open={isVisible} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} TransitionComponent={SlideTransition} autoHideDuration={5000} onClose={setVisibleFalse}>
+                <MaterialSnackbar key={codeMessage.code} open={isVisible} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} autoHideDuration={5000} onClose={setVisibleFalse}>
                     <Alert severity={severity} onClose={setVisibleFalse}>
                         <p>{codeMessage.message}</p>
                         {severity === 'error' &&

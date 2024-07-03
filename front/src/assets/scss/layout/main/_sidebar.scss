@@ -5,8 +5,9 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: var.$sidebarWidth;
-    height: 100%;
+    width: 100vw;
+    max-width: var.$sidebarWidth;
+    height: 100vh;
     padding: var.$padding;
     border-right: var.$border;
     transform: translateX(- var.$sidebarWidth);
@@ -17,6 +18,7 @@
     }
 
     ul {
+        width: calc(var.$sidebarWidth - (var.$padding * 2) - var.$borderSize);
         padding-top: 0;
         padding-bottom: 0;
 
