@@ -25,13 +25,15 @@ import LoginPopup from 'pages/popup/Login';
 
 const User = () => {
     const theme = useTheme();
-    const borderColor = getBorderColor(theme);
-    const hoverBackgroundColor = getHoverBackgroundColor(theme);
 
     const dispatch = useDispatch();
     const { id, email, name, roles } = useSelector((state: RootState) => state.user);
 
     const [isMouseHover, setMouseHover] = useState(false);
+
+    const borderColor = isMouseHover ? theme.palette.primary.main : getBorderColor(theme);
+    const backgroundColor = isMouseHover ? getHoverBackgroundColor(theme) : theme.palette.grey[400];
+
     const [isVisibleLogin, setVisibleLogin] = useState(false);
 
     const onMouseEnter = () => setMouseHover(true);
@@ -96,10 +98,7 @@ const User = () => {
                                 <p>{email}</p>
                             </>
                         } placement="bottom" arrow>
-                            <Avatar style={{
-                                borderColor: isMouseHover ? theme.palette.primary.main : borderColor,
-                                backgroundColor: isMouseHover ? hoverBackgroundColor : theme.palette.grey[400]
-                            }}>
+                            <Avatar style={{ borderColor, backgroundColor }}>
                                 <Person />
                             </Avatar>
                         </Tooltip>
