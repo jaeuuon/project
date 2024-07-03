@@ -22,7 +22,7 @@ const Menu = () => {
     return (
         <Grid id="layout-header-grid-menu" item xs>
             {Object.values(menu).map((detail, index) =>
-                <Button key={`button-header-menu-${index}`} startIcon={detail.icon} onClick={() => navigate(detail.path)}>
+                <Button key={`button-header-menu-${index}`} className="button-header" startIcon={detail.icon} onClick={() => navigate(detail.path)}>
                     <span className="display-none-sm">{detail.label}</span>
                 </Button>
             )}

@@ -1,7 +1,7 @@
 @use '../../variables' as var;
 
 #layout-main-grid-sidebar {
-    z-index: var.$modalIndex;
+    z-index: calc(var.$modalIndex + 1);
     position: fixed;
     top: 0;
     left: 0;
@@ -9,7 +9,6 @@
     height: 100%;
     padding: var.$padding;
     border-right: var.$border;
-    transition: transform 0.5s;
     transform: translateX(- var.$sidebarWidth);
     overflow: auto;
 

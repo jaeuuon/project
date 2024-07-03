@@ -1,20 +1,16 @@
 @use '../variables' as var;
 
 #layout-popup {
-    z-index: var.$modalIndex;
+    z-index: calc(var.$modalIndex + 1);
     position: fixed;
-    top: 50%;
-    left: 50%;
-    max-width: calc(100% - ((var.$margin + var.$padding) * 2));
-    max-height: calc(100% - ((var.$margin + var.$padding) * 2));
+    top: 50vh;
+    left: 50vw;
+    max-width: calc(100vw - ((var.$margin + var.$padding) * 2));
+    max-height: calc(100vh - ((var.$margin + var.$padding) * 2));
     border: var.$border;
     border-radius: var.$borderRadius;
     transform: translate(-50%, -50%);
     overflow: auto;
-
-    #root > & {
-        z-index: calc(var.$modalIndex + 1);
-    }
 
     #layout-popup-header {
         min-width: calc(var.$widthMin - ((var.$margin + var.$padding) * 2) - var.$borderSize);

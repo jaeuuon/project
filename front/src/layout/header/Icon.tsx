@@ -13,7 +13,7 @@ const Icon = () => {
 
     return (
         <Grid id="layout-header-grid-icon" item xs="auto">
-            <Button id="button-main-sidebar" variant="outlined" onClick={onClick}>
+            <Button id="button-main-sidebar" className="button-header" variant="outlined" onClick={onClick}>
                 <Menu />
             </Button>
             <Logo />

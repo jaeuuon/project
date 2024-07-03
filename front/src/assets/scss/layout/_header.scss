@@ -2,7 +2,7 @@
 @use './mixin' as mixin;
 
 #layout-header {
-    z-index: var.$modalIndex;
+    z-index: 1100;
     position: sticky;
     top: 0;
     height: var.$headerHeight;
@@ -18,7 +18,7 @@
         max-width: var.$widthXl;
         margin: auto;
 
-        button {
+        .button-header {
             width: var.$headerInnerHeight;
             min-width: var.$headerInnerHeight;
             height: var.$headerInnerHeight;
@@ -84,7 +84,7 @@
 @media (min-width: var.$widthSm) {
     #layout-header {
         &-grid {
-            button {
+            .button-header {
                 width: auto;
                 min-width: 64px;
 

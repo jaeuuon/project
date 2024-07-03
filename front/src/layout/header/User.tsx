@@ -111,13 +111,13 @@ const User = () => {
                         </Tooltip>
                     </div>
                     <Tooltip title="Logout" placement="bottom" arrow>
-                        <Button id="button-logout" variant="outlined" onClick={onClick}>
+                        <Button id="button-logout" className="button-header" variant="outlined" onClick={onClick}>
                             <Logout />
                         </Button>
                     </Tooltip>
                 </>
                 : <>
-                    <Button variant="outlined" startIcon={<Login />} onClick={setVisibleLoginTrue}>
+                    <Button className="button-header" variant="outlined" startIcon={<Login />} onClick={setVisibleLoginTrue}>
                         <span className="display-none-sm">Login</span>
                     </Button>
                 </>
