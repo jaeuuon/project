@@ -1,9 +1,5 @@
 import type { Status } from 'enums/apis/status';
 
-export interface Input {
-    [index: string | symbol]: string | undefined;
-};
-
 export default interface Response {
     path: string;
     method: string;

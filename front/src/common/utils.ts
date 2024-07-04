@@ -2,7 +2,8 @@ import type { Theme } from '@mui/material/styles';
 
 import { status } from 'enums/apis/status';
 
-import type { Input, default as Response } from 'types/apis/common';
+import type Input from 'types/apis/input';
+import type Response from 'types/apis/response';
 
 import type { CodeMessageEnum, SearchCode } from 'types/common/utils';
 

@@ -11,7 +11,7 @@ import { emailError, passwordError } from 'enums/apis/pages/popup/login';
 
 import type LoginType from 'types/pages/popup/login';
 import type { Params, default as Content } from 'types/apis/pages/popup/login';
-import type { CodeMessage } from 'types/apis/common';
+import type { CodeMessage } from 'types/apis/response';
 
 import { setUser } from 'modules/layout/header/user';
 import { setSnackbarSuccess } from 'modules/layout/snackbar';

@@ -1,5 +1,5 @@
 import type Snackbar from 'types/layout/snackbar';
-import type { CodeMessage } from 'types/apis/common';
+import type { CodeMessage } from 'types/apis/response';
 
 const initState: Snackbar = {};
 
