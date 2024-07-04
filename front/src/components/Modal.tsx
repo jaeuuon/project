@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import type ModalType from 'types/components/common/modal';
+import type ModalType from 'types/components/modal';
 
 const Modal = ({
     isVisible, setVisibleFalse

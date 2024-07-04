@@ -14,7 +14,7 @@ import { closeSidebar } from 'modules/layout/main/sidebar';
 
 import { getBorderColor } from 'common/utils';
 
-import Modal from 'components/common/Modal';
+import Modal from 'components/Modal';
 
 export const menu = {
     home: {

@@ -6,7 +6,7 @@ import type PopupType from 'types/layout/popup';
 
 import { getBorderColor } from 'common/utils';
 
-import Modal from 'components/common/Modal';
+import Modal from 'components/Modal';
 
 const Popup = ({
     isVisible, setVisibleFalse,

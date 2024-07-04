@@ -21,7 +21,7 @@ import { postLogin } from 'apis/pages/popup/login';
 import { getPayload, getUser, getDelay } from 'common/payload';
 import { getOnChange, includesCode } from 'common/utils';
 
-import TextField from 'components/common/TextField';
+import TextField from 'components/TextField';
 
 const jsEncrypt = new JSEncrypt();
 jsEncrypt.setPublicKey(process.env.REACT_APP_PUBLIC_KEY || '');
