@@ -5,6 +5,6 @@ export interface Params extends Input {
     password?: string;
 };
 
-export default interface Content {
+export interface Content {
     access: string;
 };

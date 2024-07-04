@@ -11,13 +11,13 @@ import { status } from 'enums/apis/status';
 import { reissuanceIgnoreError } from 'enums/apis/layout/header/user';
 import { menu } from 'layout/main/Sidebar';
 
-import type { default as LoginContent } from 'types/apis/pages/popup/login';
+import type { Content } from 'types/apis/pages/popup/login';
 
 import { RootState } from 'modules';
 import { initUser, setUser } from 'modules/layout/header/user';
 import { setSnackbarSuccess, setSnackbarError } from 'modules/layout/snackbar';
 
-import { deleteLogout, putReissuance } from 'apis/pages/popup/login';
+import { logout, reissuance as reissuanceApi } from 'apis/pages/popup/login';
 
 import { getPayload, getUser, getDelay } from 'common/payload';
 import { getBorderColor, getHoverBackgroundColor, includesCode } from 'common/utils';
@@ -50,7 +50,7 @@ const User = () => {
     const onClickAvatar = () => navigate(menu.user.path);
 
     const onClickLogout = async () => {
-        const { status: responseStatus, data } = await deleteLogout();
+        const { status: responseStatus, data } = await logout();
         const { code, message } = data;
 
         if (responseStatus === status.SUCCESS) {
@@ -62,11 +62,11 @@ const User = () => {
     };
 
     const reissuance = useCallback(async () => {
-        const { status: responseStatus, data } = await putReissuance();
+        const { status: responseStatus, data } = await reissuanceApi();
         const { code, message } = data;
 
         if (responseStatus === status.SUCCESS) {
-            const { access }: LoginContent = data.content[0];
+            const { access }: Content = data.content[0];
 
             const payload = getPayload(access);
             const user = getUser(payload);

@@ -5,9 +5,9 @@ import type Response from 'types/apis/response';
 
 import { camelToSnake, snakeToCamel, getResponseError } from 'common/utils';
 
-const url = '/security/authentication';
+const url = '/security/authentication' as const;
 
-export const postLogin = async (params: Params): Promise<Response> => {
+export const login = async (params: Params): Promise<Response> => {
     try {
         const { data, headers } = await axios.post(url, camelToSnake(params));
 
@@ -19,7 +19,7 @@ export const postLogin = async (params: Params): Promise<Response> => {
     }
 };
 
-export const putReissuance = async (): Promise<Response> => {
+export const reissuance = async (): Promise<Response> => {
     try {
         const { data, headers } = await axios.put(url);
 
@@ -31,7 +31,7 @@ export const putReissuance = async (): Promise<Response> => {
     }
 };
 
-export const deleteLogout = async (): Promise<Response> => {
+export const logout = async (): Promise<Response> => {
     try {
         const { data } = await axios.delete(url);
 

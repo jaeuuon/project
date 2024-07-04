@@ -10,13 +10,13 @@ import { status } from 'enums/apis/status';
 import { emailError, passwordError } from 'enums/apis/pages/popup/login';
 
 import type LoginType from 'types/pages/popup/login';
-import type { Params, default as Content } from 'types/apis/pages/popup/login';
+import type { Params, Content } from 'types/apis/pages/popup/login';
 import type { CodeMessage } from 'types/apis/response';
 
 import { setUser } from 'modules/layout/header/user';
 import { setSnackbarSuccess } from 'modules/layout/snackbar';
 
-import { postLogin } from 'apis/pages/popup/login';
+import { login } from 'apis/pages/popup/login';
 
 import { getPayload, getUser, getDelay } from 'common/payload';
 import { getOnChange, includesCode } from 'common/utils';
@@ -43,7 +43,7 @@ const Login = ({
         e.preventDefault();
 
         if (validation()) {
-            const { status: responseStatus, data } = await postLogin({
+            const { status: responseStatus, data } = await login({
                 email: params.email,
                 password: jsEncrypt.encrypt(params.password || '').toString()
             });
