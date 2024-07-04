@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
 import { useTheme } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { Grid } from '@mui/material';
+import { KeyboardArrowUp } from '@mui/icons-material';
 
 import { getCssClassByTheme, getBorderColor } from 'common/utils';
 
@@ -32,7 +32,7 @@ const Main = () => {
             </Grid>
             {isVisibleToTop &&
                 <div id="layout-main-to-top" className={getCssClassByTheme(theme)} style={{ borderColor: getBorderColor(theme) }} onClick={onClick}>
-                    <KeyboardArrowUpIcon />
+                    <KeyboardArrowUp />
                 </div>
             }
         </div>

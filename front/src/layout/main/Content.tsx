@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 
-import Grid from '@mui/material/Grid';
+import { Grid } from '@mui/material';
 
 import Home from 'pages/Home';
 import Notice from 'pages/home/Notice';
