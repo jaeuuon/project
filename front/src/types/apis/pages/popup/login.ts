@@ -1,4 +1,4 @@
-import type Input from 'types/apis/input';
+import type { Input } from 'types/apis/request';
 
 export interface Params extends Input {
     email?: string;

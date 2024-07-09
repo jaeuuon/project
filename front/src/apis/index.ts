@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+import type { Pageable } from 'types/apis/request';
 import type Response from 'types/apis/response';
 
 import { snakeToCamel, getResponseError } from 'common/utils';
@@ -10,9 +11,9 @@ const instance = axios.create({
 
 export default instance;
 
-export const get = async (url: string): Promise<Response> => {
+export const get = async (url: string, pageable: Pageable): Promise<Response> => {
     try {
-        const { data } = await instance.get(url);
+        const { data } = await instance.get(url, { params: pageable });
 
         return snakeToCamel(data);
     } catch(error: any) {

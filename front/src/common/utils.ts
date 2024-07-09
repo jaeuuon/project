@@ -2,7 +2,7 @@ import type { Theme } from '@mui/material/styles';
 
 import { status } from 'enums/apis/status';
 
-import type Input from 'types/apis/input';
+import type { Input } from 'types/apis/request';
 import type Response from 'types/apis/response';
 
 import type { CodeMessageEnum, SearchCode } from 'types/common/utils';
