@@ -2,7 +2,7 @@ import { forwardRef, ForwardedRef } from 'react';
 
 import { TextField as MaterialTextField } from '@mui/material';
 
-import type TextFieldType from 'types/components/common/textField';
+import type TextFieldType from 'types/components/textField';
 
 const TextField = forwardRef((
     {
