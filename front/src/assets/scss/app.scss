@@ -51,5 +51,31 @@ body {
                 text-align: center;
             }
         }
+
+        &Pagination {
+            &-ul {
+                justify-content: center;
+            }
+
+            &Item-previousNext {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (min-width: var.$widthSm) {
+    body {
+        .Mui {
+            &Pagination {
+                &-ul {
+                    justify-content: center;
+                }
+
+                &Item-previousNext {
+                    display: initial;
+                }
+            }
+        }
     }
 }

@@ -15,7 +15,7 @@ const LoginHistory = () => {
 
     return (
         <>
-            <Pagination count={10} shape="rounded" onChange={onChange} />
+            <Pagination count={17} shape="rounded" size="small" siblingCount={2} onChange={onChange} />
         </>
     );
 };

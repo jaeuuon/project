@@ -81,6 +81,18 @@
     }
 }
 
+@media (min-width: var.$widthLg) {
+    #layout-header {
+        &-grid {
+            &-icon {
+                #button-main-sidebar {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
 @media (min-width: var.$widthSm) {
     #layout-header {
         &-grid {
@@ -91,18 +103,6 @@
                 span:first-child {
                     margin-left: -4px;
                     margin-right: 8px;
-                }
-            }
-        }
-    }
-}
-
-@media (min-width: var.$widthLg) {
-    #layout-header {
-        &-grid {
-            &-icon {
-                #button-main-sidebar {
-                    display: none;
                 }
             }
         }
