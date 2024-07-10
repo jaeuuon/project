@@ -37,13 +37,13 @@ export const getOnChange = (state: Input, setState: React.Dispatch<React.SetStat
     };
 };
 
-export const getResponseError = (error: any): Response => {
+export const getResponseError = <T>(error: any): Response<T> => {
     const data = error.response.data;
 
     if (typeof data === 'object') {
         return snakeToCamel(data);
     } else {
-        const response: Response = {
+        const response: Response<T> = {
             path: `${process.env.REACT_APP_BASE_URL}${error.config.url}`,
             method: error.config.method.toUpperCase(),
             status: status.ERROR,

@@ -11,7 +11,7 @@ const instance = axios.create({
 
 export default instance;
 
-export const get = async (url: string, pageable: Pageable): Promise<Response> => {
+export const get = async <T>(url: string, pageable: Pageable): Promise<Response<T>> => {
     try {
         const { data } = await instance.get(url, { params: pageable });
 

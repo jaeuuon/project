@@ -1,15 +1,15 @@
 import type { Status } from 'enums/apis/status';
 
-export default interface Response {
+export default interface Response<T> {
     path: string;
     method: string;
     status: Status;
-    data: Data;
+    data: Data<T>;
     timestamp: string;
 };
 
-export interface Data extends CodeMessage {
-    content: any[];
+export interface Data<T> extends CodeMessage {
+    content: T[];
     elements: number;
     totalElements: number;
     size: number;

@@ -10,7 +10,7 @@ import { status } from 'enums/apis/status';
 import { emailError, passwordError } from 'enums/apis/pages/popup/login';
 
 import type LoginType from 'types/pages/popup/login';
-import type { Params, Content } from 'types/apis/pages/popup/login';
+import type { Params } from 'types/apis/pages/popup/login';
 import type { CodeMessage } from 'types/apis/response';
 
 import { setUser } from 'modules/layout/header/user';
@@ -50,7 +50,7 @@ const Login = ({
             const { code, message } = data;
 
             if (responseStatus === status.SUCCESS) {
-                const { access }: Content = data.content[0];
+                const { access } = data.content[0];
 
                 const payload = getPayload(access);
                 const user = getUser(payload);

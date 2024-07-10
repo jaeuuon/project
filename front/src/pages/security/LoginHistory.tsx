@@ -10,6 +10,10 @@ import { list } from 'apis/pages/security/loginHistory';
 
 import Loading from 'components/pages/Loading';
 
+const queryKey = {
+    LIST: 'loginHistory/list',
+} as const;
+
 const LoginHistory = () => {
     const [params, setParams] = useState<Params>({});
 
@@ -17,7 +21,7 @@ const LoginHistory = () => {
         setParams({ ...params, page });
     };
 
-    const { isLoading, data } = useQuery(['', params], () => list(params));
+    const { isLoading, data } = useQuery([queryKey.LIST, params], () => list(params));
 
     return (
         <>
