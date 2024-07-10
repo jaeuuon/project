@@ -1,10 +1,14 @@
 import { useState } from 'react';
 
+import { useQuery } from 'react-query';
+
 import { Pagination } from '@mui/material';
 
 import type { Params } from 'types/apis/pages/security/loginHistory';
 
 import { list } from 'apis/pages/security/loginHistory';
+
+import Loading from 'components/pages/Loading';
 
 const LoginHistory = () => {
     const [params, setParams] = useState<Params>({});
@@ -13,9 +17,14 @@ const LoginHistory = () => {
         setParams({ ...params, page });
     };
 
+    const { isLoading, data } = useQuery(['', params], () => list(params));
+
     return (
         <>
             <Pagination count={17} shape="rounded" size="small" siblingCount={2} onChange={onChange} />
+            {isLoading &&
+                <Loading />
+            }
         </>
     );
 };

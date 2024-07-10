@@ -1,0 +1,10 @@
+@use '../../variables' as var;
+
+#div-loading {
+    position: absolute;
+    top: calc(0px - var.$margin - var.$padding);
+    left: calc(0px - var.$margin - var.$padding);
+    width: calc(100% + ((var.$margin + var.$padding) * 2));
+    height: calc(100% + ((var.$margin + var.$padding) * 2));
+    backdrop-filter: var.$backdropFilter;
+}

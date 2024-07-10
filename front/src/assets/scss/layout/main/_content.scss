@@ -4,6 +4,7 @@
     padding: var.$padding;
 
     & > div {
+        position: relative;
         margin: var.$margin;
     }
 }

@@ -2,6 +2,8 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 
+import { QueryClient, QueryClientProvider } from 'react-query';
+
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from 'modules';
@@ -17,14 +19,18 @@ import reportWebVitals from 'reportWebVitals';
 const root = createRoot(
     document.getElementById('root') as HTMLElement
 );
+
+const queryClient = new QueryClient();
 const store = configureStore({ reducer: rootReducer });
 
 root.render(
     <StrictMode>
         <BrowserRouter>
-            <Provider store={store}>
-                <App />
-            </Provider>
+            <QueryClientProvider client={queryClient}>
+                <Provider store={store}>
+                    <App />
+                </Provider>
+            </QueryClientProvider>
         </BrowserRouter>
     </StrictMode>
 );
