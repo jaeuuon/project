@@ -1,11 +1,10 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-
-import { QueryClient, QueryClientProvider } from 'react-query';
-
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
 import rootReducer from 'modules';
 
 import App from 'App';
@@ -16,21 +15,18 @@ import 'assets/css/index.css';
 
 import reportWebVitals from 'reportWebVitals';
 
-const root = createRoot(
-    document.getElementById('root') as HTMLElement
-);
-
-const queryClient = new QueryClient();
+const root = createRoot(document.getElementById('root') as HTMLElement);
 const store = configureStore({ reducer: rootReducer });
+const queryClient = new QueryClient({ defaultOptions: { queries: { refetchOnWindowFocus: false } } });
 
 root.render(
     <StrictMode>
         <BrowserRouter>
-            <QueryClientProvider client={queryClient}>
-                <Provider store={store}>
+            <Provider store={store}>
+                <QueryClientProvider client={queryClient}>
                     <App />
-                </Provider>
-            </QueryClientProvider>
+                </QueryClientProvider>
+            </Provider>
         </BrowserRouter>
     </StrictMode>
 );
