@@ -3,7 +3,7 @@ export const action = {
     SET: 'user/set'
 } as const;
 
-export const roles = [
-    'ROLE_ADMIN',
-    'ROLE_USER'
-] as const;
+export const roles = {
+    ADMIN: 'ROLE_ADMIN',
+    USER: 'ROLE_USER'
+} as const;

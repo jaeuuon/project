@@ -22,7 +22,7 @@ export const getUser = ({
 
     const roles: CodeValue<Roles>[] = [];
 
-    userRoles.forEach((userRole) => {
+    Object.values(userRoles).forEach((userRole) =>
         authorities.some((authority, index) => {
             if (userRole === authority) {
                 roles.push({ code: userRole, value: authorityValues[index] });
@@ -31,8 +31,8 @@ export const getUser = ({
             } else {
                 return false;
             }
-        });
-    });
+        })
+    );
 
     return { isInit: true, id, email, name, roles, exp };
 };
