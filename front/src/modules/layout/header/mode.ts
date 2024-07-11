@@ -1,4 +1,4 @@
-import { PaletteMode } from '@mui/material/index';
+import type { PaletteMode } from '@mui/material/index';
 
 import { action } from 'enums/layout/header/mode'; 
 

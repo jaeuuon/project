@@ -1,7 +1,7 @@
 import { memo } from 'react';
 
-import type ListType from 'types/components/list';
 import type { IndexString } from 'types/signature';
+import type ListType from 'types/components/list';
 
 import Table from 'components/list/Table';
 import Pagination from 'components/list/Pagination';

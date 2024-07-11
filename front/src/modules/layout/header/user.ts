@@ -1,7 +1,6 @@
 import { action } from 'enums/layout/header/user';
 
-import type { User } from 'types/layout/header/user';
-import type { Action } from 'types/layout/header/user';
+import type { User, Action } from 'types/layout/header/user';
 
 const initState: User = { isInit: false };
 

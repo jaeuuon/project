@@ -2,8 +2,8 @@ import { memo } from 'react';
 
 import { Table as MaterialTable, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 
-import type TableType from 'types/components/list/table';
 import type { IndexString } from 'types/signature';
+import type TableType from 'types/components/list/table';
 
 const Table = <T extends IndexString>({
     id, columns, content

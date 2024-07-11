@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useTheme } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 
-import { getCssClassByTheme, getBorderColor } from 'common/utils';
+import { getBorderColor, getCssClassByTheme } from 'common/utils';
 
 import Icon from 'layout/header/Icon';
 import Menu from 'layout/header/Menu';

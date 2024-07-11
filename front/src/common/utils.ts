@@ -4,7 +4,7 @@ import { status } from 'enums/apis/status';
 
 import type { IndexString } from 'types/signature';
 import type Response from 'types/apis/response';
-import type { CodeMessageEnum, SearchCode } from 'types/common/utils';
+import type { CodeMessage, SearchCode } from 'types/common/utils';
 
 export const camelToSnake = (any: any): any => {
     if (Array.isArray(any)) {
@@ -88,7 +88,7 @@ export const getTimestamp = () => {
     return result;
 };
 
-export const includesCode = (codeMessageEnum: CodeMessageEnum, searchCode: SearchCode) => Object.values(codeMessageEnum).some(({ code }) => code === searchCode);
+export const includesCode = (codeMessage: CodeMessage, searchCode: SearchCode) => Object.values(codeMessage).some(({ code }) => code === searchCode);
 
 export const snakeToCamel = (any: any): any => {
     if (Array.isArray(any)) {

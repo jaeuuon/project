@@ -1,7 +1,7 @@
-import type { CodeMessage } from 'types/apis/response';
+import type { CodeMessage as CodeMessageType } from 'types/apis/response';
 
-export interface CodeMessageEnum {
-    [index: string]: CodeMessage;
+export interface CodeMessage {
+    [index: string]: CodeMessageType;
 }
 
 export type SearchCode = string | undefined;

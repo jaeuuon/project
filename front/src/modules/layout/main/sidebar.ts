@@ -1,7 +1,6 @@
 import { action } from 'enums/layout/main/sidebar';
 
-import type { Sidebar } from 'types/layout/main/sidebar';
-import type { Action } from 'types/layout/main/sidebar';
+import type { Sidebar, Action } from 'types/layout/main/sidebar';
 
 const initState: Sidebar = { isVisible: false };
 

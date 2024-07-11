@@ -1,7 +1,8 @@
+import { useDispatch } from 'react-redux';
+
 import { Grid, Button } from '@mui/material';
 import { Menu } from '@mui/icons-material';
 
-import { useDispatch } from 'react-redux';
 import { openSidebar } from 'modules/layout/main/sidebar';
 
 import Logo from 'Logo';
