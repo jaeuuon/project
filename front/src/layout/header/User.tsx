@@ -8,7 +8,7 @@ import { Person, Logout, Login } from '@mui/icons-material';
 
 import { status } from 'enums/apis/status';
 import { reissuanceIgnoreError } from 'enums/apis/layout/header/user';
-import { menu } from 'layout/main/Sidebar';
+import { menu } from 'enums/layout/header/menu';
 
 import type { Content } from 'types/apis/pages/popup/login';
 
@@ -46,7 +46,7 @@ const User = () => {
     const setVisibleLoginTrue = () => setVisibleLogin(true);
     const setVisibleLoginFalse = () => setVisibleLogin(false);
 
-    const onClickAvatar = () => navigate(menu.user.path);
+    const onClickAvatar = () => navigate(menu.SECURITY.PATH);
 
     const onClickLogout = async () => {
         const { status: responseStatus, data } = await logout();
@@ -56,7 +56,7 @@ const User = () => {
             dispatch(initUser());
             dispatch(setSnackbarSuccess({ code, message }));
 
-            navigate(menu.home.path);
+            navigate(menu.HOME.PATH);
         } else {
             dispatch(setSnackbarError({ code, message }));
         }

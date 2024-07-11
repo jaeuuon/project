@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useTheme } from '@mui/material/styles';
 import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import { CampaignOutlined, ContactSupportOutlined, GitHub, History } from '@mui/icons-material';
 
-import { menu as headerMenu } from 'layout/header/Menu';
+import { menu } from 'enums/layout/main/sidebar';
 
 import { RootState } from 'modules';
 import { closeSidebar } from 'modules/layout/main/sidebar';
@@ -14,44 +13,6 @@ import { closeSidebar } from 'modules/layout/main/sidebar';
 import { getBorderColor } from 'common/utils';
 
 import Modal from 'components/Modal';
-
-export const menu = {
-    home: {
-        path: headerMenu.home.path,
-        subMenus: [
-            {
-                icon: <CampaignOutlined />,
-                label: 'Notice',
-                path: '/notice'
-            }
-        ]
-    },
-    information: {
-        path: headerMenu.information.path,
-        subMenus: [
-            {
-                icon: <ContactSupportOutlined />,
-                label: 'Contact',
-                path: `${headerMenu.information.path}/contact`
-            },
-            {
-                icon: <GitHub />,
-                label: 'GitHub',
-                path: 'https://github.com/jaeuuon/project'
-            }
-        ]
-    },
-    user: {
-        path: '/security',
-        subMenus: [
-            {
-                icon: <History />,
-                label: 'Login history',
-                path: `/security/history`
-            }
-        ]
-    }
-} as const;
 
 const Sidebar = () => {
     const theme = useTheme();
@@ -64,6 +25,8 @@ const Sidebar = () => {
 
     const dispatch = useDispatch();
     const { isVisible } = useSelector((state: RootState) => state.sidebar);
+
+    const menus = Object.values(menu).filter(({ PATH, SUB_MENU }) => PATH === pathname ? true : Object.values(SUB_MENU).some(({ PATH }) => PATH === pathname));
 
     const setVisibleFalse = () => dispatch(closeSidebar());
 
@@ -94,25 +57,15 @@ const Sidebar = () => {
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
             <Grid id="layout-main-grid-sidebar" className={isVisible ? 'visible' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper, borderColor }} ref={sidebarRef}>
                 <List>
-                    {Object.values(menu).find(({ path, subMenus }) => {
-                        if (path === pathname) {
-                            return true;
-                        }
-
-                        for (let i = 0; i < subMenus.length; i++) {
-                            if (subMenus[i].path === pathname) {
-                                return true;
-                            }
-                        }
-
-                        return false;
-                    })?.subMenus.map(({ icon, label, path }, index) =>
-                        <ListItem key={`list-item-main-sidebar-${index}`} disablePadding onClick={() => path.startsWith('http') ? window.open(path) : navigate(path)}>
-                            <ListItemButton>
-                                <ListItemIcon>{icon}</ListItemIcon>
-                                <ListItemText primary={label} />
-                            </ListItemButton>
-                        </ListItem>
+                    {menus.map(({ SUB_MENU }) =>
+                        Object.values(SUB_MENU).map(({ ICON, PATH, LABEL }, index) =>
+                            <ListItem key={`list-item-main-sidebar-${index}`} disablePadding onClick={() => PATH.startsWith('http') ? window.open(PATH) : navigate(PATH)}>
+                                <ListItemButton>
+                                    <ListItemIcon>{ICON}</ListItemIcon>
+                                    <ListItemText primary={LABEL} />
+                                </ListItemButton>
+                            </ListItem>
+                        )
                     )}
                 </List>
             </Grid>

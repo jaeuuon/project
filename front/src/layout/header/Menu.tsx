@@ -1,29 +1,17 @@
 import { useNavigate } from 'react-router-dom';
 
 import { Grid, Button } from '@mui/material';
-import { HomeOutlined, InfoOutlined } from '@mui/icons-material';
 
-export const menu = {
-    home: {
-        icon: <HomeOutlined />,
-        label: 'Home',
-        path: '/'
-    },
-    information: {
-        icon: <InfoOutlined />,
-        label: 'Information',
-        path: '/information'
-    }
-} as const;
+import { menu } from 'enums/layout/header/menu';
 
 const Menu = () => {
     const navigate = useNavigate();
 
     return (
         <Grid id="layout-header-grid-menu" item xs>
-            {Object.values(menu).map((detail, index) =>
-                <Button key={`button-header-menu-${index}`} className="button-header" startIcon={detail.icon} onClick={() => navigate(detail.path)}>
-                    <span className="display-none-sm">{detail.label}</span>
+            {Object.values(menu).filter(({ IS_VISIBLE }) => IS_VISIBLE).map(({ ICON, PATH, LABEL }, index) =>
+                <Button key={`button-header-menu-${index}`} className="button-header" startIcon={ICON} onClick={() => navigate(PATH)}>
+                    <span className="display-none-sm">{LABEL}</span>
                 </Button>
             )}
         </Grid>

@@ -1,4 +1,4 @@
-import type { Union } from 'enums/union';
+export const URL = '/security/history' as const;
 
 export const column = {
     REQUEST_IP: { key: 'requestIp', value: 'Request IP', width: 280 },
@@ -14,5 +14,3 @@ export const loginResult = {
     ERROR_DEACTIVATE: '비활성화된 계정',
     ERROR_AUTHORITIES: '역할 또는 권한 정보 없음'
 } as const;
-
-export type LoginResult = Union<typeof loginResult>;

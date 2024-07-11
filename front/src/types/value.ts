@@ -1,7 +1,3 @@
-export interface KeyValueWitdh extends KeyValue {
-    width: number;
-};
-
 export interface KeyValue extends value {
     key: string;
     value: string;

@@ -1,18 +1,12 @@
+import { action } from 'enums/layout/header/user';
+
 import type { User } from 'types/layout/header/user';
+import type { Action } from 'types/layout/header/user';
 
-const initState: User = {};
+const initState: User = { isInit: false };
 
-const action = {
-    INIT: 'user/init',
-    SET: 'user/set'
-} as const;
-
-export const initUser = () => ({ type: action.INIT, payload: initState });
+export const initUser = () => ({ type: action.INIT, payload: { ...initState, isInit: true } });
 export const setUser = (user: User) => ({ type: action.SET, payload: user });
-
-type Action =
-    | ReturnType<typeof initUser>
-    | ReturnType<typeof setUser>;
 
 const user = (state: User = initState, { type, payload }: Action) => {
     switch (type) {

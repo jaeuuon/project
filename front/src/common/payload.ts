@@ -1,7 +1,7 @@
-import { roles as userRoles, type Roles as UserRoles } from 'enums/layout/header/user';
+import { roles as userRoles } from 'enums/layout/header/user';
 
 import type Payload from 'types/common/payload';
-import type { User } from 'types/layout/header/user';
+import type { User, Roles } from 'types/layout/header/user';
 import type { CodeValue } from 'types/value';
 
 import { snakeToCamel } from 'common/utils';
@@ -20,7 +20,7 @@ export const getUser = ({
     const authorities = payloadAuthorities.split(',');
     const authorityValues = payloadAuthorityValues.split(',');
 
-    const roles: CodeValue<UserRoles>[] = [];
+    const roles: CodeValue<Roles>[] = [];
 
     userRoles.forEach((userRole) => {
         authorities.some((authority, index) => {
@@ -34,7 +34,7 @@ export const getUser = ({
         });
     });
 
-    return { id, email, name, roles, exp };
+    return { isInit: true, id, email, name, roles, exp };
 };
 
 export const getDelay = ({ exp }: Payload) => (exp * 1000) - 30000 - Date.now();

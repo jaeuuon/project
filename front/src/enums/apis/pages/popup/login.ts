@@ -1,3 +1,5 @@
+export const URL = '/security/authentication' as const;
+
 export const emailError = {
     BLANK: { code: 'ERROR_SCR_EMAIL_BLANK', message: '이메일을 입력하십시오.' },
     SIZE: { code: 'ERROR_SCR_EMAIL_SIZE', message: '이메일은 4자에서 100자 사이여야 합니다.' },

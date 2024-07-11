@@ -1,4 +1,6 @@
-import type { Status } from 'enums/apis/status';
+import { status } from 'enums/apis/status';
+
+import type { Union } from 'types/union';
 
 export default interface Response<T> {
     path: string;
@@ -7,6 +9,8 @@ export default interface Response<T> {
     data: Data<T>;
     timestamp: string;
 };
+
+export type Status = Union<typeof status>;
 
 export interface Data<T> extends CodeMessage {
     content: T[];

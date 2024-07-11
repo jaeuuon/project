@@ -4,7 +4,6 @@ import { status } from 'enums/apis/status';
 
 import type { IndexString } from 'types/signature';
 import type Response from 'types/apis/response';
-
 import type { CodeMessageEnum, SearchCode } from 'types/common/utils';
 
 export const camelToSnake = (any: any): any => {
