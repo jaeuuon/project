@@ -1,6 +1,6 @@
 import type { Roles } from 'enums/layout/header/user';
 
-import type CodeValue from 'types/codeValue';
+import type { CodeValue } from 'types/value';
 
 export interface User {
     id?: number;

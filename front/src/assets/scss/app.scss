@@ -53,7 +53,22 @@ body {
             }
         }
 
+        &Table{
+            &-root {
+                width: initial;
+                margin: auto;
+            }
+
+            &Cell-head {
+                font-weight: bold;
+            }
+        }
+
         &Pagination {
+            &-root {
+                margin-top: calc(var.$margin * 4);
+            }
+
             &-ul {
                 justify-content: center;
             }

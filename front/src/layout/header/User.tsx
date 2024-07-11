@@ -55,6 +55,8 @@ const User = () => {
         if (responseStatus === status.SUCCESS) {
             dispatch(initUser());
             dispatch(setSnackbarSuccess({ code, message }));
+
+            navigate(menu.home.path);
         } else {
             dispatch(setSnackbarError({ code, message }));
         }

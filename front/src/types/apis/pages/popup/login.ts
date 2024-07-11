@@ -1,6 +1,6 @@
-import type { Input } from 'types/apis/request';
+import type { IndexString } from 'types/signature';
 
-export interface Params extends Input {
+export interface Params extends IndexString {
     email?: string;
     password?: string;
 };

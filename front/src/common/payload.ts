@@ -2,7 +2,7 @@ import { roles as userRoles, type Roles as UserRoles } from 'enums/layout/header
 
 import type Payload from 'types/common/payload';
 import type { User } from 'types/layout/header/user';
-import type CodeValue from 'types/codeValue';
+import type { CodeValue } from 'types/value';
 
 import { snakeToCamel } from 'common/utils';
 

@@ -1,10 +1,10 @@
 @use '../../variables' as var;
 
 #layout-main-grid-content {
-    padding: var.$padding;
+    padding: var.$padding var.$padding calc(var.$padding * 4);
 
     & > div {
         position: relative;
-        margin: var.$margin;
+        margin: var.$margin var.$margin calc(var.$margin * 4);
     }
 }

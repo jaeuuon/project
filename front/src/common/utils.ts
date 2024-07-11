@@ -2,7 +2,7 @@ import type { Theme } from '@mui/material/styles';
 
 import { status } from 'enums/apis/status';
 
-import type { Input } from 'types/apis/request';
+import type { IndexString } from 'types/signature';
 import type Response from 'types/apis/response';
 
 import type { CodeMessageEnum, SearchCode } from 'types/common/utils';
@@ -25,7 +25,7 @@ export const getHoverBackgroundColor = (theme: Theme) => `${theme.palette.grey[4
 export const getCssClassByTheme = (theme: Theme) => `background-mode-${isThemeLight(theme) ? 'light' : 'dark'}`;
 export const isThemeLight = (theme: Theme) => theme.palette.mode === 'light';
 
-export const getOnChange = (state: Input, setState: React.Dispatch<React.SetStateAction<Input>>) => {
+export const getOnChange = (state: IndexString, setState: React.Dispatch<React.SetStateAction<IndexString>>) => {
     return ({ target }: React.ChangeEvent<HTMLInputElement>) => {
         if (target.value !== '') {
             setState({ ...state, [target.name]: target.value });
