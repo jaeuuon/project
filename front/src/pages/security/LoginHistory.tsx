@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useQuery } from 'react-query';
 
-import type { Params } from 'types/apis/pages/security/loginHistory';
+import { column } from 'enums/apis/pages/security/loginHistory';
+
+import type { Params, Content } from 'types/apis/pages/security/loginHistory';
+import type { Data } from 'types/apis/response';
 
 import { list } from 'apis/pages/security/loginHistory';
 
-import Pagination from 'components/Pagination';
+import List from 'components/List';
 import Loading from 'components/Loading';
 
 const queryKey = {
@@ -14,17 +17,21 @@ const queryKey = {
 
 const LoginHistory = () => {
     const [params, setParams] = useState<Params>({});
-    const [totalPages, setTotalPages] = useState(1);
+    const [data, setData] = useState<Data<Content>>();
 
-    const { isLoading, data: response } = useQuery([queryKey.LIST, params], () => list(params), { onSuccess({ data }) { setTotalPages(data.totalPages); } });
+    const onChange = useCallback((_event: React.ChangeEvent<unknown>, page: number) => setParams({ ...params, page }), [params]);
 
-    const onChange = (_event: React.ChangeEvent<unknown>, page: number) => setParams({ ...params, page });
+    const { isLoading, data: response } = useQuery([queryKey.LIST, params], () => list(params));
 
-    console.log(totalPages);
+    useEffect(() => {
+        if (response) {
+            setData(response.data);
+        }
+    }, [response]);
 
     return (
         <>
-            <Pagination totalPages={totalPages} onChange={onChange} />
+            <List column={column} data={data} onChange={onChange} />
             {isLoading &&
                 <Loading />
             }
