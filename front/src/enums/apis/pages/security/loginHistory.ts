@@ -1,11 +1,5 @@
 import type { Union } from 'enums/union';
 
-export const column = {
-    REQUEST_IP: { key: 'requestIp', value: 'Request IP' },
-    RESULT: { key: 'result', value: 'Result' },
-    CREATED_TIME: { key: 'createdTime', value: 'Created time' }
-} as const;
-
 export const loginResult = {
     SUCCESS: '성공',
     ERROR_PASSWORD: '비밀번호 불일치',

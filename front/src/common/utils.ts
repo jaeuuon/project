@@ -3,7 +3,7 @@ import type { Theme } from '@mui/material/styles';
 import { status } from 'enums/apis/status';
 
 import type { Input } from 'types/apis/request';
-import type { default as Response, Data } from 'types/apis/response';
+import type Response from 'types/apis/response';
 
 import type { CodeMessageEnum, SearchCode } from 'types/common/utils';
 
@@ -48,9 +48,14 @@ export const getResponseError = <T>(error: any): Response<T> => {
             method: error.config.method.toUpperCase(),
             status: status.ERROR,
             data: {
-                ...getResponseDataEmpty(),
                 code: 'ERROR_FRT_INTERNAL_SERVER_ERROR',
-                message: '문제가 발생했습니다. 관리자에게 문의하십시오.'
+                message: '문제가 발생했습니다. 관리자에게 문의하십시오.',
+                content: [],
+                elements: 0,
+                totalElements: 0,
+                size: 0,
+                page: 1,
+                totalPages: 1
             },
             timestamp: getTimestamp()
         };
@@ -58,19 +63,6 @@ export const getResponseError = <T>(error: any): Response<T> => {
         return response;
     }
 };
-
-export const getResponseDataEmpty = <T>(): Data<T> => {
-    return {
-        code: '',
-        message: '',
-        content: [],
-        elements: 0,
-        totalElements: 0,
-        size: 0,
-        page: 1,
-        totalPages: 1
-    }
-}
 
 export const getTimestamp = () => {
     const today = new Date();

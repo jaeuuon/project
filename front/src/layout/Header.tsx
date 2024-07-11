@@ -25,18 +25,16 @@ const Header = () => {
     }, []);
 
     return (
-        <>
-            <div id="layout-header" className={[getCssClassByTheme(theme), (isTop ? 'box-shadow-none' : '')].join(' ')} style={{ borderColor }}>
-                <Grid id="layout-header-grid" container>
-                    <Icon />
-                    <Menu />
-                    <Grid id="layout-header-grid-user-and-mode" item xs="auto">
-                        <User />
-                        <Mode />
-                    </Grid>
+        <div id="layout-header" className={[getCssClassByTheme(theme), (isTop ? 'box-shadow-none' : '')].join(' ')} style={{ borderColor }}>
+            <Grid id="layout-header-grid" container>
+                <Icon />
+                <Menu />
+                <Grid id="layout-header-grid-user-and-mode" item xs="auto">
+                    <User />
+                    <Mode />
                 </Grid>
-            </div>
-        </>
+            </Grid>
+        </div>
     );
 };
 
