@@ -29,9 +29,7 @@ const LoginHistory = () => {
     return (
         <>
             <List id="list-login-hisory" columns={columns} data={data} onChange={onChange} />
-            {isLoading &&
-                <Loading />
-            }
+            <Loading isVisible={isLoading} />
         </>
     );
 };

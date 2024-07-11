@@ -1,6 +1,12 @@
-const Loading = () => {
+import type LoadingType from "types/components/loading";
+
+const Loading = ({ isVisible }: LoadingType) => {
     return (
-        <div id="div-loading" />
+        <>
+            {isVisible &&
+                <div id="div-loading" />
+            }
+        </>
     );
 };
 
