@@ -20,11 +20,11 @@ const Content = () => {
                 {}
                 <Routes>
                     <Route path={headerMenu.HOME.PATH} element={<Home />} />
-                    <Route path={sidebarMenu.HOME.SUB_MENU.NOTICE.PATH} element={<Notice />} />
+                    <Route path={sidebarMenu.HOME.NOTICE.PATH} element={<Notice />} />
                     <Route path={headerMenu.INFORMATION.PATH} element={<Information />} />
-                    <Route path={sidebarMenu.INFORMATION.SUB_MENU.CONTACT.PATH} element={<Contact />} />
+                    <Route path={sidebarMenu.INFORMATION.CONTACT.PATH} element={<Contact />} />
                     <Route path={headerMenu.SECURITY.PATH} element={<Security />} />
-                    <Route path={sidebarMenu.SECURITY.SUB_MENU.HISTORY.PATH} element={<LoginHistory />} />
+                    <Route path={sidebarMenu.SECURITY.HISTORY.PATH} element={<LoginHistory />} />
                 </Routes>
             </div>
         </Grid>

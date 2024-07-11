@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
 import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
-import { menu } from 'enums/layout/main/sidebar';
+import { menus } from 'enums/layout/main/sidebar';
 
 import type { RootState } from 'types/redux';
 
@@ -27,7 +27,7 @@ const Sidebar = () => {
     const dispatch = useDispatch();
     const { isVisible } = useSelector((state: RootState) => state.sidebar);
 
-    const menus = Object.values(menu).filter(({ PATH, SUB_MENU }) => PATH === pathname ? true : Object.values(SUB_MENU).some(({ PATH }) => PATH === pathname));
+    const subMenus = Object.values(menus).find(({ PATH, SUB_MENUS }) => PATH === pathname || Object.values(SUB_MENUS).some(({ PATH }) => PATH === pathname))?.SUB_MENUS;
 
     const setVisibleFalse = () => dispatch(closeSidebar());
 
@@ -58,15 +58,13 @@ const Sidebar = () => {
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
             <Grid id="layout-main-grid-sidebar" className={isVisible ? 'visible' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper, borderColor }} ref={sidebarRef}>
                 <List>
-                    {menus.map(({ SUB_MENU }) =>
-                        Object.values(SUB_MENU).map(({ ICON, PATH, LABEL }, index) =>
-                            <ListItem key={`list-item-main-sidebar-${index}`} disablePadding onClick={() => PATH.startsWith('http') ? window.open(PATH) : navigate(PATH)}>
-                                <ListItemButton>
-                                    <ListItemIcon>{ICON}</ListItemIcon>
-                                    <ListItemText primary={LABEL} />
-                                </ListItemButton>
-                            </ListItem>
-                        )
+                    {subMenus?.map(({ ICON, PATH, LABEL }, index) =>
+                        <ListItem key={`list-item-main-sidebar-${index}`} disablePadding onClick={() => PATH.startsWith('http') ? window.open(PATH) : navigate(PATH)}>
+                            <ListItemButton>
+                                <ListItemIcon>{ICON}</ListItemIcon>
+                                <ListItemText primary={LABEL} />
+                            </ListItemButton>
+                        </ListItem>
                     )}
                 </List>
             </Grid>
