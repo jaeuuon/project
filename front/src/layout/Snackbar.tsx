@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { Snackbar as MaterialSnackbar, Slide, SlideProps, Alert } from '@mui/material';
 
-import { RootState } from 'modules';
+import type { RootState } from 'types/redux';
 
 const SlideTransition = (props: SlideProps) => <Slide {...props} direction="up" />;
 

@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 
-import { RootState } from 'modules';
+import type { RootState } from 'types/redux';
+
 import { getMql, setModeLight, setModeDark } from 'modules/layout/header/mode';
 
 import Header from 'layout/Header';

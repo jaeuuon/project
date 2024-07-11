@@ -10,9 +10,9 @@ import { status } from 'enums/apis/status';
 import { reissuanceIgnoreError } from 'enums/apis/layout/header/user';
 import { menu } from 'enums/layout/header/menu';
 
+import type { RootState } from 'types/redux';
 import type { Content } from 'types/apis/pages/popup/login';
 
-import { RootState } from 'modules';
 import { initUser, setUser } from 'modules/layout/header/user';
 import { setSnackbarSuccess, setSnackbarError } from 'modules/layout/snackbar';
 

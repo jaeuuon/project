@@ -7,7 +7,8 @@ import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from
 
 import { menu } from 'enums/layout/main/sidebar';
 
-import { RootState } from 'modules';
+import type { RootState } from 'types/redux';
+
 import { closeSidebar } from 'modules/layout/main/sidebar';
 
 import { getBorderColor } from 'common/utils';
