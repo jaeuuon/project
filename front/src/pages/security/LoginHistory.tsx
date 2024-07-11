@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useQuery } from 'react-query';
 
-import { column } from 'enums/apis/pages/security/loginHistory';
+import { columns } from 'enums/apis/pages/security/loginHistory';
 
 import type { Params, Content } from 'types/apis/pages/security/loginHistory';
 import type { Data } from 'types/apis/response';
@@ -31,7 +31,7 @@ const LoginHistory = () => {
 
     return (
         <>
-            <List id="list-login-hisory" column={column} data={data} onChange={onChange} />
+            <List id="list-login-hisory" columns={columns} data={data} onChange={onChange} />
             {isLoading &&
                 <Loading />
             }

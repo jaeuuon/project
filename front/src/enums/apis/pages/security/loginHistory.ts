@@ -6,6 +6,8 @@ export const column = {
     CREATED_TIME: { key: 'createdTime', value: 'Created time', width: 440 }
 } as const;
 
+export const columns = Object.values(column);
+
 export const loginResult = {
     SUCCESS: '성공',
     ERROR_PASSWORD: '비밀번호 불일치',

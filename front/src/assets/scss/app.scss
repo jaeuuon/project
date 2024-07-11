@@ -66,7 +66,7 @@ body {
 
         &Pagination {
             &-root {
-                margin-top: calc(var.$margin * 4);
+                margin: calc(var.$margin * 4) 0;
             }
 
             &-ul {
