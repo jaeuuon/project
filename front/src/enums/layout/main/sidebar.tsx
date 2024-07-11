@@ -51,7 +51,8 @@ export const menus = {
     INFORMATION: {
         PATH: headerMenu.INFORMATION.PATH,
         SUB_MENUS: [
-            menu.INFORMATION.CONTACT
+            menu.INFORMATION.CONTACT,
+            menu.INFORMATION.GITHUB
         ]
     },
     SECURITY: {
