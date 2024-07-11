@@ -27,7 +27,7 @@ const Sidebar = () => {
     const dispatch = useDispatch();
     const { isVisible } = useSelector((state: RootState) => state.sidebar);
 
-    const subMenus = Object.values(menus).find(({ PATH, SUB_MENUS }) => PATH === pathname || Object.values(SUB_MENUS).some(({ PATH }) => PATH === pathname))?.SUB_MENUS;
+    const subMenus = menus.find(({ PATH, SUB_MENUS }) => PATH === pathname || Object.values(SUB_MENUS).some(({ PATH }) => PATH === pathname))?.SUB_MENUS;
 
     const setVisibleFalse = () => dispatch(closeSidebar());
 

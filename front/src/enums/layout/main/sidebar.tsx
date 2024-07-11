@@ -41,24 +41,24 @@ export const menu = {
     }
 } as const;
 
-export const menus = {
-    HOME: {
+export const menus = [
+    {
         PATH: headerMenu.HOME.PATH,
         SUB_MENUS: [
             menu.HOME.NOTICE
         ]
     },
-    INFORMATION: {
+    {
         PATH: headerMenu.INFORMATION.PATH,
         SUB_MENUS: [
             menu.INFORMATION.CONTACT,
             menu.INFORMATION.GITHUB
         ]
     },
-    SECURITY: {
+    {
         PATH: headerMenu.SECURITY.PATH,
         SUB_MENUS: [
             menu.SECURITY.HISTORY
         ]
     }
-} as const;
+] as const;
