@@ -41,10 +41,13 @@
 
         &-skill {
             @include mixin.layout-footer-grid-default {
-                text-align: center;
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
             }
 
             img {
+                display: block;
                 margin: var.$margin;
                 cursor: pointer;
             }

@@ -1,11 +1,11 @@
 @use '../../variables' as var;
 
 #layout-main-grid-sidebar {
-    z-index: calc(var.$modalIndex + 1);
-    display: none;
+    z-index: var.$modalIndex;
     position: fixed;
     top: 0;
     left: 0;
+    display: none;
     width: 100vw;
     max-width: var.$sidebarWidth;
     height: 100vh;
@@ -13,15 +13,19 @@
     border-right: var.$border;
     overflow: auto;
 
-    ul {
-        width: calc(var.$sidebarWidth - (var.$padding * 2) - var.$borderSize);
-        padding-top: 0;
-        padding-bottom: 0;
+    .Mui {
+        &List {
+            &-root {
+                width: calc(var.$sidebarWidth - (var.$padding * 2) - var.$borderSize);
+                padding-top: 0;
+                padding-bottom: 0;
+            }
 
-        li > div {
-            margin: var.$margin;
-            padding: 4px 16px;
-            border-radius: var.$borderRadius;
+            &ItemButton-root {
+                margin: var.$margin;
+                padding: 4px 16px;
+                border-radius: var.$borderRadius;
+            }
         }
     }
 }
@@ -29,8 +33,8 @@
 @media (min-width: var.$widthLg) {
     #layout-main-grid-sidebar {
         z-index: initial;
-        display: initial;
         position: initial;
+        display: initial;
         height: initial;
         transition: initial;
         transform: initial;

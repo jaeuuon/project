@@ -1,3 +1,5 @@
+$fontSize: 14px;
+
 $modalIndex: 1300;
 
 $widthMin: 360px;
@@ -13,14 +15,8 @@ $borderSize: 1px;
 $border: $borderSize solid;
 $borderRadius: 4px;
 
-$sidebarWidth: 200px;
-
 $headerHeight: 56px;
-$headerInnerHeight: calc($headerHeight - (($margin + $padding) * 2) - $borderSize);
-
-$footerColor: #808080;
-
-$popupIconSize: 27px;
+$headerInnerHeight: calc($headerHeight - (($margin * 2) + ($padding * 2)) - $borderSize);
 
 $backgroundColorLight: #f8f9fabf;
 $backgroundColorDark: #212529bf;
@@ -28,3 +24,9 @@ $backgroundColorDark: #212529bf;
 $backdropFilter: blur(3px);
 
 $boxShadow: 0 0 10px 0 #00000033;
+
+$sidebarWidth: 200px;
+
+$footerColor: #808080;
+
+$popupIconSize: 27px;

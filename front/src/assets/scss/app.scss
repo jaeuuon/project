@@ -12,6 +12,10 @@
 @use './components/modal';
 @use './components/loading';
 
+html {
+    font-size: var.$fontSize;
+}
+
 body {
     min-width: var.$widthMin;
 
@@ -25,7 +29,6 @@ body {
                 width: 100%;
 
                 p {
-                    margin: 0;
                     text-align: center;
                     line-height: 20px;
 
