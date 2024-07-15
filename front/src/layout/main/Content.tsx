@@ -18,7 +18,6 @@ const Content = () => {
     return (
         <Grid id="layout-main-grid-content" item xs>
             <div>
-                {}
                 <Routes>
                     <Route path={headerMenu.HOME.PATH} element={<Home />} />
                     <Route path={sidebarMenu.HOME.NOTICE.PATH} element={<Notice />} />
