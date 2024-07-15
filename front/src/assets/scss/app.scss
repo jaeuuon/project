@@ -10,7 +10,7 @@
 @use './pages/popup/login';
 
 @use './components/modal';
-@use './components/pages/loading';
+@use './components/loading';
 
 body {
     min-width: var.$widthMin;
