@@ -103,8 +103,8 @@ const Login = ({
             <TextField type="password" name="password" label="Password" isFullWidth={true} autoComplete="current-password" value={params.password} isError={includesCode(passwordError, error?.code)} ref={passwordRef} onChange={onChange} />
             {error &&
                 <Alert severity="error">
-                    <p className="p-message">{error.message}</p>
-                    <p className="p-code">[{error.code}]</p>
+                    <p>{error.message}</p>
+                    <p>[{error.code}]</p>
                 </Alert>
             }
             <Button id="button-login-submit" type="submit" variant="contained">

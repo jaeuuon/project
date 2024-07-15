@@ -1,14 +1,14 @@
 @use '../../variables' as var;
 
 #form-login {
-    .MuiAlert {
-        &-root {
-            margin-top: 10px;
+    .Mui {
+        &Alert-root {
+            margin-top: calc(var.$margin * 2);
         }
     }
 
     #button-login-submit {
         width: 100%;
-        margin-top: 20px;
+        margin-top: calc(var.$margin * 4);
     }
 }

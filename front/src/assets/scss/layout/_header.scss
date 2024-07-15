@@ -5,7 +5,7 @@
     z-index: 1100;
     position: sticky;
     top: 0;
-    height: var.$headerHeight;
+    height: calc((var.$margin * 2) + (var.$padding * 2) + var.$headerInnerHeight + var.$borderSize);
     border-bottom: var.$border;
     backdrop-filter: var.$backdropFilter;
     box-shadow: var.$boxShadow;
@@ -69,8 +69,8 @@
                 margin: var.$margin;
                 cursor: pointer;
 
-                .MuiAvatar {
-                    &-root {
+                .Mui {
+                    &Avatar-root {
                         width: 100%;
                         height: 100%;
                         border: var.$border;

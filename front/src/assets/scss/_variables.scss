@@ -15,8 +15,7 @@ $borderSize: 1px;
 $border: $borderSize solid;
 $borderRadius: 4px;
 
-$headerHeight: 56px;
-$headerInnerHeight: calc($headerHeight - (($margin * 2) + ($padding * 2)) - $borderSize);
+$headerInnerHeight: 35px;
 
 $backgroundColorLight: #f8f9fabf;
 $backgroundColorDark: #212529bf;
@@ -25,7 +24,7 @@ $backdropFilter: blur(3px);
 
 $boxShadow: 0 0 10px 0 #00000033;
 
-$sidebarWidth: 200px;
+$sidebarInnerWidth: 200px;
 
 $footerColor: #808080;
 

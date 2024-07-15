@@ -13,9 +13,7 @@
         }
 
         &-creator {
-            @include mixin.layout-footer-grid-default {
-                color: var.$footerColor;
-            }
+            @include mixin.layout-footer-grid-default;
 
             span {
                 text-decoration: underline;
@@ -24,9 +22,7 @@
         }
 
         &-theme-color {
-            @include mixin.layout-footer-grid-default {
-                color: var.$footerColor;
-            }
+            @include mixin.layout-footer-grid-default;
 
             p {
                 text-align: right;
@@ -40,11 +36,10 @@
         }
 
         &-skill {
-            @include mixin.layout-footer-grid-default {
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
+            display: flex;
+            padding: var.$padding var.$padding calc(var.$padding * 4);
+            justify-content: center;
+            flex-wrap: wrap;
 
             img {
                 display: block;
