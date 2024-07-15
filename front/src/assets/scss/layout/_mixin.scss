@@ -1,4 +1,4 @@
-@use '../variables' as var;
+@use 'assets/scss/variables' as var;
 
 @mixin layout-header-grid-default {
     padding: var.$padding;

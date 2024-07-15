@@ -1,5 +1,5 @@
-@use '../variables' as var;
-@use './mixin' as mixin;
+@use 'assets/scss/variables' as var;
+@use 'assets/scss/layout/mixin' as mixin;
 
 #layout-header {
     z-index: 1100;

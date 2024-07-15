@@ -1,8 +1,8 @@
-@use '../variables' as var;
-@use './mixin' as mixin;
+@use 'assets/scss/variables' as var;
+@use 'assets/scss/layout/mixin' as mixin;
 
-@use './main/sidebar';
-@use './main/content';
+@use 'assets/scss/layout/main/sidebar';
+@use 'assets/scss/layout/main/content';
 
 #layout-main {
     &-grid {

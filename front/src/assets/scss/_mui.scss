@@ -1,4 +1,4 @@
-@use './variables' as var;
+@use 'assets/scss/variables' as var;
 
 .Mui {
     &Alert {
@@ -22,6 +22,10 @@
                 }
             }
         }
+    }
+
+    &Button-root {
+        font-weight: bold !important;
     }
 
     &Tooltip-tooltip {

@@ -1,17 +1,17 @@
-@use './variables' as var;
+@use 'assets/scss/variables' as var;
 
-@use './mui';
-@use './common';
+@use 'assets/scss/mui';
+@use 'assets/scss/common';
 
-@use './layout/header';
-@use './layout/main';
-@use './layout/footer';
-@use './layout/popup';
+@use 'assets/scss/layout/header';
+@use 'assets/scss/layout/main';
+@use 'assets/scss/layout/footer';
+@use 'assets/scss/layout/popup';
 
-@use './pages/popup/login';
+@use 'assets/scss/pages/popup/login';
 
-@use './components/modal';
-@use './components/loading';
+@use 'assets/scss/components/modal';
+@use 'assets/scss/components/loading';
 
 html {
     font-size: var.$fontSize;
