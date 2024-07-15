@@ -56,10 +56,12 @@
                     display: flex;
                 }
 
-                #button-logout,
-                #button-mode {
-                    width: var.$headerInnerHeight;
-                    min-width: var.$headerInnerHeight;
+                #button {
+                    &-logout,
+                    &-mode {
+                        width: var.$headerInnerHeight;
+                        min-width: var.$headerInnerHeight;
+                    }
                 }
             }
 

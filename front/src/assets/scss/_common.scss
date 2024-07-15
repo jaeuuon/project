@@ -10,12 +10,14 @@
     }
 }
 
-.background-mode-light {
-    background-color: var.$backgroundColorLight !important;
-}
+.background-mode {
+    &-light {
+        background-color: var.$backgroundColorLight !important;
+    }
 
-.background-mode-dark {
-    background-color: var.$backgroundColorDark !important;
+    &-dark {
+        background-color: var.$backgroundColorDark !important;
+    }
 }
 
 @media (min-width: var.$widthSm) {

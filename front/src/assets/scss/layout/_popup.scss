@@ -12,7 +12,7 @@
     transform: translate(-50%, -50%);
     overflow: auto;
 
-    #layout-popup-header {
+    &-header {
         min-width: calc(var.$widthMin - ((var.$margin * 2) + (var.$padding * 2)) - var.$borderSize);
         padding: var.$padding;
         border-bottom: var.$border;
