@@ -56,7 +56,7 @@ const Sidebar = () => {
     return (
         <>
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
-            <Grid id="layout-main-grid-sidebar" className={isVisible ? 'visible' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper, borderColor }} ref={sidebarRef}>
+            <Grid id="layout-main-grid-sidebar" className={isVisible ? 'display-initial' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper, borderColor }} ref={sidebarRef}>
                 <List>
                     {subMenus?.map(({ ICON, PATH, LABEL }, index) =>
                         <ListItem key={`list-item-main-sidebar-${index}`} disablePadding onClick={() => PATH.startsWith('http') ? window.open(PATH) : navigate(PATH)}>

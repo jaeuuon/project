@@ -1,19 +1,27 @@
 @use './variables' as var;
 
-.display-none-sm {
-    display: none;
+.display {
+    &-initial {
+        display: initial !important;
+    }
+
+    &-none-sm {
+        display: none !important;
+    }
 }
 
 .background-mode-light {
-    background-color: var.$backgroundColorLight;
+    background-color: var.$backgroundColorLight !important;
 }
 
 .background-mode-dark {
-    background-color: var.$backgroundColorDark;
+    background-color: var.$backgroundColorDark !important;
 }
 
 @media (min-width: var.$widthSm) {
-    .display-none-sm {
-        display: block;
+    .display {
+        &-none-sm {
+            display: initial !important;
+        }
     }
 }
