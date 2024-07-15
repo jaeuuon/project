@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { query } from 'enums/pages/security/loginHistory';
 import { columns } from 'enums/apis/pages/security/loginHistory';
@@ -18,7 +18,10 @@ const LoginHistory = () => {
 
     const onChange = useCallback((_event: React.ChangeEvent<unknown>, page: number) => setParams({ ...params, page }), [params]);
 
-    const { isLoading, data: response } = useQuery([query.LIST, params], () => list(params));
+    const { isLoading, data: response } = useQuery({
+        queryKey: [query.LIST, params],
+        queryFn: () => list(params)
+    });
 
     useEffect(() => {
         if (response) {
