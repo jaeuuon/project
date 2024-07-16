@@ -10,7 +10,7 @@ export interface User {
     id?: number;
     email?: string;
     name?: string;
-    roles?: CodeValue<Roles>[];
+    roles: CodeValue<Roles>[];
     exp?: number;
 };
 

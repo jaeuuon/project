@@ -2,7 +2,7 @@ import { action } from 'enums/layout/header/user';
 
 import type { User, Action } from 'types/layout/header/user';
 
-const initState: User = { isInit: false };
+const initState: User = { isInit: false, roles: [] };
 
 export const initUser = () => ({ type: action.INIT, payload: { ...initState, isInit: true } });
 export const setUser = (user: User) => ({ type: action.SET, payload: user });

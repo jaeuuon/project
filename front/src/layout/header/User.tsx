@@ -102,12 +102,7 @@ const User = () => {
                     <div id="layout-header-grid-user-avatar" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
                         <Tooltip title={
                             <>
-                                <p>
-                                    {name}
-                                    {roles && roles.length > 0 &&
-                                        <> ({roles[0].value})</>
-                                    }
-                                </p>
+                                <p>{name} ({roles[0].value})</p>
                                 <p>{email}</p>
                             </>
                         } placement="bottom" arrow>
