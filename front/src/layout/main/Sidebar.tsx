@@ -29,7 +29,7 @@ const Sidebar = () => {
     const theme = useTheme();
     const style = { zIndex: theme.zIndex.modal, backgroundColor: theme.palette.background.paper, borderColor: getBorderColor(theme) };
 
-    const menu = menus.find(({ PATH, SUB_MENUS }) => PATH === pathname || SUB_MENUS.some(({ PATH: SUB_MENU_PATH }) => `${PATH}${SUB_MENU_PATH}` === pathname));
+    const menu = menus.find(({ PATH, SUB_MENUS }) => PATH === pathname || SUB_MENUS.some(({ PATH: SUB_MENU_PATH }) => SUB_MENU_PATH === pathname));
     const parentMenu = Object.values(headerMenu).find(({ PATH }) => PATH === menu?.PATH);
     const parentMenuRequiredRoles = parentMenu?.REQUIRED.ROLES || [];
 
@@ -73,7 +73,7 @@ const Sidebar = () => {
                                         requiredRolesLength === 0 || requiredRoles.some((requiredRole) => roles.some(({ code }) => requiredRole === code))
                                     ))
                                 ) &&
-                                    <ListItem disablePadding onClick={() => PATH.startsWith('http') ? window.open(PATH) : navigate(`${parentMenu?.PATH || ''}${PATH}`)}>
+                                    <ListItem disablePadding onClick={() => PATH.startsWith('http') ? window.open(PATH) : navigate(PATH)}>
                                         <ListItemButton>
                                             <ListItemIcon>{ICON}</ListItemIcon>
                                             <ListItemText primary={LABEL} />

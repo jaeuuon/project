@@ -11,7 +11,7 @@ export const action = {
 export const menu = {
     HOME: {
         NOTICE: {
-            PATH: 'notice',
+            PATH: '/notice',
             ICON: <CampaignOutlined />,
             LABEL: 'Notice',
             REQUIRED: {
@@ -22,7 +22,7 @@ export const menu = {
     },
     INFORMATION: {
         CONTACT: {
-            PATH: '/contact',
+            PATH: `${headerMenu.INFORMATION.PATH}/contact`,
             ICON: <ContactSupportOutlined />,
             LABEL: 'Contact',
             REQUIRED: {
@@ -42,7 +42,7 @@ export const menu = {
     },
     SECURITY: {
         HISTORY: {
-            PATH: '/history',
+            PATH: `${headerMenu.SECURITY.PATH}/history`,
             ICON: <History />,
             LABEL: 'Login history',
             REQUIRED: {
