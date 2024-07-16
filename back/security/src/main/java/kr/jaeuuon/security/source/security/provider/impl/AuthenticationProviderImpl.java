@@ -38,9 +38,15 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
         }
 
         String credentials = authentication.getCredentials().toString();
+        int credentialsLength = 0;
 
         try {
             credentials = securityProperties.decrypt(credentials);
+            credentialsLength = credentials.length();
+
+            if (credentialsLength < 4 || credentialsLength > 50) {
+                throw new SecurityException(HttpStatus.UNAUTHORIZED, SecurityMessageImpl.ERROR_SCR_PASSWORD_DECRYPT_SIZE);
+            }
         } catch (GeneralSecurityException e) {
             throw new CommonException(HttpStatus.INTERNAL_SERVER_ERROR, SecurityMessageImpl.ERROR_SCR_PASSWORD_DECRYPT);
         }
