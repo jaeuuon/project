@@ -31,7 +31,7 @@ const Main = () => {
                 <Content />
             </Grid>
             {isVisibleToTop &&
-                <div id="layout-main-to-top" className={getCssClassByTheme(theme)} style={{ borderColor: getBorderColor(theme) }} onClick={onClick}>
+                <div id="layout-main-to-top" className={[getCssClassByTheme(theme), 'border-radius', 'backdrop-filter-blur', 'box-shadow'].join(' ')} style={{ borderColor: getBorderColor(theme) }} onClick={onClick}>
                     <KeyboardArrowUp />
                 </div>
             }

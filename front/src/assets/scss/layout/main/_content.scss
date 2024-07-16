@@ -1,7 +1,8 @@
 @use 'assets/scss/variables' as var;
 
 #layout-main-grid-content {
-    padding: var.$padding var.$padding calc(var.$padding * 4);
+    padding: var.$padding;
+    padding-bottom: calc(var.$padding * 4);
 
     & > div {
         position: relative;

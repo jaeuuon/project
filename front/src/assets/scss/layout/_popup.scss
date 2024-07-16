@@ -1,56 +1,48 @@
 @use 'assets/scss/variables' as var;
 
 #layout-popup {
-    z-index: var.$modalIndex;
     position: fixed;
     top: 50vh;
     left: 50vw;
-    max-width: calc(100vw - ((var.$margin * 2) + (var.$padding * 2)));
-    max-height: calc(100vh - ((var.$margin * 2) + (var.$padding * 2)));
+    max-width: calc(100vw - (var.$margin * 2) - (var.$padding * 2));
+    max-height: calc(100vh - (var.$margin * 2) - (var.$padding * 2));
     border: var.$border;
-    border-radius: var.$borderRadius;
     transform: translate(-50%, -50%);
     overflow: auto;
 
     &-header {
-        min-width: calc(var.$widthMin - ((var.$margin * 2) + (var.$padding * 2)) - var.$borderSize);
+        min-width: calc(var.$widthXs - (var.$margin * 2) - (var.$padding * 2) - (var.$borderSize * 2));
         padding: var.$padding;
         border-bottom: var.$border;
 
+        $iconSize: 27px;
+
         &-icon,
         &-close {
-            width: calc(var.$popupIconSize + (var.$margin * 2));
-            height: calc(var.$popupIconSize + (var.$margin * 2));
+            width: calc((var.$margin * 2) + $iconSize);
+            height: calc((var.$margin * 2) + $iconSize);
         }
 
-        &-icon {
-            svg {
-                width: var.$popupIconSize;
-                height: var.$popupIconSize;
-                margin: var.$margin;
-            }
+        &-icon svg,
+        &-close button {
+            width: $iconSize;
+            height: $iconSize;
+            margin: var.$margin;
         }
 
-        &-label {
-            p {
-                margin: var.$margin;
-                font-size: 18px;
-                font-weight: bold;
-            }
+        &-label p {
+            margin: var.$margin;
+            font-size: 1.25px;
+            font-weight: bold;
         }
 
-        &-close {
-            button {
-                width: var.$popupIconSize;
-                min-width: var.$popupIconSize;
-                height: var.$popupIconSize;
-                margin: var.$margin;
-            }
+        &-close button {
+            min-width: $iconSize;
         }
     }
 
     &-content {
-        min-width: calc(var.$widthMin - ((var.$margin * 2) + (var.$padding * 2)) - var.$borderSize);
+        min-width: calc(var.$widthXs - (var.$margin * 2) - (var.$padding * 2) - (var.$borderSize * 2));
         padding: calc(var.$padding * 2);
 
         & > div {

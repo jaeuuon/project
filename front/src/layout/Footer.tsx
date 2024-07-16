@@ -1,7 +1,7 @@
 import { useTheme } from '@mui/material/styles';
 import { Grid, Tooltip } from '@mui/material';
 
-import { creator, skillBadges } from 'enums/layout/footer';
+import { creator, skills } from 'enums/layout/footer';
 
 import { getBorderColor } from 'common/utils';
 
@@ -17,11 +17,11 @@ const Footer = () => {
                     <p>Created by <Tooltip title="GitHub profile" placement="top" arrow><span onClick={onClick}>{creator.NAME}</span></Tooltip>.</p>
                 </Grid>
                 <Grid id="layout-footer-grid-theme-color" item xs={6}>
-                    <p>Theme color is <span style={{ backgroundColor: theme.palette.primary.main }}>{theme.palette.primary.main}</span></p>
+                    <p>Theme color is <span className="border-radius" style={{ backgroundColor: theme.palette.primary.main }}>{theme.palette.primary.main}</span></p>
                 </Grid>
                 <Grid id="layout-footer-grid-skill" item xs={12}>
-                    {skillBadges.map((skillBadge, index) =>
-                        <img key={`img-footer-skill-${index}`} src={skillBadge.SRC} alt={skillBadge.ALT} onClick={() => window.open(skillBadge.URL)} />
+                    {skills.map(({ SRC, ALT, URL }, index) =>
+                        <img key={`img-footer-skill-${index}`} src={SRC} alt={ALT} onClick={() => window.open(URL)} />
                     )}
                 </Grid>
             </Grid>

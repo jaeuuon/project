@@ -1,28 +1,22 @@
 @use 'assets/scss/variables' as var;
-@use 'assets/scss/layout/mixin' as mixin;
+
+$headerInnerHeight: 35px;
+$headerHeightWithoutBorder: calc((var.$margin * 2) + (var.$padding * 2) + $headerInnerHeight);
 
 #layout-header {
-    z-index: 1100;
     position: sticky;
-    top: 0;
-    height: calc((var.$margin * 2) + (var.$padding * 2) + var.$headerInnerHeight + var.$borderSize);
+    top: calc(0px - var.$margin - var.$padding - $headerInnerHeight);
+    height: calc(($headerHeightWithoutBorder * 2) - var.$margin - var.$padding + var.$borderSize);
     border-bottom: var.$border;
-    backdrop-filter: var.$backdropFilter;
-    box-shadow: var.$boxShadow;
-
-    &.box-shadow-none {
-        box-shadow: none;
-    }
 
     &-grid {
         max-width: var.$widthXl;
         margin: auto;
 
         .button-header {
-            width: var.$headerInnerHeight;
-            min-width: var.$headerInnerHeight;
-            height: var.$headerInnerHeight;
-            margin: var.$margin;
+            width: $headerInnerHeight;
+            min-width: $headerInnerHeight;
+            height: $headerInnerHeight;
 
             span:first-child {
                 margin-left: 0;
@@ -30,45 +24,53 @@
             }
         }
 
-        &-icon {
-            @include mixin.layout-header-grid-default{
-                display: flex;
-            }
-
-            #button-main-sidebar {
-                width: var.$headerInnerHeight;
-                min-width: var.$headerInnerHeight;
-            }
+        &-logo {
+            width: $headerHeightWithoutBorder;
+            padding: var.$padding;
+            padding-bottom: calc(var.$padding / 2);
+            order: 1;
 
             svg {
-                height: var.$headerInnerHeight;
+                display: block;
+                height: $headerInnerHeight;
                 margin: var.$margin;
+                margin-bottom: calc(var.$margin / 2);
+            }
+        }
+
+        &-sidebar {
+            padding: var.$padding;
+            padding-top: calc(var.$padding / 2);
+            order: 3;
+
+            button {
+                margin: var.$margin;
+                margin-top: calc(var.$margin / 2);
             }
         }
 
         &-menu {
-            @include mixin.layout-header-grid-default;
+            padding: var.$padding;
+            padding-top: calc(var.$padding / 2);
+            order: 4;
+
+            button {
+                margin: var.$margin;
+                margin-top: calc(var.$margin / 2);
+            }
         }
 
         &-user {
-            &-and-mode {
-                @include mixin.layout-header-grid-default {
-                    display: flex;
-                }
-
-                #button {
-                    &-logout,
-                    &-mode {
-                        width: var.$headerInnerHeight;
-                        min-width: var.$headerInnerHeight;
-                    }
-                }
-            }
+            display: flex;
+            padding: var.$padding;
+            padding-top: calc(var.$padding / 2);
+            order: 5;
 
             &-avatar {
-                width: var.$headerInnerHeight;
-                height: var.$headerInnerHeight;
+                width: $headerInnerHeight;
+                height: $headerInnerHeight;
                 margin: var.$margin;
+                margin-top: calc(var.$margin / 2);
                 cursor: pointer;
 
                 .Mui {
@@ -79,16 +81,52 @@
                     }
                 }
             }
+
+            #button {
+                &-logout,
+                &-login {
+                    margin: var.$margin;
+                    margin-top: calc(var.$margin / 2);
+                }
+
+                &-logout {
+                    width: $headerInnerHeight !important;
+                    min-width: $headerInnerHeight !important;
+                }
+            }
+        }
+
+        &-mode {
+            flex-basis: calc(100% - $headerHeightWithoutBorder);
+            padding: var.$padding;
+            padding-bottom: calc(var.$padding / 2);
+            text-align: right;
+            order: 2;
+
+            button {
+                width: $headerInnerHeight !important;
+                min-width: $headerInnerHeight !important;
+                margin: var.$margin;
+                margin-bottom: calc(var.$margin / 2);
+            }
         }
     }
 }
 
-@media (min-width: var.$widthLg) {
+@media (min-width: var.$widthMd) {
     #layout-header {
         &-grid {
-            &-icon {
-                #button-main-sidebar {
-                    display: none;
+            &-sidebar {
+                display: none;
+            }
+
+            .button-header {
+                width: auto;
+                min-width: 64px;
+
+                span:first-child {
+                    margin-left: -4px;
+                    margin-right: 8px;
                 }
             }
         }
@@ -97,14 +135,64 @@
 
 @media (min-width: var.$widthSm) {
     #layout-header {
-        &-grid {
-            .button-header {
-                width: auto;
-                min-width: 64px;
+        top: 0;
+        height: calc($headerHeightWithoutBorder + var.$borderSize);
 
-                span:first-child {
-                    margin-left: -4px;
-                    margin-right: 8px;
+        &-grid {
+            &-logo {
+                padding: var.$padding;
+                order: 2;
+
+                svg {
+                    margin: var.$margin;
+                }
+            }
+
+            &-sidebar {
+                padding: var.$padding;
+                order: 1;
+
+                button {
+                    margin: var.$margin;
+                }
+            }
+
+            &-menu {
+                padding: var.$padding;
+                order: 3;
+
+                button {
+                    margin: var.$margin;
+                }
+            }
+
+            &-user {
+                padding: var.$padding;
+                padding-right: calc(var.$padding / 2);
+                order: 4;
+
+                &-avatar {
+                    margin: var.$margin;
+                }
+
+                #button {
+                    &-logout,
+                    &-login {
+                        margin: var.$margin;
+                        margin-right: calc(var.$margin / 2);
+                    }
+                }
+            }
+
+            &-mode {
+                flex-basis: auto;
+                padding: var.$padding;
+                padding-left: calc(var.$padding / 2);
+                order: 5;
+
+                button {
+                    margin: var.$margin;
+                    margin-left: calc(var.$margin / 2);
                 }
             }
         }

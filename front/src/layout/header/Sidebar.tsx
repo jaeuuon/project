@@ -5,21 +5,18 @@ import { Menu } from '@mui/icons-material';
 
 import { openSidebar } from 'modules/layout/main/sidebar';
 
-import Logo from 'Logo';
-
-const Icon = () => {
+const Sidebar = () => {
     const dispatch = useDispatch();
 
     const onClick = () => dispatch(openSidebar());
 
     return (
-        <Grid id="layout-header-grid-icon" item xs="auto">
-            <Button id="button-main-sidebar" className="button-header" variant="outlined" onClick={onClick}>
+        <Grid id="layout-header-grid-sidebar" item xs="auto">
+            <Button className="button-header" variant="outlined" onClick={onClick}>
                 <Menu />
             </Button>
-            <Logo />
         </Grid>
     );
 };
 
-export default Icon;
+export default Sidebar;

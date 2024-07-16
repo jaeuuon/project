@@ -1,42 +1,29 @@
 @use 'assets/scss/variables' as var;
 
 #layout-main-grid-sidebar {
-    z-index: var.$modalIndex;
     position: fixed;
     top: 0;
     left: 0;
     display: none;
     width: 100vw;
-    max-width: calc((var.$padding * 2) + var.$sidebarInnerWidth + var.$borderSize);
+    max-width: 250px;
     height: 100vh;
     padding: var.$padding;
     border-right: var.$border;
     overflow: auto;
 
     .Mui {
-        &List {
-            &-root {
-                width: var.$sidebarInnerWidth;
-                padding-top: 0;
-                padding-bottom: 0;
-            }
-
-            &ItemButton-root {
-                margin: var.$margin;
-                padding: 4px 16px;
-                border-radius: var.$borderRadius;
-            }
+        &List-root {
+            width: 100%;
         }
     }
 }
 
-@media (min-width: var.$widthLg) {
+@media (min-width: var.$widthMd) {
     #layout-main-grid-sidebar {
-        z-index: initial;
+        z-index: initial !important;
         position: initial;
         display: initial;
         height: initial;
-        transition: initial;
-        transform: initial;
     }
 }

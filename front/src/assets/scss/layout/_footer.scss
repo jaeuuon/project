@@ -1,5 +1,4 @@
 @use 'assets/scss/variables' as var;
-@use 'assets/scss/layout/mixin' as mixin;
 
 #layout-footer {
     border-top: var.$border;
@@ -10,10 +9,11 @@
 
         p {
             margin: var.$margin;
+            color: #808080;
         }
 
         &-creator {
-            @include mixin.layout-footer-grid-default;
+            padding: var.$padding;
 
             span {
                 text-decoration: underline;
@@ -22,14 +22,13 @@
         }
 
         &-theme-color {
-            @include mixin.layout-footer-grid-default;
+            padding: var.$padding;
 
             p {
                 text-align: right;
 
                 span {
                     padding: 2px 5px 1px 5px;
-                    border-radius: var.$borderRadius;
                     color: #ffffff;
                 }
             }
@@ -37,7 +36,8 @@
 
         &-skill {
             display: flex;
-            padding: var.$padding var.$padding calc(var.$padding * 4);
+            padding: var.$padding;
+            padding-bottom: calc(var.$padding * 4);
             justify-content: center;
             flex-wrap: wrap;
 

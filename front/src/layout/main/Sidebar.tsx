@@ -57,7 +57,7 @@ const Sidebar = () => {
     return (
         <>
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
-            <Grid id="layout-main-grid-sidebar" className={isVisible ? 'display-initial' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper, borderColor }} ref={sidebarRef}>
+            <Grid id="layout-main-grid-sidebar" className={isVisible ? 'display-initial' : ''} item xs="auto" style={{ zIndex: theme.zIndex.modal, backgroundColor: theme.palette.background.paper, borderColor }} ref={sidebarRef}>
                 <List>
                     {subMenus?.map(({ ICON, PATH, LABEL, HAS_REQUIRED_USER_ROLES }, index) =>
                         <Fragment key={`list-item-main-sidebar-${index}`}>

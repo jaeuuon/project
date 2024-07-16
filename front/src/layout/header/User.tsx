@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useTheme } from '@mui/material/styles';
-import { Avatar, Button, Tooltip } from '@mui/material';
+import { Grid, Avatar, Button, Tooltip } from '@mui/material';
 import { Person, Logout, Login } from '@mui/icons-material';
 
 import { menu } from 'enums/layout/header/menu';
@@ -81,11 +81,9 @@ const User = () => {
 
             if (!includesCode(reissuanceIgnoreError, code)) {
                 dispatch(setSnackbarError({ code, message }));
-
-                navigate(menu.HOME.PATH);
             }
         }
-    }, [dispatch, navigate]);
+    }, [dispatch]);
 
     useEffect(() => {
         reissuance();
@@ -96,7 +94,7 @@ const User = () => {
     }, [pathname]);
 
     return (
-        <>
+        <Grid id="layout-header-grid-user" item xs="auto">
             {id
                 ? <>
                     <div id="layout-header-grid-user-avatar" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
@@ -118,15 +116,15 @@ const User = () => {
                     </Tooltip>
                 </>
                 : <>
-                    <Button className="button-header" variant="outlined" startIcon={<Login />} onClick={setVisibleLoginTrue}>
-                        <span className="display-none-sm">Login</span>
+                    <Button id="button-login" className="button-header" variant="outlined" startIcon={<Login />} onClick={setVisibleLoginTrue}>
+                        <span className="display-none-md">Login</span>
                     </Button>
                 </>
             }
             <Popup isVisible={isVisibleLogin} setVisibleFalse={setVisibleLoginFalse} width={400} icon={<Login />} label="Login" content={
                 <LoginPopup setVisibleFalse={setVisibleLoginFalse} reissuance={reissuance} />
             } />
-        </>
+        </Grid>
     );
 };
 

@@ -7,11 +7,10 @@
         }
 
         &-message {
-            width: 100%;
+            flex-grow: 1;
 
             p {
                 text-align: center;
-                line-height: 20px;
 
                 &:nth-of-type(1) {
                     word-break: keep-all;
@@ -24,16 +23,19 @@
         }
     }
 
-    &Button-root {
-        font-weight: bold !important;
+    &Button-root span {
+        font-weight: bold;
     }
 
-    &Tooltip-tooltip {
-        padding: var.$padding calc(var.$padding * 2) !important;
+    &List {
+        &-root {
+            padding: 0 !important;
+        }
 
-        p {
-            margin: calc(var.$margin / 2) 0;
-            text-align: center;
+        &ItemButton-root {
+            margin: var.$margin !important;
+            padding: 4px 16px !important;
+            border-radius: var.$borderRadius !important;
         }
     }
 
@@ -59,6 +61,18 @@
 
         &Item-previousNext {
             display: none !important;
+        }
+    }
+
+    &TextField-root {
+        margin: calc(var.$margin * 2) 0 var.$margin !important;
+    }
+
+    &Tooltip-tooltip {
+        padding: var.$padding calc(var.$padding * 2) !important;
+
+        p {
+            text-align: center;
         }
     }
 }

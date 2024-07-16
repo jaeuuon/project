@@ -5,25 +5,37 @@
         display: initial !important;
     }
 
-    &-none-sm {
-        display: none !important;
+    &-none-md {
+        display: none;
     }
 }
 
-.background-mode {
+.background-color {
     &-light {
-        background-color: var.$backgroundColorLight !important;
+        background-color: #f8f9fabf;
     }
 
     &-dark {
-        background-color: var.$backgroundColorDark !important;
+        background-color: #212529bf;
     }
 }
 
-@media (min-width: var.$widthSm) {
+.border-radius {
+    border-radius: var.$borderRadius;
+}
+
+.backdrop-filter-blur {
+    backdrop-filter: blur(3px);
+}
+
+.box-shadow {
+    box-shadow: 0 0 10px 0 #00000033;
+}
+
+@media (min-width: var.$widthMd) {
     .display {
-        &-none-sm {
-            display: initial !important;
+        &-none-md {
+            display: initial;
         }
     }
 }

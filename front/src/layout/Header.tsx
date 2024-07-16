@@ -5,7 +5,8 @@ import { Grid } from '@mui/material';
 
 import { getBorderColor, getCssClassByTheme } from 'common/utils';
 
-import Icon from 'layout/header/Icon';
+import Logo from 'Logo';
+import Sidebar from 'layout/header/Sidebar';
 import Menu from 'layout/header/Menu';
 import User from 'layout/header/User';
 import Mode from 'layout/header/Mode';
@@ -25,14 +26,15 @@ const Header = () => {
     }, []);
 
     return (
-        <div id="layout-header" className={[getCssClassByTheme(theme), (isTop ? 'box-shadow-none' : '')].join(' ')} style={{ borderColor }}>
+        <div id="layout-header" className={[getCssClassByTheme(theme), 'backdrop-filter-blur', (!isTop ? 'box-shadow' : '')].join(' ')} style={{ zIndex: theme.zIndex.appBar, borderColor }}>
             <Grid id="layout-header-grid" container>
-                <Icon />
-                <Menu />
-                <Grid id="layout-header-grid-user-and-mode" item xs="auto">
-                    <User />
-                    <Mode />
+                <Grid id="layout-header-grid-logo" item xs="auto">
+                    <Logo />
                 </Grid>
+                <Sidebar />
+                <Menu />
+                <User />
+                <Mode />
             </Grid>
         </div>
     );

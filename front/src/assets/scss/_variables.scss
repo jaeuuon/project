@@ -1,11 +1,9 @@
 $fontSize: 14px;
 
-$modalIndex: 1300;
-
-$widthMin: 360px;
+$widthXs: 360px;
 
 $widthSm: 600px;
-$widthLg: 1200px;
+$widthMd: 900px;
 $widthXl: 1536px;
 
 $margin: 5px;
@@ -14,18 +12,3 @@ $padding: $margin;
 $borderSize: 1px;
 $border: $borderSize solid;
 $borderRadius: 4px;
-
-$headerInnerHeight: 35px;
-
-$backgroundColorLight: #f8f9fabf;
-$backgroundColorDark: #212529bf;
-
-$backdropFilter: blur(3px);
-
-$boxShadow: 0 0 10px 0 #00000033;
-
-$sidebarInnerWidth: 200px;
-
-$footerColor: #808080;
-
-$popupIconSize: 27px;

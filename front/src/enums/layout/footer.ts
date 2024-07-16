@@ -3,7 +3,7 @@ export const creator =  {
     NAME: 'jaeuuon'
 } as const;
 
-export const skillBadges = [
+export const skills = [
     {
         SRC: 'https://img.shields.io/badge/TypeScript-3178c6?logo=typescript&logoColor=white',
         ALT: 'TypeScript',

@@ -1,7 +1,6 @@
 @use 'assets/scss/variables' as var;
 
 #div-modal {
-    z-index: var.$modalIndex;
     position: fixed;
     top: 0;
     left: 0;

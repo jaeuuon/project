@@ -9,7 +9,7 @@ const Table = <T extends IndexString>({
     id, columns, content
 }: TableType<T>) => {
     return (
-        <MaterialTable id={id} size="small">
+        <MaterialTable size="small">
             <TableHead>
                 <TableRow>
                     {columns.map((column, index) =>
