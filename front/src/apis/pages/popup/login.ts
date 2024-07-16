@@ -1,9 +1,9 @@
-import axios from 'apis';
+import type { Params, Content } from 'types/apis/pages/popup/login';
+import type Response from 'types/apis/response';
 
 import { URL } from 'enums/apis/pages/popup/login';
 
-import type { Params, Content } from 'types/apis/pages/popup/login';
-import type Response from 'types/apis/response';
+import axios from 'apis';
 
 import { camelToSnake, snakeToCamel, getResponseError } from 'common/utils';
 

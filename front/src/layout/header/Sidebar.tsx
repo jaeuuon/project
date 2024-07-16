@@ -3,12 +3,12 @@ import { useDispatch } from 'react-redux';
 import { Grid, Button } from '@mui/material';
 import { Menu } from '@mui/icons-material';
 
-import { openSidebar } from 'modules/layout/main/sidebar';
+import { open } from 'modules/layout/main/sidebar';
 
 const Sidebar = () => {
     const dispatch = useDispatch();
 
-    const onClick = () => dispatch(openSidebar());
+    const onClick = () => dispatch(open());
 
     return (
         <Grid id="layout-header-grid-sidebar" item xs="auto">

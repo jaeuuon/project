@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux';
 
 import { Grid } from '@mui/material';
 
+import type { State } from 'types/modules';
+
 import { menu as headerMenu } from 'enums/layout/header/menu';
 import { menu as sidebarMenu, menus as sidebarMenus } from 'enums/layout/main/sidebar';
-
-import type { RootState } from 'types/redux';
 
 import Home from 'pages/Home';
 import Notice from 'pages/home/Notice';
@@ -22,7 +22,7 @@ import Loading from 'components/Loading';
 const Content = () => {
     const { pathname } = useLocation();
 
-    const { isInit } = useSelector((state: RootState) => state.user);
+    const { isInit } = useSelector((state: State) => state.user);
 
     const requiredInit = Object.values(headerMenu).some(({ PATH, REQUIRED }) => PATH === pathname && REQUIRED.INIT)
         || sidebarMenus.some(({ SUB_MENUS }) => SUB_MENUS.some(({ PATH, REQUIRED }) => PATH === pathname && REQUIRED.INIT));

@@ -1,16 +1,13 @@
-import { status } from 'enums/apis/status';
-
 import type { Union } from 'types/union';
 
-export default interface Response<T> {
-    path: string;
-    method: string;
-    status: Status;
-    data: Data<T>;
-    timestamp: string;
-};
+import { status } from 'enums/apis/response';
 
 export type Status = Union<typeof status>;
+
+export interface CodeMessage {
+    code: string;
+    message: string;
+};
 
 export interface Data<T> extends CodeMessage {
     content: T[];
@@ -21,7 +18,10 @@ export interface Data<T> extends CodeMessage {
     totalPages: number;
 };
 
-export interface CodeMessage {
-    code: string;
-    message: string;
+export default interface Response<T> {
+    path: string;
+    method: string;
+    status: Status;
+    data: Data<T>;
+    timestamp: string;
 };

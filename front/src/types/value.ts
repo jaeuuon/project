@@ -1,12 +1,11 @@
-export interface KeyValue extends value {
+interface Value {
+    value: string;
+};
+
+export interface KeyValue extends Value {
     key: string;
-    value: string;
 };
 
-export interface CodeValue<T> extends value {
+export interface CodeValue<T> extends Value {
     code: T;
-};
-
-interface value {
-    value: string;
 };

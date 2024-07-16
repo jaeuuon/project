@@ -1,6 +1,6 @@
-import type { IndexString } from 'types/signature';
+import type { StringIndex } from 'types/signature';
 
-export interface Params extends IndexString {
+export interface Params extends StringIndex {
     email?: string;
     password?: string;
 };

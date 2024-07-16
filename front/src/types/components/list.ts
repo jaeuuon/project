@@ -1,14 +1,14 @@
-import type { IndexString } from 'types/signature';
-import type { Data } from 'types/apis/response';
+import type { StringIndex } from 'types/signature';
 import type { KeyValue } from 'types/value';
+import type { Data } from 'types/apis/response';
 
-export default interface List<T extends IndexString> {
+export interface KeyValueWitdh extends KeyValue {
+    width: number;
+};
+
+export default interface List<T extends StringIndex> {
     id: string;
     columns: KeyValueWitdh[];
     data?: Data<T>;
     onChange: (_event: React.ChangeEvent<unknown>, page: number) => void;
-};
-
-export interface KeyValueWitdh extends KeyValue {
-    width: number;
 };

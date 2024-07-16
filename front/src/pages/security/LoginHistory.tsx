@@ -1,11 +1,10 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-import { query } from 'enums/pages/security/loginHistory';
-import { columns } from 'enums/apis/pages/security/loginHistory';
-
 import type { Params, Content } from 'types/apis/pages/security/loginHistory';
 import type { Data } from 'types/apis/response';
+
+import { query, columns } from 'enums/apis/pages/security/loginHistory';
 
 import { list } from 'apis/pages/security/loginHistory';
 

@@ -1,3 +1,3 @@
-export interface IndexString {
+export interface StringIndex {
     [index: string]: unknown;
 };

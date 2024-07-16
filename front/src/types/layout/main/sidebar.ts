@@ -1,9 +1,10 @@
 import type Visible from 'types/visible';
 
-import { openSidebar, closeSidebar } from 'modules/layout/main/sidebar';
+import { open, close } from 'modules/layout/main/sidebar';
 
 export interface Sidebar extends Visible {};
 
 export type Action =
-    | ReturnType<typeof openSidebar>
-    | ReturnType<typeof closeSidebar>;
+    | ReturnType<typeof open>
+    | ReturnType<typeof close>
+;

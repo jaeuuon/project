@@ -4,14 +4,14 @@ import { useSelector } from 'react-redux';
 
 import { Grid, Button } from '@mui/material';
 
-import { menu } from 'enums/layout/header/menu';
+import type { State } from 'types/modules';
 
-import type { RootState } from 'types/redux';
+import { menu } from 'enums/layout/header/menu';
 
 const Menu = () => {
     const navigate = useNavigate();
 
-    const { roles } = useSelector((state: RootState) => state.user);
+    const { roles } = useSelector((state: State) => state.user);
 
     return (
         <Grid id="layout-header-grid-menu" item xs>

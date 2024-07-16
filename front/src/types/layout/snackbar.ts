@@ -2,7 +2,7 @@ import type { AlertColor } from '@mui/material';
 
 import type { CodeMessage } from 'types/apis/response';
 
-import { setSnackbarError, setSnackbarSuccess } from 'modules/layout/snackbar';
+import { setSuccess, setError } from 'modules/layout/snackbar';
 
 export interface Snackbar {
     severity?: AlertColor;
@@ -10,5 +10,6 @@ export interface Snackbar {
 };
 
 export type Action =
-    | ReturnType<typeof setSnackbarError>
-    | ReturnType<typeof setSnackbarSuccess>;
+    | ReturnType<typeof setSuccess>
+    | ReturnType<typeof setError>
+;

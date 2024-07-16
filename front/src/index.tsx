@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import rootReducer from 'modules';
+import reducer from 'modules';
 
 import App from 'App';
 

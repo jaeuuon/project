@@ -1,6 +1,6 @@
 import { CircularProgress } from '@mui/material';
 
-import type LoadingType from "types/components/loading";
+import type LoadingType from 'types/components/loading';
 
 const Loading = ({ isVisible }: LoadingType) => {
     return (

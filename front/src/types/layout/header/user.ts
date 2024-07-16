@@ -1,9 +1,11 @@
+import type { Union } from 'types/union';
+import type { CodeValue } from 'types/value';
+
 import { role } from 'enums/layout/header/user';
 
-import type { CodeValue } from 'types/value';
-import type { Union } from 'types/union';
+import { set, init } from 'modules/layout/header/user';
 
-import { initUser, setUser } from 'modules/layout/header/user';
+export type Role = Union<typeof role>;
 
 export interface User {
     isInit: boolean;
@@ -14,8 +16,7 @@ export interface User {
     exp?: number;
 };
 
-export type Role = Union<typeof role>;
-
 export type Action =
-    | ReturnType<typeof initUser>
-    | ReturnType<typeof setUser>;
+    | ReturnType<typeof set>
+    | ReturnType<typeof init>
+;

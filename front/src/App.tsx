@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 
-import type { RootState } from 'types/redux';
+import type { State } from 'types/modules';
 
-import { getMql, setModeLight, setModeDark } from 'modules/layout/header/mode';
+import { getMql, setLight, setDark } from 'modules/layout/header/paletteMode';
 
 import Header from 'layout/Header';
 import Main from 'layout/Main';
@@ -17,11 +17,11 @@ import 'assets/scss/app.scss';
 
 const App = () => {
     const dispatch = useDispatch();
-    const mode = useSelector((state: RootState) => state.mode);
+    const paletteMode = useSelector((state: State) => state.paletteMode);
 
     const theme = createTheme({
         palette: {
-            mode: mode
+            mode: paletteMode
         },
         typography: {
             button: {
@@ -33,7 +33,7 @@ const App = () => {
     useEffect(() => {
         const mql = getMql();
 
-        const onChange = ({ matches }: { matches: boolean; }) => dispatch(matches ? setModeLight() : setModeDark());
+        const onChange = ({ matches }: { matches: boolean; }) => dispatch(matches ? setLight() : setDark());
         const onBeforeunload = () => window.scrollTo(0, 0);
 
         mql.addEventListener('change', onChange);

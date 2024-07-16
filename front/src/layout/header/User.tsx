@@ -1,43 +1,45 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { useTheme } from '@mui/material/styles';
 import { Grid, Avatar, Button, Tooltip } from '@mui/material';
 import { Person, Logout, Login } from '@mui/icons-material';
 
-import { menu } from 'enums/layout/header/menu';
-import { status } from 'enums/apis/status';
-import { reissuanceIgnoreError } from 'enums/apis/layout/header/user';
-
-import type { RootState } from 'types/redux';
+import type { State } from 'types/modules';
 import type { Content } from 'types/apis/pages/popup/login';
 
-import { initUser, setUser } from 'modules/layout/header/user';
-import { setSnackbarSuccess, setSnackbarError } from 'modules/layout/snackbar';
+import { menu } from 'enums/layout/header/menu';
+import { status } from 'enums/apis/response';
+import { ignoreReissuanceError } from 'enums/apis/layout/header/user';
 
-import { logout, reissuance as reissuanceApi } from 'apis/pages/popup/login';
+import { init, set } from 'modules/layout/header/user';
+import { setSuccess, setError } from 'modules/layout/snackbar';
+
+import { logout, reissuance } from 'apis/pages/popup/login';
 
 import { getPayload, getUser, getDelay } from 'common/payload';
-import { getBorderColor, getHoverBackgroundColor, includesCode } from 'common/utils';
+import { getBorderColor, includesCode } from 'common/utils';
 
 import Popup from 'layout/Popup';
 import LoginPopup from 'pages/popup/Login';
 
 const User = () => {
+    const [isMouseHover, setMouseHover] = useState(false);
+    const [isVisibleLogin, setVisibleLogin] = useState(false);
+
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
-    const { id, email, name, roles } = useSelector((state: RootState) => state.user);
-
-    const [isMouseHover, setMouseHover] = useState(false);
-    const [isVisibleLogin, setVisibleLogin] = useState(false);
+    const { id, email, name, roles } = useSelector((state: State) => state.user);
 
     const theme = useTheme();
     const avatarStyle = {
         borderColor: isMouseHover ? theme.palette.primary.main : getBorderColor(theme),
-        backgroundColor: isMouseHover ? getHoverBackgroundColor(theme) : theme.palette.grey[400]
+        backgroundColor: isMouseHover
+            ? `${theme.palette.grey[400]}${Math.round(255 - (255 * theme.palette.action.hoverOpacity)).toString(16).padStart(2, '0')}`
+            : theme.palette.grey[400]
     };
 
     const onMouseEnter = () => setMouseHover(true);
@@ -53,17 +55,17 @@ const User = () => {
         const { code, message } = data;
 
         if (responseStatus === status.SUCCESS) {
-            dispatch(initUser());
-            dispatch(setSnackbarSuccess({ code, message }));
+            dispatch(init());
+            dispatch(setSuccess({ code, message }));
 
             navigate(menu.HOME.PATH);
         } else {
-            dispatch(setSnackbarError({ code, message }));
+            dispatch(setError({ code, message }));
         }
     };
 
-    const reissuance = useCallback(async () => {
-        const { status: responseStatus, data } = await reissuanceApi();
+    const scheduler = useCallback(async () => {
+        const { status: responseStatus, data } = await reissuance();
         const { code, message } = data;
 
         if (responseStatus === status.SUCCESS) {
@@ -72,22 +74,22 @@ const User = () => {
             const payload = getPayload(access);
             const user = getUser(payload);
 
-            dispatch(setUser(user));
-            dispatch(setSnackbarSuccess({ code, message }));
+            dispatch(set(user));
+            dispatch(setSuccess({ code, message }));
 
-            setTimeout(reissuance, getDelay(payload));
+            setTimeout(scheduler, getDelay(payload));
         } else {
-            dispatch(initUser());
+            dispatch(init());
 
-            if (!includesCode(reissuanceIgnoreError, code)) {
-                dispatch(setSnackbarError({ code, message }));
+            if (!includesCode(ignoreReissuanceError, code)) {
+                dispatch(setError({ code, message }));
             }
         }
     }, [dispatch]);
 
     useEffect(() => {
-        reissuance();
-    }, [reissuance]);
+        scheduler();
+    }, [scheduler]);
 
     useEffect(() => {
         setVisibleLoginFalse();
@@ -122,7 +124,7 @@ const User = () => {
                 </Button>
             }
             <Popup isVisible={isVisibleLogin} setVisibleFalse={setVisibleLoginFalse} width={400} icon={<Login />} label="Login" content={
-                <LoginPopup setVisibleFalse={setVisibleLoginFalse} reissuance={reissuance} />
+                <LoginPopup setVisibleFalse={setVisibleLoginFalse} scheduler={scheduler} />
             } />
         </Grid>
     );

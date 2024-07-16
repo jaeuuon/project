@@ -2,10 +2,10 @@ import { memo } from 'react';
 
 import { Table as MaterialTable, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 
-import type { IndexString } from 'types/signature';
+import type { StringIndex } from 'types/signature';
 import type TableType from 'types/components/list/table';
 
-const Table = <T extends IndexString>({
+const Table = <T extends StringIndex>({
     id, columns, content
 }: TableType<T>) => {
     return (

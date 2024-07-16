@@ -1,15 +1,15 @@
 import { combineReducers } from 'redux';
 
 import user from 'modules/layout/header/user';
-import mode from 'modules/layout/header/mode';
+import paletteMode from 'modules/layout/header/paletteMode';
 import sidebar from 'modules/layout/main/sidebar';
 import snackbar from 'modules/layout/snackbar';
 
-const rootReducer = combineReducers({
+const reducer = combineReducers({
     user,
-    mode,
+    paletteMode,
     sidebar,
     snackbar
 });
 
-export default rootReducer;
+export default reducer;

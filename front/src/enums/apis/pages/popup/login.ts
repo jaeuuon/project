@@ -9,6 +9,7 @@ export const emailError = {
 
 export const passwordError = {
     BLANK: { code: 'ERROR_SCR_PASSWORD_BLANK', message: '비밀번호를 입력하십시오.' },
-    SIZE: { code: 'ERROR_SCR_PASSWORD_SIZE', message: '비밀번호는 4자에서 50자 사이여야 합니다.' },
+    ENCRYPT_SIZE: { code: 'ERROR_SCR_PASSWORD_ENCRYPT_SIZE', message: '비밀번호의 길이가 잘못되었습니다.' },
+    DECRYPT_SIZE: { code: 'ERROR_SCR_PASSWORD_DECRYPT_SIZE', message: '비밀번호는 4자에서 50자 사이여야 합니다.' },
     WRONG: { code: 'ERROR_SCR_PASSWORD_WRONG', message: '비밀번호가 잘못되었습니다.' }
 } as const;

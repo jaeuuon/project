@@ -1,11 +1,11 @@
-import { action } from 'enums/layout/main/sidebar';
-
 import type { Sidebar, Action } from 'types/layout/main/sidebar';
+
+import { action } from 'enums/layout/main/sidebar';
 
 const initState: Sidebar = { isVisible: false };
 
-export const openSidebar = () => ({ type: action.OPEN });
-export const closeSidebar = () => ({ type: action.CLOSE });
+export const open = () => ({ type: action.OPEN });
+export const close = () => ({ type: action.CLOSE });
 
 const sidebar = (state: Sidebar = initState, { type }: Action) => {
     switch (type) {

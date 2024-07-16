@@ -1,19 +1,19 @@
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { Button, Alert } from '@mui/material';
+import { Alert, Button } from '@mui/material';
 
-import JSEncrypt from "jsencrypt";
-
-import { status } from 'enums/apis/status';
-import { emailError, passwordError } from 'enums/apis/pages/popup/login';
+import JSEncrypt from 'jsencrypt';
 
 import type LoginType from 'types/pages/popup/login';
 import type { Params } from 'types/apis/pages/popup/login';
 import type { CodeMessage } from 'types/apis/response';
 
-import { setUser } from 'modules/layout/header/user';
-import { setSnackbarSuccess } from 'modules/layout/snackbar';
+import { status } from 'enums/apis/response';
+import { emailError, passwordError } from 'enums/apis/pages/popup/login';
+
+import { set } from 'modules/layout/header/user';
+import { setSuccess } from 'modules/layout/snackbar';
 
 import { login } from 'apis/pages/popup/login';
 
@@ -26,15 +26,15 @@ const jsEncrypt = new JSEncrypt();
 jsEncrypt.setPublicKey(process.env.REACT_APP_PUBLIC_KEY || '');
 
 const Login = ({
-    setVisibleFalse, reissuance
+    setVisibleFalse, scheduler
 }: LoginType) => {
-    const dispatch = useDispatch();
+    const emailRef = useRef<HTMLInputElement>(null);
+    const passwordRef = useRef<HTMLInputElement>(null);
 
     const [params, setParams] = useState<Params>({});
     const [error, setError] = useState<CodeMessage>();
 
-    const emailRef = useRef<HTMLInputElement>(null);
-    const passwordRef = useRef<HTMLInputElement>(null);
+    const dispatch = useDispatch();
 
     const onChange = getOnChange(params, setParams);
 
@@ -54,11 +54,11 @@ const Login = ({
                 const payload = getPayload(access);
                 const user = getUser(payload);
 
-                dispatch(setUser(user));
-                dispatch(setSnackbarSuccess({ code, message }));
+                dispatch(set(user));
+                dispatch(setSuccess({ code, message }));
 
                 setVisibleFalse();
-                setTimeout(reissuance, getDelay(payload));
+                setTimeout(scheduler, getDelay(payload));
             } else {
                 if (includesCode(emailError, code)) {
                     emailRef.current?.focus();
@@ -83,7 +83,7 @@ const Login = ({
         } else if (!password) {
             return focusAndSetError(passwordRef, passwordError.BLANK);
         } else if (password.length < 4 || password.length > 50) {
-            return focusAndSetError(passwordRef, passwordError.SIZE);
+            return focusAndSetError(passwordRef, passwordError.DECRYPT_SIZE);
         }
 
         return true;

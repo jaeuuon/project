@@ -5,38 +5,38 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
 import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
+import type { State } from 'types/modules';
+
 import { menus } from 'enums/layout/main/sidebar';
 import { menu as headerMenu } from 'enums/layout/header/menu';
 
-import type { RootState } from 'types/redux';
-
-import { closeSidebar } from 'modules/layout/main/sidebar';
+import { close } from 'modules/layout/main/sidebar';
 
 import { getBorderColor } from 'common/utils';
 
 import Modal from 'components/Modal';
 
 const Sidebar = () => {
+    const sidebarRef = useRef<HTMLInputElement>(null);
+
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
-    const { isVisible } = useSelector((state: RootState) => state.sidebar);
-    const { roles } = useSelector((state: RootState) => state.user);
-
-    const sidebarRef = useRef<HTMLInputElement>(null);
+    const { isVisible } = useSelector((state: State) => state.sidebar);
+    const { roles } = useSelector((state: State) => state.user);
 
     const theme = useTheme();
-    const gridStyle = { zIndex: theme.zIndex.modal, backgroundColor: theme.palette.background.paper, borderColor: getBorderColor(theme) };
+    const style = { zIndex: theme.zIndex.modal, backgroundColor: theme.palette.background.paper, borderColor: getBorderColor(theme) };
 
     const menu = menus.find(({ PATH, SUB_MENUS }) => PATH === pathname || SUB_MENUS.some(({ PATH: SUB_MENU_PATH }) => `${PATH}${SUB_MENU_PATH}` === pathname));
     const parentMenu = Object.values(headerMenu).find(({ PATH }) => PATH === menu?.PATH);
     const parentMenuRequiredRoles = parentMenu?.REQUIRED.ROLES || [];
 
-    const setVisibleFalse = () => dispatch(closeSidebar());
+    const setVisibleFalse = () => dispatch(close());
 
     useEffect(() => {
-        dispatch(closeSidebar());
+        dispatch(close());
 
         window.scrollTo(0, 0);
     }, [pathname, dispatch]);
@@ -47,7 +47,7 @@ const Sidebar = () => {
                 const styles = window.getComputedStyle(sidebarRef.current);
 
                 if (styles.position !== 'fixed') {
-                    dispatch(closeSidebar());
+                    dispatch(close());
                 }
             }
         };
@@ -60,7 +60,7 @@ const Sidebar = () => {
     return (
         <>
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
-            <Grid id="layout-main-grid-sidebar" className={isVisible ? 'display-initial' : ''} item xs="auto" style={gridStyle} ref={sidebarRef}>
+            <Grid id="layout-main-grid-sidebar" className={isVisible ? 'display-initial' : ''} item xs="auto" style={style} ref={sidebarRef}>
                 <List>
                     {menu?.SUB_MENUS.map(({ PATH, ICON, LABEL, REQUIRED }, index) => {
                         const requiredRoles = REQUIRED.ROLES;
