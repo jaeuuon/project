@@ -14,7 +14,7 @@ export const menu = {
             ICON: <CampaignOutlined />,
             PATH: '/notice',
             LABEL: 'Notice',
-            IS_REQUIRED_INIT: false
+            IS_REQUIRED_USER_INIT: false
         }
     },
     INFORMATION: {
@@ -22,13 +22,13 @@ export const menu = {
             ICON: <ContactSupportOutlined />,
             PATH: `${headerMenu.INFORMATION.PATH}/contact`,
             LABEL: 'Contact',
-            IS_REQUIRED_INIT: false
+            IS_REQUIRED_USER_INIT: false
         },
         GITHUB: {
             ICON: <GitHub />,
             PATH: 'https://github.com/jaeuuon/project',
             LABEL: 'GitHub',
-            IS_REQUIRED_INIT: false
+            IS_REQUIRED_USER_INIT: false
         }
     },
     SECURITY: {
@@ -36,7 +36,7 @@ export const menu = {
             ICON: <History />,
             PATH: `${headerMenu.SECURITY.PATH}/history`,
             LABEL: 'Login history',
-            IS_REQUIRED_INIT: true
+            IS_REQUIRED_USER_INIT: true
         }
     }
 } as const;

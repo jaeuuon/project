@@ -5,21 +5,21 @@ export const menu = {
         ICON: <HomeOutlined />,
         PATH: '/',
         LABEL: 'Home',
-        IS_REQUIRED_INIT: false,
+        IS_REQUIRED_USER_INIT: false,
         IS_VISIBLE: true
     },
     INFORMATION: {
         ICON: <InfoOutlined />,
         PATH: '/information',
         LABEL: 'Information',
-        IS_REQUIRED_INIT: false,
+        IS_REQUIRED_USER_INIT: false,
         IS_VISIBLE: true
     },
     SECURITY: {
         ICON: undefined,
         PATH: '/security',
         LABEL: undefined,
-        IS_REQUIRED_INIT: true,
+        IS_REQUIRED_USER_INIT: true,
         IS_VISIBLE: false
     }
 } as const;

@@ -73,7 +73,6 @@ const User = () => {
             const user = getUser(payload);
 
             dispatch(setUser(user));
-
             dispatch(setSnackbarSuccess({ code, message }));
 
             setTimeout(reissuance, getDelay(payload));
@@ -82,9 +81,11 @@ const User = () => {
 
             if (!includesCode(reissuanceIgnoreError, code)) {
                 dispatch(setSnackbarError({ code, message }));
+
+                navigate(menu.HOME.PATH);
             }
         }
-    }, [dispatch]);
+    }, [dispatch, navigate]);
 
     useEffect(() => {
         reissuance();
