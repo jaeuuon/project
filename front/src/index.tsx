@@ -16,7 +16,7 @@ import 'assets/css/index.css';
 import reportWebVitals from 'reportWebVitals';
 
 const root = createRoot(document.getElementById('root') as HTMLElement);
-const store = configureStore({ reducer: rootReducer });
+const store = configureStore({ reducer });
 const queryClient = new QueryClient({ defaultOptions: { queries: { refetchOnWindowFocus: false } } });
 
 root.render(

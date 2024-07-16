@@ -3,6 +3,10 @@ import { CampaignOutlined, ContactSupportOutlined, GitHub, History } from '@mui/
 
 import { menu as headerMenu } from 'enums/layout/header/menu';
 
+import Notice from 'pages/home/Notice';
+import Contact from 'pages/information/Contact';
+import LoginHistory from 'pages/security/LoginHistory';
+
 export const action = {
     OPEN: 'sidebar/open',
     CLOSE: 'sidebar/close'
@@ -12,6 +16,7 @@ export const menu = {
     HOME: {
         NOTICE: {
             PATH: '/notice',
+            ELEMENT: <Notice />,
             ICON: <CampaignOutlined />,
             LABEL: 'Notice',
             REQUIRED: {
@@ -23,6 +28,7 @@ export const menu = {
     INFORMATION: {
         CONTACT: {
             PATH: `${headerMenu.INFORMATION.PATH}/contact`,
+            ELEMENT: <Contact />,
             ICON: <ContactSupportOutlined />,
             LABEL: 'Contact',
             REQUIRED: {
@@ -32,6 +38,7 @@ export const menu = {
         },
         GITHUB: {
             PATH: 'https://github.com/jaeuuon/project',
+            ELEMENT: undefined,
             ICON: <GitHub />,
             LABEL: 'GitHub',
             REQUIRED: {
@@ -43,6 +50,7 @@ export const menu = {
     SECURITY: {
         HISTORY: {
             PATH: `${headerMenu.SECURITY.PATH}/history`,
+            ELEMENT: <LoginHistory />,
             ICON: <History />,
             LABEL: 'Login history',
             REQUIRED: {
@@ -56,20 +64,20 @@ export const menu = {
 export const menus = [
     {
         PATH: headerMenu.HOME.PATH,
-        SUB_MENUS: [
+        MENUS: [
             menu.HOME.NOTICE
         ]
     },
     {
         PATH: headerMenu.INFORMATION.PATH,
-        SUB_MENUS: [
+        MENUS: [
             menu.INFORMATION.CONTACT,
             menu.INFORMATION.GITHUB
         ]
     },
     {
         PATH: headerMenu.SECURITY.PATH,
-        SUB_MENUS: [
+        MENUS: [
             menu.SECURITY.HISTORY
         ]
     }

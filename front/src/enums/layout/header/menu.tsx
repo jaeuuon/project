@@ -2,9 +2,14 @@ import { HomeOutlined, InfoOutlined } from '@mui/icons-material';
 
 import { role } from 'enums/layout/header/user';
 
+import Home from 'pages/Home';
+import Information from 'pages/Information';
+import Security from 'pages/Security';
+
 export const menu = {
     HOME: {
         PATH: '/',
+        ELEMENT: <Home />,
         ICON: <HomeOutlined />,
         LABEL: 'Home',
         REQUIRED: {
@@ -15,6 +20,7 @@ export const menu = {
     },
     INFORMATION: {
         PATH: '/information',
+        ELEMENT: <Information />,
         ICON: <InfoOutlined />,
         LABEL: 'Information',
         REQUIRED: {
@@ -25,6 +31,7 @@ export const menu = {
     },
     SECURITY: {
         PATH: '/security',
+        ELEMENT: <Security />,
         ICON: undefined,
         LABEL: undefined,
         REQUIRED: {
