@@ -25,8 +25,6 @@ import Popup from 'layout/Popup';
 import LoginPopup from 'pages/popup/Login';
 
 const User = () => {
-    const theme = useTheme();
-
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
@@ -34,11 +32,13 @@ const User = () => {
     const { id, email, name, roles } = useSelector((state: RootState) => state.user);
 
     const [isMouseHover, setMouseHover] = useState(false);
-
-    const borderColor = isMouseHover ? theme.palette.primary.main : getBorderColor(theme);
-    const backgroundColor = isMouseHover ? getHoverBackgroundColor(theme) : theme.palette.grey[400];
-
     const [isVisibleLogin, setVisibleLogin] = useState(false);
+
+    const theme = useTheme();
+    const avatarStyle = {
+        borderColor: isMouseHover ? theme.palette.primary.main : getBorderColor(theme),
+        backgroundColor: isMouseHover ? getHoverBackgroundColor(theme) : theme.palette.grey[400]
+    };
 
     const onMouseEnter = () => setMouseHover(true);
     const onMouseLeave = () => setMouseHover(false);
@@ -98,28 +98,28 @@ const User = () => {
             {id
                 ? <>
                     <div id="layout-header-grid-user-avatar" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-                        <Tooltip title={
-                            <>
-                                <p>{name} ({roles[0].value})</p>
-                                <p>{email}</p>
-                            </>
-                        } placement="bottom" arrow>
-                            <Avatar style={{ borderColor, backgroundColor }} onClick={onClickAvatar}>
+                        <Tooltip placement="bottom" arrow
+                            title={
+                                <>
+                                    <p>{name} ({roles[0].value})</p>
+                                    <p>{email}</p>
+                                </>
+                            }
+                        >
+                            <Avatar style={avatarStyle} onClick={onClickAvatar}>
                                 <Person />
                             </Avatar>
                         </Tooltip>
                     </div>
-                    <Tooltip title="Logout" placement="bottom" arrow>
+                    <Tooltip placement="bottom" arrow title="Logout">
                         <Button id="button-logout" className="button-header" variant="outlined" onClick={onClickLogout}>
                             <Logout />
                         </Button>
                     </Tooltip>
                 </>
-                : <>
-                    <Button id="button-login" className="button-header" variant="outlined" startIcon={<Login />} onClick={setVisibleLoginTrue}>
-                        <span className="display-none-md">Login</span>
-                    </Button>
-                </>
+                : <Button id="button-login" className="button-header" variant="outlined" startIcon={<Login />} onClick={setVisibleLoginTrue}>
+                    <span className="display-none-md">Login</span>
+                </Button>
             }
             <Popup isVisible={isVisibleLogin} setVisibleFalse={setVisibleLoginFalse} width={400} icon={<Login />} label="Login" content={
                 <LoginPopup setVisibleFalse={setVisibleLoginFalse} reissuance={reissuance} />

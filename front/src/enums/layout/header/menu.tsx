@@ -1,25 +1,36 @@
 import { HomeOutlined, InfoOutlined } from '@mui/icons-material';
 
+import { role } from 'enums/layout/header/user';
+
 export const menu = {
     HOME: {
-        ICON: <HomeOutlined />,
         PATH: '/',
+        ICON: <HomeOutlined />,
         LABEL: 'Home',
-        IS_REQUIRED_USER_INIT: false,
-        IS_VISIBLE: true
+        REQUIRED: {
+            INIT: false,
+            ROLES: []
+        },
+        VISIBLE: true
     },
     INFORMATION: {
-        ICON: <InfoOutlined />,
         PATH: '/information',
+        ICON: <InfoOutlined />,
         LABEL: 'Information',
-        IS_REQUIRED_USER_INIT: false,
-        IS_VISIBLE: true
+        REQUIRED: {
+            INIT: false,
+            ROLES: []
+        },
+        VISIBLE: true
     },
     SECURITY: {
-        ICON: undefined,
         PATH: '/security',
+        ICON: undefined,
         LABEL: undefined,
-        IS_REQUIRED_USER_INIT: true,
-        IS_VISIBLE: false
+        REQUIRED: {
+            INIT: true,
+            ROLES: [role.USER]
+        },
+        VISIBLE: false
     }
 } as const;

@@ -6,6 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
 import { menus } from 'enums/layout/main/sidebar';
+import { menu as headerMenu } from 'enums/layout/header/menu';
 
 import type { RootState } from 'types/redux';
 
@@ -16,11 +17,6 @@ import { getBorderColor } from 'common/utils';
 import Modal from 'components/Modal';
 
 const Sidebar = () => {
-    const theme = useTheme();
-    const borderColor = getBorderColor(theme);
-
-    const sidebarRef = useRef<HTMLInputElement>(null);
-
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
@@ -28,7 +24,14 @@ const Sidebar = () => {
     const { isVisible } = useSelector((state: RootState) => state.sidebar);
     const { roles } = useSelector((state: RootState) => state.user);
 
-    const subMenus = menus.find(({ PATH, SUB_MENUS }) => PATH === pathname || SUB_MENUS.some(({ PATH }) => PATH === pathname))?.SUB_MENUS;
+    const sidebarRef = useRef<HTMLInputElement>(null);
+
+    const theme = useTheme();
+    const gridStyle = { zIndex: theme.zIndex.modal, backgroundColor: theme.palette.background.paper, borderColor: getBorderColor(theme) };
+
+    const menu = menus.find(({ PATH, SUB_MENUS }) => PATH === pathname || SUB_MENUS.some(({ PATH: SUB_MENU_PATH }) => `${PATH}${SUB_MENU_PATH}` === pathname));
+    const parentMenu = Object.values(headerMenu).find(({ PATH }) => PATH === menu?.PATH);
+    const parentMenuRequiredRoles = parentMenu?.REQUIRED.ROLES || [];
 
     const setVisibleFalse = () => dispatch(closeSidebar());
 
@@ -57,20 +60,29 @@ const Sidebar = () => {
     return (
         <>
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
-            <Grid id="layout-main-grid-sidebar" className={isVisible ? 'display-initial' : ''} item xs="auto" style={{ zIndex: theme.zIndex.modal, backgroundColor: theme.palette.background.paper, borderColor }} ref={sidebarRef}>
+            <Grid id="layout-main-grid-sidebar" className={isVisible ? 'display-initial' : ''} item xs="auto" style={gridStyle} ref={sidebarRef}>
                 <List>
-                    {subMenus?.map(({ ICON, PATH, LABEL, HAS_REQUIRED_USER_ROLES }, index) =>
-                        <Fragment key={`list-item-main-sidebar-${index}`}>
-                            {(HAS_REQUIRED_USER_ROLES.length === 0 || HAS_REQUIRED_USER_ROLES.some((role) => roles.some(({ code }) => role === code))) &&
-                                <ListItem disablePadding onClick={() => PATH.startsWith('http') ? window.open(PATH) : navigate(PATH)}>
-                                    <ListItemButton>
-                                        <ListItemIcon>{ICON}</ListItemIcon>
-                                        <ListItemText primary={LABEL} />
-                                    </ListItemButton>
-                                </ListItem>
-                            }
-                        </Fragment>
-                    )}
+                    {menu?.SUB_MENUS.map(({ PATH, ICON, LABEL, REQUIRED }, index) => {
+                        const requiredRoles = REQUIRED.ROLES;
+                        const requiredRolesLength = requiredRoles.length;
+
+                        return (
+                            <Fragment key={`list-item-main-sidebar-${index}`}>
+                                {((parentMenuRequiredRoles.length === 0 && requiredRolesLength === 0)
+                                    || (parentMenuRequiredRoles.some((parentMenuRequiredRole) => roles.some(({ code }) => parentMenuRequiredRole === code)) && (
+                                        requiredRolesLength === 0 || requiredRoles.some((requiredRole) => roles.some(({ code }) => requiredRole === code))
+                                    ))
+                                ) &&
+                                    <ListItem disablePadding onClick={() => PATH.startsWith('http') ? window.open(PATH) : navigate(`${parentMenu?.PATH || ''}${PATH}`)}>
+                                        <ListItemButton>
+                                            <ListItemIcon>{ICON}</ListItemIcon>
+                                            <ListItemText primary={LABEL} />
+                                        </ListItemButton>
+                                    </ListItem>
+                                }
+                            </Fragment>
+                        );
+                    })}
                 </List>
             </Grid>
         </>

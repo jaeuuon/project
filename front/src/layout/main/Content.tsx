@@ -24,13 +24,13 @@ const Content = () => {
 
     const { isInit } = useSelector((state: RootState) => state.user);
 
-    const isRequiredUserInit = Object.values(headerMenu).some(({ PATH, IS_REQUIRED_USER_INIT }) => PATH === pathname && IS_REQUIRED_USER_INIT)
-        || sidebarMenus.some(({ SUB_MENUS }) => SUB_MENUS.some(({ PATH, IS_REQUIRED_USER_INIT }) => PATH === pathname && IS_REQUIRED_USER_INIT));
+    const requiredInit = Object.values(headerMenu).some(({ PATH, REQUIRED }) => PATH === pathname && REQUIRED.INIT)
+        || sidebarMenus.some(({ SUB_MENUS }) => SUB_MENUS.some(({ PATH, REQUIRED }) => PATH === pathname && REQUIRED.INIT));
 
     return (
         <Grid id="layout-main-grid-content" item xs>
             <div>
-                {(isRequiredUserInit && isInit) || !isRequiredUserInit
+                {(requiredInit && isInit) || !requiredInit
                     ? <Routes>
                         <Route path={headerMenu.HOME.PATH} element={<Home />} />
                         <Route path={sidebarMenu.HOME.NOTICE.PATH} element={<Notice />} />

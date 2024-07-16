@@ -6,16 +6,16 @@ import type TextFieldType from 'types/components/textField';
 
 const TextField = forwardRef((
     {
-        type, name, label,
-        isFullWidth, autoComplete,
-        value, isError, onChange
+        type, name, value, autoComplete,
+        isFullWidth, isError, label, onChange
     }: TextFieldType,
     inputRef: ForwardedRef<HTMLInputElement>
 ) => {
     return (
-        <MaterialTextField type={type} name={name} label={label}
-            variant="outlined" margin="dense" size="small" fullWidth={isFullWidth} autoComplete={autoComplete}
-            value={value || ''} error={isError} inputRef={inputRef} onChange={onChange} />
+        <MaterialTextField type={type} name={name} value={value || ''} autoComplete={autoComplete}
+            fullWidth={isFullWidth} size="small" margin="dense" variant="outlined" error={isError} label={label} onChange={onChange}
+            inputRef={inputRef}
+        />
     );
 });
 

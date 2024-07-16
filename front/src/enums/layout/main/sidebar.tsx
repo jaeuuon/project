@@ -2,7 +2,6 @@
 import { CampaignOutlined, ContactSupportOutlined, GitHub, History } from '@mui/icons-material';
 
 import { menu as headerMenu } from 'enums/layout/header/menu';
-import { roles } from 'enums/layout/header/user';
 
 export const action = {
     OPEN: 'sidebar/open',
@@ -12,36 +11,44 @@ export const action = {
 export const menu = {
     HOME: {
         NOTICE: {
+            PATH: 'notice',
             ICON: <CampaignOutlined />,
-            PATH: '/notice',
             LABEL: 'Notice',
-            IS_REQUIRED_USER_INIT: false,
-            HAS_REQUIRED_USER_ROLES: []
+            REQUIRED: {
+                INIT: false,
+                ROLES: []
+            }
         }
     },
     INFORMATION: {
         CONTACT: {
+            PATH: '/contact',
             ICON: <ContactSupportOutlined />,
-            PATH: `${headerMenu.INFORMATION.PATH}/contact`,
             LABEL: 'Contact',
-            IS_REQUIRED_USER_INIT: false,
-            HAS_REQUIRED_USER_ROLES: []
+            REQUIRED: {
+                INIT: false,
+                ROLES: []
+            }
         },
         GITHUB: {
-            ICON: <GitHub />,
             PATH: 'https://github.com/jaeuuon/project',
+            ICON: <GitHub />,
             LABEL: 'GitHub',
-            IS_REQUIRED_USER_INIT: false,
-            HAS_REQUIRED_USER_ROLES: []
+            REQUIRED: {
+                INIT: false,
+                ROLES: []
+            }
         }
     },
     SECURITY: {
         HISTORY: {
+            PATH: '/history',
             ICON: <History />,
-            PATH: `${headerMenu.SECURITY.PATH}/history`,
             LABEL: 'Login history',
-            IS_REQUIRED_USER_INIT: true,
-            HAS_REQUIRED_USER_ROLES: [roles.USER]
+            REQUIRED: {
+                INIT: true,
+                ROLES: []
+            }
         }
     }
 } as const;

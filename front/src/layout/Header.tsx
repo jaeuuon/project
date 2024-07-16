@@ -12,10 +12,10 @@ import User from 'layout/header/User';
 import Mode from 'layout/header/Mode';
 
 const Header = () => {
-    const theme = useTheme();
-    const borderColor = getBorderColor(theme);
-
     const [isTop, setTop] = useState(true);
+
+    const theme = useTheme();
+    const className = [getCssClassByTheme(theme), 'backdrop-filter-blur', (!isTop ? 'box-shadow' : '')].join(' ');
 
     useEffect(() => {
         const onScroll = () => setTop(window.scrollY === 0 && true);
@@ -26,7 +26,7 @@ const Header = () => {
     }, []);
 
     return (
-        <div id="layout-header" className={[getCssClassByTheme(theme), 'backdrop-filter-blur', (!isTop ? 'box-shadow' : '')].join(' ')} style={{ zIndex: theme.zIndex.appBar, borderColor }}>
+        <div id="layout-header" className={className} style={{ zIndex: theme.zIndex.appBar, borderColor: getBorderColor(theme) }}>
             <Grid id="layout-header-grid" container>
                 <Grid id="layout-header-grid-logo" item xs="auto">
                     <Logo />

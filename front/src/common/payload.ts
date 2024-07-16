@@ -1,7 +1,7 @@
-import { roles as userRoles } from 'enums/layout/header/user';
+import { role } from 'enums/layout/header/user';
 
 import type Payload from 'types/common/payload';
-import type { User, Roles } from 'types/layout/header/user';
+import type { User, Role } from 'types/layout/header/user';
 import type { CodeValue } from 'types/value';
 
 import { snakeToCamel } from 'common/utils';
@@ -20,12 +20,12 @@ export const getUser = ({
     const authorities = payloadAuthorities.split(',');
     const authorityValues = payloadAuthorityValues.split(',');
 
-    const roles: CodeValue<Roles>[] = [];
+    const roles: CodeValue<Role>[] = [];
 
-    Object.values(userRoles).forEach((userRole) =>
+    Object.values(role).forEach((role) =>
         authorities.some((authority, index) => {
-            if (userRole === authority) {
-                roles.push({ code: userRole, value: authorityValues[index] });
+            if (role === authority) {
+                roles.push({ code: role, value: authorityValues[index] });
 
                 return true;
             } else {

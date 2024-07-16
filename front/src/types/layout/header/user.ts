@@ -1,4 +1,4 @@
-import { roles } from 'enums/layout/header/user';
+import { role } from 'enums/layout/header/user';
 
 import type { CodeValue } from 'types/value';
 import type { Union } from 'types/union';
@@ -10,11 +10,11 @@ export interface User {
     id?: number;
     email?: string;
     name?: string;
-    roles: CodeValue<Roles>[];
+    roles: CodeValue<Role>[];
     exp?: number;
 };
 
-export type Roles = Union<typeof roles>;
+export type Role = Union<typeof role>;
 
 export type Action =
     | ReturnType<typeof initUser>

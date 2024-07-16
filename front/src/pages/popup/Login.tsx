@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Button, Alert } from '@mui/material';
@@ -28,13 +28,13 @@ jsEncrypt.setPublicKey(process.env.REACT_APP_PUBLIC_KEY || '');
 const Login = ({
     setVisibleFalse, reissuance
 }: LoginType) => {
-    const emailRef = useRef<HTMLInputElement>(null);
-    const passwordRef = useRef<HTMLInputElement>(null);
-
     const dispatch = useDispatch();
 
     const [params, setParams] = useState<Params>({});
     const [error, setError] = useState<CodeMessage>();
+
+    const emailRef = useRef<HTMLInputElement>(null);
+    const passwordRef = useRef<HTMLInputElement>(null);
 
     const onChange = getOnChange(params, setParams);
 
@@ -99,8 +99,14 @@ const Login = ({
 
     return (
         <form id="form-login" onSubmit={onSubmit}>
-            <TextField name="email" label="Email" isFullWidth={true} autoComplete="email" value={params.email} isError={includesCode(emailError, error?.code)} ref={emailRef} onChange={onChange} />
-            <TextField type="password" name="password" label="Password" isFullWidth={true} autoComplete="current-password" value={params.password} isError={includesCode(passwordError, error?.code)} ref={passwordRef} onChange={onChange} />
+            <TextField name="email" value={params.email} autoComplete="email"
+                isFullWidth={true} isError={includesCode(emailError, error?.code)} label="Email" onChange={onChange}
+                ref={emailRef}
+            />
+            <TextField type="password" name="password" value={params.password} autoComplete="current-password"
+                isFullWidth={true} isError={includesCode(passwordError, error?.code)} label="Password" onChange={onChange}
+                ref={passwordRef}
+            />
             {error &&
                 <Alert severity="error">
                     <p>{error.message}</p>

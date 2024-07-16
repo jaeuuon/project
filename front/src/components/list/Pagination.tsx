@@ -8,7 +8,7 @@ const Pagination = ({
     totalPages, onChange
 }: PaginationType) => {
     return (
-        <MaterialPagination count={totalPages} shape="rounded" size="small" siblingCount={2} onChange={onChange} />
+        <MaterialPagination count={totalPages} siblingCount={2} size="small" shape="rounded" onChange={onChange} />
     );
 };
 

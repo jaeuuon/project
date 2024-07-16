@@ -9,16 +9,16 @@ import { setModeLight, setModeDark } from 'modules/layout/header/mode';
 import { isThemeLight } from 'common/utils';
 
 const Mode = () => {
+    const dispatch = useDispatch();
+
     const theme = useTheme();
     const isLight = isThemeLight(theme);
-
-    const dispatch = useDispatch();
 
     const onClick = () => dispatch(!isLight ? setModeLight() : setModeDark());
 
     return (
         <Grid id="layout-header-grid-mode" item xs="auto">
-            <Tooltip title="Light / Dark" placement="bottom-end" arrow>
+            <Tooltip placement="bottom-end" arrow title="Light / Dark">
                 <Button className="button-header" variant="outlined" onClick={onClick}>
                     {isLight ? <LightModeOutlined /> : <DarkModeOutlined />}
                 </Button>

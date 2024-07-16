@@ -16,12 +16,12 @@ const LoginHistory = () => {
     const [params, setParams] = useState<Params>({});
     const [data, setData] = useState<Data<Content>>();
 
-    const onChange = useCallback((_event: React.ChangeEvent<unknown>, page: number) => setParams({ ...params, page }), [params]);
-
     const { isLoading, data: response } = useQuery({
         queryKey: [query.LIST, params],
         queryFn: () => list(params)
     });
+
+    const onChange = useCallback((_event: React.ChangeEvent<unknown>, page: number) => setParams({ ...params, page }), [params]);
 
     useEffect(() => {
         if (response) {

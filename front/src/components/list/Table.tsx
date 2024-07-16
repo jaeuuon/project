@@ -23,7 +23,11 @@ const Table = <T extends IndexString>({
                         {columns.map((column, cellIndex) => {
                             const value = content[column.key];
 
-                            return <TableCell key={`${id}-table-body-${rowIndex}-${cellIndex}`} align="center">{(typeof value === 'string' || typeof value === 'number') && value}</TableCell>;
+                            return (
+                                <TableCell key={`${id}-table-body-${rowIndex}-${cellIndex}`} align="center">
+                                    {(typeof value === 'string' || typeof value === 'number') && value}
+                                </TableCell>
+                            );
                         })}
                     </TableRow>
                 )}

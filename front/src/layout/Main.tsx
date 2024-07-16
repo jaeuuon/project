@@ -12,9 +12,10 @@ import Content from 'layout/main/Content';
 const onClick = () => window.scroll({ top: 0, behavior: 'smooth' });
 
 const Main = () => {
-    const theme = useTheme();
-
     const [isVisibleToTop, setVisibleToTop] = useState(false);
+
+    const theme = useTheme();
+    const className = [getCssClassByTheme(theme), 'border-radius', 'backdrop-filter-blur', 'box-shadow'].join(' ');
 
     useEffect(() => {
         const onScroll = () => setVisibleToTop(window.scrollY >= 100 && true);
@@ -31,7 +32,7 @@ const Main = () => {
                 <Content />
             </Grid>
             {isVisibleToTop &&
-                <div id="layout-main-to-top" className={[getCssClassByTheme(theme), 'border-radius', 'backdrop-filter-blur', 'box-shadow'].join(' ')} style={{ borderColor: getBorderColor(theme) }} onClick={onClick}>
+                <div id="layout-main-to-top" className={className} style={{ borderColor: getBorderColor(theme) }} onClick={onClick}>
                     <KeyboardArrowUp />
                 </div>
             }
