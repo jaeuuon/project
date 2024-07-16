@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, Fragment } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -26,6 +26,7 @@ const Sidebar = () => {
 
     const dispatch = useDispatch();
     const { isVisible } = useSelector((state: RootState) => state.sidebar);
+    const { roles } = useSelector((state: RootState) => state.user);
 
     const subMenus = menus.find(({ PATH, SUB_MENUS }) => PATH === pathname || SUB_MENUS.some(({ PATH }) => PATH === pathname))?.SUB_MENUS;
 
@@ -58,13 +59,17 @@ const Sidebar = () => {
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
             <Grid id="layout-main-grid-sidebar" className={isVisible ? 'display-initial' : ''} item xs="auto" style={{ backgroundColor: theme.palette.background.paper, borderColor }} ref={sidebarRef}>
                 <List>
-                    {subMenus?.map(({ ICON, PATH, LABEL }, index) =>
-                        <ListItem key={`list-item-main-sidebar-${index}`} disablePadding onClick={() => PATH.startsWith('http') ? window.open(PATH) : navigate(PATH)}>
-                            <ListItemButton>
-                                <ListItemIcon>{ICON}</ListItemIcon>
-                                <ListItemText primary={LABEL} />
-                            </ListItemButton>
-                        </ListItem>
+                    {subMenus?.map(({ ICON, PATH, LABEL, HAS_REQUIRED_USER_ROLES }, index) =>
+                        <Fragment key={`list-item-main-sidebar-${index}`}>
+                            {(HAS_REQUIRED_USER_ROLES.length === 0 || HAS_REQUIRED_USER_ROLES.some((role) => roles.some(({ code }) => role === code))) &&
+                                <ListItem disablePadding onClick={() => PATH.startsWith('http') ? window.open(PATH) : navigate(PATH)}>
+                                    <ListItemButton>
+                                        <ListItemIcon>{ICON}</ListItemIcon>
+                                        <ListItemText primary={LABEL} />
+                                    </ListItemButton>
+                                </ListItem>
+                            }
+                        </Fragment>
                     )}
                 </List>
             </Grid>

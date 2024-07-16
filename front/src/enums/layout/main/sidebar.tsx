@@ -2,6 +2,7 @@
 import { CampaignOutlined, ContactSupportOutlined, GitHub, History } from '@mui/icons-material';
 
 import { menu as headerMenu } from 'enums/layout/header/menu';
+import { roles } from 'enums/layout/header/user';
 
 export const action = {
     OPEN: 'sidebar/open',
@@ -14,7 +15,8 @@ export const menu = {
             ICON: <CampaignOutlined />,
             PATH: '/notice',
             LABEL: 'Notice',
-            IS_REQUIRED_USER_INIT: false
+            IS_REQUIRED_USER_INIT: false,
+            HAS_REQUIRED_USER_ROLES: []
         }
     },
     INFORMATION: {
@@ -22,13 +24,15 @@ export const menu = {
             ICON: <ContactSupportOutlined />,
             PATH: `${headerMenu.INFORMATION.PATH}/contact`,
             LABEL: 'Contact',
-            IS_REQUIRED_USER_INIT: false
+            IS_REQUIRED_USER_INIT: false,
+            HAS_REQUIRED_USER_ROLES: []
         },
         GITHUB: {
             ICON: <GitHub />,
             PATH: 'https://github.com/jaeuuon/project',
             LABEL: 'GitHub',
-            IS_REQUIRED_USER_INIT: false
+            IS_REQUIRED_USER_INIT: false,
+            HAS_REQUIRED_USER_ROLES: []
         }
     },
     SECURITY: {
@@ -36,7 +40,8 @@ export const menu = {
             ICON: <History />,
             PATH: `${headerMenu.SECURITY.PATH}/history`,
             LABEL: 'Login history',
-            IS_REQUIRED_USER_INIT: true
+            IS_REQUIRED_USER_INIT: true,
+            HAS_REQUIRED_USER_ROLES: [roles.USER]
         }
     }
 } as const;
