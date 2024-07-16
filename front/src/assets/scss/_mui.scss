@@ -68,12 +68,8 @@
         margin: calc(var.$margin * 2) 0 var.$margin !important;
     }
 
-    &Tooltip-tooltip {
-        padding: var.$padding calc(var.$padding * 2) !important;
-
-        p {
-            text-align: center;
-        }
+    &Tooltip-tooltip p {
+        text-align: center;
     }
 }
 
