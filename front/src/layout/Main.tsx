@@ -17,10 +17,10 @@ const onClick = () => window.scroll({ top: 0, behavior: 'smooth' });
 const Main = () => {
     const [isVisibleToTop, setVisibleToTop] = useState(false);
 
-    const paletteMode = useSelector((state: RootState) => state.paletteMode);
+    const mode = useSelector((state: RootState) => state.mode);
 
     const theme = useTheme();
-    const className = [getBackgroundColorClass(paletteMode), 'border-radius', 'backdrop-filter-blur', 'box-shadow'].join(' ');
+    const className = [getBackgroundColorClass(mode), 'border-radius', 'backdrop-filter-blur', 'box-shadow'].join(' ');
 
     useEffect(() => {
         const onScroll = () => setVisibleToTop(window.scrollY >= 100 && true);

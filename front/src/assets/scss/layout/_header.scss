@@ -96,7 +96,7 @@ $headerHeightWithoutBorder: calc((var.$margin * 2) + (var.$padding * 2) + $heade
             }
         }
 
-        &-palette-mode {
+        &-mode {
             flex-basis: calc(100% - $headerHeightWithoutBorder);
             padding: var.$padding;
             padding-bottom: calc(var.$padding / 2);
@@ -184,7 +184,7 @@ $headerHeightWithoutBorder: calc((var.$margin * 2) + (var.$padding * 2) + $heade
                 }
             }
 
-            &-palette-mode {
+            &-mode {
                 flex-basis: auto;
                 padding: var.$padding;
                 padding-left: calc(var.$padding / 2);

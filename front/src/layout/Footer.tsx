@@ -20,9 +20,9 @@ const Footer = () => {
                 <Grid id="layout-footer-grid-theme-color" item xs={6}>
                     <p>Theme color is <span className="border-radius" style={{ backgroundColor: themeColor }}>{themeColor}</span></p>
                 </Grid>
-                <Grid id="layout-footer-grid-skill" item xs={12}>
+                <Grid id="layout-footer-grid-skills" item xs={12}>
                     {skills.map(({ SRC, ALT, URL }, index) =>
-                        <img key={`img-footer-skill-${index}`} src={SRC} alt={ALT} onClick={() => window.open(URL)} />
+                        <img key={`img-footer-skills-${index}`} src={SRC} alt={ALT} onClick={() => window.open(URL)} />
                     )}
                 </Grid>
             </Grid>

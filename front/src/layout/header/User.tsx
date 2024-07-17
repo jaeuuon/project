@@ -7,11 +7,10 @@ import { Grid, Avatar, Button, Tooltip } from '@mui/material';
 import { Person, Logout, Login } from '@mui/icons-material';
 
 import type { RootState } from 'types/modules';
-import type { Content } from 'types/apis/pages/popup/login';
 
-import { menu } from 'enums/layout/header/menu';
+import { group } from 'enums/layout/header/menu';
 import { status } from 'enums/apis/response';
-import { ignoreReissuanceError } from 'enums/apis/layout/header/user';
+import { ignoredReissuanceError } from 'enums/apis/layout/header/user';
 
 import { init, set } from 'modules/layout/header/user';
 import { setSuccess, setError } from 'modules/layout/snackbar';
@@ -48,7 +47,7 @@ const User = () => {
     const setVisibleLoginTrue = () => setVisibleLogin(true);
     const setVisibleLoginFalse = () => setVisibleLogin(false);
 
-    const onClickAvatar = () => navigate(menu.SECURITY.PATH);
+    const onClickAvatar = () => navigate(group.SECURITY.PATH);
 
     const onClickLogout = async () => {
         const { status: responseStatus, data } = await logout();
@@ -58,7 +57,7 @@ const User = () => {
             dispatch(init());
             dispatch(setSuccess({ code, message }));
 
-            navigate(menu.HOME.PATH);
+            navigate(group.HOME.PATH);
         } else {
             dispatch(setError({ code, message }));
         }
@@ -66,10 +65,10 @@ const User = () => {
 
     const scheduler = useCallback(async () => {
         const { status: responseStatus, data } = await reissuance();
-        const { code, message } = data;
+        const { code, message, content } = data;
 
         if (responseStatus === status.SUCCESS) {
-            const { access }: Content = data.content[0];
+            const { access } = content[0];
 
             const payload = getPayload(access);
             const user = getUser(payload);
@@ -81,7 +80,7 @@ const User = () => {
         } else {
             dispatch(init());
 
-            if (!includesCode(ignoreReissuanceError, code)) {
+            if (!includesCode(ignoredReissuanceError, code)) {
                 dispatch(setError({ code, message }));
             }
         }
@@ -123,9 +122,11 @@ const User = () => {
                     <span className="display-none-md">Login</span>
                 </Button>
             }
-            <Popup isVisible={isVisibleLogin} setVisibleFalse={setVisibleLoginFalse} width={400} icon={<Login />} label="Login" content={
-                <LoginPopup setVisibleFalse={setVisibleLoginFalse} scheduler={scheduler} />
-            } />
+            <Popup isVisible={isVisibleLogin} setVisibleFalse={setVisibleLoginFalse} width={400} icon={<Login />} label="Login"
+                content={
+                    <LoginPopup setVisibleFalse={setVisibleLoginFalse} scheduler={scheduler} />
+                }
+            />
         </Grid>
     );
 };

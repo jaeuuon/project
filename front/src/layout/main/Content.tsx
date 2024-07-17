@@ -6,8 +6,8 @@ import { Grid } from '@mui/material';
 
 import type { RootState } from 'types/modules';
 
-import { menu as originHeaderMenu } from 'enums/layout/header/menu';
-import { menus as sidebarMenus } from 'enums/layout/main/sidebar';
+import { group } from 'enums/layout/header/menu';
+import { groups } from 'enums/layout/main/sidebar';
 
 import NotFound from 'pages/NotFound';
 import Loading from 'components/Loading';
@@ -17,30 +17,30 @@ const Content = () => {
 
     const { isInit, roles } = useSelector((state: RootState) => state.user);
 
-    const requiredInit = Object.values(originHeaderMenu).some(({ PATH, REQUIRED }) => PATH === pathname && REQUIRED.INIT)
-        || sidebarMenus.some(({ MENUS }) => MENUS.some(({ PATH, REQUIRED }) => PATH === pathname && REQUIRED.INIT));
+    const requiredInit = Object.values(group).some(({ PATH, REQUIRED }) => PATH === pathname && REQUIRED.INIT)
+        || groups.some(({ ITEMS }) => ITEMS.some(({ PATH, REQUIRED }) => PATH === pathname && REQUIRED.INIT));
 
     return (
         <Grid id="layout-main-grid-content" item xs>
             <div>
                 {(requiredInit && isInit) || !requiredInit
                     ? <Routes>
-                        {sidebarMenus.map(({ PATH, MENUS }, headerMenuIndex) => {
-                            const headerMenu = Object.values(originHeaderMenu).find(({ PATH: ORIGIN_PATH }) => PATH === ORIGIN_PATH);
-                            const headerMenuRequiredRoles = headerMenu?.REQUIRED.ROLES || [];
+                        {groups.map(({ PATH, ITEMS }, groupIndex) => {
+                            const findGroup = Object.values(group).find(({ PATH: FIND_PATH }) => PATH === FIND_PATH);
+                            const groupRequiredRoles = findGroup?.REQUIRED.ROLES || [];
 
                             return (
-                                <Fragment key={`route-${headerMenuIndex}`}>
-                                    {headerMenu && (
-                                        headerMenuRequiredRoles.length === 0
-                                        || headerMenuRequiredRoles.some((headerMenuRequiredRole) => roles.some(({ code }) => headerMenuRequiredRole === code))
+                                <Fragment key={`route-main-content-${groupIndex}`}>
+                                    {findGroup && (
+                                        groupRequiredRoles.length === 0
+                                        || groupRequiredRoles.some((groupRequiredRole) => roles.some(({ code }) => groupRequiredRole === code))
                                     ) &&
                                         <>
-                                            <Route path={headerMenu.PATH} element={headerMenu.ELEMENT} />
-                                            {MENUS.map(({ PATH, ELEMENT, REQUIRED }, menuIndex) => {
+                                            <Route path={findGroup.PATH} element={findGroup.ELEMENT} />
+                                            {ITEMS.map(({ PATH, ELEMENT, REQUIRED }, itemIndex) => {
                                                 const requiredRoles = REQUIRED.ROLES;
 
-                                                return <Fragment key={`route-${headerMenuIndex}-${menuIndex}`}>
+                                                return <Fragment key={`route-main-content-${groupIndex}-${itemIndex}`}>
                                                     {(requiredRoles.length === 0 || requiredRoles.some((requiredRole) => roles.some(({ code }) => requiredRole === code))) &&
                                                         <Route path={PATH} element={ELEMENT} />
                                                     }

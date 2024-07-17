@@ -6,7 +6,7 @@ import { CssBaseline } from '@mui/material';
 
 import type { RootState } from 'types/modules';
 
-import { getMql, setLight, setDark } from 'modules/layout/header/paletteMode';
+import { getMql, setLight, setDark } from 'modules/layout/header/mode';
 
 import Header from 'layout/Header';
 import Main from 'layout/Main';
@@ -17,17 +17,11 @@ import 'assets/scss/app.scss';
 
 const App = () => {
     const dispatch = useDispatch();
-    const paletteMode = useSelector((state: RootState) => state.paletteMode);
+    const mode = useSelector((state: RootState) => state.mode);
 
     const theme = createTheme({
-        palette: {
-            mode: paletteMode
-        },
-        typography: {
-            button: {
-                textTransform: 'none'
-            }
-        }
+        palette: { mode: mode },
+        typography: { button: { textTransform: 'none' } }
     });
 
     useEffect(() => {

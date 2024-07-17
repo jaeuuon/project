@@ -6,7 +6,7 @@ import { Grid, Button } from '@mui/material';
 
 import type { RootState } from 'types/modules';
 
-import { menu } from 'enums/layout/header/menu';
+import { group } from 'enums/layout/header/menu';
 
 const Menu = () => {
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Menu = () => {
 
     return (
         <Grid id="layout-header-grid-menu" item xs>
-            {Object.values(menu).filter(({ VISIBLE }) => VISIBLE).map(({ PATH, ICON, LABEL, REQUIRED }, index) => {
+            {Object.values(group).filter(({ VISIBLE }) => VISIBLE).map(({ PATH, ICON, LABEL, REQUIRED }, index) => {
                 const requiredRoles = REQUIRED.ROLES;
 
                 return (

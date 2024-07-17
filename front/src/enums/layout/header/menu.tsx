@@ -6,7 +6,7 @@ import Home from 'pages/Home';
 import Information from 'pages/Information';
 import Security from 'pages/Security';
 
-export const menu = {
+export const group = {
     HOME: {
         PATH: '/',
         ELEMENT: <Home />,

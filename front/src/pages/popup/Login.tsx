@@ -46,10 +46,10 @@ const Login = ({
                 email: params.email,
                 password: jsEncrypt.encrypt(params.password || '').toString()
             });
-            const { code, message } = data;
+            const { code, message, content } = data;
 
             if (responseStatus === status.SUCCESS) {
-                const { access } = data.content[0];
+                const { access } = content[0];
 
                 const payload = getPayload(access);
                 const user = getUser(payload);

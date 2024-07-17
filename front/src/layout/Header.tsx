@@ -12,15 +12,15 @@ import Logo from 'Logo';
 import Sidebar from 'layout/header/Sidebar';
 import Menu from 'layout/header/Menu';
 import User from 'layout/header/User';
-import PaletteMode from 'layout/header/PaletteMode';
+import Mode from 'layout/header/Mode';
 
 const Header = () => {
     const [isTop, setTop] = useState(true);
 
-    const paletteMode = useSelector((state: RootState) => state.paletteMode);
+    const mode = useSelector((state: RootState) => state.mode);
 
     const theme = useTheme();
-    const className = [getBackgroundColorClass(paletteMode), 'backdrop-filter-blur', (!isTop ? 'box-shadow' : '')].join(' ');
+    const className = [getBackgroundColorClass(mode), 'backdrop-filter-blur', (!isTop ? 'box-shadow' : '')].join(' ');
 
     useEffect(() => {
         const onScroll = () => setTop(window.scrollY === 0 && true);
@@ -39,7 +39,7 @@ const Header = () => {
                 <Sidebar />
                 <Menu />
                 <User />
-                <PaletteMode />
+                <Mode />
             </Grid>
         </div>
     );

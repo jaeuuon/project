@@ -7,8 +7,8 @@ import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from
 
 import type { RootState } from 'types/modules';
 
-import { menus } from 'enums/layout/main/sidebar';
-import { menu as originHeaderMenu } from 'enums/layout/header/menu';
+import { groups } from 'enums/layout/main/sidebar';
+import { group } from 'enums/layout/header/menu';
 
 import { close } from 'modules/layout/main/sidebar';
 
@@ -29,8 +29,8 @@ const Sidebar = () => {
     const theme = useTheme();
     const style = { zIndex: theme.zIndex.modal, backgroundColor: theme.palette.background.paper, borderColor: getBorderColor(theme) };
 
-    const headerMenu = menus.find(({ PATH, MENUS }) => PATH === pathname || MENUS.some(({ PATH }) => PATH === pathname));
-    const headerMenuRequiredRoles = Object.values(originHeaderMenu).find(({ PATH }) => PATH === headerMenu?.PATH)?.REQUIRED.ROLES || [];
+    const findGroup = groups.find(({ PATH, ITEMS }) => PATH === pathname || ITEMS.some(({ PATH }) => PATH === pathname));
+    const groupRequiredRoles = Object.values(group).find(({ PATH }) => PATH === findGroup?.PATH)?.REQUIRED.ROLES || [];
 
     const setVisibleFalse = () => dispatch(close());
 
@@ -61,15 +61,15 @@ const Sidebar = () => {
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
             <Grid id="layout-main-grid-sidebar" className={isVisible ? 'display-initial' : ''} item xs="auto" style={style} ref={sidebarRef}>
                 <List>
-                    {headerMenu?.MENUS.map(({ PATH, ICON, LABEL, REQUIRED }, index) => {
+                    {findGroup?.ITEMS.map(({ PATH, ICON, LABEL, REQUIRED }, index) => {
                         const requiredRoles = REQUIRED.ROLES;
                         const requiredRolesLength = requiredRoles.length;
 
                         return (
                             <Fragment key={`list-item-main-sidebar-${index}`}>
                                 {(
-                                    (headerMenuRequiredRoles.length === 0 && requiredRolesLength === 0)
-                                    || (headerMenuRequiredRoles.some((headerMenuRequiredRole) => roles.some(({ code }) => headerMenuRequiredRole === code)) && (
+                                    (groupRequiredRoles.length === 0 && requiredRolesLength === 0)
+                                    || (groupRequiredRoles.some((groupRequiredRole) => roles.some(({ code }) => groupRequiredRole === code)) && (
                                         requiredRolesLength === 0 || requiredRoles.some((requiredRole) => roles.some(({ code }) => requiredRole === code))
                                     ))
                                 ) &&

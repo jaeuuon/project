@@ -1,7 +1,7 @@
 
 import { CampaignOutlined, ContactSupportOutlined, GitHub, History } from '@mui/icons-material';
 
-import { menu as headerMenu } from 'enums/layout/header/menu';
+import { group } from 'enums/layout/header/menu';
 
 import Notice from 'pages/home/Notice';
 import Contact from 'pages/information/Contact';
@@ -12,73 +12,67 @@ export const action = {
     CLOSE: 'sidebar/close'
 } as const;
 
-export const menu = {
-    HOME: {
-        NOTICE: {
-            PATH: '/notice',
-            ELEMENT: <Notice />,
-            ICON: <CampaignOutlined />,
-            LABEL: 'Notice',
-            REQUIRED: {
-                INIT: false,
-                ROLES: []
-            }
+export const item = {
+    NOTICE: {
+        PATH: '/notice',
+        ELEMENT: <Notice />,
+        ICON: <CampaignOutlined />,
+        LABEL: 'Notice',
+        REQUIRED: {
+            INIT: false,
+            ROLES: []
         }
     },
-    INFORMATION: {
-        CONTACT: {
-            PATH: `${headerMenu.INFORMATION.PATH}/contact`,
-            ELEMENT: <Contact />,
-            ICON: <ContactSupportOutlined />,
-            LABEL: 'Contact',
-            REQUIRED: {
-                INIT: false,
-                ROLES: []
-            }
-        },
-        GITHUB: {
-            PATH: 'https://github.com/jaeuuon/project',
-            ELEMENT: undefined,
-            ICON: <GitHub />,
-            LABEL: 'GitHub',
-            REQUIRED: {
-                INIT: false,
-                ROLES: []
-            }
+    CONTACT: {
+        PATH: `${group.INFORMATION.PATH}/contact`,
+        ELEMENT: <Contact />,
+        ICON: <ContactSupportOutlined />,
+        LABEL: 'Contact',
+        REQUIRED: {
+            INIT: false,
+            ROLES: []
         }
     },
-    SECURITY: {
-        HISTORY: {
-            PATH: `${headerMenu.SECURITY.PATH}/history`,
-            ELEMENT: <LoginHistory />,
-            ICON: <History />,
-            LABEL: 'Login history',
-            REQUIRED: {
-                INIT: true,
-                ROLES: []
-            }
+    GITHUB: {
+        PATH: 'https://github.com/jaeuuon/project',
+        ELEMENT: undefined,
+        ICON: <GitHub />,
+        LABEL: 'GitHub',
+        REQUIRED: {
+            INIT: false,
+            ROLES: []
+        }
+    },
+    HISTORY: {
+        PATH: `${group.SECURITY.PATH}/history`,
+        ELEMENT: <LoginHistory />,
+        ICON: <History />,
+        LABEL: 'Login history',
+        REQUIRED: {
+            INIT: true,
+            ROLES: []
         }
     }
 } as const;
 
-export const menus = [
+export const groups = [
     {
-        PATH: headerMenu.HOME.PATH,
-        MENUS: [
-            menu.HOME.NOTICE
+        PATH: group.HOME.PATH,
+        ITEMS: [
+            item.NOTICE
         ]
     },
     {
-        PATH: headerMenu.INFORMATION.PATH,
-        MENUS: [
-            menu.INFORMATION.CONTACT,
-            menu.INFORMATION.GITHUB
+        PATH: group.INFORMATION.PATH,
+        ITEMS: [
+            item.CONTACT,
+            item.GITHUB
         ]
     },
     {
-        PATH: headerMenu.SECURITY.PATH,
-        MENUS: [
-            menu.SECURITY.HISTORY
+        PATH: group.SECURITY.PATH,
+        ITEMS: [
+            item.HISTORY
         ]
     }
 ] as const;

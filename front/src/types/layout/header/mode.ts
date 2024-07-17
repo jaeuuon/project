@@ -1,4 +1,4 @@
-import { setDark, setLight } from 'modules/layout/header/paletteMode';
+import { setDark, setLight } from 'modules/layout/header/mode';
 
 export type Action =
     | ReturnType<typeof setDark>

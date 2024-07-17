@@ -7,7 +7,7 @@ import type { CodeMessage, SearchCode } from 'types/common/utils';
 
 import { status } from 'enums/apis/response';
 
-export const getBackgroundColorClass = (paletteMode: PaletteMode) => `background-color-${paletteMode}`;
+export const getBackgroundColorClass = (mode: PaletteMode) => `background-color-${mode}`;
 export const getBorderColor = (theme: Theme) => `${theme.palette.primary.main}80`;
 
 export const getOnChange = (state: StringIndex, setState: React.Dispatch<React.SetStateAction<StringIndex>>) => {
@@ -21,6 +21,8 @@ export const getOnChange = (state: StringIndex, setState: React.Dispatch<React.S
         }
     };
 };
+
+export const includesCode = (codeMessage: CodeMessage, searchCode: SearchCode) => Object.values(codeMessage).some(({ code }) => code === searchCode);
 
 export const camelToSnake = (any: any): any => {
     if (Array.isArray(any)) {
@@ -97,5 +99,3 @@ export const getResponseError = <T>(error: any): Response<T> => {
         return response;
     }
 };
-
-export const includesCode = (codeMessage: CodeMessage, searchCode: SearchCode) => Object.values(codeMessage).some(({ code }) => code === searchCode);

@@ -5,23 +5,23 @@ import { LightModeOutlined, DarkModeOutlined } from '@mui/icons-material';
 
 import type { RootState } from 'types/modules';
 
-import { setDark, setLight } from 'modules/layout/header/paletteMode';
+import { setDark, setLight } from 'modules/layout/header/mode';
 
-const PaletteMode = () => {
+const Mode = () => {
     const dispatch = useDispatch();
-    const isPaletteModeLight = useSelector((state: RootState) => state.paletteMode) === 'light';
+    const isLight = useSelector((state: RootState) => state.mode) === 'light';
 
-    const onClick = () => dispatch(isPaletteModeLight ? setDark() : setLight());
+    const onClick = () => dispatch(isLight ? setDark() : setLight());
 
     return (
-        <Grid id="layout-header-grid-palette-mode" item xs="auto">
+        <Grid id="layout-header-grid-mode" item xs="auto">
             <Tooltip placement="bottom-end" arrow title="Light / Dark">
                 <Button className="button-header" variant="outlined" onClick={onClick}>
-                    {isPaletteModeLight ? <LightModeOutlined /> : <DarkModeOutlined />}
+                    {isLight ? <LightModeOutlined /> : <DarkModeOutlined />}
                 </Button>
             </Tooltip>
         </Grid>
     );
 };
 
-export default PaletteMode;
+export default Mode;
