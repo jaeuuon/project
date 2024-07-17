@@ -7,17 +7,9 @@ import { Grid } from '@mui/material';
 import type { State } from 'types/modules';
 
 import { menu as originHeaderMenu } from 'enums/layout/header/menu';
-import { menu as sidebarMenu, menus as sidebarMenus } from 'enums/layout/main/sidebar';
+import { menus as sidebarMenus } from 'enums/layout/main/sidebar';
 
-import Home from 'pages/Home';
-import Notice from 'pages/home/Notice';
-
-import Information from 'pages/Information';
-import Contact from 'pages/information/Contact';
-
-import Security from 'pages/Security';
-import LoginHistory from 'pages/security/LoginHistory';
-
+import NotFound from 'pages/NotFound';
 import Loading from 'components/Loading';
 
 const Content = () => {
@@ -27,16 +19,6 @@ const Content = () => {
 
     const requiredInit = Object.values(originHeaderMenu).some(({ PATH, REQUIRED }) => PATH === pathname && REQUIRED.INIT)
         || sidebarMenus.some(({ MENUS }) => MENUS.some(({ PATH, REQUIRED }) => PATH === pathname && REQUIRED.INIT));
-
-
-
-
-
-
-
-
-
-
 
     return (
         <Grid id="layout-main-grid-content" item xs>
@@ -69,6 +51,7 @@ const Content = () => {
                                 </Fragment>
                             );
                         })}
+                        <Route path="/*" element={<NotFound />} />
                     </Routes>
                     : <Loading isVisible={true} />
                 }
