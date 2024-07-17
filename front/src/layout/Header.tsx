@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 
-import type { State } from 'types/modules';
+import type { RootState } from 'types/modules';
 
 import { getBackgroundColorClass, getBorderColor } from 'common/utils';
 
@@ -17,7 +17,7 @@ import PaletteMode from 'layout/header/PaletteMode';
 const Header = () => {
     const [isTop, setTop] = useState(true);
 
-    const paletteMode = useSelector((state: State) => state.paletteMode);
+    const paletteMode = useSelector((state: RootState) => state.paletteMode);
 
     const theme = useTheme();
     const className = [getBackgroundColorClass(paletteMode), 'backdrop-filter-blur', (!isTop ? 'box-shadow' : '')].join(' ');

@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 import { KeyboardArrowUp } from '@mui/icons-material';
 
-import type { State } from 'types/modules';
+import type { RootState } from 'types/modules';
 
 import { getBackgroundColorClass, getBorderColor } from 'common/utils';
 
@@ -17,7 +17,7 @@ const onClick = () => window.scroll({ top: 0, behavior: 'smooth' });
 const Main = () => {
     const [isVisibleToTop, setVisibleToTop] = useState(false);
 
-    const paletteMode = useSelector((state: State) => state.paletteMode);
+    const paletteMode = useSelector((state: RootState) => state.paletteMode);
 
     const theme = useTheme();
     const className = [getBackgroundColorClass(paletteMode), 'border-radius', 'backdrop-filter-blur', 'box-shadow'].join(' ');

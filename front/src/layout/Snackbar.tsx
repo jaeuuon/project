@@ -3,14 +3,14 @@ import { useSelector } from 'react-redux';
 
 import { Snackbar as MaterialSnackbar, Slide, SlideProps, Alert } from '@mui/material';
 
-import type { State } from 'types/modules';
+import type { RootState } from 'types/modules';
 
 const SlideTransition = (slideProps: SlideProps) => <Slide { ...slideProps } direction="up" />;
 
 const Snackbar = () => {
     const [isVisible, setVisible] = useState(false);
 
-    const { severity, codeMessage } = useSelector((state: State) => state.snackbar);
+    const { severity, codeMessage } = useSelector((state: RootState) => state.snackbar);
 
     const setVisibleFalse = () => setVisible(false);
 

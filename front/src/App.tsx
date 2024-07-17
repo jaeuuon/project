@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
 
-import type { State } from 'types/modules';
+import type { RootState } from 'types/modules';
 
 import { getMql, setLight, setDark } from 'modules/layout/header/paletteMode';
 
@@ -17,7 +17,7 @@ import 'assets/scss/app.scss';
 
 const App = () => {
     const dispatch = useDispatch();
-    const paletteMode = useSelector((state: State) => state.paletteMode);
+    const paletteMode = useSelector((state: RootState) => state.paletteMode);
 
     const theme = createTheme({
         palette: {

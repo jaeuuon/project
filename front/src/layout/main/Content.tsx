@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { Grid } from '@mui/material';
 
-import type { State } from 'types/modules';
+import type { RootState } from 'types/modules';
 
 import { menu as originHeaderMenu } from 'enums/layout/header/menu';
 import { menus as sidebarMenus } from 'enums/layout/main/sidebar';
@@ -15,7 +15,7 @@ import Loading from 'components/Loading';
 const Content = () => {
     const { pathname } = useLocation();
 
-    const { isInit, roles } = useSelector((state: State) => state.user);
+    const { isInit, roles } = useSelector((state: RootState) => state.user);
 
     const requiredInit = Object.values(originHeaderMenu).some(({ PATH, REQUIRED }) => PATH === pathname && REQUIRED.INIT)
         || sidebarMenus.some(({ MENUS }) => MENUS.some(({ PATH, REQUIRED }) => PATH === pathname && REQUIRED.INIT));

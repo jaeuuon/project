@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from '@mui/material/styles';
 import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
-import type { State } from 'types/modules';
+import type { RootState } from 'types/modules';
 
 import { menus } from 'enums/layout/main/sidebar';
 import { menu as originHeaderMenu } from 'enums/layout/header/menu';
@@ -23,8 +23,8 @@ const Sidebar = () => {
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
-    const { isVisible } = useSelector((state: State) => state.sidebar);
-    const { roles } = useSelector((state: State) => state.user);
+    const { isVisible } = useSelector((state: RootState) => state.sidebar);
+    const { roles } = useSelector((state: RootState) => state.user);
 
     const theme = useTheme();
     const style = { zIndex: theme.zIndex.modal, backgroundColor: theme.palette.background.paper, borderColor: getBorderColor(theme) };

@@ -6,7 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Avatar, Button, Tooltip } from '@mui/material';
 import { Person, Logout, Login } from '@mui/icons-material';
 
-import type { State } from 'types/modules';
+import type { RootState } from 'types/modules';
 import type { Content } from 'types/apis/pages/popup/login';
 
 import { menu } from 'enums/layout/header/menu';
@@ -32,7 +32,7 @@ const User = () => {
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
-    const { id, email, name, roles } = useSelector((state: State) => state.user);
+    const { id, email, name, roles } = useSelector((state: RootState) => state.user);
 
     const theme = useTheme();
     const avatarStyle = {

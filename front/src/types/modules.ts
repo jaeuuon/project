@@ -1,3 +1,3 @@
 import reducer from 'modules';
 
-export type State = ReturnType<typeof reducer>;
+export type RootState = ReturnType<typeof reducer>;
