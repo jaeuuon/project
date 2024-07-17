@@ -1,11 +1,10 @@
 @use 'assets/scss/variables' as var;
 
-$headerInnerHeight: 35px;
-$headerHeightWithoutBorder: calc((var.$margin * 2) + (var.$padding * 2) + $headerInnerHeight);
+$headerHeightWithoutBorder: calc((var.$margin * 2) + (var.$padding * 2) + var.$headerInnerHeight);
 
 #layout-header {
     position: sticky;
-    top: calc(0px - var.$margin - var.$padding - $headerInnerHeight);
+    top: calc(0px - var.$margin - var.$padding - var.$headerInnerHeight);
     height: calc(($headerHeightWithoutBorder * 2) - var.$margin - var.$padding + var.$borderSize);
     border-bottom: var.$border;
 
@@ -14,9 +13,9 @@ $headerHeightWithoutBorder: calc((var.$margin * 2) + (var.$padding * 2) + $heade
         margin: auto;
 
         .button-header {
-            width: $headerInnerHeight;
-            min-width: $headerInnerHeight;
-            height: $headerInnerHeight;
+            width: var.$headerInnerHeight;
+            min-width: var.$headerInnerHeight;
+            height: var.$headerInnerHeight;
 
             span:first-child {
                 margin-left: 0;
@@ -32,7 +31,7 @@ $headerHeightWithoutBorder: calc((var.$margin * 2) + (var.$padding * 2) + $heade
 
             svg {
                 display: block;
-                height: $headerInnerHeight;
+                height: var.$headerInnerHeight;
                 margin: var.$margin;
                 margin-bottom: calc(var.$margin / 2);
             }
@@ -67,8 +66,8 @@ $headerHeightWithoutBorder: calc((var.$margin * 2) + (var.$padding * 2) + $heade
             order: 5;
 
             &-avatar {
-                width: $headerInnerHeight;
-                height: $headerInnerHeight;
+                width: var.$headerInnerHeight;
+                height: var.$headerInnerHeight;
                 margin: var.$margin;
                 margin-top: calc(var.$margin / 2);
                 cursor: pointer;
@@ -90,8 +89,8 @@ $headerHeightWithoutBorder: calc((var.$margin * 2) + (var.$padding * 2) + $heade
                 }
 
                 &-logout {
-                    width: $headerInnerHeight !important;
-                    min-width: $headerInnerHeight !important;
+                    width: var.$headerInnerHeight !important;
+                    min-width: var.$headerInnerHeight !important;
                 }
             }
         }
@@ -104,8 +103,8 @@ $headerHeightWithoutBorder: calc((var.$margin * 2) + (var.$padding * 2) + $heade
             order: 2;
 
             button {
-                width: $headerInnerHeight !important;
-                min-width: $headerInnerHeight !important;
+                width: var.$headerInnerHeight !important;
+                min-width: var.$headerInnerHeight !important;
                 margin: var.$margin;
                 margin-bottom: calc(var.$margin / 2);
             }

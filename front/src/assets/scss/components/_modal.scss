@@ -5,6 +5,6 @@
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh + var.$margin + var.$padding + var.$headerInnerHeight);
     background-color: #00000080;
 }
