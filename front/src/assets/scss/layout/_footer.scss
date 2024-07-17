@@ -46,6 +46,10 @@
                 height: 20px;
                 margin: var.$margin;
                 cursor: pointer;
+
+                &.filter-grayscale {
+                    filter: grayscale(50%);
+                }
             }
         }
     }

@@ -1,5 +1,9 @@
+import { useSelector } from 'react-redux';
+
 import { useTheme } from '@mui/material/styles';
 import { Grid, Tooltip } from '@mui/material';
+
+import type { RootState } from 'types/modules';
 
 import { creator, skills } from 'enums/layout/footer';
 
@@ -8,6 +12,8 @@ import { getBorderColor } from 'common/utils';
 const onClick = () => window.open(creator.URL);
 
 const Footer = () => {
+    const isLight = useSelector((state: RootState) => state.mode) === 'light';
+
     const theme = useTheme();
     const themeColor = theme.palette.primary.main;
 
@@ -22,7 +28,7 @@ const Footer = () => {
                 </Grid>
                 <Grid id="layout-footer-grid-skills" item xs={12}>
                     {skills.map(({ SRC, ALT, URL }, index) =>
-                        <img key={`img-footer-skills-${index}`} src={SRC} alt={ALT} onClick={() => window.open(URL)} />
+                        <img key={`img-footer-skills-${index}`} className={!isLight ? 'filter-grayscale' : ''} src={SRC} alt={ALT} onClick={() => window.open(URL)} />
                     )}
                 </Grid>
             </Grid>
