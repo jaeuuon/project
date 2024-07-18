@@ -13,7 +13,7 @@ import Main from 'layout/Main';
 import Footer from 'layout/Footer';
 import Snackbar from 'layout/Snackbar';
 
-import 'assets/scss/app.scss';
+import 'assets_bak/scss/app.scss';
 
 const App = () => {
     const dispatch = useDispatch();
