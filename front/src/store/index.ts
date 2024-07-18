@@ -1,10 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import snackbarReducer from 'store/layout/snackbar';
+import user from 'store/layout/header/user';
+import sidebar from 'store/layout/main/sidebar';
+import snackbar from 'store/layout/snackbar';
 
 const store = configureStore({
     reducer: {
-        snackbar: snackbarReducer
+        user,
+        sidebar,
+        snackbar
     }
 });
 
