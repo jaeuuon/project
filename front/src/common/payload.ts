@@ -4,14 +4,12 @@ import type { CodeValue } from 'types/value';
 
 import { role } from 'enums/layout/header/user';
 
-import { snakeToCamel } from 'common/utils';
-
 export const getPayload = (access: string): Payload => {
     const base64Url = access.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     const text = decodeURIComponent(atob(base64).split('').map((value) => `%${(`00${value.charCodeAt(0).toString(16)}`).slice(-2)}`).join(''));
 
-    return snakeToCamel(JSON.parse(text));
+    return JSON.parse(text);
 };
 
 export const getUser = ({

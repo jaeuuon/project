@@ -24,30 +24,6 @@ export const getOnChange = (state: StringIndex, setState: React.Dispatch<React.S
 
 export const includesCode = (codeMessage: CodeMessage, searchCode: SearchCode) => Object.values(codeMessage).some(({ code }) => code === searchCode);
 
-export const camelToSnake = (any: any): any => {
-    if (Array.isArray(any)) {
-        return any.map((value) => camelToSnake(value));
-    } else if (any !== null && typeof any === 'object') {
-        return Object.entries(any).reduce((accumulator, [key, value]) => (
-            { ...accumulator, [key.replace(/([A-Z])/g, (_match, string) => `_${string.toLowerCase()}`)]: camelToSnake(value) }
-        ), {});
-    }
-
-    return any;
-};
-
-export const snakeToCamel = (any: any): any => {
-    if (Array.isArray(any)) {
-        return any.map((value) => snakeToCamel(value));
-    } else if (any !== null && typeof any === 'object') {
-        return Object.entries(any).reduce((accumulator, [key, value]) => (
-            { ...accumulator, [key.replace(/_(.)/g, (_match, string) => string.toUpperCase())]: snakeToCamel(value) }
-        ), {});
-    }
-
-    return any;
-};
-
 const padStart = (number: number, maxLength: number) => number.toString().padStart(maxLength, '0');
 
 export const getTimestamp = () => {
@@ -76,10 +52,9 @@ export const getTimestamp = () => {
 export const getResponseError = <T>(error: any): Response<T> => {
     const data = error.response.data;
 
-    if (typeof data === 'object') {
-        return snakeToCamel(data);
-    } else {
-        const response: Response<T> = {
+    return typeof data === 'object'
+        ? data
+        : {
             path: `${import.meta.env.VITE_API_URL}${error.config.url}`,
             method: error.config.method.toUpperCase(),
             status: status.ERROR,
@@ -94,8 +69,6 @@ export const getResponseError = <T>(error: any): Response<T> => {
                 totalPages: 1
             },
             timestamp: getTimestamp()
-        };
-
-        return response;
-    }
+        }
+    ;
 };
