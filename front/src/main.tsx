@@ -7,6 +7,8 @@ import store from 'store';
 
 import App from 'App.tsx';
 
+import '@fontsource/roboto/400.css';
+
 import 'assets/css/main.css';
 
 createRoot(document.getElementById('root')!).render(
