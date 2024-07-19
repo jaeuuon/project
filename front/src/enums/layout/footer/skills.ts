@@ -1,8 +1,3 @@
-export const creator =  {
-    URL: 'https://github.com/jaeuuon',
-    NAME: 'jaeuuon'
-} as const;
-
 export const skills = [
     {
         SRC: 'https://img.shields.io/badge/TypeScript-3178c6?logo=typescript&logoColor=white',

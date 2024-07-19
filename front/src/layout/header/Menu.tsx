@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 import { Grid, Button } from '@mui/material';
 
-import { group } from 'enums/layout/header/menu';
-
 import { useAppSelector } from 'hooks';
+
+import { group } from 'enums/layout/header/menu';
 
 import styles from 'assets/styles/layout/header/menu.module.scss';
 import headerStyles from 'assets/styles/layout/header.module.scss';

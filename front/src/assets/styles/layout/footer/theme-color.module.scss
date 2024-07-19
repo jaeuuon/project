@@ -1,0 +1,15 @@
+#theme-color {
+    padding: var.$padding;
+
+    #p {
+        margin: var.$margin;
+        color: var.$footerColor;
+        text-align: right;
+
+        #span {
+            padding: 2px 5px 1px 5px;
+            color: #ffffff;
+            border-radius: var.$borderRadius;
+        }
+    }
+}

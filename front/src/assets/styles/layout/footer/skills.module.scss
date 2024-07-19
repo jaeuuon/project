@@ -1,0 +1,14 @@
+#skills {
+    display: flex;
+    padding: var.$padding;
+    padding-bottom: calc(var.$padding * 4);
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .img {
+        display: block;
+        height: 20px;
+        margin: var.$margin;
+        cursor: pointer;
+    }
+}

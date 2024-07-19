@@ -8,7 +8,7 @@ import styles from 'assets/styles/layout/header/mode.module.scss';
 
 const Mode = () => {
     const dispatch = useAppDispatch();
-    const isLight= useAppSelector((state) => state.mode.value) === 'light';
+    const isLight = useAppSelector((state) => state.mode.value) === 'light';
 
     const onClick = () => dispatch(isLight ? dark() : light());
 

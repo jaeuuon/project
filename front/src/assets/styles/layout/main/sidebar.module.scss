@@ -13,7 +13,7 @@
 
 @media (min-width: var.$widthMd) {
     #grid {
-        z-index: initial;
+        z-index: initial !important;
         position: initial;
         display: initial;
         height: initial;

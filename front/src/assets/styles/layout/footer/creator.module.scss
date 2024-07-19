@@ -1,0 +1,13 @@
+#creator {
+    padding: var.$padding;
+
+    #p {
+        margin: var.$margin;
+        color: var.$footerColor;
+
+        #span {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}

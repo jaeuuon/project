@@ -5,13 +5,13 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Avatar, Button, Tooltip } from '@mui/material';
 import { Person, Logout, Login } from '@mui/icons-material';
 
-import { group } from 'enums/layout/header/menu';
-import { status } from 'enums/apis/response';
-import { ignoredReissuanceError } from 'enums/apis/layout/header/user';
-
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { init, set } from 'store/layout/header/user';
 import { success, error } from 'store/layout/snackbar';
+
+import { group } from 'enums/layout/header/menu';
+import { status } from 'enums/apis/response';
+import { ignoredReissuanceError } from 'enums/apis/layout/header/user';
 
 import { logout, reissuance } from 'apis/pages/popup/login';
 
