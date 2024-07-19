@@ -9,7 +9,7 @@ export default defineConfig({
     css: {
         modules: { localsConvention: 'camelCase' },
         preprocessorOptions: {
-            scss: { additionalData: '@use "./src/assets/variables" as var;' }
+            scss: { additionalData: '@use "./src/assets/styles/variables" as var;' }
         }
     }
 });

@@ -1,17 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { PaletteMode } from '@mui/material';
+import type { ModeState } from 'types/layout/header/mode';
 
 export const getMql = () => window.matchMedia("(prefers-color-scheme: light)");
 
-const initialState: PaletteMode = getMql().matches ? 'light' : 'dark';
+const initialState: ModeState = { value: getMql().matches ? 'light' : 'dark' };
 
 const modeSlice = createSlice({
     name: 'snackbar',
     initialState,
     reducers: {
-        light: (state) => { state = 'light'; },
-        dark: (state) => { state = 'dark'; }
+        light: ({ value }) => { value = 'light'; },
+        dark: ({ value }) => { value = 'dark'; }
     }
 });
 

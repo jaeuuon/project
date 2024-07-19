@@ -89,8 +89,8 @@ $headerHeightWithoutBorder: calc((var.$margin * 2) + (var.$padding * 2) + var.$h
                 }
 
                 &-logout {
-                    width: var.$headerInnerHeight !important;
-                    min-width: var.$headerInnerHeight !important;
+                    width: var.$headerInnerHeight;
+                    min-width: var.$headerInnerHeight;
                 }
             }
         }
@@ -103,8 +103,8 @@ $headerHeightWithoutBorder: calc((var.$margin * 2) + (var.$padding * 2) + var.$h
             order: 2;
 
             button {
-                width: var.$headerInnerHeight !important;
-                min-width: var.$headerInnerHeight !important;
+                width: var.$headerInnerHeight;
+                min-width: var.$headerInnerHeight;
                 margin: var.$margin;
                 margin-bottom: calc(var.$margin / 2);
             }

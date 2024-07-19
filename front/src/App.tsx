@@ -13,11 +13,11 @@ import Snackbar from 'layout/Snackbar';
 
 import '@fontsource/roboto/400.css';
 
-import 'assets/app.scss';
+import 'assets/styles/app.scss';
 
 const App = () => {
     const dispatch = useAppDispatch();
-    const mode = useAppSelector((state) => state.mode);
+    const mode = useAppSelector((state) => state.mode.value);
 
     const theme = createTheme({
         palette: { mode: mode },

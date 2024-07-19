@@ -29,24 +29,24 @@
 
     &List {
         &-root {
-            padding: 0 !important;
+            padding: 0;
         }
 
         &ItemButton-root {
-            margin: var.$margin !important;
-            padding: 4px 16px !important;
-            border-radius: var.$borderRadius !important;
+            margin: var.$margin;
+            padding: 4px 16px;
+            border-radius: var.$borderRadius;
         }
     }
 
     &Table{
         &-root {
-            width: initial !important;
+            width: initial;
             margin: auto;
         }
 
         &Cell-head {
-            font-weight: bold !important;
+            font-weight: bold;
         }
     }
 
@@ -60,12 +60,12 @@
         }
 
         &Item-previousNext {
-            display: none !important;
+            display: none;
         }
     }
 
     &TextField-root {
-        margin: calc(var.$margin * 2) 0 var.$margin !important;
+        margin: calc(var.$margin * 2) 0 var.$margin;
     }
 
     &Tooltip-tooltip p {
@@ -77,7 +77,7 @@
     .Mui {
         &Pagination {
             &Item-previousNext {
-                display: initial !important;
+                display: initial;
             }
         }
     }

@@ -13,15 +13,22 @@ import Menu from 'layout/header/Menu';
 import User from 'layout/header/User';
 import Mode from 'layout/header/Mode';
 
-import header from 'assets/layout/header.module.scss';
+import styles from 'assets/styles/layout/header.module.scss';
+import commonStyles from 'assets/styles/common.module.scss';
 
 const Header = () => {
     const [isTop, setTop] = useState(true);
 
-    const mode = useAppSelector((state) => state.mode);
+    const mode = useAppSelector((state) => state.mode.value);
 
     const theme = useTheme();
-    const className = [getBackgroundColorClass(mode), 'backdrop-filter-blur', (!isTop ? 'box-shadow' : '')].join(' ');
+    const classNames = [getBackgroundColorClass(mode)];
+
+    if (!isTop) {
+        classNames.push(commonStyles.boxShadow);
+    }
+
+    const style = { zIndex: theme.zIndex.appBar, borderColor: getBorderColor(theme) };
 
     useEffect(() => {
         const onScroll = () => setTop(window.scrollY === 0 && true);
@@ -32,12 +39,10 @@ const Header = () => {
     }, []);
 
     return (
-        <div id="layout-header" className={className} style={{ zIndex: theme.zIndex.appBar, borderColor: getBorderColor(theme) }}>
-            <Grid id="layout-header-grid" container>
-                <Grid id="layout-header-grid-logo" item xs="auto">
-                    <Logo />
-                </Grid>
+        <div id={styles.div} className={classNames.join(' ')} style={style}>
+            <Grid id={styles.grid} container>
                 <Sidebar />
+                <Logo />
                 <Menu />
                 <User />
                 <Mode />

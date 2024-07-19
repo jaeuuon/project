@@ -15,13 +15,14 @@ const Popup = ({
     const theme = useTheme();
     const borderColor = getBorderColor(theme);
     const style = { zIndex: theme.zIndex.modal, width, backgroundColor: theme.palette.background.paper, borderColor };
+    const headerStyle = { color: theme.palette.primary.main, borderColor };
 
     return (
         <>
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
             {isVisible &&
                 <div id="layout-popup" className="border-radius" style={style}>
-                    <Grid id="layout-popup-header" container style={{ color: theme.palette.primary.main, borderColor }}>
+                    <Grid id="layout-popup-header" container style={headerStyle}>
                         <Grid id="layout-popup-header-icon" item xs="auto">{icon}</Grid>
                         <Grid id="layout-popup-header-label" item xs>
                             <p>{label}</p>

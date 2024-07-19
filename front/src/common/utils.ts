@@ -7,7 +7,9 @@ import type { CodeMessage, SearchCode } from 'types/common/utils';
 
 import { status } from 'enums/apis/response';
 
-export const getBackgroundColorClass = (mode: PaletteMode) => `background-color-${mode}`;
+import styles from 'assets/styles/common.module.scss';
+
+export const getBackgroundColorClass = (mode: PaletteMode) => mode === 'light' ? styles.backgroundColorLight : styles.backgroundColorDark;
 export const getBorderColor = (theme: Theme) => `${theme.palette.primary.main}80`;
 
 export const getOnChange = (state: StringIndex, setState: React.Dispatch<React.SetStateAction<StringIndex>>) => {
