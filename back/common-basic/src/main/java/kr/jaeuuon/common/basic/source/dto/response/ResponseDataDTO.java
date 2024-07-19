@@ -1,8 +1,6 @@
 package kr.jaeuuon.common.basic.source.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import kr.jaeuuon.common.basic.source.message.enumeration.Message;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -15,7 +13,6 @@ import java.util.Collections;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonNaming(SnakeCaseStrategy.class)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ResponseDataDTO {

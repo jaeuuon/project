@@ -1,8 +1,6 @@
 package kr.jaeuuon.security.source.api.history.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies.SnakeCaseStrategy;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.querydsl.core.annotations.QueryProjection;
 import kr.jaeuuon.common.basic.source.util.Util;
 import kr.jaeuuon.security.source.api.history.code.impl.ResultCode;
@@ -13,7 +11,6 @@ import lombok.NoArgsConstructor;
 import java.sql.Timestamp;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonNaming(SnakeCaseStrategy.class)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class HistoryDTO {
