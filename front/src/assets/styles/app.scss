@@ -15,3 +15,27 @@ body {
     -ms-user-select: none;
     -moz-user-select: none;
 }
+
+.Mui {
+    &Alert {
+        &-icon {
+            align-items: center;
+        }
+
+        &-message p {
+            text-align: center;
+
+            &:nth-of-type(1) {
+                word-break: keep-all;
+            }
+
+            &:nth-of-type(2) {
+                word-break: break-all;
+            }
+        }
+    }
+
+    &Button-root span {
+        font-weight: bold;
+    }
+}

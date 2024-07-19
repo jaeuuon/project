@@ -10,8 +10,8 @@ const modeSlice = createSlice({
     name: 'snackbar',
     initialState,
     reducers: {
-        light: ({ value }) => { value = 'light'; },
-        dark: ({ value }) => { value = 'dark'; }
+        light: (_state) => ({ value: 'light' }),
+        dark: (_state) => ({ value: 'dark' })
     }
 });
 

@@ -8,8 +8,8 @@ const sidebarSlice = createSlice({
     name: 'snackbar',
     initialState,
     reducers: {
-        open: ({ isVisible }) => { isVisible = true; },
-        close: ({ isVisible }) => { isVisible = false; }
+        open: (_state) => ({ isVisible: true }),
+        close: (_state) => ({ isVisible: false })
     }
 });
 

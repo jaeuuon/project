@@ -8,12 +8,8 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        init: (state) => {
-            state = { ...initialState, isInit: true };
-        },
-        set: (state, { payload }) => {
-            state = { ...state, ...payload };
-        }
+        init: (_state) => ({ ...initialState, isInit: true }),
+        set: (state, { payload }) => ({ ...state, ...payload })
     }
 });
 
