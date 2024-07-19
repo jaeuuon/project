@@ -7,13 +7,9 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 export default defineConfig({
     plugins: [react(), tsconfigPaths()],
     css: {
-        modules: {
-            localsConvention: 'camelCase'
-        },
+        modules: { localsConvention: 'camelCase' },
         preprocessorOptions: {
-            scss: {
-                additionalData: '@use "./src/assets/variables" as var;'
-            }
+            scss: { additionalData: '@use "./src/assets/variables" as var;' }
         }
     }
 });
