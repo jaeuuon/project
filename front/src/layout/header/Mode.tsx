@@ -1,8 +1,8 @@
-import { Grid, Button, Tooltip } from '@mui/material';
-import { LightModeOutlined, DarkModeOutlined } from '@mui/icons-material';
-
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { light, dark } from 'store/layout/header/mode';
+
+import { Grid, Button, Tooltip } from '@mui/material';
+import { LightModeOutlined, DarkModeOutlined } from '@mui/icons-material';
 
 import styles from 'assets/styles/layout/header/mode.module.scss';
 

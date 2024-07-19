@@ -1,11 +1,11 @@
 import { useRef, useEffect, Fragment } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { useTheme } from '@mui/material/styles';
-import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { close } from 'store/layout/main/sidebar';
+
+import { useTheme } from '@mui/material/styles';
+import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
 import { groups } from 'enums/layout/main/sidebar';
 import { group } from 'enums/layout/header/menu';

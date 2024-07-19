@@ -1,8 +1,8 @@
-import { Grid, Button } from '@mui/material';
-import { Menu } from '@mui/icons-material';
-
 import { useAppDispatch } from 'hooks';
 import { open } from 'store/layout/main/sidebar';
+
+import { Grid, Button } from '@mui/material';
+import { Menu } from '@mui/icons-material';
 
 import styles from 'assets/styles/layout/header/sidebar.module.scss';
 
