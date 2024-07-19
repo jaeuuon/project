@@ -13,6 +13,8 @@ import Menu from 'layout/header/Menu';
 import User from 'layout/header/User';
 import Mode from 'layout/header/Mode';
 
+import header from 'assets/layout/header.module.scss';
+
 const Header = () => {
     const [isTop, setTop] = useState(true);
 

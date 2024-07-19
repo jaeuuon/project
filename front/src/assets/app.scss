@@ -4,7 +4,12 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: var.$fontSize;
+}
+
 body {
+    min-width: var.$widthXs;
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;

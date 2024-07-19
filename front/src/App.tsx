@@ -11,7 +11,9 @@ import Main from 'layout/Main';
 import Footer from 'layout/Footer';
 import Snackbar from 'layout/Snackbar';
 
-import 'assets/scss/app.scss';
+import '@fontsource/roboto/400.css';
+
+import 'assets/app.scss';
 
 const App = () => {
     const dispatch = useAppDispatch();
