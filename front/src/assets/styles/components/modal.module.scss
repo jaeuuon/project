@@ -1,0 +1,8 @@
+#div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh + var.$margin + var.$padding + var.$headerInnerHeight);
+    background-color: #00000080;
+}

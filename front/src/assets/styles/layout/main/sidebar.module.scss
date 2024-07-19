@@ -1,0 +1,21 @@
+#grid {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100vw;
+    max-width: 250px;
+    height: 100vh;
+    padding: var.$padding;
+    border-right: var.$border;
+    overflow: auto;
+}
+
+@media (min-width: var.$widthMd) {
+    #grid {
+        z-index: initial;
+        position: initial;
+        display: initial;
+        height: initial;
+    }
+}

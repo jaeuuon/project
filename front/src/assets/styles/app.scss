@@ -38,4 +38,15 @@ body {
     &Button-root span {
         font-weight: bold;
     }
+
+    &List {
+        &-root {
+            padding: 0 !important;
+        }
+
+        &ItemButton-root {
+            margin: var.$margin !important;
+            border-radius: var.$borderRadius !important;
+        }
+    }
 }
