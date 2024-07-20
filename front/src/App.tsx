@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { getMql, light, dark } from 'store/layout/header/mode';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { CssBaseline } from '@mui/material';
+
+import { getMql, light, dark } from 'store/layout/header/mode';
 
 import Header from 'layout/Header';
 import Main from 'layout/Main';
