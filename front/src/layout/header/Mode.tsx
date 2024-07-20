@@ -14,7 +14,7 @@ const Mode = () => {
     const onClick = () => dispatch(isLight ? dark() : light());
 
     return (
-        <Grid id={styles.grid} item xs="auto">
+        <Grid id={styles.mode} item xs="auto">
             <Tooltip placement="bottom-end" arrow title="Light / Dark">
                 <Button id={styles.button} variant="outlined" onClick={onClick}>
                     {isLight ? <LightModeOutlined /> : <DarkModeOutlined />}

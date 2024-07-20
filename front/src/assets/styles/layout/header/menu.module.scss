@@ -1,4 +1,4 @@
-#grid {
+#menu {
     padding: var.$padding;
     padding-top: calc(var.$padding / 2);
     order: 4;
@@ -10,7 +10,7 @@
 }
 
 @media (min-width: var.$widthSm) {
-    #grid {
+    #menu {
         padding: var.$padding;
         order: 3;
 

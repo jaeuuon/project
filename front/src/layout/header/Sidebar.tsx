@@ -13,7 +13,7 @@ const Sidebar = () => {
     const onClick = () => dispatch(open());
 
     return (
-        <Grid id={styles.grid} item xs="auto">
+        <Grid id={styles.sidebar} item xs="auto">
             <Button id={styles.button} variant="outlined" onClick={onClick}>
                 <Menu />
             </Button>

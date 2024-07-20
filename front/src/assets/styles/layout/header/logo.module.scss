@@ -1,4 +1,4 @@
-#grid {
+#logo {
     width: var.$headerHeightWithoutBorder;
     padding: var.$padding;
     padding-bottom: calc(var.$padding / 2);
@@ -13,7 +13,7 @@
 }
 
 @media (min-width: var.$widthSm) {
-    #grid {
+    #logo {
         padding: var.$padding;
         order: 2;
 

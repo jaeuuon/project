@@ -29,7 +29,6 @@ const Sidebar = () => {
     const roles = useAppSelector((state) => state.user.roles);
 
     const theme = useTheme();
-    const style = { zIndex: theme.zIndex.modal, backgroundColor: theme.palette.background.paper, borderColor: getBorderColor(theme) };
 
     const findGroup = groups.find(({ PATH, ITEMS }) => PATH === pathname || ITEMS.some(({ PATH }) => PATH === pathname));
     const groupRequiredRoles = Object.values(group).find(({ PATH }) => PATH === findGroup?.PATH)?.REQUIRED.ROLES || [];
@@ -61,7 +60,10 @@ const Sidebar = () => {
     return (
         <>
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
-            <Grid id={styles.grid} className={isVisible ? commonStyles.displayInitial : ''} item xs="auto" style={style} ref={sidebarRef}>
+            <Grid id={styles.sidebar} className={isVisible ? commonStyles.displayInitial : ''} item xs="auto"
+                style={{ zIndex: theme.zIndex.modal, backgroundColor: theme.palette.background.paper, borderColor: getBorderColor(theme) }}
+                ref={sidebarRef}
+            >
                 <List>
                     {findGroup?.ITEMS.map(({ PATH, ICON, LABEL, REQUIRED }, index) => {
                         const requiredRoles = REQUIRED.ROLES;

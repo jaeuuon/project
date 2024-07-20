@@ -32,7 +32,7 @@ const Main = () => {
 
     return (
         <>
-            <Grid id={styles.grid} container>
+            <Grid id={styles.main} container>
                 <Sidebar />
                 <Content />
             </Grid>

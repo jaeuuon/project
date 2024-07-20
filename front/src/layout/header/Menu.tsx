@@ -19,7 +19,7 @@ const Menu = () => {
     const buttonClassNames = [styles.button, headerStyles.button];
 
     return (
-        <Grid id={styles.grid} item xs>
+        <Grid id={styles.menu} item xs>
             {Object.values(group).filter(({ VISIBLE }) => VISIBLE).map(({ PATH, ICON, LABEL, REQUIRED }, index) => {
                 const requiredRoles = REQUIRED.ROLES;
 

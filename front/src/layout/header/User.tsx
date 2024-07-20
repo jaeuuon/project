@@ -19,6 +19,9 @@ import { logout, reissuance } from 'apis/pages/popup/login';
 import { getPayload, getUser, getDelay } from 'common/payload';
 import { getBorderColor, includesCode } from 'common/utils';
 
+import Popup from 'layout/Popup';
+import LoginPopup from 'pages/popup/Login';
+
 import styles from 'assets/styles/layout/header/user.module.scss';
 import headerStyles from 'assets/styles/layout/header.module.scss';
 import commonStyles from 'assets/styles/common.module.scss';
@@ -34,12 +37,6 @@ const User = () => {
     const { id, email, name, roles } = useAppSelector((state) => state.user);
 
     const theme = useTheme();
-    const avatarStyle = {
-        borderColor: isMouseHover ? theme.palette.primary.main : getBorderColor(theme),
-        backgroundColor: isMouseHover
-            ? `${theme.palette.grey[400]}${Math.round(255 - (255 * theme.palette.action.hoverOpacity)).toString(16).padStart(2, '0')}`
-            : theme.palette.grey[400]
-    };
 
     const onMouseEnter = () => setMouseHover(true);
     const onMouseLeave = () => setMouseHover(false);
@@ -95,7 +92,7 @@ const User = () => {
     }, [pathname]);
 
     return (
-        <Grid id={styles.grid} item xs="auto">
+        <Grid id={styles.user} item xs="auto">
             {id
                 ? <>
                     <div id={styles.div} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
@@ -107,7 +104,15 @@ const User = () => {
                                 </>
                             }
                         >
-                            <Avatar id={styles.avatar} style={avatarStyle} onClick={onClickAvatar}>
+                            <Avatar id={styles.avatar}
+                                style={{
+                                    borderColor: isMouseHover ? theme.palette.primary.main : getBorderColor(theme),
+                                    backgroundColor: isMouseHover
+                                        ? `${theme.palette.grey[400]}${Math.round(255 - (255 * theme.palette.action.hoverOpacity)).toString(16).padStart(2, '0')}`
+                                        : theme.palette.grey[400]
+                                }}
+                                onClick={onClickAvatar}
+                            >
                                 <Person />
                             </Avatar>
                         </Tooltip>
@@ -122,6 +127,11 @@ const User = () => {
                     <span className={commonStyles.displayNoneMd}>Login</span>
                 </Button>
             }
+            <Popup isVisible={isVisibleLogin} setVisibleFalse={setVisibleLoginFalse} width={400} icon={<Login />} label="Login"
+                content={
+                    <LoginPopup setVisibleFalse={setVisibleLoginFalse} scheduler={scheduler} />
+                }
+            />
         </Grid>
     );
 };

@@ -28,8 +28,6 @@ const Header = () => {
         classNames.push(commonStyles.boxShadow);
     }
 
-    const style = { zIndex: theme.zIndex.appBar, borderColor: getBorderColor(theme) };
-
     useEffect(() => {
         const onScroll = () => setTop(window.scrollY === 0 && true);
 
@@ -39,7 +37,7 @@ const Header = () => {
     }, []);
 
     return (
-        <div id={styles.div} className={classNames.join(' ')} style={style}>
+        <div id={styles.header} className={classNames.join(' ')} style={{ zIndex: theme.zIndex.appBar, borderColor: getBorderColor(theme) }}>
             <Grid id={styles.grid} container>
                 <Sidebar />
                 <Logo />

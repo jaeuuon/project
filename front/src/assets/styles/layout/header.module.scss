@@ -1,4 +1,4 @@
-#div {
+#header {
     position: sticky;
     top: calc(0px - var.$margin - var.$padding - var.$headerInnerHeight);
     border-bottom: var.$border;
@@ -22,7 +22,7 @@
 }
 
 @media (min-width: var.$widthMd) {
-    #div {
+    #header {
         #grid {
             .button {
                 width: auto;
@@ -38,7 +38,7 @@
 }
 
 @media (min-width: var.$widthSm) {
-    #div {
+    #header {
         top: 0;
     }
 }

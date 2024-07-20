@@ -13,7 +13,7 @@ const Footer = () => {
     const theme = useTheme();
 
     return (
-        <div id={styles.div} style={{ borderColor: getBorderColor(theme) }}>
+        <div id={styles.footer} style={{ borderColor: getBorderColor(theme) }}>
             <Grid id={styles.grid} container>
                 <Creator />
                 <ThemeColor />

@@ -1,4 +1,4 @@
-#grid {
+#mode {
     flex-basis: calc(100% - var.$headerHeightWithoutBorder);
     padding: var.$padding;
     padding-bottom: calc(var.$padding / 2);
@@ -15,7 +15,7 @@
 }
 
 @media (min-width: var.$widthSm) {
-    #grid {
+    #mode {
         flex-basis: auto;
         padding: var.$padding;
         padding-left: calc(var.$padding / 2);

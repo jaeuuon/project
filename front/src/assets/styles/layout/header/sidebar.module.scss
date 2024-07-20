@@ -1,4 +1,4 @@
-#grid {
+#sidebar {
     padding: var.$padding;
     padding-top: calc(var.$padding / 2);
     order: 3;
@@ -13,13 +13,13 @@
 }
 
 @media (min-width: var.$widthMd) {
-    #grid {
+    #sidebar {
         display: none;
     }
 }
 
 @media (min-width: var.$widthSm) {
-    #grid {
+    #sidebar {
         padding: var.$padding;
         order: 1;
 

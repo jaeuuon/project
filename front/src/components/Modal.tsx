@@ -18,7 +18,7 @@ const Modal = ({
     return (
         <>
             {isVisible &&
-                <div id={styles.div} style={{ zIndex: theme.zIndex.modal }} onClick={setVisibleFalse} />
+                <div id={styles.modal} style={{ zIndex: theme.zIndex.modal }} onClick={setVisibleFalse} />
             }
         </>
     );

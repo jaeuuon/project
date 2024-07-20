@@ -1,4 +1,4 @@
-#grid {
+#sidebar {
     position: fixed;
     top: 0;
     left: 0;
@@ -12,7 +12,7 @@
 }
 
 @media (min-width: var.$widthMd) {
-    #grid {
+    #sidebar {
         z-index: initial !important;
         position: initial;
         display: initial;
