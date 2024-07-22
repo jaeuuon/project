@@ -19,7 +19,7 @@ const NotFound = () => {
 
     const setVisibleFalse = () => navigate(group.HOME.PATH);
 
-    const timer = () => {
+    const timeout = () => {
         if (seconds === 0) {
             setVisibleFalse();
         } else {
@@ -27,7 +27,7 @@ const NotFound = () => {
         }
     };
 
-    setTimeout(() => timer(), 1000);
+    setTimeout(timeout, 1000);
 
     return (
         <Popup isVisible={true} setVisibleFalse={setVisibleFalse} width={340} severity="error" icon={<ErrorOutline />} label="Error"
