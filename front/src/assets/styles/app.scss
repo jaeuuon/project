@@ -6,68 +6,72 @@
 
 html {
     font-size: var.$fontSize;
-}
 
-body {
-    min-width: var.$widthXs;
-    user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    -moz-user-select: none;
-}
+    body {
+        min-width: var.$widthXs;
+        user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        -moz-user-select: none;
 
-.Mui {
-    &Alert {
-        &-icon {
-            align-items: center;
+        input::-ms-reveal {
+            display : none;
         }
 
-        &-message {
-            flex-grow: 1;
-            text-align: center;
+        .Mui {
+            &Alert {
+                &-icon {
+                    align-items: center;
+                }
+        
+                &-message {
+                    flex-grow: 1;
+                    text-align: center;
+                }
+            }
+        
+            &Button-root span {
+                font-weight: bold;
+            }
+        
+            &List {
+                &-root {
+                    padding: 0 !important;
+                }
+        
+                &ItemButton-root {
+                    margin: var.$margin !important;
+                    border-radius: var.$borderRadius !important;
+                }
+            }
+        
+            &Table{
+                &-root {
+                    margin: auto;
+                }
+        
+                &Cell-head {
+                    font-weight: bold !important;
+                }
+            }
+        
+            &Pagination {
+                &-root {
+                    margin-top: calc(var.$margin + var.$padding);
+                }
+        
+                &-ul {
+                    justify-content: center;
+                }
+        
+                &Item-previousNext {
+                    display: none;
+                }
+            }
+        
+            &Tooltip-tooltip {
+                text-align: center;
+            }
         }
-    }
-
-    &Button-root span {
-        font-weight: bold;
-    }
-
-    &List {
-        &-root {
-            padding: 0 !important;
-        }
-
-        &ItemButton-root {
-            margin: var.$margin !important;
-            border-radius: var.$borderRadius !important;
-        }
-    }
-
-    &Table{
-        &-root {
-            margin: auto;
-        }
-
-        &Cell-head {
-            font-weight: bold !important;
-        }
-    }
-
-    &Pagination {
-        &-root {
-            margin-top: calc(var.$margin + var.$padding);
-        }
-
-        &-ul {
-            justify-content: center;
-        }
-
-        &Item-previousNext {
-            display: none;
-        }
-    }
-
-    &Tooltip-tooltip {
-        text-align: center;
     }
 }

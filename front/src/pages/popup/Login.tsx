@@ -22,6 +22,7 @@ import { getPayload, getUser, getDelay } from 'common/payload';
 import { getOnChange, includesCode } from 'common/utils';
 
 import TextField from 'components/pages/TextField';
+import Loading from 'components/Loading';
 
 import styles from 'assets/styles/pages/popup/login.module.scss';
 import commonStyles from 'assets/styles/common.module.scss';
@@ -37,6 +38,7 @@ const Login = ({
 
     const [params, setParams] = useState<Params>({});
     const [error, setError] = useState<CodeMessage>();
+    const [isVisibleLoading, setVisibleLoading] = useState(false);
 
     const dispatch = useAppDispatch();
 
@@ -46,11 +48,15 @@ const Login = ({
         e.preventDefault();
 
         if (validation()) {
+            setVisibleLoading(true);
+
             const { status: responseStatus, data } = await login({
                 email: params.email,
                 password: jsEncrypt.encrypt(params.password || '').toString()
             });
             const { code, message, content } = data;
+
+            setVisibleLoading(false);
 
             if (responseStatus === status.SUCCESS) {
                 const { access } = content[0];
@@ -102,13 +108,13 @@ const Login = ({
     }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form className={commonStyles.positionRelative} onSubmit={onSubmit}>
             <TextField name="email" value={params.email} autoComplete="email"
-                isFullWidth={true} isError={includesCode(emailError, error?.code)} label="Email" onChange={onChange}
+                isError={includesCode(emailError, error?.code)} label="Email" onChange={onChange}
                 ref={emailRef}
             />
             <TextField type="password" name="password" value={params.password} autoComplete="current-password"
-                isFullWidth={true} isError={includesCode(passwordError, error?.code)} label="Password" onChange={onChange}
+                isError={includesCode(passwordError, error?.code)} label="Password" onChange={onChange}
                 ref={passwordRef}
             />
             {error &&
@@ -120,6 +126,7 @@ const Login = ({
             <Button id={styles.login} type="submit" variant="contained">
                 <span>Login</span>
             </Button>
+            <Loading isVisible={isVisibleLoading} />
         </form>
     );
 };

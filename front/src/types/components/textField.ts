@@ -1,7 +1,9 @@
+import { HTMLInputTypeAttribute } from 'react';
+
 export default interface TextField {
-    type?: string;
+    type?: HTMLInputTypeAttribute;
     name: string;
-    value?: string;
+    value: unknown;
     autoComplete?: string;
     isFullWidth?: boolean;
     isError?: boolean;
