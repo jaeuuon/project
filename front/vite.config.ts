@@ -11,5 +11,13 @@ export default defineConfig({
         preprocessorOptions: {
             scss: { additionalData: '@use "./src/assets/styles/variables" as var;' }
         }
+    },
+    server: {
+        proxy: {
+            '/apis': {
+                target: 'http://localhost:8080',
+                changeOrigin: true
+            }
+        }
     }
 });
