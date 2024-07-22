@@ -1,6 +1,6 @@
 const LoginHistory = () => {
     return (
-        <></>
+        <p>LoginHistory</p>
     );
 };
 

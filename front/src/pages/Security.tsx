@@ -1,6 +1,6 @@
 const Security = () => {
     return (
-        <></>
+        <p>Security</p>
     );
 };
 
