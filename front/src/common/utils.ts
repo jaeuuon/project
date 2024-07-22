@@ -1,16 +1,17 @@
 import type { PaletteMode } from '@mui/material';
 import type { Theme } from '@mui/material/styles';
 
+import type { Severity } from 'types/severity';
 import type { StringIndex } from 'types/signature';
-import type Response from 'types/apis/response';
 import type { CodeMessage, SearchCode } from 'types/common/utils';
+import type Response from 'types/apis/response';
 
 import { status } from 'enums/apis/response';
 
 import styles from 'assets/styles/common.module.scss';
 
 export const getBackgroundColorClass = (mode: PaletteMode) => mode === 'light' ? styles.backgroundColorLight : styles.backgroundColorDark;
-export const getBorderColor = (theme: Theme) => `${theme.palette.primary.main}80`;
+export const getBorderColor = (theme: Theme, severity: Severity = 'primary') => `${theme.palette[severity].main}80`;
 
 export const getOnChange = (state: StringIndex, setState: React.Dispatch<React.SetStateAction<StringIndex>>) => {
     return ({ target }: React.ChangeEvent<HTMLInputElement>) => {

@@ -1,0 +1,10 @@
+#message {
+    text-align: center;
+    font-weight: bold;
+}
+
+#seconds {
+    margin-top: calc(var.$margin * 2);
+    text-align: center;
+    color: var.$grey;
+}
