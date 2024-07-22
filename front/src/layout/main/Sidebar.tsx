@@ -30,8 +30,8 @@ const Sidebar = () => {
 
     const theme = useTheme();
 
-    const findGroup = groups.find(({ PATH, ITEMS }) => PATH === pathname || ITEMS.some(({ PATH }) => PATH === pathname));
-    const groupRequiredRoles = Object.values(group).find(({ PATH }) => PATH === findGroup?.PATH)?.REQUIRED.ROLES || [];
+    const findGroups = groups.find(({ PATH, ITEMS }) => PATH === pathname || ITEMS.some(({ PATH }) => PATH === pathname));
+    const findGroupRequiredRoles = Object.values(group).find(({ PATH }) => PATH === findGroups?.PATH)?.REQUIRED.ROLES || [];
 
     const setVisibleFalse = () => dispatch(close());
 
@@ -61,19 +61,19 @@ const Sidebar = () => {
         <>
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
             <Grid id={styles.sidebar} className={isVisible ? commonStyles.displayInitial : ''} item xs="auto"
-                style={{ zIndex: theme.zIndex.modal, backgroundColor: theme.palette.background.paper, borderColor: getBorderColor(theme) }}
+                style={{ zIndex: theme.zIndex.modal, borderColor: getBorderColor(theme), backgroundColor: theme.palette.background.paper }}
                 ref={sidebarRef}
             >
                 <List>
-                    {findGroup?.ITEMS.map(({ PATH, ICON, LABEL, REQUIRED }, index) => {
+                    {findGroups?.ITEMS.map(({ PATH, ICON, LABEL, REQUIRED }, index) => {
                         const requiredRoles = REQUIRED.ROLES;
                         const requiredRolesLength = requiredRoles.length;
 
                         return (
                             <Fragment key={`list-item-main-sidebar-${index}`}>
                                 {(
-                                    (groupRequiredRoles.length === 0 && requiredRolesLength === 0)
-                                    || (groupRequiredRoles.some((groupRequiredRole) => roles.some(({ code }) => groupRequiredRole === code)) && (
+                                    (findGroupRequiredRoles.length === 0 && requiredRolesLength === 0)
+                                    || (findGroupRequiredRoles.some((findGroupRequiredRole) => roles.some(({ code }) => findGroupRequiredRole === code)) && (
                                         requiredRolesLength === 0 || requiredRoles.some((requiredRole) => roles.some(({ code }) => requiredRole === code))
                                     ))
                                 ) &&

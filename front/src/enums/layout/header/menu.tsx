@@ -33,7 +33,7 @@ export const group = {
         PATH: '/security',
         ELEMENT: <Security />,
         ICON: undefined,
-        LABEL: undefined,
+        LABEL: 'Security',
         REQUIRED: {
             INIT: true,
             ROLES: [role.USER]

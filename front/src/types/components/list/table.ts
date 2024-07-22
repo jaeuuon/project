@@ -7,4 +7,4 @@ export default interface Table<T extends StringIndex> {
     content?: T[];
     isFullWidth?: boolean;
     isLoading?: boolean;
-}
+};
