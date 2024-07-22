@@ -3,8 +3,7 @@
     padding-bottom: calc(var.$padding * 4);
 
     #div {
-        position: relative;
-        min-height: var.$fontSize;
+        min-height: 60px;
         margin: var.$margin;
     }
 }

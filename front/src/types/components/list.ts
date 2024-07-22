@@ -11,5 +11,6 @@ export default interface List<T extends StringIndex> {
     columns: KeyValueWitdh[];
     data?: Data<T>;
     isFullWidth?: boolean;
+    isLoading?: boolean;
     onChange: (_event: React.ChangeEvent<unknown>, page: number) => void;
 };

@@ -9,7 +9,6 @@ import { query, columns } from 'enums/apis/pages/security/loginHistory';
 import { list } from 'apis/pages/security/loginHistory';
 
 import List from 'components/pages/List';
-import Loading from 'components/Loading';
 
 const LoginHistory = () => {
     const [params, setParams] = useState<Params>({});
@@ -29,10 +28,7 @@ const LoginHistory = () => {
     }, [response]);
 
     return (
-        <>
-            <List id="list-login-hisory" columns={columns} data={data} isFullWidth={false} onChange={onChange} />
-            <Loading isVisible={isLoading} />
-        </>
+        <List id="list-login-hisory" columns={columns} data={data} isFullWidth={false} isLoading={isLoading} onChange={onChange} />
     );
 };
 

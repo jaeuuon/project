@@ -12,6 +12,7 @@ import NotFound from 'pages/NotFound';
 import Loading from 'components/Loading';
 
 import styles from 'assets/styles/layout/main/content.module.scss';
+import commonStyles from 'assets/styles/common.module.scss';
 
 const Content = () => {
     const { pathname } = useLocation();
@@ -23,7 +24,7 @@ const Content = () => {
 
     return (
         <Grid id={styles.content} item xs>
-            <div id={styles.div}>
+            <div id={styles.div} className={commonStyles.positionRelative}>
                 {(isInit && requiredInit) || !requiredInit
                     ? <Routes>
                         {groups.map(({ PATH, ITEMS }, groupIndex) => {

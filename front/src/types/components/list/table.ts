@@ -6,4 +6,5 @@ export default interface Table<T extends StringIndex> {
     columns: KeyValueWitdh[];
     content?: T[];
     isFullWidth?: boolean;
+    isLoading?: boolean;
 }
