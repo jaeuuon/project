@@ -42,4 +42,28 @@ body {
             border-radius: var.$borderRadius !important;
         }
     }
+
+    &Table{
+        &-root {
+            margin: auto;
+        }
+
+        &Cell-head {
+            font-weight: bold !important;
+        }
+    }
+
+    &Pagination {
+        &-root {
+            margin-top: calc(var.$margin + var.$padding);
+        }
+
+        &-ul {
+            justify-content: center;
+        }
+
+        &Item-previousNext {
+            display: none;
+        }
+    }
 }

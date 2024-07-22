@@ -21,7 +21,7 @@ import { login } from 'apis/pages/popup/login';
 import { getPayload, getUser, getDelay } from 'common/payload';
 import { getOnChange, includesCode } from 'common/utils';
 
-import TextField from 'components/TextField';
+import TextField from 'components/pages/TextField';
 
 import styles from 'assets/styles/pages/popup/login.module.scss';
 import commonStyles from 'assets/styles/common.module.scss';

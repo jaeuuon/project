@@ -8,6 +8,10 @@
     }
 }
 
+.width-initial {
+    width: initial !important;
+}
+
 .word {
     &-keep {
         word-break: keep-all;
