@@ -1,26 +1,32 @@
 import { Fragment } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { useLocation, Routes, Route } from 'react-router-dom';
 
-import type RouterType from 'types/layout/main/content/router';
+import { useAppSelector } from 'hooks';
 
 import { group } from 'enums/layout/header/menu';
 import { groups } from 'enums/layout/main/sidebar';
 
+import { findGroupByPath } from 'common/utils';
+
 import NotFound from 'pages/NotFound';
 import Loading from 'components/Loading';
 
-const Router = ({
-    isInit, roles,
-    isRequiredInit
-}: RouterType) => {
+const Router = () => {
+    const { pathname } = useLocation();
+
+    const { isInit, roles } = useAppSelector((state) => state.user);
+
+    const isRequiredInit = Object.values(group).some(({ PATH, REQUIRED }) => PATH === pathname && REQUIRED.INIT)
+        || groups.some(({ ITEMS }) => ITEMS.some(({ PATH, REQUIRED }) => PATH === pathname && REQUIRED.INIT));
+
     return (
         <>
             {(isInit && isRequiredInit) || !isRequiredInit
                 ? <Routes>
                     {groups.map(({ PATH, ITEMS }, groupIndex) => {
-                        const findGroup = Object.values(group).find(({ PATH: FIND_PATH }) => PATH === FIND_PATH);
+                        const findGroup = findGroupByPath(PATH);
                         const findGroupRequiredRoles = findGroup?.REQUIRED.ROLES || [];
-        
+
                         return (
                             <Fragment key={`route-main-content-${groupIndex}`}>
                                 {findGroup && (
@@ -31,7 +37,7 @@ const Router = ({
                                         <Route path={findGroup.PATH} element={findGroup.ELEMENT} />
                                         {ITEMS.map(({ PATH, ELEMENT, REQUIRED }, itemIndex) => {
                                             const requiredRoles = REQUIRED.ROLES;
-        
+
                                             return <Fragment key={`route-main-content-${groupIndex}-${itemIndex}`}>
                                                 {(requiredRoles.length === 0 || requiredRoles.some((requiredRole) => roles.some(({ code }) => requiredRole === code))) &&
                                                     <Route path={PATH} element={ELEMENT} />

@@ -1,18 +1,16 @@
 import { useLocation } from 'react-router-dom';
 
-import type BreadcrumbsType from 'types/layout/main/content/breadcrumbs';
+import { useAppSelector } from 'hooks';
 
-import { groups } from 'enums/layout/main/sidebar';
-import { group } from 'enums/layout/header/menu';
+import { findGroupsByPath, findGroupByPath } from 'common/utils';
 
-const Breadcrumbs = ({
-    isInit, roles,
-    isRequiredInit
-}: BreadcrumbsType) => {
+const Breadcrumbs = () => {
     const { pathname } = useLocation();
 
-    const findGroups = groups.find(({ PATH, ITEMS }) => PATH === pathname || ITEMS.some(({ PATH }) => PATH === pathname));
-    const findGroup = Object.values(group).find(({ PATH }) => PATH === findGroups?.PATH);
+    const { roles } = useAppSelector((state) => state.user);
+
+    const findGroups = findGroupsByPath(pathname);
+    const findGroup = findGroupByPath(findGroups?.PATH);
     const findGroupRequiredRoles = findGroup?.REQUIRED.ROLES || [];
 
     const findItems = findGroups?.ITEMS.find(({ PATH }) => PATH === pathname);
@@ -20,21 +18,17 @@ const Breadcrumbs = ({
 
     return (
         <>
-            {((isInit && isRequiredInit) || !isRequiredInit) &&
+            {findGroup && (
+                findGroupRequiredRoles.length === 0
+                || findGroupRequiredRoles.some((findGroupRequiredRole) => roles.some(({ code }) => findGroupRequiredRole === code))
+            ) &&
                 <>
-                    {findGroup && (
-                        findGroupRequiredRoles.length === 0
-                        || findGroupRequiredRoles.some((findGroupRequiredRole) => roles.some(({ code }) => findGroupRequiredRole === code))
+                    {findGroup.LABEL}
+                    {findItems && (
+                        findItemsRequiredRoles.length === 0
+                        || findItemsRequiredRoles.some((findItemsRequiredRole) => roles.some(({ code }) => findItemsRequiredRole === code))
                     ) &&
-                        <>
-                            {findGroup.LABEL}
-                            {findItems && (
-                                findItemsRequiredRoles.length === 0
-                                || findItemsRequiredRoles.some((findItemsRequiredRole) => roles.some(({ code }) => findItemsRequiredRole === code))
-                            ) &&
-                                <>{findItems.LABEL}</>
-                            }
-                        </>
+                        <>{findItems.LABEL}</>
                     }
                 </>
             }

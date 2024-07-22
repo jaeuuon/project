@@ -3,12 +3,17 @@ import type { Theme } from '@mui/material/styles';
 
 import type { Severity } from 'types/severity';
 import type { StringIndex } from 'types/signature';
-import type { CodeMessage, SearchCode } from 'types/common/utils';
+import type { CodeMessage } from 'types/common/utils';
 import type Response from 'types/apis/response';
 
+import { groups } from 'enums/layout/main/sidebar';
+import { group } from 'enums/layout/header/menu';
 import { status } from 'enums/apis/response';
 
 import styles from 'assets/styles/common.module.scss';
+
+export const findGroupsByPath = (path: string) => groups.find(({ PATH, ITEMS }) => PATH === path || ITEMS.some(({ PATH }) => PATH === path));
+export const findGroupByPath = (path?: string) => Object.values(group).find(({ PATH }) => PATH === path);
 
 export const getBackgroundColorClass = (mode: PaletteMode) => mode === 'light' ? styles.backgroundColorLight : styles.backgroundColorDark;
 export const getBorderColor = (theme: Theme, severity: Severity = 'primary') => `${theme.palette[severity].main}80`;
@@ -25,7 +30,7 @@ export const getOnChange = (state: StringIndex, setState: React.Dispatch<React.S
     };
 };
 
-export const includesCode = (codeMessage: CodeMessage, searchCode: SearchCode) => Object.values(codeMessage).some(({ code }) => code === searchCode);
+export const includesCode = (codeMessage: CodeMessage, searchCode?: string) => Object.values(codeMessage).some(({ code }) => code === searchCode);
 
 const padStart = (number: number, maxLength: number) => number.toString().padStart(maxLength, '0');
 

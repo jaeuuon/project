@@ -6,12 +6,11 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 import { useTheme } from '@mui/material/styles';
 import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
-import { groups } from 'enums/layout/main/sidebar';
 import { group } from 'enums/layout/header/menu';
 
 import { close } from 'store/layout/main/sidebar';
 
-import { getBorderColor } from 'common/utils';
+import { findGroupsByPath, findGroupByPath, getBorderColor } from 'common/utils';
 
 import Modal from 'components/Modal';
 
@@ -30,8 +29,8 @@ const Sidebar = () => {
 
     const theme = useTheme();
 
-    const findGroups = groups.find(({ PATH, ITEMS }) => PATH === pathname || ITEMS.some(({ PATH }) => PATH === pathname));
-    const findGroupRequiredRoles = Object.values(group).find(({ PATH }) => PATH === findGroups?.PATH)?.REQUIRED.ROLES || [];
+    const findGroups = findGroupsByPath(pathname);
+    const findGroupRequiredRoles = findGroupByPath(findGroups?.PATH)?.REQUIRED.ROLES || [];
 
     const setVisibleFalse = () => dispatch(close());
 
