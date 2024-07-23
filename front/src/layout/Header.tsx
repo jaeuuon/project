@@ -19,9 +19,9 @@ import commonStyles from 'assets/styles/common.module.scss';
 const Header = () => {
     const [isTop, setTop] = useState(true);
 
-    const theme = useTheme();
-
     const mode = useAppSelector((state) => state.mode.value);
+
+    const theme = useTheme();
 
     useEffect(() => {
         const onScroll = () => setTop(window.scrollY === 0 && true);

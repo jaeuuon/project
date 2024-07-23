@@ -18,9 +18,9 @@ const onClick = () => window.scroll({ top: 0, behavior: 'smooth' });
 const Main = () => {
     const [isVisibleToTop, setVisibleToTop] = useState(false);
 
-    const theme = useTheme();
-
     const mode = useAppSelector((state) => state.mode.value);
+
+    const theme = useTheme();
 
     useEffect(() => {
         const onScroll = () => setVisibleToTop(window.scrollY >= 100 && true);

@@ -13,6 +13,7 @@ import { status } from 'enums/apis/response';
 export const findGroupsByPath = (path: string) => groups.find(({ PATH, ITEMS }) => PATH === path || ITEMS.some(({ PATH }) => PATH === path));
 export const findGroupByPath = (path?: string) => Object.values(group).find(({ PATH }) => PATH === path);
 
+export const getGreyColor = (mode: PaletteMode, theme: Theme) => theme.palette.grey[mode === 'light' ? 600 : 500];
 export const getBorderColor = (theme: Theme, severity: Severity = 'primary') => `${theme.palette[severity].main}80`;
 export const getBackgroundColor = (mode: PaletteMode, theme: Theme) => `${theme.palette.grey[mode === 'light' ? 50 : 900]}cc`;
 
