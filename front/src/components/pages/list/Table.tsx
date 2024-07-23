@@ -17,16 +17,16 @@ const Table = <T extends StringIndex>({
             <MaterialTable className={!isFullWidth ? styles.widthInitial : ''} size="small">
                 <TableHead>
                     <TableRow>
-                        {columns.map((column, index) =>
-                            <TableCell key={`${id}-table-head-${index}`} width={column.width} align="center">{column.value}</TableCell>
+                        {columns.map(({ width, value }, index) =>
+                            <TableCell key={`${id}-table-head-${index}`} width={width} align="center">{value}</TableCell>
                         )}
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {content?.map((content, rowIndex) =>
                         <TableRow key={`${id}-table-body-${rowIndex}`}>
-                            {columns.map((column, cellIndex) => {
-                                const value = content[column.key];
+                            {columns.map(({ key }, cellIndex) => {
+                                const value = content[key];
 
                                 return (
                                     <TableCell key={`${id}-table-body-${rowIndex}-${cellIndex}`} align="center">
