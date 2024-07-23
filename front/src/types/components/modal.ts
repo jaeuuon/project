@@ -1,3 +1,4 @@
-import type { default as Visible, VisibleFalse } from 'types/visible';
-
-export default interface Modal extends Visible, VisibleFalse {};
+export default interface Component {
+    isVisible: boolean;
+    setVisibleFalse: () => void;
+};

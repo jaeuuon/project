@@ -1,12 +1,8 @@
 import type { StringIndex } from 'types/signature';
-import type { KeyValueWitdh } from 'types/components/pages/list/table';
+import type { Table } from 'types/components/pages/list/table';
+import type { ChangeEvent } from 'types/components/pages/list/pagination';
 import type { Data } from 'types/apis/response';
 
-export default interface List<T extends StringIndex> {
-    id: string;
-    columns: KeyValueWitdh[];
+export default interface Component<T extends StringIndex> extends Table, ChangeEvent {
     data?: Data<T>;
-    isFullWidth?: boolean;
-    isLoading?: boolean;
-    onChange: (_event: React.ChangeEvent<unknown>, page: number) => void;
 };

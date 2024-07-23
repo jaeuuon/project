@@ -1,3 +1,3 @@
-import type Visible from 'types/visible';
-
-export interface SidebarState extends Visible {};
+export interface SidebarState {
+    isVisible: boolean;
+};

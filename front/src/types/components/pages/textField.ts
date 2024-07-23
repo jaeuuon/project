@@ -1,6 +1,6 @@
 import { HTMLInputTypeAttribute } from 'react';
 
-export default interface TextField {
+export default interface Component {
     type?: HTMLInputTypeAttribute;
     name: string;
     value: unknown;

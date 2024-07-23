@@ -1,6 +1,5 @@
 import type Payload from 'types/common/payload';
-import type { UserState, Role } from 'types/layout/header/user';
-import type { CodeValue } from 'types/value';
+import type { UserState, Roles } from 'types/layout/header/user';
 
 import { role } from 'enums/layout/header/user';
 
@@ -18,7 +17,7 @@ export const getUser = ({
     const authorities = payloadAuthorities.split(',');
     const authorityValues = payloadAuthorityValues.split(',');
 
-    const roles: CodeValue<Role>[] = [];
+    const roles: Roles[] = [];
 
     Object.values(role).forEach((role) =>
         authorities.some((authority, index) => {

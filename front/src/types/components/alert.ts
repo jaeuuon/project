@@ -1,8 +1,9 @@
 import type { AlertColor } from '@mui/material';
-import type { VisibleFalse } from 'types/visible';
 
-export interface Severity {
+import type { CodeMessage } from 'types/apis/response';
+
+export default interface Component {
     severity?: AlertColor;
+    codeMessage: CodeMessage;
+    setVisibleFalse?: () => void;
 };
-
-export default interface Alert extends Severity, VisibleFalse {};

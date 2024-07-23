@@ -1,11 +1,11 @@
 import { useTheme } from '@mui/material/styles';
 import { Grid, CircularProgress } from '@mui/material';
 
-import type LoadingType from 'types/components/loading';
+import type Component from 'types/components/loading';
 
 import styles from 'assets/styles/components/loading.module.scss';
 
-const Loading = ({ isVisible }: LoadingType) => {
+const Loading = ({ isVisible }: Component) => {
     const theme = useTheme();
 
     return (

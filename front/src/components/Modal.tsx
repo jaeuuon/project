@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 
 import { useTheme } from '@mui/material/styles';
 
-import type ModalType from 'types/components/modal';
+import type Component from 'types/components/modal';
 
 import styles from 'assets/styles/components/modal.module.scss';
 
 const Modal = ({
     isVisible, setVisibleFalse
-}: ModalType) => {
+}: Component) => {
     const theme = useTheme();
 
     useEffect(() => {

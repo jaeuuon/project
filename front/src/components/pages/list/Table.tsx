@@ -3,7 +3,7 @@ import { memo } from 'react';
 import { Table as MaterialTable, TableHead, TableBody, TableRow, TableCell } from '@mui/material';
 
 import type { StringIndex } from 'types/signature';
-import type TableType from 'types/components/pages/list/table';
+import type Component from 'types/components/pages/list/table';
 
 import Loading from 'components/Loading';
 
@@ -11,7 +11,7 @@ import styles from 'assets/styles/components/pages/list/table.module.scss';
 
 const Table = <T extends StringIndex>({
     id, columns, content, isFullWidth = true, isLoading = false
-}: TableType<T>) => {
+}: Component<T>) => {
     return (
         <div className={styles.positionRelative}>
             <MaterialTable className={!isFullWidth ? styles.widthInitial : ''} size="small">

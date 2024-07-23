@@ -6,7 +6,7 @@ import { Alert, Button } from '@mui/material';
 
 import JSEncrypt from 'jsencrypt';
 
-import type LoginType from 'types/pages/popup/login';
+import type Page from 'types/pages/popup/login';
 import type { Params } from 'types/apis/pages/popup/login';
 import type { CodeMessage } from 'types/apis/response';
 
@@ -32,7 +32,7 @@ jsEncrypt.setPublicKey(import.meta.env.VITE_PUBLIC_KEY || '');
 
 const Login = ({
     scheduler, setVisibleFalse
-}: LoginType) => {
+}: Page) => {
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
 

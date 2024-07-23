@@ -1,9 +1,8 @@
 import type { PaletteMode } from '@mui/material';
 import type { Theme } from '@mui/material/styles';
 
-import type { Severity } from 'types/severity';
+import type { Severity, CodeMessage } from 'types/common/utils';
 import type { StringIndex } from 'types/signature';
-import type { CodeMessage } from 'types/common/utils';
 import type Response from 'types/apis/response';
 
 import { groups } from 'enums/layout/main/sidebar';

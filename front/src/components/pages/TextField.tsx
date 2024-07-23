@@ -3,7 +3,7 @@ import { forwardRef, ForwardedRef, useState, memo } from 'react';
 import { FormControl, InputLabel, OutlinedInput, InputAdornment, TextField as MaterialTextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-import type TextFieldType from 'types/components/pages/textField';
+import type Component from 'types/components/pages/textField';
 
 import styles from 'assets/styles/components/pages/text-field.module.scss';
 
@@ -11,7 +11,7 @@ const TextField = forwardRef((
     {
         type, name, value, autoComplete,
         isFullWidth = true, isError = false, label, onChange
-    }: TextFieldType,
+    }: Component,
     inputRef?: ForwardedRef<HTMLInputElement>
 ) => {
     const [isVisiblePassword, setVisiblePassword] = useState(false);

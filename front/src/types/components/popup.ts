@@ -1,10 +1,11 @@
-import type { default as Visible, VisibleFalse } from 'types/visible';
-import type { Severity } from 'types/severity';
+import type { Severity } from 'types/common/utils';
 
-export default interface Popup extends Visible, VisibleFalse {
+export default interface Component {
     width: number;
     severity?: Severity;
     icon: JSX.Element;
     label: string;
     content: JSX.Element;
+    isVisible: boolean;
+    setVisibleFalse: () => void;
 };

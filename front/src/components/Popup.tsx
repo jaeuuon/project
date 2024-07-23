@@ -2,7 +2,7 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Button, Tooltip } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
-import type PopupType from 'types/components/popup';
+import type Component from 'types/components/popup';
 
 import { getBorderColor } from 'common/utils';
 
@@ -13,7 +13,7 @@ import styles from 'assets/styles/components/popup.module.scss';
 const Popup = ({
     width, severity = 'primary', icon, label, content,
     isVisible, setVisibleFalse
-}: PopupType) => {
+}: Component) => {
     const theme = useTheme();
     const borderColor = getBorderColor(theme, severity);
 

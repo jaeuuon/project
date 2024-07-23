@@ -1,14 +1,18 @@
-import type { KeyValue } from 'types/value';
 import type { StringIndex } from 'types/signature';
 
-export interface KeyValueWitdh extends KeyValue {
+interface KeyValueWitdh {
+    key: string;
+    value: string;
     width: number;
 };
 
-export default interface Table<T extends StringIndex> {
+export interface Table {
     id: string;
     columns: KeyValueWitdh[];
-    content?: T[];
     isFullWidth?: boolean;
     isLoading?: boolean;
+}
+
+export default interface Component<T extends StringIndex> extends Table {
+    content?: T[];
 };

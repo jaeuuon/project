@@ -1,6 +1,8 @@
-import type { Severity } from 'types/components/alert';
+import type { AlertColor } from '@mui/material';
+
 import type { CodeMessage } from 'types/apis/response';
 
-export interface SnackbarState extends Severity {
+export interface SnackbarState {
+    severity?: AlertColor;
     codeMessage?: CodeMessage;
 };

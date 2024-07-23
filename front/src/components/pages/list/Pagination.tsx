@@ -2,11 +2,11 @@ import { memo } from 'react';
 
 import { Pagination as MaterialPagination } from '@mui/material';
 
-import type PaginationType from 'types/components/pages/list/pagination';
+import type Component from 'types/components/pages/list/pagination';
 
 const Pagination = ({
     totalPages, onChange
-}: PaginationType) => {
+}: Component) => {
     return (
         <MaterialPagination count={totalPages} siblingCount={2} size="small" shape="rounded" onChange={onChange} />
     );
