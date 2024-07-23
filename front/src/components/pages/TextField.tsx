@@ -24,7 +24,9 @@ const TextField = forwardRef((
                 ? <>
                     <FormControl className={styles.textField} fullWidth={isFullWidth} size="small" variant="outlined">
                         <InputLabel error={isError}>{label}</InputLabel>
-                        <OutlinedInput className={styles.outlinedInput} type={isVisiblePassword ? 'text' : 'password'} name={name} value={value || ''} label={label} autoComplete={autoComplete}
+                        <OutlinedInput className={styles.outlinedInput}
+                            type={isVisiblePassword ? 'text' : 'password'} name={name} value={value || ''} label={label} autoComplete={autoComplete}
+                            error={isError} onChange={onChange}
                             endAdornment={
                                 <InputAdornment position="end">
                                     {isVisiblePassword
@@ -33,7 +35,6 @@ const TextField = forwardRef((
                                     }
                                 </InputAdornment>
                             }
-                            error={isError} onChange={onChange}
                             inputRef={inputRef}
                         />
                     </FormControl>
