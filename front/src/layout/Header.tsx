@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useAppSelector } from 'hooks';
 
 import { useTheme } from '@mui/material/styles';
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
 import { getBorderColor, getBackgroundColor } from 'common/utils';
 
@@ -14,7 +14,6 @@ import User from 'layout/header/User';
 import Mode from 'layout/header/Mode';
 
 import styles from 'assets/styles/layout/header.module.scss';
-import commonStyles from 'assets/styles/common.module.scss';
 
 const Header = () => {
     const [isTop, setTop] = useState(true);
@@ -32,7 +31,7 @@ const Header = () => {
     }, []);
 
     return (
-        <div id={styles.header} className={!isTop ? commonStyles.boxShadow : '' }
+        <Box id={styles.header} boxShadow={!isTop ? 2 : 0}
             style={{ zIndex: theme.zIndex.appBar, borderColor: getBorderColor(theme), backgroundColor: getBackgroundColor(mode, theme) }}
         >
             <Grid id={styles.grid} container>
@@ -42,7 +41,7 @@ const Header = () => {
                 <User />
                 <Mode />
             </Grid>
-        </div>
+        </Box>
     );
 };
 

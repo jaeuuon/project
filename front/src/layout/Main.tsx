@@ -12,6 +12,7 @@ import Sidebar from 'layout/main/Sidebar';
 import Content from 'layout/main/Content';
 
 import styles from 'assets/styles/layout/main.module.scss';
+import commonStyles from 'assets/styles/common.module.scss';
 
 const onClick = () => window.scroll({ top: 0, behavior: 'smooth' });
 
@@ -37,9 +38,14 @@ const Main = () => {
                 <Content />
             </Grid>
             {isVisibleToTop &&
-                <div id={styles.toTop} style={{ borderColor: getBorderColor(theme), backgroundColor: getBackgroundColor(mode, theme) }} onClick={onClick}>
-                    <KeyboardArrowUp />
-                </div>
+                <Grid id={styles.toTop} container justifyContent="center" alignItems="center" boxShadow={2}
+                    style={{ borderColor: getBorderColor(theme), backgroundColor: getBackgroundColor(mode, theme) }}
+                    onClick={onClick}
+                >
+                    <Grid item xs="auto">
+                        <KeyboardArrowUp className={commonStyles.displayBlock} />
+                    </Grid>
+                </Grid>
             }
         </>
     );

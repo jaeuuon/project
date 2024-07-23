@@ -1,5 +1,9 @@
+import type { KeyValue } from 'types/value';
 import type { StringIndex } from 'types/signature';
-import type { KeyValueWitdh } from 'types/components/list';
+
+export interface KeyValueWitdh extends KeyValue {
+    width: number;
+};
 
 export default interface Table<T extends StringIndex> {
     id: string;

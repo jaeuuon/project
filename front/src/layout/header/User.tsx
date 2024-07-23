@@ -94,33 +94,37 @@ const User = () => {
     return (
         <Grid id={styles.user} item xs="auto">
             {id
-                ? <>
-                    <div id={styles.div} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
-                        <Tooltip placement="bottom" arrow
-                            title={
-                                <>
-                                    <p>{name} ({roles[0].value})</p>
-                                    <p>{email}</p>
-                                </>
-                            }
-                        >
-                            <Avatar id={styles.avatar}
-                                style={{
-                                    borderColor: isMouseHover ? theme.palette.primary.main : getBorderColor(theme),
-                                    backgroundColor: `${theme.palette.grey[400]}${isMouseHover ? Math.round(255 - (255 * theme.palette.action.hoverOpacity)).toString(16).padStart(2, '0') : ''}`
-                                }}
-                                onClick={onClickAvatar}
+                ? <Grid container>
+                    <Grid item xs="auto">
+                        <div id={styles.div} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
+                            <Tooltip placement="bottom" arrow
+                                title={
+                                    <>
+                                        <p>{name} ({roles[0].value})</p>
+                                        <p>{email}</p>
+                                    </>
+                                }
                             >
-                                <Person />
-                            </Avatar>
+                                <Avatar id={styles.avatar}
+                                    style={{
+                                        borderColor: isMouseHover ? theme.palette.primary.main : getBorderColor(theme),
+                                        backgroundColor: `${theme.palette.grey[400]}${isMouseHover ? Math.round(255 - (255 * theme.palette.action.hoverOpacity)).toString(16).padStart(2, '0') : ''}`
+                                    }}
+                                    onClick={onClickAvatar}
+                                >
+                                    <Person />
+                                </Avatar>
+                            </Tooltip>
+                        </div>
+                    </Grid>
+                    <Grid item xs="auto">
+                        <Tooltip placement="bottom" arrow title="Logout">
+                            <Button id={styles.logout} variant="outlined" onClick={onClickLogout}>
+                                <Logout />
+                            </Button>
                         </Tooltip>
-                    </div>
-                    <Tooltip placement="bottom" arrow title="Logout">
-                        <Button id={styles.logout} variant="outlined" onClick={onClickLogout}>
-                            <Logout />
-                        </Button>
-                    </Tooltip>
-                </>
+                    </Grid>
+                </Grid>
                 : <Button id={styles.login} className={headerStyles.button} variant="outlined" startIcon={<Login />} onClick={setVisibleLoginTrue}>
                     <span className={commonStyles.displayNoneMd}>Login</span>
                 </Button>

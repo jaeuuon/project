@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import { Pagination as MaterialPagination } from '@mui/material';
 
-import type PaginationType from 'types/components/list/pagination';
+import type PaginationType from 'types/components/pages/list/pagination';
 
 const Pagination = ({
     totalPages, onChange

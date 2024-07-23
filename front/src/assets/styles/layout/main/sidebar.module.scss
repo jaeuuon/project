@@ -11,6 +11,10 @@
     overflow: auto;
 }
 
+.display-initial {
+    display: initial !important;
+}
+
 @media (min-width: var.$widthMd) {
     #sidebar {
         z-index: initial !important;

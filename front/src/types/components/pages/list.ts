@@ -1,10 +1,6 @@
 import type { StringIndex } from 'types/signature';
-import type { KeyValue } from 'types/value';
+import type { KeyValueWitdh } from 'types/components/pages/list/table';
 import type { Data } from 'types/apis/response';
-
-export interface KeyValueWitdh extends KeyValue {
-    width: number;
-};
 
 export default interface List<T extends StringIndex> {
     id: string;

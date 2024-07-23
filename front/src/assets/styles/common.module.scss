@@ -3,31 +3,13 @@
 }
 
 .display {
-    &-initial {
-        display: initial !important;
+    &-block {
+        display: block !important;
     }
 
     &-none-md {
         display: none;
     }
-}
-
-.width-initial {
-    width: initial !important;
-}
-
-.word {
-    &-keep {
-        word-break: keep-all;
-    }
-
-    &-break {
-        word-break: break-all;
-    }
-}
-
-.box-shadow {
-    box-shadow: var.$boxShadow;
 }
 
 @media (min-width: var.$widthMd) {

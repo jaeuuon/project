@@ -32,7 +32,7 @@ export const getUser = ({
         })
     );
 
-    return { isInit: true, id, email, name, roles, exp };
+    return { id, email, name, roles, exp, isInit: true };
 };
 
 export const getDelay = ({ exp }: Payload) => (exp * 1000) - 30000 - Date.now();

@@ -3,9 +3,9 @@ import { forwardRef, ForwardedRef, useState, memo } from 'react';
 import { FormControl, InputLabel, OutlinedInput, InputAdornment, TextField as MaterialTextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-import type TextFieldType from 'types/components/textField';
+import type TextFieldType from 'types/components/pages/textField';
 
-import styles from 'assets/styles/components/text-field.module.scss';
+import styles from 'assets/styles/components/pages/text-field.module.scss';
 
 const TextField = forwardRef((
     {

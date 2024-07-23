@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import type { UserState } from 'types/layout/header/user';
 
-const initialState: UserState = { isInit: false, roles: [] };
+const initialState: UserState = { roles: [], isInit: false };
 
 const userSlice = createSlice({
     name: 'user',

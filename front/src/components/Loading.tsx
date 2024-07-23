@@ -1,5 +1,5 @@
 import { useTheme } from '@mui/material/styles';
-import { CircularProgress } from '@mui/material';
+import { Grid, CircularProgress } from '@mui/material';
 
 import type LoadingType from 'types/components/loading';
 
@@ -11,9 +11,11 @@ const Loading = ({ isVisible }: LoadingType) => {
     return (
         <>
             {isVisible &&
-                <div id={styles.loading} style={{ zIndex: theme.zIndex.modal - 1 }}>
-                    <CircularProgress />
-                </div>
+                <Grid id={styles.loading} container justifyContent="center" alignItems="center" style={{ zIndex: theme.zIndex.modal - 1 }}>
+                    <Grid item xs="auto">
+                        <CircularProgress />
+                    </Grid>
+                </Grid>
             }
         </>
     );

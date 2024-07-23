@@ -11,8 +11,8 @@ import Modal from 'components/Modal';
 import styles from 'assets/styles/components/popup.module.scss';
 
 const Popup = ({
-    isVisible, setVisibleFalse,
-    width, severity = 'primary', icon, label, content
+    width, severity = 'primary', icon, label, content,
+    isVisible, setVisibleFalse
 }: PopupType) => {
     const theme = useTheme();
     const borderColor = getBorderColor(theme, severity);

@@ -31,7 +31,7 @@ const jsEncrypt = new JSEncrypt();
 jsEncrypt.setPublicKey(import.meta.env.VITE_PUBLIC_KEY || '');
 
 const Login = ({
-    setVisibleFalse, scheduler
+    scheduler, setVisibleFalse
 }: LoginType) => {
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
@@ -67,8 +67,8 @@ const Login = ({
                 dispatch(set(user));
                 dispatch(success({ code, message }));
 
-                setVisibleFalse();
                 setTimeout(scheduler, getDelay(payload));
+                setVisibleFalse();
             } else {
                 if (includesCode(emailError, code)) {
                     emailRef.current?.focus();

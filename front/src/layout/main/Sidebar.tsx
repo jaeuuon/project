@@ -13,7 +13,6 @@ import { findGroupsByPath, findGroupByPath, getBorderColor } from 'common/utils'
 import Modal from 'components/Modal';
 
 import styles from 'assets/styles/layout/main/sidebar.module.scss';
-import commonStyles from 'assets/styles/common.module.scss';
 
 const Sidebar = () => {
     const sidebarRef = useRef<HTMLInputElement>(null);
@@ -57,7 +56,7 @@ const Sidebar = () => {
     return (
         <>
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
-            <Grid id={styles.sidebar} className={isVisible ? commonStyles.displayInitial : ''} item xs="auto"
+            <Grid id={styles.sidebar} className={isVisible ? styles.displayInitial : ''} item xs="auto"
                 style={{ zIndex: theme.zIndex.modal, borderColor: getBorderColor(theme), backgroundColor: theme.palette.background.paper }}
                 ref={sidebarRef}
             >
