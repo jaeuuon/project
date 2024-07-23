@@ -26,16 +26,6 @@
     }
 }
 
-.background-color {
-    &-light {
-        background-color: #f8f9fabf;
-    }
-
-    &-dark {
-        background-color: #212529bf;
-    }
-}
-
 .box-shadow {
     box-shadow: var.$boxShadow;
 }

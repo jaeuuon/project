@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { CssBaseline } from '@mui/material';
+import { type PaletteMode, type ThemeOptions, CssBaseline } from '@mui/material';
 
 import { getMql, light, dark } from 'store/layout/header/mode';
 
@@ -16,14 +16,54 @@ import '@fontsource/roboto/400.css';
 
 import 'assets/styles/app.scss';
 
+const getThemeOptions = (mode: PaletteMode): ThemeOptions => ({
+    components: {
+        MuiAlert: {
+            styleOverrides: {
+                icon: { alignItems: 'center' },
+                message: { flexGrow: 1, textAlign: 'center' }
+            }
+        },
+        MuiButton: {
+            styleOverrides: {
+                root: { fontWeight: 'bold' }
+            }
+        },
+        MuiList: {
+            styleOverrides: {
+                root: { padding: 0 }
+            }
+        },
+        MuiTable: {
+            styleOverrides: {
+                root: { margin: 'auto' }
+            }
+        },
+        MuiTableCell: {
+            styleOverrides: {
+                head: { fontWeight: 'bold' }
+            }
+        },
+        MuiPagination: {
+            styleOverrides: {
+                ul: { justifyContent: 'center' }
+            }
+        },
+        MuiTooltip: {
+            styleOverrides: {
+                tooltip: { textAlign: 'center' }
+            }
+        }
+    },
+    palette: { mode: mode },
+    typography: { button: { textTransform: 'none' } }
+});
+
 const App = () => {
     const dispatch = useAppDispatch();
     const mode = useAppSelector((state) => state.mode.value);
 
-    const theme = createTheme({
-        palette: { mode: mode },
-        typography: { button: { textTransform: 'none' } }
-    });
+    const theme = createTheme(getThemeOptions(mode));
 
     useEffect(() => {
         const mql = getMql();

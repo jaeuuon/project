@@ -10,13 +10,11 @@ import { groups } from 'enums/layout/main/sidebar';
 import { group } from 'enums/layout/header/menu';
 import { status } from 'enums/apis/response';
 
-import styles from 'assets/styles/common.module.scss';
-
 export const findGroupsByPath = (path: string) => groups.find(({ PATH, ITEMS }) => PATH === path || ITEMS.some(({ PATH }) => PATH === path));
 export const findGroupByPath = (path?: string) => Object.values(group).find(({ PATH }) => PATH === path);
 
-export const getBackgroundColorClass = (mode: PaletteMode) => mode === 'light' ? styles.backgroundColorLight : styles.backgroundColorDark;
 export const getBorderColor = (theme: Theme, severity: Severity = 'primary') => `${theme.palette[severity].main}80`;
+export const getBackgroundColor = (mode: PaletteMode, theme: Theme) => `${theme.palette.grey[mode === 'light' ? 50 : 900]}cc`;
 
 export const getOnChange = (state: StringIndex, setState: React.Dispatch<React.SetStateAction<StringIndex>>) => {
     return ({ target }: React.ChangeEvent<HTMLInputElement>) => {

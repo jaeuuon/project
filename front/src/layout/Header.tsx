@@ -5,7 +5,7 @@ import { useAppSelector } from 'hooks';
 import { useTheme } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 
-import { getBackgroundColorClass, getBorderColor } from 'common/utils';
+import { getBorderColor, getBackgroundColor } from 'common/utils';
 
 import Logo from 'layout/header/Logo';
 import Sidebar from 'layout/header/Sidebar';
@@ -19,14 +19,9 @@ import commonStyles from 'assets/styles/common.module.scss';
 const Header = () => {
     const [isTop, setTop] = useState(true);
 
-    const mode = useAppSelector((state) => state.mode.value);
-
     const theme = useTheme();
-    const classNames = [getBackgroundColorClass(mode)];
 
-    if (!isTop) {
-        classNames.push(commonStyles.boxShadow);
-    }
+    const mode = useAppSelector((state) => state.mode.value);
 
     useEffect(() => {
         const onScroll = () => setTop(window.scrollY === 0 && true);
@@ -37,7 +32,9 @@ const Header = () => {
     }, []);
 
     return (
-        <div id={styles.header} className={classNames.join(' ')} style={{ zIndex: theme.zIndex.appBar, borderColor: getBorderColor(theme) }}>
+        <div id={styles.header} className={!isTop ? commonStyles.boxShadow : '' }
+            style={{ zIndex: theme.zIndex.appBar, borderColor: getBorderColor(theme), backgroundColor: getBackgroundColor(mode, theme) }}
+        >
             <Grid id={styles.grid} container>
                 <Sidebar />
                 <Logo />

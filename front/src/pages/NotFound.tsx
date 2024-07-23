@@ -6,7 +6,7 @@ import { ErrorOutline } from '@mui/icons-material';
 
 import { group } from 'enums/layout/header/menu';
 
-import Popup from 'layout/Popup';
+import Popup from 'components/Popup';
 
 import styles from 'assets/styles/pages/not-found.module.scss';
 

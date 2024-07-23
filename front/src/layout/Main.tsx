@@ -6,7 +6,7 @@ import { useTheme } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 import { KeyboardArrowUp } from '@mui/icons-material';
 
-import { getBackgroundColorClass, getBorderColor } from 'common/utils';
+import { getBorderColor, getBackgroundColor } from 'common/utils';
 
 import Sidebar from 'layout/main/Sidebar';
 import Content from 'layout/main/Content';
@@ -18,9 +18,9 @@ const onClick = () => window.scroll({ top: 0, behavior: 'smooth' });
 const Main = () => {
     const [isVisibleToTop, setVisibleToTop] = useState(false);
 
-    const mode = useAppSelector((state) => state.mode.value);
-
     const theme = useTheme();
+
+    const mode = useAppSelector((state) => state.mode.value);
 
     useEffect(() => {
         const onScroll = () => setVisibleToTop(window.scrollY >= 100 && true);
@@ -37,7 +37,7 @@ const Main = () => {
                 <Content />
             </Grid>
             {isVisibleToTop &&
-                <div id={styles.toTop} className={getBackgroundColorClass(mode)} style={{ borderColor: getBorderColor(theme) }} onClick={onClick}>
+                <div id={styles.toTop} style={{ borderColor: getBorderColor(theme), backgroundColor: getBackgroundColor(mode, theme) }} onClick={onClick}>
                     <KeyboardArrowUp />
                 </div>
             }

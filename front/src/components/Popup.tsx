@@ -2,13 +2,13 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Button, Tooltip } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
-import type PopupType from 'types/layout/popup';
+import type PopupType from 'types/components/popup';
 
 import { getBorderColor } from 'common/utils';
 
 import Modal from 'components/Modal';
 
-import styles from 'assets/styles/layout/popup.module.scss';
+import styles from 'assets/styles/components/popup.module.scss';
 
 const Popup = ({
     isVisible, setVisibleFalse,

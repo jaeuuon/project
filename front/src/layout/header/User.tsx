@@ -19,7 +19,7 @@ import { logout, reissuance } from 'apis/pages/popup/login';
 import { getPayload, getUser, getDelay } from 'common/payload';
 import { getBorderColor, includesCode } from 'common/utils';
 
-import Popup from 'layout/Popup';
+import Popup from 'components/Popup';
 import LoginPopup from 'pages/popup/Login';
 
 import styles from 'assets/styles/layout/header/user.module.scss';
