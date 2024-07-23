@@ -1,15 +1,14 @@
-import { useAppDispatch, useAppSelector } from 'hooks';
-
 import { Grid, Button, Tooltip } from '@mui/material';
 import { LightModeOutlined, DarkModeOutlined } from '@mui/icons-material';
 
+import { useAppSelector, useAppDispatch } from 'hooks';
 import { light, dark } from 'store/layout/header/mode';
 
 import styles from 'assets/styles/layout/header/mode.module.scss';
 
 const Mode = () => {
-    const dispatch = useAppDispatch();
     const isLight = useAppSelector((state) => state.mode.value) === 'light';
+    const dispatch = useAppDispatch();
 
     const onClick = () => dispatch(isLight ? dark() : light());
 

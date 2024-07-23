@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
-import { useAppSelector } from 'hooks';
-
 import { useTheme } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 import { KeyboardArrowUp } from '@mui/icons-material';
+
+import { useAppSelector } from 'hooks';
 
 import { getBorderColor, getBackgroundColor } from 'common/utils';
 

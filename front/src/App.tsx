@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 
-import { useAppDispatch, useAppSelector } from 'hooks';
-
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { type PaletteMode, type ThemeOptions, CssBaseline } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import { useAppSelector, useAppDispatch } from 'hooks';
 import { getMql, light, dark } from 'store/layout/header/mode';
 
 import Header from 'layout/Header';
@@ -13,7 +12,6 @@ import Footer from 'layout/Footer';
 import Snackbar from 'layout/Snackbar';
 
 import '@fontsource/roboto/400.css';
-
 import 'assets/styles/app.scss';
 
 const getThemeOptions = (mode: PaletteMode): ThemeOptions => ({
@@ -60,10 +58,10 @@ const getThemeOptions = (mode: PaletteMode): ThemeOptions => ({
 });
 
 const App = () => {
-    const dispatch = useAppDispatch();
     const mode = useAppSelector((state) => state.mode.value);
-
     const theme = createTheme(getThemeOptions(mode));
+
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         const mql = getMql();

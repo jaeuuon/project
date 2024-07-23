@@ -1,11 +1,10 @@
 import { useRef, useEffect, Fragment } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from 'hooks';
-
 import { useTheme } from '@mui/material/styles';
 import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
+import { useAppSelector, useAppDispatch } from 'hooks';
 import { close } from 'store/layout/main/sidebar';
 
 import { findGroupsByPath, findGroupByPath, getBorderColor } from 'common/utils';

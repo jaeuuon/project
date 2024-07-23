@@ -1,10 +1,7 @@
 import { useRef, useState } from 'react';
-
-import { useAppDispatch } from 'hooks';
+import JSEncrypt from 'jsencrypt';
 
 import { Alert, Button } from '@mui/material';
-
-import JSEncrypt from 'jsencrypt';
 
 import type Page from 'types/pages/popup/login';
 import type { Params } from 'types/apis/pages/popup/login';
@@ -13,6 +10,7 @@ import type { CodeMessage } from 'types/apis/response';
 import { status } from 'enums/apis/response';
 import { emailError, passwordError } from 'enums/apis/pages/popup/login';
 
+import { useAppDispatch } from 'hooks';
 import { set } from 'store/layout/header/user';
 import { success } from 'store/layout/snackbar';
 

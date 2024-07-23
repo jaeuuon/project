@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
-import { useAppSelector } from 'hooks';
-
 import { useTheme } from '@mui/material/styles';
 import { Box, Grid } from '@mui/material';
+
+import { useAppSelector } from 'hooks';
 
 import { getBorderColor, getBackgroundColor } from 'common/utils';
 

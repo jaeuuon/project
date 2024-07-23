@@ -9,8 +9,8 @@ import styles from 'assets/styles/components/pages/text-field.module.scss';
 
 const TextField = forwardRef((
     {
-        type, name, value, autoComplete,
-        isFullWidth = true, isError = false, label, onChange
+        type, name, value, label, autoComplete,
+        isFullWidth = true, isError = false, onChange
     }: Component,
     inputRef?: ForwardedRef<HTMLInputElement>
 ) => {
@@ -24,7 +24,7 @@ const TextField = forwardRef((
                 ? <>
                     <FormControl className={styles.textField} fullWidth={isFullWidth} size="small" variant="outlined">
                         <InputLabel error={isError}>{label}</InputLabel>
-                        <OutlinedInput className={styles.outlinedInput} type={isVisiblePassword ? 'text' : 'password'} name={name} value={value || ''} autoComplete={autoComplete}
+                        <OutlinedInput className={styles.outlinedInput} type={isVisiblePassword ? 'text' : 'password'} name={name} value={value || ''} label={label} autoComplete={autoComplete}
                             endAdornment={
                                 <InputAdornment position="end">
                                     {isVisiblePassword
@@ -33,13 +33,13 @@ const TextField = forwardRef((
                                     }
                                 </InputAdornment>
                             }
-                            error={isError} label={label} onChange={onChange}
+                            error={isError} onChange={onChange}
                             inputRef={inputRef}
                         />
                     </FormControl>
                 </>
-                : <MaterialTextField className={styles.textField} type={type} name={name} value={value || ''} autoComplete={autoComplete}
-                    fullWidth={isFullWidth} size="small" variant="outlined" error={isError} label={label} onChange={onChange}
+                : <MaterialTextField className={styles.textField} type={type} name={name} value={value || ''} label={label} autoComplete={autoComplete}
+                    fullWidth={isFullWidth} size="small" variant="outlined" error={isError} onChange={onChange}
                     inputRef={inputRef}
                 />
             }

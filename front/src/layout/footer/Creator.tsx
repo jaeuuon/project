@@ -1,9 +1,9 @@
-import { useAppSelector } from 'hooks';
-
 import { useTheme } from '@mui/material/styles';
 import { Grid, Tooltip } from '@mui/material';
 
 import { creator } from 'enums/layout/footer/creator';
+
+import { useAppSelector } from 'hooks';
 
 import { getGreyColor } from 'common/utils';
 
@@ -13,7 +13,6 @@ const onClick = () => window.open(creator.URL);
 
 const Creator = () => {
     const mode = useAppSelector((state) => state.mode.value);
-
     const theme = useTheme();
 
     return (

@@ -1,8 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from 'hooks';
-
 import { useTheme } from '@mui/material/styles';
 import { Grid, Avatar, Button, Tooltip } from '@mui/material';
 import { Person, Logout, Login } from '@mui/icons-material';
@@ -11,6 +9,7 @@ import { group } from 'enums/layout/header/menu';
 import { status } from 'enums/apis/response';
 import { ignoredReissuanceError } from 'enums/apis/layout/header/user';
 
+import { useAppSelector, useAppDispatch } from 'hooks';
 import { init, set } from 'store/layout/header/user';
 import { success, error } from 'store/layout/snackbar';
 
@@ -33,8 +32,8 @@ const User = () => {
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
-    const dispatch = useAppDispatch();
     const { id, email, name, roles } = useAppSelector((state) => state.user);
+    const dispatch = useAppDispatch();
 
     const theme = useTheme();
 

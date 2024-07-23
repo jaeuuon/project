@@ -1,10 +1,10 @@
 import { Fragment } from 'react';
 import { useLocation, Routes, Route } from 'react-router-dom';
 
-import { useAppSelector } from 'hooks';
-
 import { group } from 'enums/layout/header/menu';
 import { groups } from 'enums/layout/main/sidebar';
+
+import { useAppSelector } from 'hooks';
 
 import { findGroupByPath } from 'common/utils';
 

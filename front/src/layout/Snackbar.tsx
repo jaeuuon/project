@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
-import { useAppSelector } from 'hooks';
-
 import { Snackbar as MaterialSnackbar, Slide, SlideProps, Alert } from '@mui/material';
+
+import { useAppSelector } from 'hooks';
 
 import styles from 'assets/styles/common.module.scss';
 
