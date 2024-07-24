@@ -8,7 +8,6 @@ import styles from 'assets/styles/layout/header/sidebar.module.scss';
 
 const Sidebar = () => {
     const dispatch = useAppDispatch();
-
     const onClick = () => dispatch(open());
 
     return (

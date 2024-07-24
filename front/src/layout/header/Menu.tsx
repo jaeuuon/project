@@ -12,8 +12,8 @@ import headerStyles from 'assets/styles/layout/header.module.scss';
 import commonStyles from 'assets/styles/common.module.scss';
 
 const Menu = () => {
-    const navigate = useNavigate();
     const roles = useAppSelector((state) => state.user.roles);
+    const navigate = useNavigate();
 
     const buttonClassNames = [styles.button, headerStyles.button];
 

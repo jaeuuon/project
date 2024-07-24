@@ -18,29 +18,27 @@ const NotFound = () => {
     const [seconds, setSeconds] = useState(5);
 
     const navigate = useNavigate();
-
-    const mode = useAppSelector((state) => state.mode.value);
-
-    const theme = useTheme();
-
     const setVisibleFalse = () => navigate(group.HOME.PATH);
 
     const timeout = () => {
-        if (seconds === 0) {
-            setVisibleFalse();
-        } else {
+        if (seconds > 0) {
             setSeconds(seconds - 1);
+        } else {
+            setVisibleFalse();
         }
     };
 
     setTimeout(timeout, 1000);
+
+    const theme = useTheme();
+    const mode = useAppSelector((state) => state.mode.value);
 
     return (
         <Popup isVisible={true} setVisibleFalse={setVisibleFalse} width={340} severity="error" icon={<ErrorOutline />} label="Error"
             content={
                 <>
                     <p id={styles.message} style={{ color: theme.palette.error.main }}>잘못된 경로 또는 권한이 없습니다.</p>
-                    <p id={styles.seconds} style={{ color: getGreyColor(mode, theme) }}>({seconds}초 후에 메인 페이지로 이동합니다.)</p>
+                    <p id={styles.seconds} style={{ color: getGreyColor(theme, mode) }}>({seconds}초 후에 메인 페이지로 이동합니다.)</p>
                 </>
             }
         />

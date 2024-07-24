@@ -18,7 +18,7 @@ export interface Data<T> extends CodeMessage {
     totalPages: number;
 };
 
-export default interface Response<T> {
+export interface Response<T> {
     path: string;
     method: string;
     status: Status;

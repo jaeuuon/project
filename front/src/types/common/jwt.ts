@@ -1,4 +1,4 @@
-export default interface Payload {
+export interface Payload {
     id: number;
     email: string;
     name: string;

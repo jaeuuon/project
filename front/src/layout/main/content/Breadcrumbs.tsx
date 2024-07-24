@@ -2,19 +2,19 @@ import { useLocation } from 'react-router-dom';
 
 import { useAppSelector } from 'hooks';
 
-import { findGroupsByPath, findGroupByPath } from 'common/utils';
+import { findGroupByPath, findGroupsByPath } from 'common/utils';
 
 const Breadcrumbs = () => {
     const { pathname } = useLocation();
 
-    const { roles } = useAppSelector((state) => state.user);
-
     const findGroups = findGroupsByPath(pathname);
-    const findGroup = findGroupByPath(findGroups?.PATH);
+    const findGroup = findGroups && findGroupByPath(findGroups.PATH);
     const findGroupRequiredRoles = findGroup?.REQUIRED.ROLES || [];
 
     const findItems = findGroups?.ITEMS.find(({ PATH }) => PATH === pathname);
     const findItemsRequiredRoles = findItems?.REQUIRED.ROLES || [];
+
+    const { roles } = useAppSelector((state) => state.user);
 
     return (
         <>

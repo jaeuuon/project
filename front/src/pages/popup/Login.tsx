@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import JSEncrypt from 'jsencrypt';
 
-import { Alert, Button } from '@mui/material';
+import { Button } from '@mui/material';
 
 import type Page from 'types/pages/popup/login';
 import type { Params } from 'types/apis/pages/popup/login';
@@ -16,10 +16,11 @@ import { success } from 'store/layout/snackbar';
 
 import { login } from 'apis/pages/popup/login';
 
-import { getPayload, getUser, getDelay } from 'common/payload';
+import { getPayload, getUser, getDelay } from 'common/jwt';
 import { getOnChange, includesCode } from 'common/utils';
 
 import TextField from 'components/pages/TextField';
+import Alert from 'components/Alert';
 import Loading from 'components/Loading';
 
 import styles from 'assets/styles/pages/popup/login.module.scss';
@@ -31,16 +32,42 @@ jsEncrypt.setPublicKey(import.meta.env.VITE_PUBLIC_KEY || '');
 const Login = ({
     scheduler, setVisibleFalse
 }: Page) => {
+    const [params, setParams] = useState<Params>({});
+    const onChange = getOnChange(params, setParams);
+
     const emailRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
 
-    const [params, setParams] = useState<Params>({});
     const [error, setError] = useState<CodeMessage>();
+
+    const focusAndSetError = (inputRef: React.RefObject<HTMLInputElement>, error: CodeMessage) => {
+        inputRef.current?.focus();
+
+        setError(error);
+
+        return false;
+    };
+
+    const validation = () => {
+        const { email, password } = params;
+
+        if (!email) {
+            return focusAndSetError(emailRef, emailError.BLANK);
+        } else if (email.length < 4 || email.length > 100) {
+            return focusAndSetError(emailRef, emailError.SIZE);
+        } else if (!email.match(/^.+@.+$/)) {
+            return focusAndSetError(emailRef, emailError.FORMAT);
+        } else if (!password) {
+            return focusAndSetError(passwordRef, passwordError.BLANK);
+        } else if (password.length < 4 || password.length > 50) {
+            return focusAndSetError(passwordRef, passwordError.DECRYPT_SIZE);
+        }
+
+        return true;
+    };
+
     const [isVisibleLoading, setVisibleLoading] = useState(false);
-
     const dispatch = useAppDispatch();
-
-    const onChange = getOnChange(params, setParams);
 
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -79,32 +106,6 @@ const Login = ({
         }
     };
 
-    const validation = () => {
-        const { email, password } = params;
-
-        if (!email) {
-            return focusAndSetError(emailRef, emailError.BLANK);
-        } else if (email.length < 4 || email.length > 100) {
-            return focusAndSetError(emailRef, emailError.SIZE);
-        } else if (!email.match(/^.+@.+$/)) {
-            return focusAndSetError(emailRef, emailError.FORMAT);
-        } else if (!password) {
-            return focusAndSetError(passwordRef, passwordError.BLANK);
-        } else if (password.length < 4 || password.length > 50) {
-            return focusAndSetError(passwordRef, passwordError.DECRYPT_SIZE);
-        }
-
-        return true;
-    };
-
-    const focusAndSetError = (inputRef: React.RefObject<HTMLInputElement>, error: CodeMessage) => {
-        inputRef.current?.focus();
-
-        setError(error);
-
-        return false;
-    }
-
     return (
         <form className={commonStyles.positionRelative} onSubmit={onSubmit}>
             <TextField name="email" value={params.email} autoComplete="email"
@@ -115,12 +116,7 @@ const Login = ({
                 isError={includesCode(passwordError, error?.code)} label="Password" onChange={onChange}
                 ref={passwordRef}
             />
-            {error &&
-                <Alert id={styles.alert} severity="error">
-                    <p className={commonStyles.wordKeep}>{error.message}</p>
-                    <p className={commonStyles.wordBreak}>[{error.code}]</p>
-                </Alert>
-            }
+            <Alert severity="error" codeMessage={error} />
             <Button id={styles.login} type="submit" variant="contained">
                 <span>Login</span>
             </Button>

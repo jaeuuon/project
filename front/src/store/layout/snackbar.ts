@@ -13,5 +13,5 @@ const snackbarSlice = createSlice({
     }
 });
 
-export default snackbarSlice.reducer;
+export const snackbar = snackbarSlice.reducer;
 export const { success, error } = snackbarSlice.actions;

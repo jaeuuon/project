@@ -19,10 +19,6 @@ const onClick = () => window.scroll({ top: 0, behavior: 'smooth' });
 const Main = () => {
     const [isVisibleToTop, setVisibleToTop] = useState(false);
 
-    const mode = useAppSelector((state) => state.mode.value);
-
-    const theme = useTheme();
-
     useEffect(() => {
         const onScroll = () => setVisibleToTop(window.scrollY >= 100 && true);
 
@@ -30,6 +26,9 @@ const Main = () => {
 
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
+
+    const theme = useTheme();
+    const mode = useAppSelector((state) => state.mode.value);
 
     return (
         <>
@@ -39,7 +38,7 @@ const Main = () => {
             </Grid>
             {isVisibleToTop &&
                 <Grid id={styles.toTop} container justifyContent="center" alignItems="center" boxShadow={2}
-                    style={{ borderColor: getBorderColor(theme), backgroundColor: getBackgroundColor(mode, theme) }}
+                    style={{ borderColor: getBorderColor(theme), backgroundColor: getBackgroundColor(theme, mode) }}
                     onClick={onClick}
                 >
                     <Grid item xs="auto">

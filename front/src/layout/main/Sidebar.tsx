@@ -7,34 +7,34 @@ import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { close } from 'store/layout/main/sidebar';
 
-import { findGroupsByPath, findGroupByPath, getBorderColor } from 'common/utils';
+import { findGroupByPath, findGroupsByPath, getBorderColor } from 'common/utils';
 
 import Modal from 'components/Modal';
 
 import styles from 'assets/styles/layout/main/sidebar.module.scss';
 
 const Sidebar = () => {
-    const sidebarRef = useRef<HTMLInputElement>(null);
+    const dispatch = useAppDispatch();
+
+    const isVisible = useAppSelector((state) => state.sidebar.isVisible);
+    const setVisibleFalse = () => dispatch(close());
 
     const { pathname } = useLocation();
-    const navigate = useNavigate();
-
-    const dispatch = useAppDispatch();
-    const isVisible = useAppSelector((state) => state.sidebar.isVisible);
-    const roles = useAppSelector((state) => state.user.roles);
-
-    const theme = useTheme();
 
     const findGroups = findGroupsByPath(pathname);
-    const findGroupRequiredRoles = findGroupByPath(findGroups?.PATH)?.REQUIRED.ROLES || [];
+    const findGroupRequiredRoles = (findGroups && findGroupByPath(findGroups.PATH)?.REQUIRED.ROLES) || [];
 
-    const setVisibleFalse = () => dispatch(close());
+    const roles = useAppSelector((state) => state.user.roles);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         dispatch(close());
 
         window.scrollTo(0, 0);
     }, [pathname]);
+
+    const sidebarRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         const onResize = () => {
@@ -51,6 +51,8 @@ const Sidebar = () => {
 
         return () => window.removeEventListener('resize', onResize);
     }, []);
+
+    const theme = useTheme();
 
     return (
         <>

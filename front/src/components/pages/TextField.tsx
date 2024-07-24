@@ -15,7 +15,6 @@ const TextField = forwardRef((
     inputRef?: ForwardedRef<HTMLInputElement>
 ) => {
     const [isVisiblePassword, setVisiblePassword] = useState(false);
-
     const onClick = () => setVisiblePassword(!isVisiblePassword);
 
     return (

@@ -10,7 +10,8 @@ import Loading from 'components/Loading';
 import styles from 'assets/styles/components/pages/list/table.module.scss';
 
 const Table = <T extends StringIndex>({
-    id, columns, content, isFullWidth = true, isLoading = false
+    id, columns, content,
+    isFullWidth = true, isLoading = false
 }: Component<T>) => {
     return (
         <div className={styles.positionRelative}>

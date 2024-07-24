@@ -15,7 +15,7 @@ import { success, error } from 'store/layout/snackbar';
 
 import { logout, reissuance } from 'apis/pages/popup/login';
 
-import { getPayload, getUser, getDelay } from 'common/payload';
+import { getPayload, getUser, getDelay } from 'common/jwt';
 import { getBorderColor, includesCode } from 'common/utils';
 
 import Popup from 'components/Popup';
@@ -26,24 +26,18 @@ import headerStyles from 'assets/styles/layout/header.module.scss';
 import commonStyles from 'assets/styles/common.module.scss';
 
 const User = () => {
-    const [isMouseHover, setMouseHover] = useState(false);
-    const [isVisibleLogin, setVisibleLogin] = useState(false);
-
-    const { pathname } = useLocation();
-    const navigate = useNavigate();
-
     const { id, email, name, roles } = useAppSelector((state) => state.user);
-    const dispatch = useAppDispatch();
 
-    const theme = useTheme();
+    const [isMouseHover, setMouseHover] = useState(false);
 
     const onMouseEnter = () => setMouseHover(true);
     const onMouseLeave = () => setMouseHover(false);
 
-    const setVisibleLoginTrue = () => setVisibleLogin(true);
-    const setVisibleLoginFalse = () => setVisibleLogin(false);
+    const navigate = useNavigate();
 
     const onClickAvatar = () => navigate(group.SECURITY.PATH);
+
+    const dispatch = useAppDispatch();
 
     const onClickLogout = async () => {
         const { status: responseStatus, data } = await logout();
@@ -58,6 +52,17 @@ const User = () => {
             dispatch(error({ code, message }));
         }
     };
+
+    const [isVisibleLogin, setVisibleLogin] = useState(false);
+
+    const setVisibleLoginTrue = () => setVisibleLogin(true);
+    const setVisibleLoginFalse = () => setVisibleLogin(false);
+
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        setVisibleLoginFalse();
+    }, [pathname]);
 
     const scheduler = useCallback(async () => {
         const { status: responseStatus, data } = await reissuance();
@@ -86,9 +91,7 @@ const User = () => {
         scheduler();
     }, []);
 
-    useEffect(() => {
-        setVisibleLoginFalse();
-    }, [pathname]);
+    const theme = useTheme();
 
     return (
         <Grid id={styles.user} item xs="auto">

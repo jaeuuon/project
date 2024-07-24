@@ -15,5 +15,5 @@ const modeSlice = createSlice({
     }
 });
 
-export default modeSlice.reducer;
+export const mode = modeSlice.reducer;
 export const { light, dark } = modeSlice.actions;

@@ -9,11 +9,11 @@ import styles from 'assets/styles/components/modal.module.scss';
 const Modal = ({
     isVisible, setVisibleFalse
 }: Component) => {
-    const theme = useTheme();
-
     useEffect(() => {
         document.body.style.overflow = isVisible ? 'hidden' : 'initial';
     }, [isVisible]);
+
+    const theme = useTheme();
 
     return (
         <>

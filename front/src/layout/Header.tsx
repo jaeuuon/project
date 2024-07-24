@@ -18,10 +18,6 @@ import styles from 'assets/styles/layout/header.module.scss';
 const Header = () => {
     const [isTop, setTop] = useState(true);
 
-    const mode = useAppSelector((state) => state.mode.value);
-
-    const theme = useTheme();
-
     useEffect(() => {
         const onScroll = () => setTop(window.scrollY === 0 && true);
 
@@ -30,9 +26,12 @@ const Header = () => {
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
+    const theme = useTheme();
+    const mode = useAppSelector((state) => state.mode.value);
+
     return (
         <Box id={styles.header} boxShadow={!isTop ? 2 : 0}
-            style={{ zIndex: theme.zIndex.appBar, borderColor: getBorderColor(theme), backgroundColor: getBackgroundColor(mode, theme) }}
+            style={{ zIndex: theme.zIndex.appBar, borderColor: getBorderColor(theme), backgroundColor: getBackgroundColor(theme, mode) }}
         >
             <Grid id={styles.grid} container>
                 <Sidebar />

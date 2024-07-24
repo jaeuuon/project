@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import user from 'store/layout/header/user';
-import mode from 'store/layout/header/mode';
-import sidebar from 'store/layout/main/sidebar';
-import snackbar from 'store/layout/snackbar';
+import { user } from 'store/layout/header/user';
+import { mode } from 'store/layout/header/mode';
+import { sidebar } from 'store/layout/main/sidebar';
+import { snackbar } from 'store/layout/snackbar';
 
-const store = configureStore({
+export const store = configureStore({
     reducer: {
         user,
         mode,
@@ -13,5 +13,3 @@ const store = configureStore({
         snackbar
     }
 });
-
-export default store;

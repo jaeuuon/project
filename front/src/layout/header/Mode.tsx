@@ -7,9 +7,8 @@ import { light, dark } from 'store/layout/header/mode';
 import styles from 'assets/styles/layout/header/mode.module.scss';
 
 const Mode = () => {
-    const isLight = useAppSelector((state) => state.mode.value) === 'light';
     const dispatch = useAppDispatch();
-
+    const isLight = useAppSelector((state) => state.mode.value) === 'light';
     const onClick = () => dispatch(isLight ? dark() : light());
 
     return (

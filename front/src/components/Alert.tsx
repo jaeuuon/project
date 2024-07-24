@@ -8,12 +8,16 @@ const Alert = ({
     severity, codeMessage, setVisibleFalse
 }: Component) => {
     return (
-        <MaterialAlert severity={severity} onClose={setVisibleFalse}>
-            <p id={styles.keep}>{codeMessage.message}</p>
-            {severity === 'error' &&
-                <p id={styles.break}>[{codeMessage.code}]</p>
+        <>
+            {codeMessage &&
+                <MaterialAlert severity={severity} onClose={setVisibleFalse}>
+                    <p id={styles.keep}>{codeMessage.message}</p>
+                    {severity === 'error' &&
+                        <p id={styles.break}>[{codeMessage.code}]</p>
+                    }
+                </MaterialAlert>
             }
-        </MaterialAlert>
+        </>
     );
 };
 

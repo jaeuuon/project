@@ -1,4 +1,4 @@
-import type Payload from 'types/common/payload';
+import type { Payload } from 'types/common/jwt';
 import type { UserState, Roles } from 'types/layout/header/user';
 
 import { role } from 'enums/layout/header/user';

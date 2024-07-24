@@ -13,15 +13,14 @@ import Loading from 'components/Loading';
 
 const Router = () => {
     const { pathname } = useLocation();
-
-    const { roles, isInit } = useAppSelector((state) => state.user);
-
     const isRequiredInit = Object.values(group).some(({ PATH, REQUIRED }) => PATH === pathname && REQUIRED.INIT)
         || groups.some(({ ITEMS }) => ITEMS.some(({ PATH, REQUIRED }) => PATH === pathname && REQUIRED.INIT));
 
+    const { roles, isInit } = useAppSelector((state) => state.user);
+
     return (
         <>
-            {(isInit && isRequiredInit) || !isRequiredInit
+            {(isRequiredInit && isInit) || !isRequiredInit
                 ? <Routes>
                     {groups.map(({ PATH, ITEMS }, groupIndex) => {
                         const findGroup = findGroupByPath(PATH);

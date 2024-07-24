@@ -1,20 +1,20 @@
-import type { PaletteMode } from '@mui/material';
 import type { Theme } from '@mui/material/styles';
+import type { PaletteMode } from '@mui/material';
 
 import type { Severity, CodeMessage } from 'types/common/utils';
 import type { StringIndex } from 'types/signature';
-import type Response from 'types/apis/response';
+import type { Response } from 'types/apis/response';
 
-import { groups } from 'enums/layout/main/sidebar';
 import { group } from 'enums/layout/header/menu';
+import { groups } from 'enums/layout/main/sidebar';
 import { status } from 'enums/apis/response';
 
+export const findGroupByPath = (path: string) => Object.values(group).find(({ PATH }) => PATH === path);
 export const findGroupsByPath = (path: string) => groups.find(({ PATH, ITEMS }) => PATH === path || ITEMS.some(({ PATH }) => PATH === path));
-export const findGroupByPath = (path?: string) => Object.values(group).find(({ PATH }) => PATH === path);
 
-export const getGreyColor = (mode: PaletteMode, theme: Theme) => theme.palette.grey[mode === 'light' ? 600 : 500];
+export const getGreyColor = (theme: Theme, mode: PaletteMode) => theme.palette.grey[mode === 'light' ? 600 : 500];
 export const getBorderColor = (theme: Theme, severity: Severity = 'primary') => `${theme.palette[severity].main}80`;
-export const getBackgroundColor = (mode: PaletteMode, theme: Theme) => `${theme.palette.grey[mode === 'light' ? 50 : 900]}cc`;
+export const getBackgroundColor = (theme: Theme, mode: PaletteMode) => `${theme.palette.grey[mode === 'light' ? 50 : 900]}cc`;
 
 export const getOnChange = (state: StringIndex, setState: React.Dispatch<React.SetStateAction<StringIndex>>) => {
     return ({ target }: React.ChangeEvent<HTMLInputElement>) => {
