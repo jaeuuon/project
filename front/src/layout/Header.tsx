@@ -26,12 +26,12 @@ const Header = () => {
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
-    const theme = useTheme();
+    const { zIndex, palette } = useTheme();
     const mode = useAppSelector((state) => state.mode.value);
 
     return (
         <Box id={styles.header} boxShadow={!isTop ? 2 : 0}
-            style={{ zIndex: theme.zIndex.appBar, borderColor: getBorderColor(theme), backgroundColor: getBackgroundColor(theme, mode) }}
+            style={{ zIndex: zIndex.appBar, borderColor: getBorderColor(palette), backgroundColor: getBackgroundColor(palette, mode) }}
         >
             <Grid id={styles.grid} container>
                 <Sidebar />

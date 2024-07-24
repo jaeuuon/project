@@ -12,6 +12,16 @@
     }
 }
 
+.word {
+    &-keep {
+        word-break: keep-all;
+    }
+
+    &-break {
+        word-break: break-all;
+    }
+}
+
 @media (min-width: var.$widthMd) {
     .display {
         &-none-md {

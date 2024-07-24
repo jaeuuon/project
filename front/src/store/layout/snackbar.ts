@@ -8,7 +8,7 @@ const snackbarSlice = createSlice({
     name: 'snackbar',
     initialState,
     reducers: {
-        success: (_state, { payload }) => ({ severity: 'success', codeMessage: payload }),
+        success: (_state, { payload }) => ({ codeMessage: payload }),
         error: (_state, { payload }) => ({ severity: 'error', codeMessage: payload })
     }
 });

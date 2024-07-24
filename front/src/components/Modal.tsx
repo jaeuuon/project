@@ -13,12 +13,12 @@ const Modal = ({
         document.body.style.overflow = isVisible ? 'hidden' : 'initial';
     }, [isVisible]);
 
-    const theme = useTheme();
+    const { zIndex } = useTheme();
 
     return (
         <>
             {isVisible &&
-                <div id={styles.modal} style={{ zIndex: theme.zIndex.modal }} onClick={setVisibleFalse} />
+                <div id={styles.modal} style={{ zIndex: zIndex.modal }} onClick={setVisibleFalse} />
             }
         </>
     );

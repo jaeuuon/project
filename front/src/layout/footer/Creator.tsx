@@ -12,12 +12,12 @@ import styles from 'assets/styles/layout/footer/creator.module.scss';
 const onClick = () => window.open(creator.URL);
 
 const Creator = () => {
-    const theme = useTheme();
+    const { palette } = useTheme();
     const mode = useAppSelector((state) => state.mode.value);
 
     return (
         <Grid id={styles.creator} item xs={6}>
-            <p id={styles.p} style={{ color: getGreyColor(theme, mode) }}>
+            <p id={styles.p} style={{ color: getGreyColor(palette, mode) }}>
                 Created by <Tooltip placement="top" arrow title="GitHub profile"><span id={styles.span} onClick={onClick}>{creator.NAME}</span></Tooltip>.
             </p>
         </Grid>

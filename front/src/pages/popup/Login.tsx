@@ -20,7 +20,7 @@ import { getPayload, getUser, getDelay } from 'common/jwt';
 import { getOnChange, includesCode } from 'common/utils';
 
 import TextField from 'components/pages/TextField';
-import Alert from 'components/Alert';
+import Error from 'components/pages/Error';
 import Loading from 'components/Loading';
 
 import styles from 'assets/styles/pages/popup/login.module.scss';
@@ -69,8 +69,8 @@ const Login = ({
     const [isVisibleLoading, setVisibleLoading] = useState(false);
     const dispatch = useAppDispatch();
 
-    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const onSubmit = async ({ preventDefault }: React.FormEvent<HTMLFormElement>) => {
+        preventDefault();
 
         if (validation()) {
             setVisibleLoading(true);
@@ -116,7 +116,7 @@ const Login = ({
                 isError={includesCode(passwordError, error?.code)} label="Password" onChange={onChange}
                 ref={passwordRef}
             />
-            <Alert severity="error" codeMessage={error} />
+            <Error codeMessage={error} />
             <Button id={styles.login} type="submit" variant="contained">
                 <span>Login</span>
             </Button>

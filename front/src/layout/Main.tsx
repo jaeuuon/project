@@ -27,7 +27,7 @@ const Main = () => {
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
-    const theme = useTheme();
+    const { palette } = useTheme();
     const mode = useAppSelector((state) => state.mode.value);
 
     return (
@@ -38,7 +38,7 @@ const Main = () => {
             </Grid>
             {isVisibleToTop &&
                 <Grid id={styles.toTop} container justifyContent="center" alignItems="center" boxShadow={2}
-                    style={{ borderColor: getBorderColor(theme), backgroundColor: getBackgroundColor(theme, mode) }}
+                    style={{ borderColor: getBorderColor(palette), backgroundColor: getBackgroundColor(palette, mode) }}
                     onClick={onClick}
                 >
                     <Grid item xs="auto">

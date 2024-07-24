@@ -52,13 +52,13 @@ const Sidebar = () => {
         return () => window.removeEventListener('resize', onResize);
     }, []);
 
-    const theme = useTheme();
+    const { zIndex, palette } = useTheme();
 
     return (
         <>
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
             <Grid id={styles.sidebar} className={isVisible ? styles.displayInitial : ''} item xs="auto"
-                style={{ zIndex: theme.zIndex.modal, borderColor: getBorderColor(theme), backgroundColor: theme.palette.background.paper }}
+                style={{ zIndex: zIndex.modal, borderColor: getBorderColor(palette), backgroundColor: palette.background.paper }}
                 ref={sidebarRef}
             >
                 <List>

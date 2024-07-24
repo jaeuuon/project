@@ -10,10 +10,10 @@ import Skills from 'layout/footer/Skills';
 import styles from 'assets/styles/layout/footer.module.scss';
 
 const Footer = () => {
-    const theme = useTheme();
+    const { palette } = useTheme();
 
     return (
-        <div id={styles.footer} style={{ borderColor: getBorderColor(theme) }}>
+        <div id={styles.footer} style={{ borderColor: getBorderColor(palette) }}>
             <Grid id={styles.grid} container>
                 <Creator />
                 <ThemeColor />

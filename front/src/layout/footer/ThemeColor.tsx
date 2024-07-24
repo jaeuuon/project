@@ -8,14 +8,14 @@ import { getGreyColor } from 'common/utils';
 import styles from 'assets/styles/layout/footer/theme-color.module.scss';
 
 const ThemeColor = () => {
-    const theme = useTheme();
+    const { palette } = useTheme();
     const mode = useAppSelector((state) => state.mode.value);
 
-    const color = theme.palette.primary.main;
+    const color = palette.primary.main;
 
     return (
         <Grid id={styles.themeColor} item xs={6}>
-            <p id={styles.p} style={{ color: getGreyColor(theme, mode) }}>
+            <p id={styles.p} style={{ color: getGreyColor(palette, mode) }}>
                 Theme color is <span id={styles.span} style={{ backgroundColor: color }}>{color}</span>
             </p>
         </Grid>

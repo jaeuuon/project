@@ -1,5 +1,4 @@
-import type { Theme } from '@mui/material/styles';
-import type { PaletteMode } from '@mui/material';
+import type { Palette, PaletteMode } from '@mui/material';
 
 import type { Severity, CodeMessage } from 'types/common/utils';
 import type { StringIndex } from 'types/signature';
@@ -12,9 +11,9 @@ import { status } from 'enums/apis/response';
 export const findGroupByPath = (path: string) => Object.values(group).find(({ PATH }) => PATH === path);
 export const findGroupsByPath = (path: string) => groups.find(({ PATH, ITEMS }) => PATH === path || ITEMS.some(({ PATH }) => PATH === path));
 
-export const getGreyColor = (theme: Theme, mode: PaletteMode) => theme.palette.grey[mode === 'light' ? 600 : 500];
-export const getBorderColor = (theme: Theme, severity: Severity = 'primary') => `${theme.palette[severity].main}80`;
-export const getBackgroundColor = (theme: Theme, mode: PaletteMode) => `${theme.palette.grey[mode === 'light' ? 50 : 900]}cc`;
+export const getGreyColor = ({ grey }: Palette, mode: PaletteMode) => grey[mode === 'light' ? 600 : 500];
+export const getBorderColor = (palette: Palette, severity: Severity = 'primary') => `${palette[severity].main}80`;
+export const getBackgroundColor = ({ grey }: Palette, mode: PaletteMode) => `${grey[mode === 'light' ? 50 : 900]}cc`;
 
 export const getOnChange = (state: StringIndex, setState: React.Dispatch<React.SetStateAction<StringIndex>>) => {
     return ({ target }: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,14 +54,15 @@ export const getTimestamp = () => {
     return result;
 };
 
-export const getResponseError = <T>(error: any): Response<T> => {
-    const data = error.response.data;
+export const getResponseError = <T>({ response, config }: any): Response<T> => {
+    const { data } = response;
+    const { url, method } = config;
 
     return typeof data === 'object'
         ? data
         : {
-            path: `${import.meta.env.VITE_API_URL}${error.config.url}`,
-            method: error.config.method.toUpperCase(),
+            path: `${import.meta.env.VITE_API_URL}${url}`,
+            method: method.toUpperCase(),
             status: status.ERROR,
             data: {
                 code: 'ERROR_FRT_INTERNAL_SERVER_ERROR',

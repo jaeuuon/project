@@ -6,12 +6,12 @@ import type Component from 'types/components/loading';
 import styles from 'assets/styles/components/loading.module.scss';
 
 const Loading = ({ isVisible }: Component) => {
-    const theme = useTheme();
+    const { zIndex } = useTheme();
 
     return (
         <>
             {isVisible &&
-                <Grid id={styles.loading} container justifyContent="center" alignItems="center" style={{ zIndex: theme.zIndex.modal - 1 }}>
+                <Grid id={styles.loading} container justifyContent="center" alignItems="center" style={{ zIndex: zIndex.modal - 1 }}>
                     <Grid item xs="auto">
                         <CircularProgress />
                     </Grid>

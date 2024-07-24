@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
-import { Snackbar as MaterialSnackbar, Slide, SlideProps } from '@mui/material';
+import { Snackbar as MaterialSnackbar, Slide, SlideProps, Alert } from '@mui/material';
 
 import { useAppSelector } from 'hooks';
 
-import Alert from 'components/Alert';
+import commonStyles from 'assets/styles/common.module.scss';
 
 const SlideTransition = (slideProps: SlideProps) => <Slide { ...slideProps } direction="up" />;
 
@@ -26,7 +26,12 @@ const Snackbar = () => {
                 <MaterialSnackbar key={codeMessage.code} open={isVisible} autoHideDuration={5000}
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }} TransitionComponent={SlideTransition} onClose={setVisibleFalse}
                 >
-                    <Alert severity={severity} codeMessage={codeMessage} setVisibleFalse={setVisibleFalse} />
+                    <Alert severity={severity} onClose={setVisibleFalse}>
+                        <p className={commonStyles.wordKeep}>{codeMessage.message}</p>
+                        {severity === 'error' &&
+                            <p className={commonStyles.wordBreak}>[{codeMessage.code}]</p>
+                        }
+                    </Alert>
                 </MaterialSnackbar>
             }
         </>

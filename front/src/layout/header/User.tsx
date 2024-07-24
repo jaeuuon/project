@@ -88,7 +88,7 @@ const User = () => {
         scheduler();
     }, []);
 
-    const theme = useTheme();
+    const { palette } = useTheme();
 
     return (
         <Grid id={styles.user} item xs="auto">
@@ -106,8 +106,8 @@ const User = () => {
                             >
                                 <Avatar id={styles.avatar}
                                     style={{
-                                        borderColor: isMouseHover ? theme.palette.primary.main : getBorderColor(theme),
-                                        backgroundColor: `${theme.palette.grey[400]}${isMouseHover ? Math.round(255 - (255 * theme.palette.action.hoverOpacity)).toString(16).padStart(2, '0') : ''}`
+                                        borderColor: isMouseHover ? palette.primary.main : getBorderColor(palette),
+                                        backgroundColor: `${palette.grey[400]}${isMouseHover ? Math.round(255 - (255 * palette.action.hoverOpacity)).toString(16).padStart(2, '0') : ''}`
                                     }}
                                     onClick={onClickAvatar}
                                 >

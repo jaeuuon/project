@@ -14,7 +14,7 @@ const Breadcrumbs = () => {
     const findItems = findGroups?.ITEMS.find(({ PATH }) => PATH === pathname);
     const findItemsRequiredRoles = findItems?.REQUIRED.ROLES || [];
 
-    const { roles } = useAppSelector((state) => state.user);
+    const roles = useAppSelector((state) => state.user.roles);
 
     return (
         <>

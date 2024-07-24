@@ -14,15 +14,15 @@ const Popup = ({
     width, severity = 'primary', icon, label, content,
     isVisible, setVisibleFalse
 }: Component) => {
-    const theme = useTheme();
-    const borderColor = getBorderColor(theme, severity);
+    const { zIndex, palette } = useTheme();
+    const borderColor = getBorderColor(palette, severity);
 
     return (
         <>
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
             {isVisible &&
-                <div id={styles.popup} style={{ zIndex: theme.zIndex.modal, width, borderColor, backgroundColor: theme.palette.background.paper }}>
-                    <Grid id={styles.header} container style={{ color: theme.palette[severity].main, borderColor }}>
+                <div id={styles.popup} style={{ zIndex: zIndex.modal, width, borderColor, backgroundColor: palette.background.paper }}>
+                    <Grid id={styles.header} container style={{ color: palette[severity].main, borderColor }}>
                         <Grid id={styles.icon} item xs="auto">{icon}</Grid>
                         <Grid id={styles.label} item xs>
                             <p id={styles.p}>{label}</p>
