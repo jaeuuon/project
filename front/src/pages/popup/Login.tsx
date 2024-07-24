@@ -7,8 +7,8 @@ import type Page from 'types/pages/popup/login';
 import type { Params } from 'types/apis/pages/popup/login';
 import type { CodeMessage } from 'types/apis/response';
 
-import { status } from 'enums/apis/response';
 import { emailError, passwordError } from 'enums/apis/pages/popup/login';
+import { status } from 'enums/apis/response';
 
 import { useAppDispatch } from 'hooks';
 import { set } from 'store/layout/header/user';

@@ -29,15 +29,13 @@ const User = () => {
     const { id, email, name, roles } = useAppSelector((state) => state.user);
 
     const [isMouseHover, setMouseHover] = useState(false);
-
     const onMouseEnter = () => setMouseHover(true);
     const onMouseLeave = () => setMouseHover(false);
 
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const onClickAvatar = () => navigate(group.SECURITY.PATH);
-
-    const dispatch = useAppDispatch();
 
     const onClickLogout = async () => {
         const { status: responseStatus, data } = await logout();
@@ -54,7 +52,6 @@ const User = () => {
     };
 
     const [isVisibleLogin, setVisibleLogin] = useState(false);
-
     const setVisibleLoginTrue = () => setVisibleLogin(true);
     const setVisibleLoginFalse = () => setVisibleLogin(false);
 

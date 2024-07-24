@@ -20,7 +20,7 @@ const Main = () => {
     const [isVisibleToTop, setVisibleToTop] = useState(false);
 
     useEffect(() => {
-        const onScroll = () => setVisibleToTop(window.scrollY >= 100 && true);
+        const onScroll = () => setVisibleToTop(window.scrollY >= 100);
 
         window.addEventListener('scroll', onScroll);
 

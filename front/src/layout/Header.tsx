@@ -19,7 +19,7 @@ const Header = () => {
     const [isTop, setTop] = useState(true);
 
     useEffect(() => {
-        const onScroll = () => setTop(window.scrollY === 0 && true);
+        const onScroll = () => setTop(window.scrollY === 0);
 
         window.addEventListener('scroll', onScroll);
 
