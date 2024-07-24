@@ -66,10 +66,10 @@ const App = () => {
     useEffect(() => {
         const mql = getMql();
 
-        const onChange = ({ matches }: { matches: boolean; }) => dispatch(matches ? light() : dark());
-        const onBeforeunload = () => window.scrollTo(0, 0);
-
+        const onChange = (ev: MediaQueryListEvent) => dispatch(ev.matches ? light() : dark());
         mql.addEventListener('change', onChange);
+
+        const onBeforeunload = () => window.scrollTo(0, 0);
         window.addEventListener('beforeunload', onBeforeunload);
 
         return () => {

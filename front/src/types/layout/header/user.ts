@@ -1,9 +1,9 @@
 import type { Union } from 'types/union';
 
-import { role } from 'enums/layout/header/user';
+import { ROLE } from 'enums/layout/header/user';
 
 export interface Roles {
-    code: Union<typeof role>;
+    code: Union<typeof ROLE>;
     value: string;
 };
 

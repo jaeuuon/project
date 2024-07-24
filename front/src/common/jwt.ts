@@ -1,7 +1,7 @@
 import type { Payload } from 'types/common/jwt';
 import type { UserState, Roles } from 'types/layout/header/user';
 
-import { role } from 'enums/layout/header/user';
+import { ROLE } from 'enums/layout/header/user';
 
 export const getPayload = (access: string): Payload => {
     const base64Url = access.split('.')[1];
@@ -19,10 +19,10 @@ export const getUser = ({
 
     const roles: Roles[] = [];
 
-    Object.values(role).forEach((role) =>
+    Object.values(ROLE).forEach((ROLE) =>
         authorities.some((authority, index) => {
-            if (role === authority) {
-                roles.push({ code: role, value: authorityValues[index] });
+            if (ROLE === authority) {
+                roles.push({ code: ROLE, value: authorityValues[index] });
 
                 return true;
             } else {

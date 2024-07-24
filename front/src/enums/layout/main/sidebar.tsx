@@ -1,13 +1,13 @@
 
 import { CampaignOutlined, ContactSupportOutlined, GitHub, History } from '@mui/icons-material';
 
-import { group } from 'enums/layout/header/menu';
+import { GROUP } from 'enums/layout/header/menu';
 
 import Notice from 'pages/home/Notice';
 import Contact from 'pages/information/Contact';
 import LoginHistory from 'pages/security/LoginHistory';
 
-export const item = {
+export const ITEM = {
     NOTICE: {
         PATH: '/notice',
         ELEMENT: <Notice />,
@@ -19,7 +19,7 @@ export const item = {
         }
     },
     CONTACT: {
-        PATH: `${group.INFORMATION.PATH}/contact`,
+        PATH: `${GROUP.INFORMATION.PATH}/contact`,
         ELEMENT: <Contact />,
         ICON: <ContactSupportOutlined />,
         LABEL: 'Contact',
@@ -39,7 +39,7 @@ export const item = {
         }
     },
     HISTORY: {
-        PATH: `${group.SECURITY.PATH}/history`,
+        PATH: `${GROUP.SECURITY.PATH}/history`,
         ELEMENT: <LoginHistory />,
         ICON: <History />,
         LABEL: 'Login history',
@@ -50,24 +50,24 @@ export const item = {
     }
 } as const;
 
-export const groups = [
+export const GROUPS = [
     {
-        PATH: group.HOME.PATH,
+        PATH: GROUP.HOME.PATH,
         ITEMS: [
-            item.NOTICE
+            ITEM.NOTICE
         ]
     },
     {
-        PATH: group.INFORMATION.PATH,
+        PATH: GROUP.INFORMATION.PATH,
         ITEMS: [
-            item.CONTACT,
-            item.GITHUB
+            ITEM.CONTACT,
+            ITEM.GITHUB
         ]
     },
     {
-        PATH: group.SECURITY.PATH,
+        PATH: GROUP.SECURITY.PATH,
         ITEMS: [
-            item.HISTORY
+            ITEM.HISTORY
         ]
     }
 ] as const;

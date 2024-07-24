@@ -1,13 +1,13 @@
 export const URL = '/security/history' as const;
 
-export const query = {
+export const QUERY = {
     LIST: 'loginHistory/list',
 } as const;
 
-export const column = {
-    REQUEST_IP: { key: 'requestIp', value: 'Request IP', width: 280 },
-    RESULT: { key: 'result', value: 'Result', width: 360 },
-    CREATED_TIME: { key: 'createdTime', value: 'Created time', width: 440 }
+export const COLUMN = {
+    REQUEST_IP: { KEY: 'requestIp', VALUE: 'Request IP', WIDTH: 280 },
+    RESULT: { KEY: 'result', VALUE: 'Result', WIDTH: 360 },
+    CREATED_TIME: { KEY: 'createdTime', VALUE: 'Created time', WIDTH: 440 }
 } as const;
 
-export const columns = Object.values(column);
+export const COLUMNS = Object.values(COLUMN);

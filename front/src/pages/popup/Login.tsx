@@ -33,6 +33,8 @@ const Login = ({
     scheduler, setVisibleFalse
 }: Page) => {
     const [params, setParams] = useState<Params>({});
+    const { email, password } = params;
+
     const onChange = getOnChange(params, setParams);
 
     const emailRef = useRef<HTMLInputElement>(null);
@@ -49,8 +51,6 @@ const Login = ({
     };
 
     const validation = () => {
-        const { email, password } = params;
-
         if (!email) {
             return focusAndSetError(emailRef, emailError.BLANK);
         } else if (email.length < 4 || email.length > 100) {
@@ -76,17 +76,14 @@ const Login = ({
             setVisibleLoading(true);
 
             const { status: responseStatus, data } = await login({
-                email: params.email,
-                password: jsEncrypt.encrypt(params.password || '').toString()
+                email, password: jsEncrypt.encrypt(password || '').toString()
             });
             const { code, message, content } = data;
 
             setVisibleLoading(false);
 
             if (responseStatus === status.SUCCESS) {
-                const { access } = content[0];
-
-                const payload = getPayload(access);
+                const payload = getPayload(content[0].access);
                 const user = getUser(payload);
 
                 dispatch(set(user));
@@ -108,11 +105,11 @@ const Login = ({
 
     return (
         <form className={commonStyles.positionRelative} onSubmit={onSubmit}>
-            <TextField name="email" value={params.email} autoComplete="email"
+            <TextField name="email" value={email} autoComplete="email"
                 isError={includesCode(emailError, error?.code)} label="Email" onChange={onChange}
                 ref={emailRef}
             />
-            <TextField type="password" name="password" value={params.password} autoComplete="current-password"
+            <TextField type="password" name="password" value={password} autoComplete="current-password"
                 isError={includesCode(passwordError, error?.code)} label="Password" onChange={onChange}
                 ref={passwordRef}
             />

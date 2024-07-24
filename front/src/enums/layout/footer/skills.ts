@@ -1,4 +1,4 @@
-export const skills = [
+export const SKILLS = [
     {
         SRC: 'https://img.shields.io/badge/TypeScript-3178c6?logo=typescript&logoColor=white',
         ALT: 'TypeScript',

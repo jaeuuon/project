@@ -4,7 +4,7 @@ import type { SnackbarState } from 'types/layout/snackbar';
 
 const initialState: SnackbarState = {};
 
-const snackbarSlice = createSlice({
+const { reducer, actions } = createSlice({
     name: 'snackbar',
     initialState,
     reducers: {
@@ -13,5 +13,5 @@ const snackbarSlice = createSlice({
     }
 });
 
-export const snackbar = snackbarSlice.reducer;
-export const { success, error } = snackbarSlice.actions;
+export default reducer;
+export const { success, error } = actions;

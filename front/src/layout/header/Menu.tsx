@@ -15,19 +15,19 @@ const Menu = () => {
     const roles = useAppSelector((state) => state.user.roles);
     const navigate = useNavigate();
 
-    const buttonClassNames = [styles.button, headerStyles.button];
+    const className = [styles.button, headerStyles.button].join(' ');
 
     return (
         <Grid id={styles.menu} item xs>
             {Object.values(group).filter(({ VISIBLE }) => VISIBLE).map(({ PATH, ICON, LABEL, REQUIRED }, index) => {
-                const requiredRoles = REQUIRED.ROLES;
+                const { ROLES } = REQUIRED;
 
                 return (
                     <Fragment key={`button-header-menu-${index}`}>
-                        {(requiredRoles.length === 0
-                            || requiredRoles.some((requiredRole) => roles.some(({ code }) => requiredRole === code))
+                        {(ROLES.length === 0
+                            || ROLES.some((ROLE) => roles.some(({ code }) => ROLE === code))
                         ) &&
-                            <Button className={buttonClassNames.join(' ')} startIcon={ICON} onClick={() => navigate(PATH)}>
+                            <Button className={className} startIcon={ICON} onClick={() => navigate(PATH)}>
                                 <span className={commonStyles.displayNoneMd}>{LABEL}</span>
                             </Button>
                         }

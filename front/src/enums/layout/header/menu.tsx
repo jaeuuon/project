@@ -1,12 +1,12 @@
 import { HomeOutlined, InfoOutlined } from '@mui/icons-material';
 
-import { role } from 'enums/layout/header/user';
+import { ROLE } from 'enums/layout/header/user';
 
 import Home from 'pages/Home';
 import Information from 'pages/Information';
 import Security from 'pages/Security';
 
-export const group = {
+export const GROUP = {
     HOME: {
         PATH: '/',
         ELEMENT: <Home />,
@@ -36,7 +36,7 @@ export const group = {
         LABEL: 'Security',
         REQUIRED: {
             INIT: true,
-            ROLES: [role.USER]
+            ROLES: [ROLE.USER]
         },
         VISIBLE: false
     }

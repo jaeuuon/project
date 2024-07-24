@@ -4,23 +4,25 @@ import type { Severity, CodeMessage } from 'types/common/utils';
 import type { StringIndex } from 'types/signature';
 import type { Response } from 'types/apis/response';
 
-import { group } from 'enums/layout/header/menu';
-import { groups } from 'enums/layout/main/sidebar';
-import { status } from 'enums/apis/response';
+import { GROUP } from 'enums/layout/header/menu';
+import { GROUPS } from 'enums/layout/main/sidebar';
+import { STATUS } from 'enums/apis/response';
 
-export const findGroupByPath = (path: string) => Object.values(group).find(({ PATH }) => PATH === path);
-export const findGroupsByPath = (path: string) => groups.find(({ PATH, ITEMS }) => PATH === path || ITEMS.some(({ PATH }) => PATH === path));
+export const findGroupByPath = (path: string) => Object.values(GROUP).find((GROUP) => GROUP.PATH === path);
+export const findGroupsByPath = (path: string) => GROUPS.find(({ PATH, ITEMS }) => PATH === path || ITEMS.some((ITEM) => ITEM.PATH === path));
 
-export const getGreyColor = ({ grey }: Palette, mode: PaletteMode) => grey[mode === 'light' ? 600 : 500];
+export const getGreyColor = (palette: Palette, mode: PaletteMode) => palette.grey[mode === 'light' ? 600 : 500];
 export const getBorderColor = (palette: Palette, severity: Severity = 'primary') => `${palette[severity].main}80`;
-export const getBackgroundColor = ({ grey }: Palette, mode: PaletteMode) => `${grey[mode === 'light' ? 50 : 900]}cc`;
+export const getBackgroundColor = (palette: Palette, mode: PaletteMode) => `${palette.grey[mode === 'light' ? 50 : 900]}cc`;
 
 export const getOnChange = (state: StringIndex, setState: React.Dispatch<React.SetStateAction<StringIndex>>) => {
     return ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+        const { name: key, value } = target;
+
         if (target.value !== '') {
-            setState({ ...state, [target.name]: target.value });
+            setState({ ...state, [key]: value });
         } else {
-            delete state[target.name];
+            delete state[key];
 
             setState({ ...state });
         }
@@ -32,26 +34,30 @@ export const includesCode = (codeMessage: CodeMessage, searchCode?: string) => O
 const padStart = (number: number, maxLength: number) => number.toString().padStart(maxLength, '0');
 
 export const getTimestamp = () => {
-    const today = new Date();
+    const {
+        getFullYear, getMonth, getDate,
+        getHours, getMinutes, getSeconds, getMilliseconds,
+        toTimeString
+    } = new Date();
 
-    const year = today.getFullYear();
-    const month = padStart(today.getMonth() + 1, 2);
-    const date = padStart(today.getDate(), 2);
+    const year = getFullYear();
+    const month = padStart(getMonth() + 1, 2);
+    const date = padStart(getDate(), 2);
 
-    const hours = padStart(today.getHours(), 2);
-    const minutes = padStart(today.getMinutes(), 2);
-    const seconds = padStart(today.getSeconds(), 2);
-    const milliseconds = padStart(today.getMilliseconds(), 3);
+    const hours = padStart(getHours(), 2);
+    const minutes = padStart(getMinutes(), 2);
+    const seconds = padStart(getSeconds(), 2);
+    const milliseconds = padStart(getMilliseconds(), 3);
 
-    let result = `${year}-${month}-${date} ${hours}:${minutes}:${seconds}.${milliseconds}`;
+    let timestamp = `${year}-${month}-${date} ${hours}:${minutes}:${seconds}.${milliseconds}`;
 
-    const timezone = today.toTimeString().match(/[+-]\d{4}/);
+    const timezone = toTimeString().match(/[+-]\d{4}/);
 
     if (timezone) {
-        result += timezone[0];
+        timestamp += timezone[0];
     }
 
-    return result;
+    return timestamp;
 };
 
 export const getResponseError = <T>({ response, config }: any): Response<T> => {
@@ -63,7 +69,7 @@ export const getResponseError = <T>({ response, config }: any): Response<T> => {
         : {
             path: `${import.meta.env.VITE_API_URL}${url}`,
             method: method.toUpperCase(),
-            status: status.ERROR,
+            status: STATUS.ERROR,
             data: {
                 code: 'ERROR_FRT_INTERNAL_SERVER_ERROR',
                 message: '문제가 발생했습니다. 관리자에게 문의하십시오.',

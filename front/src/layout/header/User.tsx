@@ -66,9 +66,7 @@ const User = () => {
         const { code, message, content } = data;
 
         if (responseStatus === status.SUCCESS) {
-            const { access } = content[0];
-
-            const payload = getPayload(access);
+            const payload = getPayload(content[0].access);
             const user = getUser(payload);
 
             dispatch(set(user));

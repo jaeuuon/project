@@ -6,7 +6,7 @@ export const getMql = () => window.matchMedia("(prefers-color-scheme: light)");
 
 const initialState: ModeState = { value: getMql().matches ? 'light' : 'dark' };
 
-const modeSlice = createSlice({
+const { reducer, actions } = createSlice({
     name: 'snackbar',
     initialState,
     reducers: {
@@ -15,5 +15,5 @@ const modeSlice = createSlice({
     }
 });
 
-export const mode = modeSlice.reducer;
-export const { light, dark } = modeSlice.actions;
+export default reducer;
+export const { light, dark } = actions;

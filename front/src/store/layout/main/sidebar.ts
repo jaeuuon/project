@@ -4,7 +4,7 @@ import type { SidebarState } from 'types/layout/main/sidebar';
 
 const initialState: SidebarState = { isVisible: false };
 
-const sidebarSlice = createSlice({
+const { reducer, actions } = createSlice({
     name: 'snackbar',
     initialState,
     reducers: {
@@ -13,5 +13,5 @@ const sidebarSlice = createSlice({
     }
 });
 
-export const sidebar = sidebarSlice.reducer;
-export const { open, close } = sidebarSlice.actions;
+export default reducer;
+export const { open, close } = actions;
