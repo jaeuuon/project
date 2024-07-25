@@ -4,12 +4,21 @@ export const QUERY = {
     LIST: 'loginHistory/list',
 } as const;
 
-export const COLUMN = {
-    REQUEST_IP: { key: 'requestIp', value: 'Request IP', width: 280 },
-    RESULT: { key: 'result', value: 'Result', width: 360 },
-    CREATED_TIME: { key: 'createdTime', value: 'Created time', width: 440 }
-} as const;
+export const THEAD = [
+    [
+        { colSpan: 1, rowSpan: 2, label: 'Request IP' },
+        { colSpan: 2, rowSpan: 1, label: 'Result' },
+        { colSpan: 1, rowSpan: 2, label: 'Created time' }
+    ],
+    [
+        { colSpan: 1, rowSpan: 1, label: 'Code' },
+        { colSpan: 1, rowSpan: 1, label: 'Value' }
+    ]
+] as const;
 
-export const COLUMNS = [
-    [COLUMN.REQUEST_IP, COLUMN.RESULT, COLUMN.CREATED_TIME]
-];
+export const TBODY = {
+    REQUEST_IP: 'requestIp',
+    RESULT_CODE: 'code',
+    RESULT_VALUE: 'value',
+    CREATED_TIME: 'createdTime'
+} as const;

@@ -1,13 +1,13 @@
 
 import { CampaignOutlined, ContactSupportOutlined, GitHub, History } from '@mui/icons-material';
 
-import { GROUP } from 'constants/layout/header/menu';
+import { MENU as HEADER_MENU } from 'constants/layout/header/menu';
 
 import Notice from 'pages/home/Notice';
 import Contact from 'pages/information/Contact';
 import LoginHistory from 'pages/security/LoginHistory';
 
-export const ITEM = {
+export const MENU = {
     NOTICE: {
         PATH: '/notice',
         ELEMENT: <Notice />,
@@ -19,7 +19,7 @@ export const ITEM = {
         }
     },
     CONTACT: {
-        PATH: `${GROUP.INFORMATION.PATH}/contact`,
+        PATH: `${HEADER_MENU.INFORMATION.PATH}/contact`,
         ELEMENT: <Contact />,
         ICON: <ContactSupportOutlined />,
         LABEL: 'Contact',
@@ -39,7 +39,7 @@ export const ITEM = {
         }
     },
     HISTORY: {
-        PATH: `${GROUP.SECURITY.PATH}/history`,
+        PATH: `${HEADER_MENU.SECURITY.PATH}/history`,
         ELEMENT: <LoginHistory />,
         ICON: <History />,
         LABEL: 'Login history',
@@ -50,24 +50,24 @@ export const ITEM = {
     }
 } as const;
 
-export const GROUPS = [
+export const MENUS = [
     {
-        PATH: GROUP.HOME.PATH,
-        ITEMS: [
-            ITEM.NOTICE
+        PATH: HEADER_MENU.HOME.PATH,
+        SUB_MENUS: [
+            MENU.NOTICE
         ]
     },
     {
-        PATH: GROUP.INFORMATION.PATH,
-        ITEMS: [
-            ITEM.CONTACT,
-            ITEM.GITHUB
+        PATH: HEADER_MENU.INFORMATION.PATH,
+        SUB_MENUS: [
+            MENU.CONTACT,
+            MENU.GITHUB
         ]
     },
     {
-        PATH: GROUP.SECURITY.PATH,
-        ITEMS: [
-            ITEM.HISTORY
+        PATH: HEADER_MENU.SECURITY.PATH,
+        SUB_MENUS: [
+            MENU.HISTORY
         ]
     }
 ] as const;
