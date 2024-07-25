@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { SidebarState } from 'types/layout/main/sidebar';
+import type { SubMenuState } from 'types/layout/main/subMenu';
 
-const initialState: SidebarState = { isVisible: false };
+const initialState: SubMenuState = { isVisible: false };
 
 const { reducer, actions } = createSlice({
-    name: 'snackbar',
+    name: 'subMenu',
     initialState,
     reducers: {
         open: (_state) => ({ isVisible: true }),
