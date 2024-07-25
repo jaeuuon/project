@@ -1,4 +1,3 @@
-
 import { CampaignOutlined, ContactSupportOutlined, GitHub, History } from '@mui/icons-material';
 
 import { MENU as HEADER_MENU } from 'constants/layout/header/menu';
