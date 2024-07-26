@@ -35,9 +35,9 @@ const LoginHistory = ({ isSimple }: Component) => {
             <Table size="small">
                 <TableHead>
                     <TableRow>
-                        <TableCell>Request IP</TableCell>
-                        <TableCell>Result</TableCell>
-                        <TableCell>Created time</TableCell>
+                        <TableCell rowSpan={2}>Request IP</TableCell>
+                        <TableCell colSpan={2}>Result</TableCell>
+                        <TableCell rowSpan={2}>Created time</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell>Code</TableCell>
