@@ -13,7 +13,7 @@ export const get = async <T>(url: string, params: unknown): Promise<Response<T>>
         const { data } = await instance.get(url, { params });
 
         return data;
-    } catch(error: any) {
+    } catch(error) {
         return getResponseError(error);
     }
 };
