@@ -1,0 +1,18 @@
+$widthXs: 360px;
+
+$widthSm: 600px;
+$widthMd: 900px;
+$widthXl: 1536px;
+
+$headerInnerHeight: 35px;
+
+$margin: 5px;
+$padding: $margin;
+
+$headerHeightWithoutBorder: calc(($margin * 2) + ($padding * 2) + $headerInnerHeight);
+
+$borderSize: 1px;
+$border: $borderSize solid;
+$borderRadius: 4px;
+
+$backdropFilter: blur(3px);

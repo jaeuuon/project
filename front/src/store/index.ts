@@ -5,7 +5,7 @@ import mode from 'store/layout/header/mode';
 import subMenu from 'store/layout/main/subMenu';
 import snackbar from 'store/layout/snackbar';
 
-export const store = configureStore({
+const store = configureStore({
     reducer: {
         user,
         mode,
@@ -13,3 +13,5 @@ export const store = configureStore({
         snackbar
     }
 });
+
+export default store;
