@@ -6,13 +6,13 @@ import {
 
 import { ROLE } from 'constants/layout/header/user';
 
-import Home from 'pages/Home';
+import Home from 'pages/home/Home';
 import Notice from 'pages/home/Notice';
 
-import Information from 'pages/Information';
+import Information from 'pages/information/Information';
 import Contact from 'pages/information/Contact';
 
-import Security from 'pages/Security';
+import Security from 'pages/security/Security';
 import LoginHistory from 'pages/security/LoginHistory';
 
 export const MENUS = [

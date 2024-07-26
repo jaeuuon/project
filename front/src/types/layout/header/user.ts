@@ -1,6 +1,6 @@
 import type { ValueOf } from 'types/union';
 
-import { ROLE } from 'constants/layout/header/user';
+import { ROLE } from 'constants/apis/security/authentication';
 
 export interface Roles {
     code: ValueOf<typeof ROLE>;

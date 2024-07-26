@@ -1,8 +1,8 @@
-import type { Severity } from 'types/common/utils';
+import type { AlertColor } from '@mui/material';
 
 export default interface Component {
     width: number;
-    severity?: Severity;
+    severity?: AlertColor;
     icon: JSX.Element;
     label: string;
     content: JSX.Element;
