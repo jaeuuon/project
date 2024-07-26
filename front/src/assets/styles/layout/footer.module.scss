@@ -1,0 +1,8 @@
+#footer {
+    border-top: var.$border;
+
+    > div {
+        max-width: var.$widthXl;
+        margin: auto;
+    }
+}

@@ -1,0 +1,42 @@
+#user {
+    padding: var.$padding;
+    padding-top: calc(var.$padding / 2);
+    order: 5;
+
+    > div {
+        margin: var.$margin;
+        margin-top: calc(var.$margin / 2);
+
+        > div {
+            width: var.$headerInnerHeight;
+            height: var.$headerInnerHeight;
+            border: var.$border;
+            cursor: pointer;
+        }
+    }
+
+    > button {
+        width: var.$headerInnerHeight;
+        min-width: var.$headerInnerHeight;
+        height: var.$headerInnerHeight;
+        margin: var.$margin;
+        margin-top: calc(var.$margin / 2);
+    }
+}
+
+@media (min-width: var.$widthSm) {
+    #user {
+        padding: var.$padding;
+        padding-right: calc(var.$padding / 2);
+        order: 4;
+
+        > div {
+            margin: var.$margin;
+        }
+
+        > button {
+            margin: var.$margin;
+            margin-right: calc(var.$margin / 2);
+        }
+    }
+}

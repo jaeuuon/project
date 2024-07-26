@@ -1,0 +1,13 @@
+#not-found {
+    > p {
+        text-align: center;
+    }
+}
+
+#message {
+    font-weight: bold;
+}
+
+#seconds {
+    margin-top: calc(var.$margin * 2);
+}

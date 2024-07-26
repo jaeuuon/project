@@ -1,0 +1,17 @@
+#header {
+    position: sticky;
+    top: calc(0px - var.$margin - var.$padding - var.$headerInnerHeight);
+    border-bottom: var.$border;
+    backdrop-filter: var.$backdropFilter;
+
+    > div {
+        max-width: var.$widthXl;
+        margin: auto;
+    }
+}
+
+@media (min-width: var.$widthSm) {
+    #header {
+        top: 0;
+    }
+}

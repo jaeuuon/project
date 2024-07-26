@@ -1,0 +1,30 @@
+#sub-menu {
+    padding: var.$padding;
+    padding-top: calc(var.$padding / 2);
+    order: 3;
+
+    > button {
+        width: var.$headerInnerHeight;
+        min-width: var.$headerInnerHeight;
+        height: var.$headerInnerHeight;
+        margin: var.$margin;
+        margin-top: calc(var.$margin / 2);
+    }
+}
+
+@media (min-width: var.$widthSm) {
+    #sub-menu {
+        padding: var.$padding;
+        order: 1;
+
+        > button {
+            margin: var.$margin;
+        }
+    }
+}
+
+@media (min-width: var.$widthMd) {
+    #sub-menu {
+        display: none;
+    }
+}

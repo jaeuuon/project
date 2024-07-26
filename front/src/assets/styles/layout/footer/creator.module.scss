@@ -1,0 +1,12 @@
+#creator {
+    padding: var.$padding;
+
+    > p {
+        margin: var.$margin;
+
+        > span {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,55 @@
+#menu {
+    padding: var.$padding;
+    padding-top: calc(var.$padding / 2);
+    order: 4;
+
+    > button {
+        width: var.$headerInnerHeight;
+        min-width: var.$headerInnerHeight;
+        height: var.$headerInnerHeight;
+        margin: var.$margin;
+        margin-top: calc(var.$margin / 2);
+
+        > span {
+            &:nth-of-type(1) {
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            &:nth-of-type(2) {
+                display: none;
+            }
+        }
+    }
+}
+
+@media (min-width: var.$widthSm) {
+    #menu {
+        padding: var.$padding;
+        order: 3;
+
+        > button {
+            margin: var.$margin;
+        }
+    }
+}
+
+@media (min-width: var.$widthMd) {
+    #menu {
+        > button {
+            width: auto;
+            min-width: 64px;
+
+            > span {
+                &:nth-of-type(1) {
+                    margin-left: -4px;
+                    margin-right: 8px;
+                }
+
+                &:nth-of-type(2) {
+                    display: initial;
+                }
+            }
+        }
+    }
+}
