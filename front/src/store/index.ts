@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import palette from 'store/palette';
 import user from 'store/layout/header/user';
-import mode from 'store/layout/header/mode';
 import subMenu from 'store/layout/main/subMenu';
 import snackbar from 'store/layout/snackbar';
 
 const store = configureStore({
     reducer: {
+        palette,
         user,
-        mode,
         subMenu,
         snackbar
     }

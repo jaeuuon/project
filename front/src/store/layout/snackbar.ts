@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { SnackbarState } from 'types/layout/snackbar';
+import type { SnackbarState } from 'types/store/layout/snackbar';
 
 const initialState: SnackbarState = {};
 

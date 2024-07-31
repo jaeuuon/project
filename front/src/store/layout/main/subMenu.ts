@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { SubMenuState } from 'types/layout/main/subMenu';
+import type { SubMenuState } from 'types/store/layout/main/subMenu';
 
 const initialState: SubMenuState = { isVisible: false };
 

@@ -1,17 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { ModeState } from 'types/layout/header/mode';
+import type { PaletteState } from 'types/store/palette';
 
 export const getMql = () => window.matchMedia("(prefers-color-scheme: light)");
 
-const initialState: ModeState = { value: getMql().matches ? 'light' : 'dark' };
+const initialState: PaletteState = { mode: getMql().matches ? 'light' : 'dark' };
 
 const { reducer, actions } = createSlice({
-    name: 'mode',
+    name: 'palette',
     initialState,
     reducers: {
-        light: (_state) => ({ value: 'light' }),
-        dark: (_state) => ({ value: 'dark' })
+        light: (_state) => ({ mode: 'light' }),
+        dark: (_state) => ({ mode: 'dark' })
     }
 });
 
