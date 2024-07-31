@@ -25,19 +25,14 @@ export const SKILLS = [
         URL: 'https://tanstack.com/query'
     },
     {
-        SRC: 'https://img.shields.io/badge/Axios-5a29e4?logo=axios&logoColor=white',
-        ALT: 'Axios',
-        URL: 'https://axios-http.com'
-    },
-    {
         SRC: 'https://img.shields.io/badge/JSEncrypt-cb3837?logo=npm&logoColor=white',
         ALT: 'JSEncrypt',
         URL: 'https://travistidwell.com/jsencrypt'
     },
     {
-        SRC: 'https://img.shields.io/badge/Material%20UI-007fff?logo=mui&logoColor=white',
-        ALT: 'Material UI',
-        URL: 'https://mui.com'
+        SRC: 'https://img.shields.io/badge/Axios-5a29e4?logo=axios&logoColor=white',
+        ALT: 'Axios',
+        URL: 'https://axios-http.com'
     },
     {
         SRC: 'https://img.shields.io/badge/CSS3-1572b6?logo=css3&logoColor=white',
@@ -48,6 +43,11 @@ export const SKILLS = [
         SRC: 'https://img.shields.io/badge/Sass-cc6699?logo=sass&logoColor=white',
         ALT: 'Sass',
         URL: 'https://sass-lang.com'
+    },
+    {
+        SRC: 'https://img.shields.io/badge/Material%20UI-007fff?logo=mui&logoColor=white',
+        ALT: 'Material UI',
+        URL: 'https://mui.com'
     },
     {
         SRC: 'https://img.shields.io/badge/Vite-646cff?logo=vite&logoColor=white',
