@@ -50,6 +50,11 @@ export const SKILLS = [
         URL: 'https://sass-lang.com'
     },
     {
+        SRC: 'https://img.shields.io/badge/Vite-646cff?logo=vite&logoColor=white',
+        ALT: 'Vite',
+        URL: 'https://vitejs.dev'
+    },
+    {
         SRC: 'https://img.shields.io/badge/Nginx-009639?logo=nginx&logoColor=white',
         ALT: 'Nginx',
         URL: 'https://nginx.org'
