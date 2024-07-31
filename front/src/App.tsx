@@ -6,6 +6,8 @@ import { type PaletteMode, type ThemeOptions, CssBaseline } from '@mui/material'
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { mql, light, dark } from 'store/palette';
 
+import Footer from 'layout/Footer';
+
 import 'assets/styles/app.scss';
 
 const getThemeOptions = (mode: PaletteMode): ThemeOptions => ({
@@ -71,7 +73,7 @@ const App = () => {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <p>App</p>
+            <Footer />
         </ThemeProvider>
     );
 };
