@@ -4,7 +4,7 @@ import type { UserState } from 'types/store/layout/header/user';
 
 const initialState: UserState = { roles: [], isInit: false };
 
-const { reducer, actions } = createSlice({
+const { reducer, actions: { init, set } } = createSlice({
     name: 'user',
     initialState,
     reducers: {
@@ -14,4 +14,4 @@ const { reducer, actions } = createSlice({
 });
 
 export default reducer;
-export const { init, set } = actions;
+export { init, set };

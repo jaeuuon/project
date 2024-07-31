@@ -1,5 +1,5 @@
 import type { Payload } from 'types/common/jwt';
-import type { UserState, Roles } from 'types/layout/header/user';
+import type { UserState, Roles } from 'types/store/layout/header/user';
 
 import { ROLE } from 'constants/apis/security/authentication';
 

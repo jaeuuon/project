@@ -4,7 +4,7 @@ import type { SubMenuState } from 'types/store/layout/main/subMenu';
 
 const initialState: SubMenuState = { isVisible: false };
 
-const { reducer, actions } = createSlice({
+const { reducer, actions: { open, close } } = createSlice({
     name: 'subMenu',
     initialState,
     reducers: {
@@ -14,4 +14,4 @@ const { reducer, actions } = createSlice({
 });
 
 export default reducer;
-export const { open, close } = actions;
+export { open, close };
