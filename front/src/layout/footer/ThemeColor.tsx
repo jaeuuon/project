@@ -9,7 +9,7 @@ import styles from 'assets/styles/layout/footer/theme-color.module.scss';
 
 const ThemeColor = () => {
     const { palette } = useTheme();
-    const { mode } = useAppSelector(({ palette }) => palette);
+    const mode = useAppSelector(({ palette: { mode } }) => mode);
 
     const { primary: { main } } = palette;
 

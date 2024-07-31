@@ -13,7 +13,7 @@ const onClick = () => window.open(CREATOR.URL);
 
 const Creator = () => {
     const { palette } = useTheme();
-    const { mode } = useAppSelector(({ palette }) => palette);
+    const mode = useAppSelector(({ palette: { mode } }) => mode);
 
     return (
         <Grid id={styles.creator} item xs={6}>
