@@ -2,13 +2,13 @@
     > p {
         text-align: center;
         word-break: keep-all;
+
+        &:nth-of-type(1) {
+            font-weight: bold;
+        }
+
+        &:nth-of-type(2) {
+            margin-top: calc(var.$margin * 2);
+        }
     }
-}
-
-#message {
-    font-weight: bold;
-}
-
-#seconds {
-    margin-top: calc(var.$margin * 2);
 }

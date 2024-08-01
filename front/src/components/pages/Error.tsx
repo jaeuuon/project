@@ -11,10 +11,10 @@ const Error = ({ code, message }: Component) => {
         <>
             {(code || message) &&
                 <Alert id={styles.error} severity="error">
-                    {code &&
+                    {message &&
                         <p id={styles.message}>{message}</p>
                     }
-                    {message &&
+                    {code &&
                         <p id={styles.code}>[{code}]</p>
                     }
                 </Alert>

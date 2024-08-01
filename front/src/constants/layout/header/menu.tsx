@@ -15,84 +15,69 @@ import Contact from 'pages/information/Contact';
 import Security from 'pages/Security';
 import LoginHistory from 'pages/security/LoginHistory';
 
-export const MENU = {
-    HOME: {
-        PATH: '/',
+export const PATH = {
+    HOME: '/',
+    INFORMATION: '/information',
+    SECURITY: '/security'
+} as const;
+
+export const MENU = [
+    {
+        PATH: `${PATH.HOME}`,
         ELEMENT: <Home />,
         ICON: <HomeOutlined />,
         LABEL: 'Home',
         VISIBLE: true,
-        REQUIRED: {
-            INIT: false,
-            ROLES: []
-        },
+        REQUIRED: { INIT: false, ROLES: [] },
         SUB_MENUS: [
             {
-                PATH: 'notice',
+                PATH: `${PATH.HOME}notice`,
                 ELEMENT: <Notice />,
                 ICON: <CampaignOutlined />,
                 LABEL: 'Notice',
-                REQUIRED: {
-                    INIT: false,
-                    ROLES: []
-                }
+                REQUIRED: { INIT: false, ROLES: [] }
             }
         ]
     },
-    INFORMATION: {
-        PATH: '/information',
+    {
+        PATH: `${PATH.INFORMATION}`,
         ELEMENT: <Information />,
         ICON: <InfoOutlined />,
         LABEL: 'Information',
         VISIBLE: true,
-        REQUIRED: {
-            INIT: false,
-            ROLES: []
-        },
+        REQUIRED: { INIT: false, ROLES: [] },
         SUB_MENUS: [
             {
-                PATH: '/contact',
+                PATH: `${PATH.INFORMATION}/contact`,
                 ELEMENT: <Contact />,
                 ICON: <ContactSupportOutlined />,
                 LABEL: 'Contact',
-                REQUIRED: {
-                    INIT: false,
-                    ROLES: []
-                }
+                REQUIRED: { INIT: false, ROLES: [] }
             },
             {
                 PATH: 'https://github.com/jaeuuon/project',
                 ELEMENT: undefined,
                 ICON: <GitHub />,
                 LABEL: 'GitHub',
-                REQUIRED: {
-                    INIT: false,
-                    ROLES: []
-                }
+                REQUIRED: { INIT: false, ROLES: [] }
             }
         ]
     },
-    SECURITY: {
-        PATH: '/security',
+    {
+        PATH: `${PATH.SECURITY}`,
         ELEMENT: <Security />,
         ICON: <SecurityIcon />,
         LABEL: 'Security',
         VISIBLE: false,
-        REQUIRED: {
-            INIT: true,
-            ROLES: [ROLE.USER]
-        },
+        REQUIRED: { INIT: true, ROLES: [ROLE.USER] },
         SUB_MENUS: [
             {
-                PATH: '/history',
+                PATH: `${PATH.SECURITY}/history`,
                 ELEMENT: <LoginHistory />,
                 ICON: <History />,
                 LABEL: 'Login history',
-                REQUIRED: {
-                    INIT: true,
-                    ROLES: []
-                }
+                REQUIRED: { INIT: true, ROLES: [] }
             }
         ]
     }
- } as const;
+] as const;

@@ -14,7 +14,7 @@ const Menu = () => {
 
     return (
         <Grid id={styles.menu} item xs>
-            {Object.values(MENU).filter(({ VISIBLE, REQUIRED: { ROLES } }) =>
+            {MENU.filter(({ VISIBLE, REQUIRED: { ROLES } }) =>
                 VISIBLE
                 && (ROLES.length === 0 || ROLES.some((ROLE) => roles.some(({ code }) => ROLE === code)))
             ).map(({ PATH, ICON, LABEL }, index) =>

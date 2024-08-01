@@ -60,23 +60,19 @@ const SubMenu = () => {
                 ref={subMenuRef}
             >
                 <List>
-                    {Object.values(MENU).filter(({ PATH, SUB_MENUS }) =>
-                        (pathname === PATH || SUB_MENUS.some(({ PATH: SUB_PATH }) => pathname === `${PATH}${SUB_PATH}`))
-                    ).map(({ PATH, SUB_MENUS }, index) =>
-                        <Fragment key={`list-item-main-sub-menu-${index}`}>
-                            {SUB_MENUS.filter(({ REQUIRED: { ROLES } }) =>
-                                ROLES.length === 0 || ROLES.some((ROLE) => roles.some(({ code }) => ROLE === code))
-                            ).map(({ PATH: SUB_PATH, ICON, LABEL }, subIndex) =>
-                                <ListItem key={`list-item-main-sub-menu-${index}-${subIndex}`} disablePadding
-                                    onClick={() => SUB_PATH.startsWith('http') ? window.open(SUB_PATH) : navigate(`${PATH}${SUB_PATH}`)}
-                                >
-                                    <ListItemButton dense>
-                                        <ListItemIcon>{ICON}</ListItemIcon>
-                                        <ListItemText primary={LABEL} />
-                                    </ListItemButton>
-                                </ListItem>
-                            )}
-                        </Fragment>
+                    {MENU.find(({ PATH, SUB_MENUS }) =>
+                        (pathname === PATH || SUB_MENUS.some(({ PATH }) => pathname === PATH))
+                    )?.SUB_MENUS.filter(({ REQUIRED: { ROLES } }) =>
+                        ROLES.length === 0 || ROLES.some((ROLE) => roles.some(({ code }) => ROLE === code))
+                    ).map(({ PATH, ICON, LABEL }, index) =>
+                        <ListItem key={`list-item-main-sub-menu-${index}`} disablePadding
+                            onClick={() => PATH.startsWith('http') ? window.open(PATH) : navigate(PATH)}
+                        >
+                            <ListItemButton dense>
+                                <ListItemIcon>{ICON}</ListItemIcon>
+                                <ListItemText primary={LABEL} />
+                            </ListItemButton>
+                        </ListItem>
                     )}
                 </List>
             </Grid>

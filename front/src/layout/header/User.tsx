@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Avatar, Button, Tooltip } from '@mui/material';
 import { Person, Logout, Login } from '@mui/icons-material';
 
-import { MENU } from 'constants/layout/header/menu';
+import { PATH } from 'constants/layout/header/menu';
 import { STATUS } from 'constants/apis/response';
 import { REISSUANCE_IGNORED_ERROR } from 'constants/apis/security/authentication';
 
@@ -33,7 +33,7 @@ const User = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
-    const onClickAvatar = () => navigate(MENU.SECURITY.PATH);
+    const onClickAvatar = () => navigate(PATH.SECURITY);
 
     const onClickLogout = async () => {
         const { status, data: { code, message } } = await logout();
@@ -42,7 +42,7 @@ const User = () => {
             dispatch(init());
             dispatch(success({ code, message }));
 
-            navigate(MENU.HOME.PATH);
+            navigate(PATH.HOME);
         } else {
             dispatch(error({ code, message }));
         }
