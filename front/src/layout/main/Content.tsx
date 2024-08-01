@@ -1,6 +1,18 @@
+import { Grid } from '@mui/material';
+
+import Breadcrumbs from 'layout/main/content/Breadcrumbs';
+import Router from 'layout/main/content/Router';
+
+import styles from 'assets/styles/layout/main/content.module.scss';
+
 const Content = () => {
     return (
-        <p>Content</p>
+        <Grid id={styles.content} item xs>
+            <div>
+                <Breadcrumbs />
+                <Router />
+            </div>
+        </Grid>
     );
 };
 

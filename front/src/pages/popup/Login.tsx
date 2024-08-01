@@ -26,7 +26,7 @@ import Loading from 'components/Loading';
 import styles from 'assets/styles/pages/popup/login.module.scss';
 
 const jsEncrypt = new JSEncrypt();
-jsEncrypt.setPublicKey(import.meta.env.VITE_PUBLIC_KEY || '');
+jsEncrypt.setPublicKey(import.meta.env.VITE_PUBLIC_KEY);
 
 const Login = ({
     scheduler, setVisibleFalse

@@ -32,12 +32,12 @@ const SubMenu = () => {
     const isVisible = useAppSelector(({ subMenu: { isVisible } }) => isVisible);
     const setVisibleFalse = () => dispatch(close());
 
-    const sidebarRef = useRef<HTMLInputElement>(null);
+    const subMenuRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         const onResize = () => {
-            if (sidebarRef.current) {
-                const styles = window.getComputedStyle(sidebarRef.current);
+            if (subMenuRef.current) {
+                const styles = window.getComputedStyle(subMenuRef.current);
 
                 if (styles.position !== 'fixed') {
                     dispatch(close());
@@ -57,18 +57,17 @@ const SubMenu = () => {
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
             <Grid id={styles.subMenu} className={isVisible ? styles.visible : ''} item xs="auto"
                 style={{ zIndex: modal, borderColor: getBorderColor(palette), backgroundColor: palette.background.paper }}
-                ref={sidebarRef}
+                ref={subMenuRef}
             >
                 <List>
                     {Object.values(MENU).filter(({ PATH, SUB_MENUS }) =>
                         (pathname === PATH || SUB_MENUS.some(({ PATH: SUB_PATH }) => pathname === `${PATH}${SUB_PATH}`))
                     ).map(({ PATH, SUB_MENUS }, index) =>
-                        <Fragment key={`list-item-main-sidebar-${index}`}>
+                        <Fragment key={`list-item-main-sub-menu-${index}`}>
                             {SUB_MENUS.filter(({ REQUIRED: { ROLES } }) =>
-                                ROLES.length === 0
-                                || ROLES.some((ROLE) => roles.some(({ code }) => ROLE === code))
+                                ROLES.length === 0 || ROLES.some((ROLE) => roles.some(({ code }) => ROLE === code))
                             ).map(({ PATH: SUB_PATH, ICON, LABEL }, subIndex) =>
-                                <ListItem key={`list-item-main-sidebar-${index}-${subIndex}`} disablePadding
+                                <ListItem key={`list-item-main-sub-menu-${index}-${subIndex}`} disablePadding
                                     onClick={() => SUB_PATH.startsWith('http') ? window.open(SUB_PATH) : navigate(`${PATH}${SUB_PATH}`)}
                                 >
                                     <ListItemButton dense>
