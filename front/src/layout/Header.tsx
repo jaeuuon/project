@@ -5,7 +5,7 @@ import { Box, Grid } from '@mui/material';
 
 import { useAppSelector } from 'hooks';
 
-import { getBorderColor, getBackgroundColor } from 'common/util';
+import { getBorderColor, getBackgroundGreyColor } from 'common/util';
 
 import Logo from 'layout/header/Logo';
 import SubMenu from 'layout/header/SubMenu';
@@ -31,7 +31,7 @@ const Header = () => {
 
     return (
         <Box id={styles.header} boxShadow={!isTop ? 2 : 0}
-            style={{ zIndex: appBar, borderColor: getBorderColor(palette), backgroundColor: getBackgroundColor(palette, mode) }}
+            style={{ zIndex: appBar, borderColor: getBorderColor(palette), backgroundColor: getBackgroundGreyColor(palette, mode) }}
         >
             <Grid id={styles.grid} container>
                 <SubMenu />

@@ -6,7 +6,7 @@ import { KeyboardArrowUp } from '@mui/icons-material';
 
 import { useAppSelector } from 'hooks';
 
-import { getBorderColor, getBackgroundColor } from 'common/util';
+import { getBorderColor, getBackgroundGreyColor } from 'common/util';
 
 import SubMenu from 'layout/main/SubMenu';
 import Content from 'layout/main/Content';
@@ -37,7 +37,7 @@ const Main = () => {
             </Grid>
             {isVisibleToTop &&
                 <Grid id={styles.toTop} container justifyContent="center" alignItems="center" boxShadow={2}
-                    style={{ borderColor: getBorderColor(palette), backgroundColor: getBackgroundColor(palette, mode) }}
+                    style={{ borderColor: getBorderColor(palette), backgroundColor: getBackgroundGreyColor(palette, mode) }}
                     onClick={onClick}
                 >
                     <Grid item xs="auto">

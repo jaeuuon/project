@@ -12,7 +12,7 @@ const isLightMode = (mode: PaletteMode) => mode === 'light';
 
 export const getGreyColor = ({ grey }: Palette, mode: PaletteMode) => grey[isLightMode(mode) ? 600 : 400];
 export const getBorderColor = (palette: Palette, severity?: AlertColor) => `${palette[severity ?? 'primary'].main}80`;
-export const getBackgroundColor = ({ grey }: Palette, mode: PaletteMode) => `${grey[isLightMode(mode) ? 50 : 900]}cc`;
+export const getBackgroundGreyColor = ({ grey }: Palette, mode: PaletteMode) => `${grey[isLightMode(mode) ? 50 : 900]}cc`;
 
 export const getOnChange = <T extends StringIndex>(state: T, setState: React.Dispatch<React.SetStateAction<T>>) => {
     return ({ target: { name: key, value } }: React.ChangeEvent<HTMLInputElement>) => {
