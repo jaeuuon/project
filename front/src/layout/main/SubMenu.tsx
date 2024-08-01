@@ -1,4 +1,4 @@
-import { useEffect, useRef, Fragment } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useTheme } from '@mui/material/styles';
