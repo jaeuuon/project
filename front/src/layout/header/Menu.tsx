@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Grid, Button } from '@mui/material';
 
-import { MENUS } from 'constants/layout/header/menu';
+import { MENU } from 'constants/layout/header/menu';
 
 import { useAppSelector } from 'hooks';
 
@@ -14,7 +14,7 @@ const Menu = () => {
 
     return (
         <Grid id={styles.menu} item xs>
-            {MENUS.filter(({ VISIBLE, REQUIRED: { ROLES } }) =>
+            {Object.values(MENU).filter(({ VISIBLE, REQUIRED: { ROLES } }) =>
                 VISIBLE && (
                     ROLES.length === 0
                     || ROLES.some((ROLE) => roles.some(({ code }) => ROLE === code))

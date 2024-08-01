@@ -26,10 +26,10 @@ const TextField = forwardRef((
                         <OutlinedInput type={isVisiblePassword ? 'text' : 'password'} name={name} value={value ?? ''} label={label} autoComplete={autoComplete}
                             error={isError} onChange={onChange}
                             endAdornment={
-                                <InputAdornment position="end">
+                                <InputAdornment position="end" onClick={onClick}>
                                     {isVisiblePassword
-                                        ? <Visibility onClick={onClick} />
-                                        : <VisibilityOff onClick={onClick} />
+                                        ? <Visibility />
+                                        : <VisibilityOff />
                                     }
                                 </InputAdornment>
                             }

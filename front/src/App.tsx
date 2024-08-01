@@ -25,6 +25,17 @@ const getThemeOptions = (mode: PaletteMode): ThemeOptions => ({
                 root: { fontWeight: 'bold' }
             }
         },
+        MuiInputAdornment: {
+            styleOverrides: {
+                positionEnd: { position: 'absolute', right: '14px', cursor: 'pointer' }
+            }
+        },
+        MuiInputBase: {
+            styleOverrides: {
+                adornedEnd: { paddingRight: '0 !important' },
+                inputAdornedEnd: { paddingRight: '43px !important' }
+            }
+        },
         MuiList: {
             styleOverrides: {
                 root: { padding: 0 }
@@ -67,8 +78,12 @@ const App = () => {
         const onChange = ({ matches }: MediaQueryListEvent) => dispatch(matches ? light() : dark());
         mql.addEventListener('change', onChange);
 
+        const onBeforeunload = () => window.scrollTo(0, 0);
+        window.addEventListener('beforeunload', onBeforeunload);
+
         return () => {
             mql.removeEventListener('change', onChange);
+            window.removeEventListener('beforeunload', onBeforeunload);
         };
     }, []);
 

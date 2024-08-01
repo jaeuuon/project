@@ -15,8 +15,8 @@ import Contact from 'pages/information/Contact';
 import Security from 'pages/Security';
 import LoginHistory from 'pages/security/LoginHistory';
 
-export const MENUS = [
-    {
+export const MENU = {
+    HOME: {
         PATH: '',
         ELEMENT: <Home />,
         ICON: <HomeOutlined />,
@@ -39,7 +39,7 @@ export const MENUS = [
             }
         ]
     },
-    {
+    INFORMATION: {
         PATH: '/information',
         ELEMENT: <Information />,
         ICON: <InfoOutlined />,
@@ -72,7 +72,7 @@ export const MENUS = [
             }
         ]
     },
-    {
+    SECURITY: {
         PATH: '/security',
         ELEMENT: <Security />,
         ICON: <SecurityIcon />,
@@ -95,4 +95,4 @@ export const MENUS = [
             }
         ]
     }
-] as const;
+ } as const;

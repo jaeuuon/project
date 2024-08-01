@@ -3,7 +3,7 @@ import { isAxiosError } from 'axios';
 import type { Palette, PaletteMode, AlertColor } from '@mui/material';
 
 import type { StringIndex } from 'types/signature';
-import type { ConstCodeMessage } from 'types/common/utils';
+import type { ConstCodeMessage } from 'types/common/util';
 import type { Response } from 'types/apis/response';
 
 import { STATUS } from 'constants/apis/response';
@@ -26,7 +26,7 @@ export const getOnChange = <T extends StringIndex>(state: T, setState: React.Dis
     };
 };
 
-export const includesCode = (constCodeMessage: ConstCodeMessage, code?: string) => Object.values(constCodeMessage).some(({ code: constCode }) => constCode === code);
+export const includesCode = (constCodeMessage: ConstCodeMessage, code: string) => Object.values(constCodeMessage).some(({ code: constCode }) => constCode === code);
 
 const padStart = (number: number, maxLength: number) => number.toString().padStart(maxLength, '0');
 

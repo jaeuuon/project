@@ -10,6 +10,7 @@ import { getBorderColor, getBackgroundColor } from 'common/util';
 import Logo from 'layout/header/Logo';
 import SubMenu from 'layout/header/SubMenu';
 import Menu from 'layout/header/Menu';
+import User from 'layout/header/User';
 import Mode from 'layout/header/Mode';
 
 import styles from 'assets/styles/layout/header.module.scss';
@@ -36,6 +37,7 @@ const Header = () => {
                 <SubMenu />
                 <Logo />
                 <Menu />
+                <User />
                 <Mode />
             </Grid>
         </Box>
