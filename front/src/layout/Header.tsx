@@ -5,7 +5,7 @@ import { Box, Grid } from '@mui/material';
 
 import { useAppSelector } from 'hooks';
 
-import { getBorderColor, getBackgroundGreyColor } from 'common/util';
+import { getBorderColor, getGreyBackgroundColor } from 'common/util';
 
 import Logo from 'layout/header/Logo';
 import SubMenu from 'layout/header/SubMenu';
@@ -23,15 +23,17 @@ const Header = () => {
 
         window.addEventListener('scroll', onScroll);
 
-        return () => window.removeEventListener('scroll', onScroll);
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+        };
     }, []);
 
-    const { zIndex: { appBar }, palette } = useTheme();
+    const { zIndex: { appBar: zIndex }, palette } = useTheme();
     const mode = useAppSelector(({ palette: { mode } }) => mode);
 
     return (
         <Box id={styles.header} boxShadow={!isTop ? 2 : 0}
-            style={{ zIndex: appBar, borderColor: getBorderColor(palette), backgroundColor: getBackgroundGreyColor(palette, mode) }}
+            style={{ zIndex, borderColor: getBorderColor(palette), backgroundColor: getGreyBackgroundColor(palette, mode) }}
         >
             <Grid id={styles.grid} container>
                 <SubMenu />

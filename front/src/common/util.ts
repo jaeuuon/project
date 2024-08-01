@@ -8,11 +8,11 @@ import type { Response } from 'types/apis/response';
 
 import { STATUS } from 'constants/apis/response';
 
-const isLightMode = (mode: PaletteMode) => mode === 'light';
-
-export const getGreyColor = ({ grey }: Palette, mode: PaletteMode) => grey[isLightMode(mode) ? 600 : 400];
 export const getBorderColor = (palette: Palette, severity?: AlertColor) => `${palette[severity ?? 'primary'].main}80`;
-export const getBackgroundGreyColor = ({ grey }: Palette, mode: PaletteMode) => `${grey[isLightMode(mode) ? 50 : 900]}cc`;
+
+const isLightMode = (mode: PaletteMode) => mode === 'light';
+export const getGreyColor = ({ grey }: Palette, mode: PaletteMode) => grey[isLightMode(mode) ? 500 : 400];
+export const getGreyBackgroundColor = ({ grey }: Palette, mode: PaletteMode) => `${grey[isLightMode(mode) ? 50 : 900]}bf`;
 
 export const getOnChange = <T extends StringIndex>(state: T, setState: React.Dispatch<React.SetStateAction<T>>) => {
     return ({ target: { name: key, value } }: React.ChangeEvent<HTMLInputElement>) => {

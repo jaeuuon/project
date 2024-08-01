@@ -23,7 +23,7 @@ const getThemeOptions = (mode: PaletteMode): ThemeOptions => ({
         },
         MuiButton: {
             styleOverrides: {
-                root: { fontWeight: 'bold' }
+                root: { minWidth: 0, fontWeight: 'bold' }
             }
         },
         MuiInputAdornment: {

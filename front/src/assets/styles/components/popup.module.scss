@@ -8,55 +8,60 @@
     border-radius: var.$borderRadius;
     transform: translate(-50%, -50%);
     overflow: auto;
-}
-
-#header {
-    min-width: calc(var.$widthXs - (var.$margin * 2) - (var.$padding * 2) - (var.$borderSize * 2));
-    border-bottom: var.$border;
-}
-
-$iconSize: 27px;
-
-#icon {
-    padding: var.$padding;
-
-    > svg {
-        display: block;
-        width: $iconSize;
-        height: $iconSize;
-        margin: var.$margin;
-    }
-}
-
-#label {
-    padding: var.$padding;
-    align-content: center;
-
-    > p {
-        margin: var.$margin;
-        font-size: 18px;
-        font-weight: bold;
-    }
-}
-
-#close {
-    padding: var.$padding;
-
-    > button {
-        width: $iconSize;
-        min-width: $iconSize;
-        height: $iconSize;
-        margin: var.$margin;
-    }
-}
-
-#content {
-    min-width: calc(var.$widthXs - (var.$margin * 2) - (var.$padding * 2) - (var.$borderSize * 2));
-    padding: calc(var.$padding * 2);
 
     > div {
-        position: relative;
-        margin: calc(var.$margin * 2);
+        $minWidth: calc(var.$widthXs - (var.$margin * 2) - (var.$padding * 2) - (var.$borderSize * 2));
+
+        &:nth-of-type(1) {
+            min-width: $minWidth;
+            border-bottom: var.$border;
+
+            > div {
+                $iconSize: 27px;
+
+                &:nth-of-type(1) {
+                    padding: var.$padding;
+
+                    > svg {
+                        display: block;
+                        width: $iconSize;
+                        height: $iconSize;
+                        margin: var.$margin;
+                    }
+                }
+
+                &:nth-of-type(2) {
+                    padding: var.$padding;
+                    align-content: center;
+
+                    > p {
+                        margin: var.$margin;
+                        font-size: 18px;
+                        font-weight: bold;
+                    }
+                }
+
+                &:nth-of-type(3) {
+                    padding: var.$padding;
+
+                    > button {
+                        width: $iconSize;
+                        height: $iconSize;
+                        margin: var.$margin;
+                    }
+                }
+            }
+        }
+
+        &:nth-of-type(2) {
+            min-width: $minWidth;
+            padding: calc(var.$padding * 2);
+
+            > div {
+                position: relative;
+                margin: calc(var.$margin * 2);
+            }
+        }
     }
 }
 

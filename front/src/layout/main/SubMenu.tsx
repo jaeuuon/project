@@ -47,16 +47,18 @@ const SubMenu = () => {
 
         window.addEventListener('resize', onResize);
 
-        return () => window.removeEventListener('resize', onResize);
+        return () => {
+            window.removeEventListener('resize', onResize);
+        };
     }, []);
 
-    const { zIndex: { modal }, palette } = useTheme();
+    const { zIndex: { modal: zIndex }, palette } = useTheme();
 
     return (
         <>
             <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
             <Grid id={styles.subMenu} className={isVisible ? styles.visible : ''} item xs="auto"
-                style={{ zIndex: modal, borderColor: getBorderColor(palette), backgroundColor: palette.background.paper }}
+                style={{ zIndex, borderColor: getBorderColor(palette), backgroundColor: palette.background.paper }}
                 ref={subMenuRef}
             >
                 <List>
