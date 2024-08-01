@@ -7,6 +7,7 @@ import { useAppSelector, useAppDispatch } from 'hooks';
 import { mql, light, dark } from 'store/palette';
 
 import Header from 'layout/Header';
+import Main from 'layout/Main';
 import Footer from 'layout/Footer';
 
 import '@fontsource/roboto/400.css';
@@ -91,6 +92,7 @@ const App = () => {
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <Header />
+            <Main />
             <Footer />
         </ThemeProvider>
     );

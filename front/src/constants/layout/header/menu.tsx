@@ -17,7 +17,7 @@ import LoginHistory from 'pages/security/LoginHistory';
 
 export const MENU = {
     HOME: {
-        PATH: '',
+        PATH: '/',
         ELEMENT: <Home />,
         ICON: <HomeOutlined />,
         LABEL: 'Home',
@@ -28,7 +28,7 @@ export const MENU = {
         },
         SUB_MENUS: [
             {
-                PATH: '/notice',
+                PATH: 'notice',
                 ELEMENT: <Notice />,
                 ICON: <CampaignOutlined />,
                 LABEL: 'Notice',
