@@ -97,11 +97,7 @@ const User = () => {
                                 </>
                             }
                         >
-                            <Avatar
-                                style={{
-                                    borderColor: isMouseHover ? palette.primary.main : getBorderColor(palette),
-                                    backgroundColor: palette.grey[400]
-                                }}
+                            <Avatar style={{ borderColor: isMouseHover ? palette.primary.main : getBorderColor(palette) }}
                                 onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={onClickAvatar}
                             >
                                 <Person />
