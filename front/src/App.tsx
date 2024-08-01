@@ -9,6 +9,7 @@ import { mql, light, dark } from 'store/palette';
 import Header from 'layout/Header';
 import Footer from 'layout/Footer';
 
+import '@fontsource/roboto/400.css';
 import 'assets/styles/app.scss';
 
 const getThemeOptions = (mode: PaletteMode): ThemeOptions => ({
