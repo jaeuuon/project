@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Grid, Button } from '@mui/material';
@@ -15,16 +14,15 @@ const Menu = () => {
 
     return (
         <Grid id={styles.menu} item xs>
-            {MENUS.filter(({ VISIBLE }) => VISIBLE).map(({ PATH, ICON, LABEL, REQUIRED: { ROLES } }, index) =>
-                <Fragment key={`button-header-menu-${index}`}>
-                    {(ROLES.length === 0
-                        || ROLES.some((ROLE) => roles.some(({ code }) => ROLE === code))
-                    ) &&
-                        <Button startIcon={ICON} onClick={() => navigate(PATH)}>
-                            <span>{LABEL}</span>
-                        </Button>
-                    }
-                </Fragment>
+            {MENUS.filter(({ VISIBLE, REQUIRED: { ROLES } }) =>
+                VISIBLE && (
+                    ROLES.length === 0
+                    || ROLES.some((ROLE) => roles.some(({ code }) => ROLE === code))
+                )
+            ).map(({ PATH, ICON, LABEL }, index) =>
+                <Button key={`button-header-menu-${index}`} startIcon={ICON} onClick={() => navigate(PATH)}>
+                    <span>{LABEL}</span>
+                </Button>
             )}
         </Grid>
     );
