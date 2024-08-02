@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { useTheme } from '@mui/material/styles';
-import { Grid } from '@mui/material';
+import { Grid, Box, Button } from '@mui/material';
 import { KeyboardArrowUp } from '@mui/icons-material';
 
 import { useAppSelector } from 'hooks';
@@ -38,14 +38,11 @@ const Main = () => {
                 <Content />
             </Grid>
             {isVisibleToTop &&
-                <Grid id={styles.toTop} container justifyContent="center" alignItems="center" boxShadow={2}
-                    style={{ borderColor: getBorderColor(palette), backgroundColor: getGreyBackgroundColor(palette, mode) }}
-                    onClick={onClick}
-                >
-                    <Grid item xs="auto">
+                <Box id={styles.toTop} boxShadow={2}>
+                    <Button variant="outlined" style={{ backgroundColor: getGreyBackgroundColor(palette, mode) }} onClick={onClick}>
                         <KeyboardArrowUp />
-                    </Grid>
-                </Grid>
+                    </Button>
+                </Box>
             }
         </>
     );

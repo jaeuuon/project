@@ -35,7 +35,7 @@ const Header = () => {
         <Box id={styles.header} boxShadow={!isTop ? 2 : 0}
             style={{ zIndex, borderColor: getBorderColor(palette), backgroundColor: getGreyBackgroundColor(palette, mode) }}
         >
-            <Grid id={styles.grid} container>
+            <Grid container>
                 <SubMenu />
                 <Logo />
                 <Menu />

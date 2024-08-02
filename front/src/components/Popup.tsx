@@ -21,27 +21,27 @@ const Popup = ({
     return (
         <>
             {isVisible &&
-                <Modal setVisibleFalse={setVisibleFalse} />
-            }
-            {isVisible &&
-                <div id={styles.popup} style={{ zIndex, width, borderColor, backgroundColor: palette.background.paper }}>
-                    <Grid container style={{ color: palette[color].main, borderColor }}>
-                        <Grid item xs="auto">{icon}</Grid>
-                        <Grid item xs>
-                            <p>{label}</p>
+                <>
+                    <Modal setVisibleFalse={setVisibleFalse} />
+                    <div id={styles.popup} style={{ zIndex, width, borderColor, backgroundColor: palette.background.paper }}>
+                        <Grid container style={{ color: palette[color].main, borderColor }}>
+                            <Grid item xs="auto">{icon}</Grid>
+                            <Grid item xs>
+                                <p>{label}</p>
+                            </Grid>
+                            <Grid item xs="auto">
+                                <Tooltip placement="bottom-end" arrow title="Close">
+                                    <Button color={color} onClick={setVisibleFalse}>
+                                        <Close />
+                                    </Button>
+                                </Tooltip>
+                            </Grid>
                         </Grid>
-                        <Grid item xs="auto">
-                            <Tooltip placement="bottom-end" arrow title="Close">
-                                <Button color={color} onClick={setVisibleFalse}>
-                                    <Close />
-                                </Button>
-                            </Tooltip>
-                        </Grid>
-                    </Grid>
-                    <div>
-                        <div>{content}</div>
+                        <div>
+                            <div>{content}</div>
+                        </div>
                     </div>
-                </div>
+                </>
             }
         </>
     );
