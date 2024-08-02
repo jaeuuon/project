@@ -20,7 +20,9 @@ const Popup = ({
 
     return (
         <>
-            <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
+            {isVisible &&
+                <Modal setVisibleFalse={setVisibleFalse} />
+            }
             {isVisible &&
                 <div id={styles.popup} style={{ zIndex, width, borderColor, backgroundColor: palette.background.paper }}>
                     <Grid container style={{ color: palette[color].main, borderColor }}>

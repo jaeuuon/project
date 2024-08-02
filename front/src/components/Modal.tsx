@@ -6,33 +6,25 @@ import type Component from 'types/components/modal';
 
 import styles from 'assets/styles/components/modal.module.scss';
 
-const setOverflow = (isVisible: boolean) => {
-    document.body.style.overflow = isVisible ? 'hidden' : 'initial';
+const setOverflow = (overflow: string) => {
+    document.body.style.overflow = overflow;
 };
 
 const Modal = ({
-    isVisible, setVisibleFalse
+    setVisibleFalse
 }: Component) => {
     useEffect(() => {
-        setOverflow(isVisible);
-    }, [isVisible]);
+        setOverflow('hidden');
 
-    useEffect(() => {
         return () => {
-            if (isVisible) {
-                setOverflow(false);
-            }
+            setOverflow('initial');
         };
     }, []);
 
     const { zIndex: { modal: zIndex } } = useTheme();
 
     return (
-        <>
-            {isVisible &&
-                <div id={styles.modal} style={{ zIndex }} onClick={setVisibleFalse} />
-            }
-        </>
+        <div id={styles.modal} style={{ zIndex }} onClick={setVisibleFalse} />
     );
 };
 

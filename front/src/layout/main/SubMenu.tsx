@@ -56,7 +56,9 @@ const SubMenu = () => {
 
     return (
         <>
-            <Modal isVisible={isVisible} setVisibleFalse={setVisibleFalse} />
+            {isVisible &&
+                <Modal setVisibleFalse={setVisibleFalse} />
+            }
             <Grid id={styles.subMenu} className={isVisible ? styles.visible : ''} item xs="auto"
                 style={{ zIndex, borderColor: getBorderColor(palette), backgroundColor: palette.background.paper }}
                 ref={subMenuRef}

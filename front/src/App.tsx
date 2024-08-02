@@ -21,6 +21,11 @@ const getThemeOptions = (mode: PaletteMode): ThemeOptions => ({
                 message: { flexGrow: 1, textAlign: 'center' }
             }
         },
+        MuiAvatar: {
+            styleOverrides: {
+                root: { cursor: 'pointer' }
+            }
+        },
         MuiButton: {
             styleOverrides: {
                 root: { minWidth: 0, fontWeight: 'bold' }
