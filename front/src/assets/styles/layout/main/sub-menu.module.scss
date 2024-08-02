@@ -3,8 +3,8 @@
     top: 0;
     left: 0;
     display: none;
-    width: 100vw;
-    max-width: 250px;
+    width: calc(var.$widthXs - var.$margin - var.$padding);
+    max-width: calc(100% - var.$margin - var.$padding);
     height: 100vh;
     padding: var.$padding;
     border-right: var.$border;

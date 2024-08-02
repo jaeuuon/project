@@ -1,8 +1,8 @@
 #popup {
     position: fixed;
     top: calc(50vh + ((var.$margin + var.$padding + var.$headerInnerHeight) / 2));
-    left: 50vw;
-    max-width: calc(100vw - (var.$margin * 2) - (var.$padding * 2));
+    left: 50%;
+    max-width: calc(100% - (var.$margin * 2) - (var.$padding * 2));
     max-height: calc(100vh - (var.$margin * 2) - (var.$padding * 2) - ((var.$margin + var.$padding + var.$headerInnerHeight) * 2));
     border: var.$border;
     border-radius: var.$borderRadius;
@@ -10,7 +10,7 @@
     overflow: auto;
 
     > div {
-        $minWidth: calc(var.$widthXs - (var.$margin * 2) - (var.$padding * 2) - (var.$borderSize * 2));
+        $minWidth: calc(var.$widthXs - (var.$borderSize * 2) - (var.$margin * 2) - (var.$padding * 2));
 
         &:nth-of-type(1) {
             min-width: $minWidth;
