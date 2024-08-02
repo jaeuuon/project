@@ -11,7 +11,7 @@ const Loading = ({ isVisible }: Component) => {
         <>
             {isVisible &&
                 <Grid id={styles.loading} container justifyContent="center" alignItems="center" style={{ zIndex: appBar - 1 }}>
-                    <Grid item xs="auto">
+                    <Grid item xs="auto" overflow="visible">
                         <CircularProgress />
                     </Grid>
                 </Grid>

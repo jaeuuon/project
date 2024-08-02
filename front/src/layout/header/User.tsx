@@ -117,12 +117,9 @@ const User = () => {
                             <Login />
                         </Button>
                     </Tooltip>
-                    <Popup width={400} icon={<Login />} label="Login"
-                        content={
-                            <LoginPopup scheduler={scheduler} setVisibleFalse={setVisibleLoginFalse} />
-                        }
-                        isVisible={isVisibleLogin} setVisibleFalse={setVisibleLoginFalse}
-                    />
+                    <Popup width={400} icon={<Login />} label="Login" isVisible={isVisibleLogin} setVisibleFalse={setVisibleLoginFalse}>
+                        <LoginPopup scheduler={scheduler} setVisibleFalse={setVisibleLoginFalse} />
+                    </Popup>
                 </>
             }
         </Grid>

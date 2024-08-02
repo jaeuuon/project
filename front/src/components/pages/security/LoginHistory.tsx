@@ -42,22 +42,22 @@ const LoginHistory = ({ isSimple }: Component) => {
                     <Table size="small">
                         <TableHead>
                             <TableRow>
-                                <TableCell rowSpan={2} content="Request IP" />
-                                <TableCell colSpan={2} content="Result" />
-                                <TableCell rowSpan={2} content="Created time" />
+                                <TableCell width="20%" rowSpan={2}>Request IP</TableCell>
+                                <TableCell colSpan={2}>Result</TableCell>
+                                <TableCell width="35%" rowSpan={2}>Created time</TableCell>
                             </TableRow>
                             <TableRow>
-                                <TableCell content="Code" />
-                                <TableCell content="Value" />
+                                <TableCell width="15%">Code</TableCell>
+                                <TableCell width="30%">Value</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {data?.content.map(({ requestIp, result: { code, value }, createdTime }, index) =>
                                 <TableRow key={`table-login-history-${index}`}>
-                                    <TableCell content={requestIp} />
-                                    <TableCell content={code} />
-                                    <TableCell content={value} />
-                                    <TableCell content={createdTime} />
+                                    <TableCell>{requestIp}</TableCell>
+                                    <TableCell>{code}</TableCell>
+                                    <TableCell>{value}</TableCell>
+                                    <TableCell>{createdTime}</TableCell>
                                 </TableRow>
                             )}
                         </TableBody>

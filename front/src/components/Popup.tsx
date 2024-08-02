@@ -10,7 +10,7 @@ import Modal from 'components/Modal';
 import styles from 'assets/styles/components/popup.module.scss';
 
 const Popup = ({
-    width, severity, icon, label, content,
+    width, severity, icon, label, children,
     isVisible, setVisibleFalse
 }: Component) => {
     const { zIndex: { modal: zIndex }, palette } = useTheme();
@@ -37,7 +37,7 @@ const Popup = ({
                             </Grid>
                         </Grid>
                         <div>
-                            <div>{content}</div>
+                            <div>{children}</div>
                         </div>
                     </div>
                 </>

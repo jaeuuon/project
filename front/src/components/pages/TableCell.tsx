@@ -3,10 +3,10 @@ import { TableCell as MaterialTableCell } from '@mui/material';
 import type Component from 'types/components/pages/tableCell';
 
 const TableCell = ({
-    colSpan, rowSpan, content, align = 'center'
+    width, colSpan, rowSpan, align = 'center', children
 }: Component) => {
     return (
-        <MaterialTableCell colSpan={colSpan} rowSpan={rowSpan} align={align}>{content}</MaterialTableCell>
+        <MaterialTableCell width={width} colSpan={colSpan} rowSpan={rowSpan} align={align}>{children}</MaterialTableCell>
     );
 };
 

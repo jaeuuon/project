@@ -12,7 +12,7 @@ const Router = () => {
     const { pathname } = useLocation();
     const requiredInit = MENU.some(({ PATH, REQUIRED: { INIT }, SUB_MENUS }) =>
         (pathname === PATH && INIT)
-        || SUB_MENUS.some(({ PATH: SUB_PATH, REQUIRED: { INIT } }) => pathname === `${PATH}${SUB_PATH}` && INIT)
+        || SUB_MENUS.some(({ PATH, REQUIRED: { INIT } }) => pathname === PATH && INIT)
     );
 
     const { roles, isInit } = useAppSelector(({ user }) => user);

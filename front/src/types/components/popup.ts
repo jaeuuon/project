@@ -5,7 +5,7 @@ export default interface Component {
     severity?: AlertColor;
     icon: JSX.Element;
     label: string;
-    content: JSX.Element;
+    children: JSX.Element;
     isVisible: boolean;
     setVisibleFalse: () => void;
 };

@@ -34,15 +34,12 @@ const NotFound = () => {
     const mode = useAppSelector(({ palette: { mode } }) => mode);
 
     return (
-        <Popup width={340} severity="error" icon={<ErrorOutline />} label="Error"
-            content={
-                <div id={styles.notFound}>
-                    <p style={{ color: main }}>잘못된 경로 또는 권한이 없습니다.</p>
-                    <p style={{ color: getGreyColor(mode) }}>({seconds}초 후에 메인 페이지로 이동합니다.)</p>
-                </div>
-            }
-            isVisible setVisibleFalse={setVisibleFalse}
-        />
+        <Popup width={340} severity="error" icon={<ErrorOutline />} label="Error" isVisible setVisibleFalse={setVisibleFalse}>
+            <div id={styles.notFound}>
+                <p style={{ color: main }}>잘못된 경로 또는 권한이 없습니다.</p>
+                <p style={{ color: getGreyColor(mode) }}>({seconds}초 후에 메인 페이지로 이동합니다.)</p>
+            </div>
+        </Popup>
     );
 };
 
