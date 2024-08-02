@@ -1,5 +1,4 @@
-import { useTheme } from '@mui/material/styles';
-import { Grid, CircularProgress } from '@mui/material';
+import { useTheme, Grid, CircularProgress } from '@mui/material';
 
 import type Component from 'types/components/loading';
 

@@ -34,7 +34,7 @@ input::-ms-reveal {
         }
 
         &Item-previousNext {
-            display: none;
+            display: none !important;
         }
     }
 }
@@ -43,7 +43,7 @@ input::-ms-reveal {
     .Mui {
         &Pagination {
             &Item-previousNext {
-                display: initial;
+                display: initial !important;
             }
         }
     }

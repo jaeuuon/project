@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import { useTheme } from '@mui/material/styles';
 import { Grid, Box, Button } from '@mui/material';
 import { KeyboardArrowUp } from '@mui/icons-material';
 
@@ -28,7 +27,6 @@ const Main = () => {
         };
     }, []);
 
-    const { palette } = useTheme();
     const mode = useAppSelector(({ palette: { mode } }) => mode);
 
     return (
@@ -39,7 +37,7 @@ const Main = () => {
             </Grid>
             {isVisibleToTop &&
                 <Box id={styles.toTop} boxShadow={2}>
-                    <Button variant="outlined" style={{ backgroundColor: getGreyBackgroundColor(palette, mode) }} onClick={onClick}>
+                    <Button variant="outlined" style={{ backgroundColor: getGreyBackgroundColor(mode) }} onClick={onClick}>
                         <KeyboardArrowUp />
                     </Button>
                 </Box>

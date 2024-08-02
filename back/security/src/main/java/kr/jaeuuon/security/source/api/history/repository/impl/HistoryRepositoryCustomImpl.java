@@ -7,6 +7,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import kr.jaeuuon.common.jpa.source.repository.impl.AbstractBaseRepositoryCustomImpl;
 import kr.jaeuuon.security.source.api.history.dto.HistoryDTO;
 import kr.jaeuuon.security.source.api.history.dto.QHistoryDTO;
+import kr.jaeuuon.security.source.api.history.dto.QHistoryResultDTO;
 import kr.jaeuuon.security.source.api.history.entity.QHistory;
 import kr.jaeuuon.security.source.api.history.repository.HistoryRepositoryCustom;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,11 @@ public class HistoryRepositoryCustomImpl extends AbstractBaseRepositoryCustomImp
     }
 
     private ConstructorExpression<HistoryDTO> getExpr(QHistory history, boolean isAdmin) {
-        return isAdmin ? new QHistoryDTO(history.requestIp, history.user.id, history.resultCode, history.createdTime) : new QHistoryDTO(history.requestIp, history.resultCode, history.createdTime);
+        QHistoryResultDTO historyResultDTO = new QHistoryResultDTO(history.resultCode);
+
+        return isAdmin
+                ? new QHistoryDTO(history.requestIp, history.user.id, historyResultDTO, history.createdTime)
+                : new QHistoryDTO(history.requestIp, historyResultDTO, history.createdTime);
     }
 
     @Override

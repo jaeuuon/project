@@ -112,9 +112,7 @@ const Login = ({
                 ref={passwordRef}
             />
             <Error code={code} message={message} />
-            <Button id={styles.submit} type="submit" variant="contained">
-                <span>Login</span>
-            </Button>
+            <Button id={styles.submit} type="submit" variant="contained">Login</Button>
             <Loading isVisible={isVisibleLoading} />
         </form>
     );

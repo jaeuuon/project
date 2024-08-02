@@ -1,8 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { useTheme } from '@mui/material/styles';
-import { Grid, Avatar, Button, Tooltip } from '@mui/material';
+import { useTheme, Grid, Avatar, Button, Tooltip } from '@mui/material';
 import { Person, Logout, Login } from '@mui/icons-material';
 
 import { PATH } from 'constants/layout/header/menu';

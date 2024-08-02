@@ -1,5 +1,4 @@
-import { useTheme } from '@mui/material/styles';
-import { Grid } from '@mui/material';
+import { useTheme, Grid } from '@mui/material';
 
 import { getBorderColor } from 'common/util';
 

@@ -35,7 +35,7 @@ const Router = () => {
                     )}
                     <Route path="/*" element={<NotFound />} />
                 </Routes>
-                : <Loading isVisible={true} />
+                : <Loading isVisible />
             }
         </>
     );

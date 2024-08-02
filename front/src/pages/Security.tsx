@@ -1,6 +1,15 @@
+import { Grid } from '@mui/material';
+
+import LoginHistory from 'components/pages/security/LoginHistory';
+
 const Security = () => {
     return (
-        <p>Security</p>
+        <Grid container>
+            <Grid item xs={12} lg={6}></Grid>
+            <Grid item xs={12} lg={6}>
+                <LoginHistory isSimple />
+            </Grid>
+        </Grid>
     );
 };
 

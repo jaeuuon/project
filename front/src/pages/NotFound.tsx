@@ -30,18 +30,18 @@ const NotFound = () => {
 
     setTimeout(timeout, 1000);
 
-    const { palette } = useTheme();
+    const { palette: { error: { main } } } = useTheme();
     const mode = useAppSelector(({ palette: { mode } }) => mode);
 
     return (
         <Popup width={340} severity="error" icon={<ErrorOutline />} label="Error"
             content={
                 <div id={styles.notFound}>
-                    <p style={{ color: palette.error.main }}>잘못된 경로 또는 권한이 없습니다.</p>
-                    <p style={{ color: getGreyColor(palette, mode) }}>({seconds}초 후에 메인 페이지로 이동합니다.)</p>
+                    <p style={{ color: main }}>잘못된 경로 또는 권한이 없습니다.</p>
+                    <p style={{ color: getGreyColor(mode) }}>({seconds}초 후에 메인 페이지로 이동합니다.)</p>
                 </div>
             }
-            isVisible={true} setVisibleFalse={setVisibleFalse}
+            isVisible setVisibleFalse={setVisibleFalse}
         />
     );
 };

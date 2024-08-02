@@ -1,8 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { useTheme } from '@mui/material/styles';
-import { Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { useTheme, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 
 import { MENU } from 'constants/layout/header/menu';
 

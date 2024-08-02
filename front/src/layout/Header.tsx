@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { useTheme } from '@mui/material/styles';
-import { Box, Grid } from '@mui/material';
+import { useTheme, Box, Grid } from '@mui/material';
 
 import { useAppSelector } from 'hooks';
 
@@ -33,7 +32,7 @@ const Header = () => {
 
     return (
         <Box id={styles.header} boxShadow={!isTop ? 2 : 0}
-            style={{ zIndex, borderColor: getBorderColor(palette), backgroundColor: getGreyBackgroundColor(palette, mode) }}
+            style={{ zIndex, borderColor: getBorderColor(palette), backgroundColor: getGreyBackgroundColor(mode) }}
         >
             <Grid container>
                 <SubMenu />

@@ -1,5 +1,4 @@
-import { useTheme } from '@mui/material/styles';
-import { Grid, Button, Tooltip } from '@mui/material';
+import { useTheme, Grid, Button, Tooltip } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
 import type Component from 'types/components/popup';

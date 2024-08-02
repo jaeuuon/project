@@ -1,6 +1,6 @@
 import { isAxiosError } from 'axios';
 
-import type { Palette, PaletteMode, AlertColor } from '@mui/material';
+import { type Palette, type PaletteMode, type AlertColor, colors } from '@mui/material';
 
 import type { StringIndex } from 'types/signature';
 import type { ConstCodeMessage } from 'types/common/util';
@@ -11,8 +11,9 @@ import { STATUS } from 'constants/apis/response';
 export const getBorderColor = (palette: Palette, severity?: AlertColor) => `${palette[severity ?? 'primary'].main}80`;
 
 const isLightMode = (mode: PaletteMode) => mode === 'light';
-export const getGreyColor = ({ grey }: Palette, mode: PaletteMode) => grey[isLightMode(mode) ? 500 : 400];
-export const getGreyBackgroundColor = ({ grey }: Palette, mode: PaletteMode) => `${grey[isLightMode(mode) ? 50 : 900]}bf`;
+export const getGreyColor = (mode: PaletteMode) => colors.grey[isLightMode(mode) ? 500 : 400];
+export const getGreyBorderColor = (mode: PaletteMode) => colors.grey[isLightMode(mode) ? 300 : 600];
+export const getGreyBackgroundColor = (mode: PaletteMode, isAlpha: boolean = true) => `${colors.grey[isLightMode(mode) ? 50 : 900]}${isAlpha ? 'bf' : ''}`;
 
 export const getOnChange = <T extends StringIndex>(state: T, setState: React.Dispatch<React.SetStateAction<T>>) => {
     return ({ target: { name: key, value } }: React.ChangeEvent<HTMLInputElement>) => {

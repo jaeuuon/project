@@ -21,9 +21,7 @@ const Breadcrumbs = () => {
                 <MaterialBreadcrumbs key={`breadcrumb-main-content-${index}`}>
                     <Grid className={styles.grid} container>
                         <Grid item xs="auto">{ICON}</Grid>
-                        <Grid item xs="auto">
-                            <span>{LABEL}</span>
-                        </Grid>
+                        <Grid item xs="auto">{LABEL}</Grid>
                     </Grid>
                     {SUB_MENUS.filter(({ PATH, REQUIRED: { ROLES } }) =>
                         pathname === PATH
@@ -31,9 +29,7 @@ const Breadcrumbs = () => {
                     ).map(({ ICON, LABEL }, subIndex) =>
                         <Grid key={`breadcrumb-main-content-${index}-${subIndex}`} className={styles.grid} container>
                             <Grid item xs="auto">{ICON}</Grid>
-                            <Grid item xs="auto">
-                                <span>{LABEL}</span>
-                            </Grid>
+                            <Grid item xs="auto">{LABEL}</Grid>
                         </Grid>
                     )}
                 </MaterialBreadcrumbs>

@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { type PaletteMode, type ThemeOptions, CssBaseline } from '@mui/material';
+import { createTheme, type PaletteMode, type ThemeOptions, ThemeProvider, CssBaseline } from '@mui/material';
 
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { mql, light, dark } from 'store/palette';
+
+import { getGreyBorderColor, getGreyBackgroundColor} from 'common/util';
 
 import Header from 'layout/Header';
 import Main from 'layout/Main';
@@ -32,6 +33,11 @@ const getThemeOptions = (mode: PaletteMode): ThemeOptions => ({
                 root: { minWidth: 0, fontWeight: 'bold' }
             }
         },
+        MuiGrid: {
+            styleOverrides: {
+                root: { overflowX: 'auto' }
+            }
+        },
         MuiInputAdornment: {
             styleOverrides: {
                 positionEnd: { position: 'absolute', right: '14px', cursor: 'pointer' }
@@ -53,8 +59,14 @@ const getThemeOptions = (mode: PaletteMode): ThemeOptions => ({
                 root: { margin: 'auto' }
             }
         },
+        MuiTableHead: {
+            styleOverrides: {
+                root: { backgroundColor: getGreyBackgroundColor(mode, false) }
+            }
+        },
         MuiTableCell: {
             styleOverrides: {
+                root: { padding: '5px', border: `1px solid ${getGreyBorderColor(mode)}` },
                 head: { fontWeight: 'bold' }
             }
         },

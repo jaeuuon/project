@@ -75,7 +75,7 @@ export const MENU = [
                 PATH: `${PATH.SECURITY}/history`,
                 ELEMENT: <LoginHistory />,
                 ICON: <History />,
-                LABEL: 'Login history',
+                LABEL: 'Login History',
                 REQUIRED: { INIT: true, ROLES: [] }
             }
         ]
