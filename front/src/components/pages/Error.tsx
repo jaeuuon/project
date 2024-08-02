@@ -9,14 +9,10 @@ import styles from 'assets/styles/components/pages/error.module.scss';
 const Error = ({ code, message }: Component) => {
     return (
         <>
-            {(code || message) &&
+            {code && message &&
                 <Alert id={styles.error} severity="error">
-                    {message &&
-                        <p id={styles.message}>{message}</p>
-                    }
-                    {code &&
-                        <p id={styles.code}>[{code}]</p>
-                    }
+                    <p>{message}</p>
+                    <p>[{code}]</p>
                 </Alert>
             }
         </>

@@ -9,6 +9,7 @@ import { mql, light, dark } from 'store/palette';
 import Header from 'layout/Header';
 import Main from 'layout/Main';
 import Footer from 'layout/Footer';
+import Snackbar from 'layout/Snackbar';
 
 import '@fontsource/roboto/400.css';
 import 'assets/styles/app.scss';
@@ -99,6 +100,7 @@ const App = () => {
             <Header />
             <Main />
             <Footer />
+            <Snackbar />
         </ThemeProvider>
     );
 };

@@ -6,7 +6,7 @@ import { KeyboardArrowUp } from '@mui/icons-material';
 
 import { useAppSelector } from 'hooks';
 
-import { getBorderColor, getGreyBackgroundColor } from 'common/util';
+import { getGreyBackgroundColor } from 'common/util';
 
 import SubMenu from 'layout/main/SubMenu';
 import Content from 'layout/main/Content';
