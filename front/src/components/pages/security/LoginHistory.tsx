@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, memo } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { Grid, Table, TableHead, TableBody, TableRow } from '@mui/material';
@@ -72,4 +72,4 @@ const LoginHistory = ({ isSimple }: Component) => {
     );
 };
 
-export default memo(LoginHistory);
+export default LoginHistory;
