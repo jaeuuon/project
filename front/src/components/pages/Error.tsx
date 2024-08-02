@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import { Alert } from '@mui/material';
 
 import type Component from 'types/components/pages/error';
@@ -19,4 +17,4 @@ const Error = ({ code, message }: Component) => {
     );
 };
 
-export default memo(Error);
+export default Error;

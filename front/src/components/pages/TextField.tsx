@@ -1,4 +1,4 @@
-import { forwardRef, ForwardedRef, useState, memo } from 'react';
+import { forwardRef, ForwardedRef, useState } from 'react';
 
 import { FormControl, InputLabel, OutlinedInput, InputAdornment, TextField as MaterialTextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
@@ -46,4 +46,4 @@ const TextField = forwardRef((
     );
 });
 
-export default memo(TextField);
+export default TextField;

@@ -1,5 +1,3 @@
-import { memo } from 'react';
-
 import { Pagination as MaterialPagination } from '@mui/material';
 
 import type Component from 'types/components/pages/pagination';
@@ -12,4 +10,4 @@ const Pagination = ({
     );
 };
 
-export default memo(Pagination);
+export default Pagination;
