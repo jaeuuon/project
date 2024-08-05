@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { Grid, Button } from '@mui/material';
 import { Menu } from '@mui/icons-material';
 
@@ -6,7 +8,7 @@ import { open } from 'store/layout/main/subMenu';
 
 import styles from 'assets/styles/layout/header/sub-menu.module.scss';
 
-const SubMenu = () => {
+const SubMenu = memo(() => {
     const dispatch = useAppDispatch();
     const onClick = () => dispatch(open());
 
@@ -17,6 +19,6 @@ const SubMenu = () => {
             </Button>
         </Grid>
     );
-};
+});
 
 export default SubMenu;

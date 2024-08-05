@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { Grid, Button, Tooltip } from '@mui/material';
 import { LightModeOutlined, DarkModeOutlined } from '@mui/icons-material';
 
@@ -6,7 +8,7 @@ import { light, dark } from 'store/palette';
 
 import styles from 'assets/styles/layout/header/mode.module.scss';
 
-const Mode = () => {
+const Mode = memo(() => {
     const isLight = useAppSelector(({ palette: { mode } }) => mode) === 'light';
 
     const dispatch = useAppDispatch();
@@ -21,6 +23,6 @@ const Mode = () => {
             </Tooltip>
         </Grid>
     );
-};
+});
 
 export default Mode;

@@ -1,5 +1,5 @@
 import type { Payload } from 'types/common/jwt';
-import type { UserState, Roles } from 'types/store/user';
+import type { UserState, Role } from 'types/store/user';
 
 import { ROLE } from 'constants/apis/security/authentication';
 
@@ -17,7 +17,7 @@ export const getUser = ({
     const authorities = payloadAuthorities.split(',');
     const authorityValues = payloadAuthorityValues.split(',');
 
-    const roles: Roles[] = [];
+    const roles: Role[] = [];
 
     Object.values(ROLE).forEach((ROLE) =>
         authorities.some((authority, index) => {

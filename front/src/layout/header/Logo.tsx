@@ -1,8 +1,10 @@
+import { memo } from 'react';
+
 import { useTheme, Grid } from '@mui/material';
 
 import styles from 'assets/styles/layout/header/logo.module.scss';
 
-const Logo = () => {
+const Logo = memo(() => {
     const { palette: { primary: { main } } } = useTheme();
 
     return (
@@ -16,6 +18,6 @@ const Logo = () => {
             </svg>
         </Grid>
     );
-};
+});
 
 export default Logo;

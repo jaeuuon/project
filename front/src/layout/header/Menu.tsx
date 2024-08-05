@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Grid, Button } from '@mui/material';
@@ -8,7 +9,7 @@ import { useAppSelector } from 'hooks';
 
 import styles from 'assets/styles/layout/header/menu.module.scss';
 
-const Menu = () => {
+const Menu = memo(() => {
     const roles = useAppSelector(({ user: { roles } }) => roles);
     const navigate = useNavigate();
 
@@ -24,6 +25,6 @@ const Menu = () => {
             )}
         </Grid>
     );
-};
+});
 
 export default Menu;

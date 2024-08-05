@@ -4,15 +4,9 @@
     order: 5;
 }
 
-#avatar {
+#avatar > div {
     margin: var.$margin;
     margin-top: calc(var.$margin / 2);
-
-    > div {
-        width: var.$headerInnerHeight;
-        height: var.$headerInnerHeight;
-        border: var.$border;
-    }
 }
 
 #logout,
@@ -30,7 +24,7 @@
         order: 4;
     }
 
-    #avatar {
+    #avatar > div {
         margin: var.$margin;
     }
 
