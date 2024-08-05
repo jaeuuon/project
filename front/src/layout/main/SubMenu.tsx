@@ -1,9 +1,7 @@
 import { useEffect, useRef } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-import { useTheme, Grid, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-
-import { MENU } from 'constants/layout/header/menu';
+import { useTheme, Grid } from '@mui/material';
 
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { close } from 'store/layout/main/subMenu';
@@ -11,22 +9,20 @@ import { close } from 'store/layout/main/subMenu';
 import { getBorderColor } from 'common/util';
 
 import Modal from 'components/Modal';
+import List from 'layout/main/subMenu/List';
 
 import styles from 'assets/styles/layout/main/sub-menu.module.scss';
 
 const SubMenu = () => {
     const { pathname } = useLocation();
-    const roles = useAppSelector(({ user: { roles } }) => roles);
 
-    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(close());
 
         window.scrollTo(0, 0);
     }, [pathname]);
-
-    const dispatch = useAppDispatch();
 
     const isVisible = useAppSelector(({ subMenu: { isVisible } }) => isVisible);
     const setVisibleFalse = () => dispatch(close());
@@ -35,10 +31,12 @@ const SubMenu = () => {
 
     useEffect(() => {
         const onResize = () => {
-            if (subMenuRef.current) {
-                const styles = window.getComputedStyle(subMenuRef.current);
+            const { current } = subMenuRef;
 
-                if (styles.position !== 'fixed') {
+            if (current) {
+                const { position } = window.getComputedStyle(current);
+
+                if (position !== 'fixed') {
                     dispatch(close());
                 }
             }
@@ -62,22 +60,7 @@ const SubMenu = () => {
                 style={{ zIndex, borderColor: getBorderColor(palette), backgroundColor: palette.background.paper }}
                 ref={subMenuRef}
             >
-                <List>
-                    {MENU.find(({ PATH, SUB_MENUS }) =>
-                        (pathname === PATH || SUB_MENUS.some(({ PATH }) => pathname === PATH))
-                    )?.SUB_MENUS.filter(({ REQUIRED: { ROLES } }) =>
-                        ROLES.length === 0 || ROLES.some((ROLE) => roles.some(({ code }) => ROLE === code))
-                    ).map(({ PATH, ICON, LABEL }, index) =>
-                        <ListItem key={`list-item-main-sub-menu-${index}`} disablePadding
-                            onClick={() => PATH.startsWith('http') ? window.open(PATH) : navigate(PATH)}
-                        >
-                            <ListItemButton dense>
-                                <ListItemIcon>{ICON}</ListItemIcon>
-                                <ListItemText primary={LABEL} />
-                            </ListItemButton>
-                        </ListItem>
-                    )}
-                </List>
+                <List />
             </Grid>
         </>
     );

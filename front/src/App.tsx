@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { createTheme, type PaletteMode, type ThemeOptions, ThemeProvider, CssBaseline } from '@mui/material';
+import { type PaletteMode, type ThemeOptions, createTheme, ThemeProvider, CssBaseline } from '@mui/material';
 
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { mql, light, dark } from 'store/palette';
