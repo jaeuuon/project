@@ -2,23 +2,3 @@
     max-width: var.$widthXl;
     margin: auto;
 }
-
-#to-top {
-    position: fixed;
-    right: 15px;
-    bottom: 15px;
-    border-radius: var.$borderRadius;
-
-    > button {
-        width: 50px;
-        height: 50px;
-        backdrop-filter: var.$backdropFilter;
-    }
-}
-
-@media (min-width: var.$widthSm) {
-    #to-top {
-        right: 31px;
-        bottom: 31px;
-    }
-}
