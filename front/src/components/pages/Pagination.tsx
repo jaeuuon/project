@@ -4,10 +4,8 @@ import type Component from 'types/components/pages/pagination';
 
 const Pagination = ({
     totalPages, onChange
-}: Component) => {
-    return (
-        <MaterialPagination count={totalPages} siblingCount={2} size="small" shape="rounded" onChange={onChange} />
-    );
-};
+}: Component) =>
+    <MaterialPagination count={totalPages} siblingCount={2} size="small" shape="rounded" onChange={onChange} />
+;
 
 export default Pagination;

@@ -1,7 +1,5 @@
-const Notice = () => {
-    return (
-        <p>Notice</p>
-    );
-};
+const Notice = () =>
+    <p>Notice</p>
+;
 
 export default Notice;

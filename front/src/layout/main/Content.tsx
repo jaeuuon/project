@@ -5,15 +5,13 @@ import Router from 'layout/main/content/Router';
 
 import styles from 'assets/styles/layout/main/content.module.scss';
 
-const Content = () => {
-    return (
-        <Grid id={styles.content} item xs>
-            <div>
-                <Breadcrumbs />
-                <Router />
-            </div>
-        </Grid>
-    );
-};
+const Content = () =>
+    <Grid id={styles.content} item xs>
+        <div>
+            <Breadcrumbs />
+            <Router />
+        </div>
+    </Grid>
+;
 
 export default Content;

@@ -1,7 +1,5 @@
-const Contact = () => {
-    return (
-        <p>Contact</p>
-    );
-};
+const Contact = () =>
+    <p>Contact</p>
+;
 
 export default Contact;
