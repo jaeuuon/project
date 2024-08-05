@@ -84,7 +84,7 @@ const User = memo(() => {
                         <Avatar email={email} name={name} role={role} isHeader />
                     </Grid>
                     <Grid item xs="auto">
-                        <Tooltip placement="bottom" arrow title="Logout">
+                        <Tooltip placement="bottom-end" arrow title="Logout">
                             <Button id={styles.logout} variant="outlined" onClick={onClickLogout}>
                                 <Logout />
                             </Button>
@@ -92,7 +92,7 @@ const User = memo(() => {
                     </Grid>
                 </Grid>
                 : <>
-                    <Tooltip placement="bottom" arrow title="Login">
+                    <Tooltip placement="bottom-end" arrow title="Login">
                         <Button id={styles.login} variant="outlined" onClick={setVisibleLoginTrue}>
                             <Login />
                         </Button>

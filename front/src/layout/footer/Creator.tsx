@@ -16,7 +16,7 @@ const Creator = () => {
     return (
         <Grid id={styles.creator} item xs={6}>
             <p style={{ color: getGreyColor(mode) }}>
-                Created by <Tooltip placement="top" arrow title="GitHub profile"><span onClick={onClick}>{CREATOR.NAME}</span></Tooltip>.
+                Created by <Tooltip placement="top-start" arrow title="GitHub profile"><span onClick={onClick}>{CREATOR.NAME}</span></Tooltip>.
             </p>
         </Grid>
     );

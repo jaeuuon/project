@@ -30,7 +30,7 @@ const Avatar = ({
     const { palette } = useTheme();
 
     return (
-        <Tooltip placement="bottom" arrow
+        <Tooltip placement={isHeader ? 'bottom-end' : 'bottom'} arrow
             title={
                 <>
                     <p>{name} ({value})</p>
