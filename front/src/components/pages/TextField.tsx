@@ -1,6 +1,6 @@
 import { forwardRef, ForwardedRef, useState } from 'react';
 
-import { FormControl, InputLabel, OutlinedInput, InputAdornment, TextField as MaterialTextField } from '@mui/material';
+import { FormControl, InputLabel, OutlinedInput, InputAdornment, TextField as MuiTextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 import type Component from 'types/components/pages/textField';
@@ -37,7 +37,7 @@ const TextField = forwardRef((
                         />
                     </FormControl>
                 </>
-                : <MaterialTextField className={styles.textField} type={type} name={name} value={value ?? ''} label={label} autoComplete={autoComplete}
+                : <MuiTextField className={styles.textField} type={type} name={name} value={value ?? ''} label={label} autoComplete={autoComplete}
                     fullWidth={isFullWidth} size="small" variant="outlined" error={isError} onChange={onChange}
                     inputRef={inputRef}
                 />

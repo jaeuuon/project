@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import type { UserState } from 'types/store/layout/header/user';
+import type { UserState } from 'types/store/user';
 
 const initialState: UserState = { roles: [], isInit: false };
 

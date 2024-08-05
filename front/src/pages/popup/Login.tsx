@@ -11,7 +11,7 @@ import { EMAIL_ERROR, PASSWORD_ERROR } from 'constants/apis/security/authenticat
 import { STATUS } from 'constants/apis/response';
 
 import { useAppDispatch } from 'hooks';
-import { set } from 'store/layout/header/user';
+import { set } from 'store/user';
 import { success } from 'store/layout/snackbar';
 
 import { login } from 'apis/security/authentication';

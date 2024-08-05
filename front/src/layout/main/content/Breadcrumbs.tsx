@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
-import { Breadcrumbs as MaterialBreadcrumbs, Grid } from '@mui/material';
+import { Breadcrumbs as MuiBreadcrumbs, Grid } from '@mui/material';
 
 import { MENU } from 'constants/layout/header/menu';
 
@@ -18,7 +18,7 @@ const Breadcrumbs = () => {
                 (pathname === PATH || SUB_MENUS.some(({ PATH }) => pathname === PATH))
                 && (ROLES.length === 0 || ROLES.some((ROLE) => roles.some(({ code }) => ROLE === code)))
             ).map(({ ICON, LABEL, SUB_MENUS }, index) =>
-                <MaterialBreadcrumbs key={`breadcrumb-main-content-${index}`}>
+                <MuiBreadcrumbs key={`breadcrumb-main-content-${index}`}>
                     <Grid className={styles.grid} container>
                         <Grid item xs="auto">{ICON}</Grid>
                         <Grid item xs="auto">{LABEL}</Grid>
@@ -32,7 +32,7 @@ const Breadcrumbs = () => {
                             <Grid item xs="auto">{LABEL}</Grid>
                         </Grid>
                     )}
-                </MaterialBreadcrumbs>
+                </MuiBreadcrumbs>
             )}
         </div>
     );

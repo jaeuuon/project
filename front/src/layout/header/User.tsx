@@ -9,7 +9,7 @@ import { STATUS } from 'constants/apis/response';
 import { REISSUANCE_IGNORED_ERROR } from 'constants/apis/security/authentication';
 
 import { useAppSelector, useAppDispatch } from 'hooks';
-import { init, set } from 'store/layout/header/user';
+import { init, set } from 'store/user';
 import { success, error } from 'store/layout/snackbar';
 
 import { logout, reissuance } from 'apis/security/authentication';
