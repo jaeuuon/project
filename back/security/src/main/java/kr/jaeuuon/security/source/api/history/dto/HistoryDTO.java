@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 public class HistoryDTO {
 
     private String requestIp;
-    private Long userId;
+    private String userEmail;
     private HistoryResultDTO result;
     private String createdTime;
 
@@ -27,9 +27,9 @@ public class HistoryDTO {
     }
 
     @QueryProjection
-    public HistoryDTO(String requestIp, Long userId, HistoryResultDTO historyResultDTO, Timestamp createdTime) {
+    public HistoryDTO(String requestIp, String userEmail, HistoryResultDTO historyResultDTO, Timestamp createdTime) {
         this.requestIp = requestIp;
-        this.userId = userId;
+        this.userEmail = userEmail;
         result = historyResultDTO;
         this.createdTime = Util.getFormattedZonedDateTime(createdTime);
     }

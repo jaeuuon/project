@@ -37,7 +37,7 @@ public class HistoryRepositoryCustomImpl extends AbstractBaseRepositoryCustomImp
         QHistoryResultDTO historyResultDTO = new QHistoryResultDTO(history.resultCode);
 
         return isAdmin
-                ? new QHistoryDTO(history.requestIp, history.user.id, historyResultDTO, history.createdTime)
+                ? new QHistoryDTO(history.requestIp, history.user.email, historyResultDTO, history.createdTime)
                 : new QHistoryDTO(history.requestIp, historyResultDTO, history.createdTime);
     }
 
