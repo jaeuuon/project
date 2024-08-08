@@ -1,12 +1,8 @@
-import { Grid } from '@mui/material';
-
-import styles from 'assets/styles/pages/security/change-password.module.scss';
+import Grid from 'components/pages/Grid';
 
 const ChangePassword = () =>
-    <Grid container>
-        <Grid id={styles.changePassword} item xs={12}>
-            <p>ChangePassword</p>
-        </Grid>
+    <Grid>
+        <p>ChangePassword</p>
     </Grid>
 ;
 

@@ -1,13 +1,22 @@
-import { Grid } from '@mui/material';
+import { Grid as MuiGrid } from '@mui/material';
+
+import Grid from 'components/pages/Grid';
 
 import styles from 'assets/styles/pages/security/edit-account.module.scss';
 
-const EditAccount = () =>
-    <Grid container>
-        <Grid id={styles.editAccount} item xs={12}>
-            <p>EditAccount</p>
+const EditAccount = () => {
+    return (
+        <Grid>
+            <MuiGrid id={styles.editAccount} container>
+                <MuiGrid item xs={12} sm={4}>
+                    <p>Image</p>
+                </MuiGrid>
+                <MuiGrid item xs={12} sm={8}>
+                    <p>Text</p>
+                </MuiGrid>
+            </MuiGrid>
         </Grid>
-    </Grid>
-;
+    );
+};
 
 export default EditAccount;
