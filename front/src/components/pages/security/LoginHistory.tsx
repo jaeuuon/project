@@ -1,7 +1,7 @@
 import { memo, useState, useCallback, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
-import { Grid, Table, TableHead, TableBody, TableRow } from '@mui/material';
+import { Table, TableHead, TableBody, TableRow } from '@mui/material';
 
 import type Component from 'types/components/pages/security/loginHistory';
 import type { Params, Content } from 'types/apis/security/history';
@@ -37,33 +37,29 @@ const LoginHistory = memo(({ isSimple }: Component) => {
             {isSimple &&
                 <Typography content="Recent Login History" />
             }
-            <Grid container>
-                <Grid item xs={12}>
-                    <Table size="small">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell width="20%" rowSpan={2}>Request IP</TableCell>
-                                <TableCell colSpan={2}>Result</TableCell>
-                                <TableCell width="35%" rowSpan={2}>Created time</TableCell>
-                            </TableRow>
-                            <TableRow>
-                                <TableCell width="15%">Code</TableCell>
-                                <TableCell width="30%">Value</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {data?.content.map(({ requestIp, result: { code, value }, createdTime }, index) =>
-                                <TableRow key={`table-login-history-${index}`}>
-                                    <TableCell>{requestIp}</TableCell>
-                                    <TableCell>{code}</TableCell>
-                                    <TableCell>{value}</TableCell>
-                                    <TableCell>{createdTime}</TableCell>
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </Grid>
-            </Grid>
+            <Table size="small">
+                <TableHead>
+                    <TableRow>
+                        <TableCell width="20%" rowSpan={2}>Request IP</TableCell>
+                        <TableCell colSpan={2}>Result</TableCell>
+                        <TableCell width="35%" rowSpan={2}>Created time</TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell width="15%">Code</TableCell>
+                        <TableCell width="30%">Value</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {data?.content.map(({ requestIp, result: { code, value }, createdTime }, index) =>
+                        <TableRow key={`table-login-history-${index}`}>
+                            <TableCell>{requestIp}</TableCell>
+                            <TableCell>{code}</TableCell>
+                            <TableCell>{value}</TableCell>
+                            <TableCell>{createdTime}</TableCell>
+                        </TableRow>
+                    )}
+                </TableBody>
+            </Table>
             {!isSimple &&
                 <Pagination totalPages={data?.totalPages} onChange={onChange} />
             }

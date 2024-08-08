@@ -1,6 +1,7 @@
 import {
     HomeOutlined, CampaignOutlined,
     InfoOutlined, ContactSupportOutlined, GitHub,
+    Construction, Person,
     Security as SecurityIcon, ManageAccounts, Password, ManageHistory, History
 } from '@mui/icons-material';
 
@@ -12,6 +13,9 @@ import Notice from 'pages/home/Notice';
 import Information from 'pages/Information';
 import Contact from 'pages/information/Contact';
 
+import Management from 'pages/Management';
+import User from 'pages/management/User';
+
 import Security from 'pages/Security';
 import EditAccount from 'pages/security/EditAccount';
 import ChangePassword from 'pages/security/ChangePassword';
@@ -21,6 +25,7 @@ import LoginHistory from 'pages/security/LoginHistory';
 export const PATH = {
     HOME: '/',
     INFORMATION: '/information',
+    MANAGEMENT: '/management',
     SECURITY: '/security'
 } as const;
 
@@ -63,6 +68,23 @@ export const MENU = [
                 ICON: <GitHub />,
                 LABEL: 'GitHub',
                 REQUIRED: { INIT: false, ROLES: [] }
+            }
+        ]
+    },
+    {
+        PATH: `${PATH.MANAGEMENT}`,
+        ELEMENT: <Management />,
+        ICON: <Construction />,
+        LABEL: 'Management',
+        VISIBLE: true,
+        REQUIRED: { INIT: true, ROLES: [ROLE.ADMIN] },
+        SUB_MENUS: [
+            {
+                PATH: `${PATH.MANAGEMENT}/user`,
+                ELEMENT: <User />,
+                ICON: <Person />,
+                LABEL: 'User',
+                REQUIRED: { INIT: true, ROLES: [] }
             }
         ]
     },

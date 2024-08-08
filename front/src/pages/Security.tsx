@@ -6,8 +6,8 @@ import LoginHistory from 'components/pages/security/LoginHistory';
 import styles from 'assets/styles/pages/security.module.scss';
 
 const Security = () =>
-    <Grid container>
-        <Grid id={styles.Information} item xs={12}>
+    <Grid id={styles.security} container>
+        <Grid item xs={12}>
             <p>My Information</p>
         </Grid>
         <Grid item xs={12} lg={6}>
