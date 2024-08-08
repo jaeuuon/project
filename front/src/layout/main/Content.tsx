@@ -7,10 +7,8 @@ import styles from 'assets/styles/layout/main/content.module.scss';
 
 const Content = () =>
     <Grid id={styles.content} item xs>
-        <div>
-            <Breadcrumbs />
-            <Router />
-        </div>
+        <Breadcrumbs />
+        <Router />
     </Grid>
 ;
 

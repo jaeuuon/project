@@ -102,7 +102,7 @@ const Login = ({
     };
 
     return (
-        <form onSubmit={onSubmit}>
+        <form id={styles.form} onSubmit={onSubmit}>
             <TextField name="email" value={email} label="Email" autoComplete="email"
                 isError={includesCode(EMAIL_ERROR, code)} onChange={onChange}
                 ref={emailRef}
@@ -112,7 +112,7 @@ const Login = ({
                 ref={passwordRef}
             />
             <Error code={code} message={message} />
-            <Button id={styles.submit} type="submit" variant="contained">Login</Button>
+            <Button type="submit" variant="contained">Login</Button>
             <Loading isVisible={isVisibleLoading} />
         </form>
     );

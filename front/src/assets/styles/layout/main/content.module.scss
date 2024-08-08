@@ -1,10 +1,6 @@
 #content {
+    position: relative;
+    min-height: 60px;
     padding: var.$padding;
     padding-bottom: calc(var.$padding * 4);
-
-    > div {
-        position: relative;
-        min-height: 60px;
-        margin: var.$margin;
-    }
 }

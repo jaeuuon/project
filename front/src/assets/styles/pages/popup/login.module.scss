@@ -1,4 +1,8 @@
-#submit {
-    width: 100%;
-    margin-top: calc(var.$margin * 4);
+#form {
+    margin: calc(var.$margin * 2);
+
+    > button {
+        width: 100%;
+        margin-top: calc(var.$margin * 4);
+    }
 }

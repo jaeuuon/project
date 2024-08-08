@@ -36,9 +36,7 @@ const Popup = ({
                                 </Tooltip>
                             </Grid>
                         </Grid>
-                        <div>
-                            <div>{children}</div>
-                        </div>
+                        <div>{children}</div>
                     </div>
                 </>
             }
