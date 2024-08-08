@@ -1,0 +1,79 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /user
+
+spring:
+  application:
+    name: user
+
+  profiles:
+    include:
+      - basic
+      - jpa
+      - web
+
+  datasource:
+    url: jdbc:postgresql://${PROJECT_POSTGRESQL_IP_PORT}/project
+    driver-class-name: org.postgresql.Driver
+    username: ${PROJECT_POSTGRESQL_USERNAME}
+    password: ${PROJECT_POSTGRESQL_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+    status-page-url:
+
+  client:
+    disable-delta: true
+    service-url:
+      defaultZone: http://${PROJECT_EUREKA_IP_PORT}/eureka
+
+logging:
+  level:
+    root: info
+
+  file:
+    name: ${logging.file.path}/${spring.application.name}.log
+
+  logback:
+    rollingpolicy:
+      file-name-pattern: ${logging.file.path}/${spring.application.name}.%d{yyyy-MM-dd}.%i.log
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  jpa:
+    properties:
+      hibernate:
+        "[show_sql]": true
+        "[format_sql]": true
+
+logging:
+  file:
+    path: C:/log/${spring.application.name}
+
+  logback:
+    rollingpolicy:
+      max-history: 1
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+logging:
+  file:
+    path: /var/log/${spring.application.name}
+
+  logback:
+    rollingpolicy:
+      max-history: 7
