@@ -1,7 +1,7 @@
 package kr.jaeuuon.security.source.security.service.impl;
 
+import kr.jaeuuon.security.source.api.user.service.UserService;
 import kr.jaeuuon.security.source.security.userdetails.impl.UserDetailsImpl;
-import kr.jaeuuon.security.source.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
