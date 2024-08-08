@@ -6,7 +6,7 @@ import kr.jaeuuon.security.source.api.history.code.impl.ResultCode;
 import kr.jaeuuon.security.source.api.history.dto.HistoryDTO;
 import kr.jaeuuon.security.source.api.history.entity.History;
 import kr.jaeuuon.security.source.api.history.repository.HistoryRepository;
-import kr.jaeuuon.security.source.user.service.UserService;
+import kr.jaeuuon.security.source.api.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
