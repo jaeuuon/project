@@ -1,9 +1,12 @@
 package kr.jaeuuon.security.source.api.user.service;
 
 import kr.jaeuuon.common.jpa.source.entity.user.User;
+import kr.jaeuuon.security.source.api.user.dto.UserDTO;
 import kr.jaeuuon.security.source.api.user.repository.UserRepository;
 import kr.jaeuuon.security.source.security.userdetails.impl.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +29,11 @@ public class UserService {
     @Transactional(readOnly = true)
     public UserDetailsImpl getJoinAuthority(String email) {
         return userRepository.customFindJoinAuthorityByEmail(email).orElse(null);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<UserDTO> getList(Pageable pageable) {
+        return userRepository.customFindAll(pageable);
     }
 
 }
