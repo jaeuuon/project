@@ -1,4 +1,6 @@
 #not-found {
+    margin: calc(var.$margin * 2);
+
     > p {
         text-align: center;
         word-break: keep-all;
