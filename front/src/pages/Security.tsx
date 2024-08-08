@@ -1,12 +1,17 @@
 import { Grid } from '@mui/material';
 
-import ChangeHistory from 'components/pages/security/ChangeHistory';
+import AccountHistory from 'components/pages/security/AccountHistory';
 import LoginHistory from 'components/pages/security/LoginHistory';
+
+import styles from 'assets/styles/pages/security.module.scss';
 
 const Security = () =>
     <Grid container>
+        <Grid id={styles.Information} item xs={12}>
+            <p>My Information</p>
+        </Grid>
         <Grid item xs={12} lg={6}>
-            <ChangeHistory isSimple />
+            <AccountHistory isSimple />
         </Grid>
         <Grid item xs={12} lg={6}>
             <LoginHistory isSimple />

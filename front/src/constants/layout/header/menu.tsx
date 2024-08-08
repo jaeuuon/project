@@ -1,7 +1,7 @@
 import {
     HomeOutlined, CampaignOutlined,
     InfoOutlined, ContactSupportOutlined, GitHub,
-    ManageHistory, Security as SecurityIcon, History
+    Security as SecurityIcon, ManageAccounts, Password, ManageHistory, History
 } from '@mui/icons-material';
 
 import { ROLE } from 'constants/apis/security/authentication';
@@ -13,7 +13,9 @@ import Information from 'pages/Information';
 import Contact from 'pages/information/Contact';
 
 import Security from 'pages/Security';
-import ChangeHistory from 'pages/security/ChangeHistory';
+import EditAccount from 'pages/security/EditAccount';
+import ChangePassword from 'pages/security/ChangePassword';
+import AccountHistory from 'pages/security/AccountHistory';
 import LoginHistory from 'pages/security/LoginHistory';
 
 export const PATH = {
@@ -57,7 +59,7 @@ export const MENU = [
             },
             {
                 PATH: 'https://github.com/jaeuuon/project',
-                ELEMENT: undefined,
+                ELEMENT: null,
                 ICON: <GitHub />,
                 LABEL: 'GitHub',
                 REQUIRED: { INIT: false, ROLES: [] }
@@ -73,10 +75,24 @@ export const MENU = [
         REQUIRED: { INIT: true, ROLES: [ROLE.USER] },
         SUB_MENUS: [
             {
-                PATH: `${PATH.SECURITY}/change-history`,
-                ELEMENT: <ChangeHistory />,
+                PATH: `${PATH.SECURITY}/edit-account`,
+                ELEMENT: <EditAccount />,
+                ICON: <ManageAccounts />,
+                LABEL: 'Edit Account',
+                REQUIRED: { INIT: true, ROLES: [] }
+            },
+            {
+                PATH: `${PATH.SECURITY}/change-password`,
+                ELEMENT: <ChangePassword />,
+                ICON: <Password />,
+                LABEL: 'Change Password',
+                REQUIRED: { INIT: true, ROLES: [] }
+            },
+            {
+                PATH: `${PATH.SECURITY}/account-history`,
+                ELEMENT: <AccountHistory />,
                 ICON: <ManageHistory />,
-                LABEL: 'Change History',
+                LABEL: 'Account History',
                 REQUIRED: { INIT: true, ROLES: [] }
             },
             {

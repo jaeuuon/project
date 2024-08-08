@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { memo, useState, useCallback, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { Grid, Table, TableHead, TableBody, TableRow } from '@mui/material';
@@ -16,7 +16,7 @@ import Loading from 'components/Loading';
 
 import styles from 'assets/styles/components/pages/security/login-history.module.scss';
 
-const LoginHistory = ({ isSimple }: Component) => {
+const LoginHistory = memo(({ isSimple }: Component) => {
     const [params, setParams] = useState<Params>(isSimple ? { size: 5 } : {});
     const onChange = useCallback((_event: React.ChangeEvent<unknown>, page: number) => setParams({ ...params, page }), [params]);
 
@@ -70,6 +70,6 @@ const LoginHistory = ({ isSimple }: Component) => {
             <Loading isVisible={isLoading} />
         </div>
     );
-};
+});
 
 export default LoginHistory;

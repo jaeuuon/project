@@ -4,7 +4,7 @@ import LoginHistoryComponent from 'components/pages/security/LoginHistory';
 
 const LoginHistory = () =>
     <Grid container justifyContent="center">
-        <Grid item xs={12} sm={11} md={10} lg={9} xl={8}>
+        <Grid item xs={12}>
             <LoginHistoryComponent />
         </Grid>
     </Grid>

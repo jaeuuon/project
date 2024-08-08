@@ -32,7 +32,7 @@ export const reissuance = async (): Promise<Response<Content>> => {
 export const logout = async (): Promise<Response<Content>> => {
     try {
         const { data } = await apis.delete(URL);
-        apis.defaults.headers.common.Authorization = undefined;
+        apis.defaults.headers.common.Authorization = null;
 
         return data;
     } catch(error) {
