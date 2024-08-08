@@ -33,11 +33,6 @@ const getThemeOptions = (mode: PaletteMode): ThemeOptions => ({
                 root: { minWidth: 0, fontWeight: 'bold' }
             }
         },
-        MuiGrid: {
-            styleOverrides: {
-                root: { overflowX: 'auto' }
-            }
-        },
         MuiInputAdornment: {
             styleOverrides: {
                 positionEnd: { position: 'absolute', right: '14px', cursor: 'pointer' }
@@ -67,7 +62,8 @@ const getThemeOptions = (mode: PaletteMode): ThemeOptions => ({
         MuiTableCell: {
             styleOverrides: {
                 root: { padding: '5px', border: `1px solid ${getGreyBorderColor(mode)}` },
-                head: { fontWeight: 'bold' }
+                head: { fontWeight: 'bold' },
+                body: { overflowWrap: 'anywhere' }
             }
         },
         MuiPagination: {
