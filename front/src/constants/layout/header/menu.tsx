@@ -1,7 +1,7 @@
 import {
     HomeOutlined, CampaignOutlined,
     InfoOutlined, ContactSupportOutlined, GitHub,
-    Security as SecurityIcon, History
+    ManageHistory, Security as SecurityIcon, History
 } from '@mui/icons-material';
 
 import { ROLE } from 'constants/apis/security/authentication';
@@ -13,6 +13,7 @@ import Information from 'pages/Information';
 import Contact from 'pages/information/Contact';
 
 import Security from 'pages/Security';
+import ChangeHistory from 'pages/security/ChangeHistory';
 import LoginHistory from 'pages/security/LoginHistory';
 
 export const PATH = {
@@ -72,7 +73,14 @@ export const MENU = [
         REQUIRED: { INIT: true, ROLES: [ROLE.USER] },
         SUB_MENUS: [
             {
-                PATH: `${PATH.SECURITY}/history`,
+                PATH: `${PATH.SECURITY}/change-history`,
+                ELEMENT: <ChangeHistory />,
+                ICON: <ManageHistory />,
+                LABEL: 'Change History',
+                REQUIRED: { INIT: true, ROLES: [] }
+            },
+            {
+                PATH: `${PATH.SECURITY}/login-history`,
                 ELEMENT: <LoginHistory />,
                 ICON: <History />,
                 LABEL: 'Login History',
