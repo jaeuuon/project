@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { Grid } from '@mui/material';
@@ -6,9 +6,13 @@ import { Grid } from '@mui/material';
 import type Component from 'types/components/pages/security/editAccount';
 import type { Content } from 'types/apis/security/user';
 
+import { EMAIL_ERROR, NAME_ERROR } from 'constants/apis/security';
+
 import { useAppSelector } from 'hooks';
 
 import { detail } from 'apis/security/user';
+
+import { includesCode } from 'common/util';
 
 import TextField from 'components/pages/TextField';
 import Loading from 'components/Loading';
@@ -29,6 +33,9 @@ const EditAccount = ({ isManagement }: Component) => {
             setContent(response.data.content[0]);
         }
     }, [response]);
+
+    const emailRef = useRef<HTMLInputElement>(null);
+    const nameRef = useRef<HTMLInputElement>(null);
 
     return (
         <Grid id={styles.editAccount} container>

@@ -1,8 +1,23 @@
-export const URL = '/security/authentication' as const;
+const BASE_URL = '/security' as const;
+
+export const URL = {
+    AUTHENTICATION: `${BASE_URL}/authentication`,
+    USER: `${BASE_URL}/user`,
+    HISTORY: `${BASE_URL}/history`
+} as const;
 
 export const ROLE = {
     ADMIN: 'ROLE_ADMIN',
     USER: 'ROLE_USER'
+} as const;
+
+export const REISSUANCE_IGNORED_ERROR = {
+    UNAUTHORIZED: { code: 'ERROR_BSC_UNAUTHORIZED', message: '유효한 인증 자격 증명이 없습니다.' },
+    EXPIRED: { code: 'ERROR_JWT_EXPIRED', message: '토큰이 만료되었습니다.' }
+} as const;
+
+export const ID_ERROR = {
+    BLANK: { code: 'ERROR_SCR_ID_BLANK', message: '아이디가 비어있습니다.' }
 } as const;
 
 export const EMAIL_ERROR = {
@@ -19,7 +34,7 @@ export const PASSWORD_ERROR = {
     WRONG: { code: 'ERROR_SCR_PASSWORD_WRONG', message: '비밀번호가 잘못되었습니다.' }
 } as const;
 
-export const REISSUANCE_IGNORED_ERROR = {
-    UNAUTHORIZED: { code: 'ERROR_BSC_UNAUTHORIZED', message: '유효한 인증 자격 증명이 없습니다.' },
-    EXPIRED: { code: 'ERROR_JWT_EXPIRED', message: '토큰이 만료되었습니다.' }
+export const NAME_ERROR = {
+    BLANK: { code: 'ERROR_SCR_NAME_BLANK', message: '이름을 입력하십시오.' },
+    SIZE: { code: 'ERROR_SCR_NAME_SIZE', message: '이름은 2자에서 50자 사이여야 합니다.' }
 } as const;

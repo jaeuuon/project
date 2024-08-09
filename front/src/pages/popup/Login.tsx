@@ -7,7 +7,7 @@ import type Page from 'types/pages/popup/login';
 import type { Params } from 'types/apis/security/authentication';
 import type { CodeMessage } from 'types/apis/response';
 
-import { EMAIL_ERROR, PASSWORD_ERROR } from 'constants/apis/security/authentication';
+import { EMAIL_ERROR, PASSWORD_ERROR } from 'constants/apis/security';
 import { STATUS } from 'constants/apis/response';
 
 import { useAppDispatch } from 'hooks';

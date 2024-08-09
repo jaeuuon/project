@@ -6,7 +6,7 @@ import { Logout, Login } from '@mui/icons-material';
 
 import { PATH } from 'constants/layout/header/menu';
 import { STATUS } from 'constants/apis/response';
-import { REISSUANCE_IGNORED_ERROR } from 'constants/apis/security/authentication';
+import { REISSUANCE_IGNORED_ERROR } from 'constants/apis/security';
 
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { init, set } from 'store/user';
