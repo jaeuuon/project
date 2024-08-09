@@ -2,6 +2,7 @@ package kr.jaeuuon.security.source.api.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.querydsl.core.annotations.QueryProjection;
+import jakarta.validation.constraints.Size;
 import kr.jaeuuon.common.jpa.source.entity.embeddable.Address;
 import kr.jaeuuon.common.jpa.source.entity.user.User;
 import lombok.AccessLevel;
@@ -13,14 +14,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class AddressDTO {
 
+    @Size(max = 10, message = "ERROR_SCR_POSTAL_CODE_SIZE")
     private String postalCode;
+
+    @Size(max = 100, message = "ERROR_SCR_ADDRESS_SIZE")
     private String address;
-    private String addressDetail;
+
+    @Size(max = 200, message = "ERROR_SCR_DETAIL_ADDRESS_SIZE")
+    private String detailAddress;
 
     public AddressDTO(Address address) {
         postalCode = address.getPostalCode();
         this.address = address.getAddress();
-        addressDetail = address.getAddressDetail();
+        detailAddress = address.getDetailAddress();
     }
 
 }

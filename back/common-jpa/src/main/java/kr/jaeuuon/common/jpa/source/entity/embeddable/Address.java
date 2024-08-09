@@ -20,6 +20,6 @@ public class Address {
     private String address;
 
     @Column(length = 200)
-    private String addressDetail;
+    private String detailAddress;
 
 }

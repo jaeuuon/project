@@ -29,7 +29,11 @@ public enum SecurityMessageImpl implements Message {
     ERROR_SCR_PASSWORD_WRONG(MessageStatusImpl.ERROR, "비밀번호가 잘못되었습니다."),
 
     ERROR_SCR_NAME_BLANK(MessageStatusImpl.ERROR, "이름을 입력하십시오."),
-    ERROR_SCR_NAME_SIZE(MessageStatusImpl.ERROR, "이름은 2자에서 50자 사이여야 합니다.");
+    ERROR_SCR_NAME_SIZE(MessageStatusImpl.ERROR, "이름은 2자에서 50자 사이여야 합니다."),
+
+    ERROR_SCR_POSTAL_CODE_SIZE(MessageStatusImpl.ERROR, "우편번호는 최대 10자까지 가능합니다."),
+    ERROR_SCR_ADDRESS_SIZE(MessageStatusImpl.ERROR, "주소는 최대 100자까지 가능합니다."),
+    ERROR_SCR_DETAIL_ADDRESS_SIZE(MessageStatusImpl.ERROR, "상세주소는 최대 200자까지 가능합니다.");
 
     private final MessageStatus status;
     private final String value;
