@@ -2,6 +2,7 @@ import { isAxiosError } from 'axios';
 
 import { type Palette, type PaletteMode, type AlertColor, colors } from '@mui/material';
 
+import type { CodeMessage } from 'types/apis/response';
 import type { StringIndex } from 'types/signature';
 import type { ConstCodeMessage } from 'types/common/util';
 import type { Response } from 'types/apis/response';
@@ -15,8 +16,18 @@ export const getGreyColor = (mode: PaletteMode) => colors.grey[isLightMode(mode)
 export const getGreyBorderColor = (mode: PaletteMode) => colors.grey[isLightMode(mode) ? 300 : 600];
 export const getGreyBackgroundColor = (mode: PaletteMode, isAlpha: boolean = true) => `${colors.grey[isLightMode(mode) ? 50 : 900]}${isAlpha ? 'bf' : ''}`;
 
-export const getOnChange = <T extends StringIndex>(state: T, setState: React.Dispatch<React.SetStateAction<T>>) => {
-    return ({ target: { name: key, value } }: React.ChangeEvent<HTMLInputElement>) => {
+export const getFocusAndSetError = (setError: React.Dispatch<React.SetStateAction<CodeMessage>>) =>
+    ({ current }: React.RefObject<HTMLInputElement>, error: CodeMessage) => {
+        current?.focus();
+
+        setError(error);
+
+        return false;
+    };
+;
+
+export const getOnChange = <T extends StringIndex>(state: T, setState: React.Dispatch<React.SetStateAction<T>>) =>
+    ({ target: { name: key, value } }: React.ChangeEvent<HTMLInputElement>) => {
         if (value !== '') {
             setState({ ...state, [key]: value });
         } else {
@@ -25,7 +36,7 @@ export const getOnChange = <T extends StringIndex>(state: T, setState: React.Dis
             setState({ ...state });
         }
     };
-};
+;
 
 export const includesCode = (constCodeMessage: ConstCodeMessage, code: string) => Object.values(constCodeMessage).some(({ code: constCode }) => constCode === code);
 

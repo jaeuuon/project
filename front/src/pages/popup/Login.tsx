@@ -14,10 +14,12 @@ import { useAppDispatch } from 'hooks';
 import { set } from 'store/user';
 import { success } from 'store/layout/snackbar';
 
+import { isOffSize, isNot } from 'common/validation/apis/security';
+
 import { login } from 'apis/security/authentication';
 
 import { getPayload, getUser, getDelay } from 'common/jwt';
-import { getOnChange, includesCode } from 'common/util';
+import { getOnChange, getFocusAndSetError, includesCode } from 'common/util';
 
 import TextField from 'components/pages/TextField';
 import Error from 'components/pages/Error';
@@ -41,24 +43,18 @@ const Login = ({
 
     const [{ code, message }, setError] = useState<CodeMessage>({ code: '', message: '' });
 
-    const focusAndSetError = ({ current }: React.RefObject<HTMLInputElement>, error: CodeMessage) => {
-        current?.focus();
-
-        setError(error);
-
-        return false;
-    };
+    const focusAndSetError = getFocusAndSetError(setError);
 
     const validation = () => {
         if (!email) {
             return focusAndSetError(emailRef, EMAIL_ERROR.BLANK);
-        } else if (email.length < 4 || email.length > 100) {
+        } else if (isOffSize.email(email)) {
             return focusAndSetError(emailRef, EMAIL_ERROR.SIZE);
-        } else if (!email.match(/^.+@.+$/)) {
+        } else if (isNot.email(email)) {
             return focusAndSetError(emailRef, EMAIL_ERROR.FORMAT);
         } else if (!password) {
             return focusAndSetError(passwordRef, PASSWORD_ERROR.BLANK);
-        } else if (password.length < 4 || password.length > 50) {
+        } else if (isOffSize.password(password)) {
             return focusAndSetError(passwordRef, PASSWORD_ERROR.DECRYPT_SIZE);
         }
 
@@ -68,7 +64,9 @@ const Login = ({
     const [isVisibleLoading, setVisibleLoading] = useState(false);
     const dispatch = useAppDispatch();
 
-    const onClick = async () => {
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
         if (validation()) {
             setVisibleLoading(true);
 
@@ -100,7 +98,7 @@ const Login = ({
     };
 
     return (
-        <div id={styles.login}>
+        <form id={styles.login} onSubmit={onSubmit}>
             <TextField name="email" value={email} label="Email" autoComplete="email"
                 isError={includesCode(EMAIL_ERROR, code)} onChange={onChange}
                 ref={emailRef}
@@ -110,9 +108,9 @@ const Login = ({
                 ref={passwordRef}
             />
             <Error code={code} message={message} />
-            <Button variant="contained" onClick={onClick}>Login</Button>
+            <Button type="submit" variant="contained">Login</Button>
             <Loading isVisible={isVisibleLoading} />
-        </div>
+        </form>
     );
 };
 
