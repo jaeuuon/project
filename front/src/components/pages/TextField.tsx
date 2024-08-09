@@ -9,7 +9,7 @@ import styles from 'assets/styles/components/pages/text-field.module.scss';
 
 const TextField = forwardRef((
     {
-        type, name, value, label, autoComplete,
+        type, name, value, label, autoComplete = 'off',
         isFullWidth = true, isError, onChange
     }: Component,
     inputRef?: ForwardedRef<HTMLInputElement>

@@ -5,7 +5,7 @@ import {
     Security as SecurityIcon, ManageAccounts, Password, ManageHistory, History
 } from '@mui/icons-material';
 
-import { ROLE } from 'constants/apis/security';
+import { ROLE } from 'constants/user';
 
 import Home from 'pages/Home';
 import Notice from 'pages/home/Notice';

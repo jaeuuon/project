@@ -7,7 +7,7 @@ import type Page from 'types/pages/popup/login';
 import type { Params } from 'types/apis/security/authentication';
 import type { CodeMessage } from 'types/apis/response';
 
-import { EMAIL_ERROR, PASSWORD_ERROR } from 'constants/apis/security';
+import { EMAIL_ERROR, PASSWORD_ERROR } from 'constants/apis/security/codeMessage';
 import { STATUS } from 'constants/apis/response';
 
 import { useAppDispatch } from 'hooks';
@@ -68,9 +68,7 @@ const Login = ({
     const [isVisibleLoading, setVisibleLoading] = useState(false);
     const dispatch = useAppDispatch();
 
-    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
+    const onClick = async () => {
         if (validation()) {
             setVisibleLoading(true);
 
@@ -102,7 +100,7 @@ const Login = ({
     };
 
     return (
-        <form id={styles.form} onSubmit={onSubmit}>
+        <div id={styles.login}>
             <TextField name="email" value={email} label="Email" autoComplete="email"
                 isError={includesCode(EMAIL_ERROR, code)} onChange={onChange}
                 ref={emailRef}
@@ -112,9 +110,9 @@ const Login = ({
                 ref={passwordRef}
             />
             <Error code={code} message={message} />
-            <Button type="submit" variant="contained">Login</Button>
+            <Button variant="contained" onClick={onClick}>Login</Button>
             <Loading isVisible={isVisibleLoading} />
-        </form>
+        </div>
     );
 };
 

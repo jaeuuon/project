@@ -1,7 +1,7 @@
 import type { Payload } from 'types/common/jwt';
 import type { UserState, Role } from 'types/store/user';
 
-import { ROLE } from 'constants/apis/security';
+import { ROLE } from 'constants/user';
 
 export const getPayload = (access: string): Payload => {
     const base64Url = access.split('.')[1];

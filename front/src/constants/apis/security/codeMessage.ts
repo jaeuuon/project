@@ -1,16 +1,3 @@
-const BASE_URL = '/security' as const;
-
-export const URL = {
-    AUTHENTICATION: `${BASE_URL}/authentication`,
-    USER: `${BASE_URL}/user`,
-    HISTORY: `${BASE_URL}/history`
-} as const;
-
-export const ROLE = {
-    ADMIN: 'ROLE_ADMIN',
-    USER: 'ROLE_USER'
-} as const;
-
 export const REISSUANCE_IGNORED_ERROR = {
     UNAUTHORIZED: { code: 'ERROR_BSC_UNAUTHORIZED', message: '유효한 인증 자격 증명이 없습니다.' },
     EXPIRED: { code: 'ERROR_JWT_EXPIRED', message: '토큰이 만료되었습니다.' }
@@ -37,4 +24,16 @@ export const PASSWORD_ERROR = {
 export const NAME_ERROR = {
     BLANK: { code: 'ERROR_SCR_NAME_BLANK', message: '이름을 입력하십시오.' },
     SIZE: { code: 'ERROR_SCR_NAME_SIZE', message: '이름은 2자에서 50자 사이여야 합니다.' }
+} as const;
+
+export const POSTAL_CODE_ERROR = {
+    SIZE: { code: 'ERROR_SCR_POSTAL_CODE_SIZE', message: '우편번호는 최대 10자까지 가능합니다.' }
+} as const;
+
+export const ADDRESS_ERROR = {
+    SIZE: { code: 'ERROR_SCR_ADDRESS_SIZE', message: '주소는 최대 100자까지 가능합니다.' }
+} as const;
+
+export const DETAIL_ADDRESS_ERROR = {
+    SIZE: { code: 'ERROR_SCR_DETAIL_ADDRESS_SIZE', message: '상세주소는 최대 200자까지 가능합니다.' }
 } as const;
