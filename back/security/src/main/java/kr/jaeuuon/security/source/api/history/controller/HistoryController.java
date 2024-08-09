@@ -18,15 +18,15 @@ public class HistoryController {
 
     private final HistoryService historyService;
 
-    @GetMapping("/list")
-    public ResponseEntity<Object> getList(HttpServletRequest request, @RequestHeader(CommonConstant.HEADER_USER_ID) long userId, Pageable pageable) {
-        return ResponseSuccessUtil.ok(request, historyService.getList(userId, pageable, false));
+    @GetMapping("/login/list")
+    public ResponseEntity<Object> getLoginList(HttpServletRequest request, @RequestHeader(CommonConstant.HEADER_USER_ID) long userId, Pageable pageable) {
+        return ResponseSuccessUtil.ok(request, historyService.getLoginList(userId, pageable, false));
     }
 
-    @GetMapping("/{userId}/list")
+    @GetMapping("/{userId}/login/list")
     @HasRole({AuthorityCode.ROLE_ADMIN})
-    public ResponseEntity<Object> getListByUserId(HttpServletRequest request, @PathVariable long userId, Pageable pageable) {
-        return ResponseSuccessUtil.ok(request, historyService.getList(userId, pageable, true));
+    public ResponseEntity<Object> getLoginListByUserId(HttpServletRequest request, @PathVariable long userId, Pageable pageable) {
+        return ResponseSuccessUtil.ok(request, historyService.getLoginList(userId, pageable, true));
     }
 
 }

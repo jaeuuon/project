@@ -1,15 +1,13 @@
 import type { Pageable } from 'types/apis/request';
 import type { StringIndex } from 'types/signature';
 
-export interface Params extends Pageable {};
+export interface LoginParams extends Pageable {};
 
-interface Result {
-    code: string;
-    value: string;
-};
-
-export interface Content extends StringIndex {
+export interface LoginContent extends StringIndex {
     requestIp: string;
-    result: Result;
+    result: {
+        code: string;
+        value: string;
+    };
     createdTime: string;
 };

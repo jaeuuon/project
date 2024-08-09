@@ -24,7 +24,7 @@ const EditAccount = ({
     isManagement
 }: Component) => {
     const { isLoading, data: response } = useQuery({
-        queryKey: ['editAccount/detail', id],
+        queryKey: ['security/user/detail', id],
         queryFn: () => detail(id)
     });
 

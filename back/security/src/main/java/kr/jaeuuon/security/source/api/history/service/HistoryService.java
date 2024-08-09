@@ -25,7 +25,7 @@ public class HistoryService {
     }
 
     @Transactional(readOnly = true)
-    public Page<HistoryDTO> getList(long userId, Pageable pageable, boolean isAdmin) {
+    public Page<HistoryDTO> getLoginList(long userId, Pageable pageable, boolean isAdmin) {
         userService.getDetail(userId);
 
         return historyRepository.customFindByUserId(userId, pageable, isAdmin);

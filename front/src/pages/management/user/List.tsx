@@ -21,7 +21,7 @@ const List = memo(() => {
 
     const [data, setData] = useState<Data<Content>>();
     const { isLoading, data: response } = useQuery({
-        queryKey: ['user/list', params],
+        queryKey: ['security/user/list', params],
         queryFn: () => list(params)
     });
 

@@ -4,10 +4,10 @@ import { useQuery } from '@tanstack/react-query';
 import { Table, TableHead, TableBody, TableRow } from '@mui/material';
 
 import type Component from 'types/components/pages/security/loginHistory';
-import type { Params, Content } from 'types/apis/security/history';
+import type { LoginParams, LoginContent } from 'types/apis/security/history';
 import type { Data } from 'types/apis/response';
 
-import { list } from 'apis/security/history';
+import { loginList } from 'apis/security/history';
 
 import Typography from 'components/pages/Typography';
 import TableCell from 'components/pages/TableCell';
@@ -17,15 +17,15 @@ import Loading from 'components/Loading';
 import styles from 'assets/styles/components/pages/security/login-history.module.scss';
 
 const LoginHistory = memo(({ isSimple }: Component) => {
-    const [params, setParams] = useState<Params>(isSimple ? { size: 5 } : {});
+    const [params, setParams] = useState<LoginParams>(isSimple ? { size: 5 } : {});
     const onChange = useCallback((_event: React.ChangeEvent<unknown>, page: number) => setParams({ ...params, page }), [params]);
 
     const { isLoading, data: response } = useQuery({
-        queryKey: ['loginHistory/list', params],
-        queryFn: () => list(params)
+        queryKey: ['security/history/loginList', params],
+        queryFn: () => loginList(params)
     });
 
-    const [data, setData] = useState<Data<Content>>();
+    const [data, setData] = useState<Data<LoginContent>>();
 
     useEffect(() => {
         if (response) {
