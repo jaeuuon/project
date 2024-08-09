@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { useMutation } from '@tanstack/react-query';
 import JSEncrypt from 'jsencrypt';
 
 import { Button } from '@mui/material';
@@ -61,21 +62,11 @@ const Login = ({
         return true;
     };
 
-    const [isVisibleLoading, setVisibleLoading] = useState(false);
     const dispatch = useAppDispatch();
 
-    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        if (validation()) {
-            setVisibleLoading(true);
-
-            const { status, data: { code, message, content: [content] } } = await login({
-                email, password: jsEncrypt.encrypt(password ?? '').toString()
-            });
-
-            setVisibleLoading(false);
-
+    const { mutate, isPending } = useMutation({
+        mutationFn: async (params: Params) => await login(params),
+        onSuccess: ({ status, data: { code, message, content: [content] } }) => {
             if (status === STATUS.SUCCESS) {
                 const payload = getPayload(content.access);
                 const user = getUser(payload);
@@ -95,6 +86,14 @@ const Login = ({
                 setError({ code, message });
             }
         }
+    });
+
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (validation()) {
+            mutate({ email, password: jsEncrypt.encrypt(password ?? '').toString() });
+        }
     };
 
     return (
@@ -109,7 +108,7 @@ const Login = ({
             />
             <Error code={code} message={message} />
             <Button type="submit" variant="contained">Login</Button>
-            <Loading isVisible={isVisibleLoading} />
+            <Loading isVisible={isPending} />
         </form>
     );
 };
