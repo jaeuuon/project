@@ -54,6 +54,10 @@ public class Util {
         return Arrays.stream(authorities.split(",")).map(AuthorityCode::findByStringCode).filter(Objects::nonNull).collect(Collectors.toSet());
     }
 
+    public static Set<AuthorityCode> getUserRoles(HttpServletRequest request) {
+        return getUserAuthorities(request).stream().filter(authority -> authority.name().startsWith("ROLE_")).collect(Collectors.toSet());
+    }
+
     public static String getFormattedZonedDateTime(Timestamp timestamp) {
         if (timestamp != null) {
             return ZonedDateTime.ofInstant(timestamp.toInstant(), ZONE_ID).format(DATE_TIME_FORMATTER);

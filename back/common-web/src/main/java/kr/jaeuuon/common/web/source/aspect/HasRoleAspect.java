@@ -34,7 +34,7 @@ public class HasRoleAspect {
             throw new CommonException(HttpStatus.UNAUTHORIZED);
         }
 
-        Set<AuthorityCode> userRoles = Util.getUserAuthorities(request).stream().filter(authority -> authority.name().startsWith("ROLE_")).collect(Collectors.toSet());
+        Set<AuthorityCode> userRoles = Util.getUserRoles(request);
         Set<AuthorityCode> targetRoles = new HashSet<>(Arrays.asList(hasRole.value()));
 
         userRoles.retainAll(targetRoles);
