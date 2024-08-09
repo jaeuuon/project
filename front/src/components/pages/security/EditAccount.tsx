@@ -9,8 +9,6 @@ import type { CodeMessage } from 'types/apis/response';
 
 import { EMAIL_ERROR, NAME_ERROR, POSTAL_CODE_ERROR, ADDRESS_ERROR, DETAIL_ADDRESS_ERROR } from 'constants/apis/security/codeMessage';
 
-import { useAppSelector } from 'hooks';
-
 import { detail } from 'apis/security/user';
 
 import { includesCode } from 'common/util';
@@ -21,8 +19,10 @@ import Loading from 'components/Loading';
 
 import styles from 'assets/styles/components/pages/security/edit-account.module.scss';
 
-const EditAccount = ({ isManagement }: Component) => {
-    const id = useAppSelector(({ user: { id } }) => id);
+const EditAccount = ({
+    id,
+    isManagement
+}: Component) => {
     const { isLoading, data: response } = useQuery({
         queryKey: ['editAccount/detail', id],
         queryFn: () => detail(id)

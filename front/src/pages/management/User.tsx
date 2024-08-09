@@ -9,7 +9,7 @@ const User = () =>
             <List />
         </Grid>
         <Grid item xs={12} sm={6} md={7}>
-            <EditAccount isManagement />
+            {/*<EditAccount id={} isManagement />*/}
         </Grid>
     </Grid>
 ;
