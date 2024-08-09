@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import type { UserState } from 'types/store/user';
 
-const initialState: UserState = { email: '', name: '', roles: [], isInit: false };
+const initialState: UserState = { id: 0, email: '', name: '', roles: [], isInit: false };
 
 const { reducer, actions: { init, set } } = createSlice({
     name: 'user',

@@ -8,7 +8,7 @@ export interface Role {
 };
 
 export interface UserState {
-    id?: number;
+    id: number;
     email: string;
     name: string;
     roles: Role[];

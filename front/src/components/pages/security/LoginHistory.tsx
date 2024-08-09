@@ -20,11 +20,12 @@ const LoginHistory = memo(({ isSimple }: Component) => {
     const [params, setParams] = useState<Params>(isSimple ? { size: 5 } : {});
     const onChange = useCallback((_event: React.ChangeEvent<unknown>, page: number) => setParams({ ...params, page }), [params]);
 
-    const [data, setData] = useState<Data<Content>>();
     const { isLoading, data: response } = useQuery({
         queryKey: ['loginHistory/list', params],
         queryFn: () => list(params)
     });
+
+    const [data, setData] = useState<Data<Content>>();
 
     useEffect(() => {
         if (response) {
